@@ -1,15 +1,17 @@
 package data
 
-type CodeType int
+type CsType int
 type SqlType int
 
 const (
-	CNone CodeType = iota
+	CNone CsType = iota
 	CInt
 	CDecimal
 	CDouble
 	CString
 	CShort
+	CLong
+	CDateTime
 )
 
 const (
@@ -19,12 +21,15 @@ const (
 	SDouble
 	SString
 	SShort
+	SLong
+	SDateTime
 )
 
 type Field struct {
-	Name     string
-	Type     string
-	Nullable bool
-	CodeType CodeType
-	SqlType  SqlType
+	Name        string
+	Type        string
+	CsNullable  bool
+	SqlNullable bool
+	CsType      CsType
+	SqlType     SqlType
 }

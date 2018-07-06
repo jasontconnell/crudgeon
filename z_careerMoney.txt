@@ -1,0 +1,70 @@
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=0)]
+        public System.Nullable<double> OfficalEarnings {
+            get {
+                return this.officalEarningsField;
+            }
+            set {
+                this.officalEarningsField = value;
+                this.RaisePropertyChanged("OfficalEarnings");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=1)]
+        public System.Nullable<int> TournamentsCount {
+            get {
+                return this.tournamentsCountField;
+            }
+            set {
+                this.tournamentsCountField = value;
+                this.RaisePropertyChanged("TournamentsCount");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public int PlayerID {
+            get {
+                return this.playerIDField;
+            }
+            set {
+                this.playerIDField = value;
+                this.RaisePropertyChanged("PlayerID");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public string firstname {
+            get {
+                return this.firstnameField;
+            }
+            set {
+                this.firstnameField = value;
+                this.RaisePropertyChanged("firstname");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public string lastname {
+            get {
+                return this.lastnameField;
+            }
+            set {
+                this.lastnameField = value;
+                this.RaisePropertyChanged("lastname");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=5)]
+        public System.Nullable<long> Rank {
+            get {
+                return this.rankField;
+            }
+            set {
+                this.rankField = value;
+                this.RaisePropertyChanged("Rank");
+            }
+        }

@@ -8,13 +8,14 @@ import (
 	"strings"
 )
 
-var fldreg *regexp.Regexp = regexp.MustCompile(`(.*?) (.*?);`)
+var fldreg *regexp.Regexp = regexp.MustCompile(`\W*(?:private|public) (.*?) (.*?) {`)
 var nilreg *regexp.Regexp = regexp.MustCompile(`System.Nullable<(.*?)>`)
 
 type parsed struct {
-	t        string
-	name     string
-	nullable bool
+	t           string
+	name        string
+	csnullable  bool
+	sqlnullable bool
 }
 
 func Parse(file string) ([]data.Field, error) {
@@ -28,13 +29,13 @@ func Parse(file string) ([]data.Field, error) {
 
 	flds := []data.Field{}
 	for _, p := range parsed {
-		fld := data.Field{Name: p.name, Nullable: p.nullable}
+		fld := data.Field{Name: p.name, CsNullable: p.csnullable, SqlNullable: p.sqlnullable}
 		ct, st := getTypes(p.t)
 		if ct == data.CNone || st == data.SNone {
-			fmt.Println(p.t, "not considered")
+			return nil, fmt.Errorf("Type not found for %v", p.name)
 		}
 
-		fld.CodeType = ct
+		fld.CsType = ct
 		fld.SqlType = st
 
 		flds = append(flds, fld)
@@ -52,11 +53,13 @@ func getParsed(c string) []parsed {
 
 		tmatches := nilreg.FindAllStringSubmatch(t, -1)
 		nullable := len(tmatches) > 0
-		for _, tm := range tmatches {
-			t = tm[1]
+		if len(tmatches) > 0 {
+			t = tmatches[0][1]
 		}
 
-		p := parsed{t: t, name: strings.TrimSuffix(m[2], "Field"), nullable: nullable}
+		sqlnullable := nullable || t == "string"
+
+		p := parsed{t: t, name: strings.TrimSuffix(m[2], "Field"), csnullable: nullable, sqlnullable: sqlnullable}
 
 		plist = append(plist, p)
 	}
@@ -64,7 +67,7 @@ func getParsed(c string) []parsed {
 	return plist
 }
 
-func getTypes(t string) (data.CodeType, data.SqlType) {
+func getTypes(t string) (data.CsType, data.SqlType) {
 	ct := data.CNone
 	st := data.SNone
 	switch t {
@@ -83,6 +86,12 @@ func getTypes(t string) (data.CodeType, data.SqlType) {
 	case "double":
 		ct = data.CDouble
 		st = data.SDouble
+	case "long":
+		ct = data.CLong
+		st = data.SLong
+	case "DateTime", "System.DateTime":
+		ct = data.CDateTime
+		st = data.SDateTime
 	}
 
 	return ct, st

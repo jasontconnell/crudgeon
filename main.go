@@ -2,23 +2,38 @@ package main
 
 import (
 	"flag"
-	"fmt"
+	"log"
+	"lpgagen/configuration"
 	"lpgagen/process"
 	"os"
 )
 
 func main() {
 	file := flag.String("file", "", "source file")
-	out := flag.String("out", "", "dest file")
-	obj := flag.String("obj", "", "class and table name")
+	path := flag.String("path", "", "output location")
+	obj := flag.String("obj", "", "object name")
 	flag.Parse()
 
-	if *file == "" || *out == "" || *obj == "" {
+	if *file == "" || *obj == "" {
 		flag.PrintDefaults()
 		os.Exit(1)
 	}
 
-	process.Parse(*file)
+	flds, err := process.Parse(*file)
 
-	fmt.Println("Hi")
+	if err != nil {
+		log.Fatal(err)
+		os.Exit(1)
+	}
+
+	cfg := configuration.LoadConfig("config.json")
+
+	for _, g := range cfg.Generations {
+		gp := process.GetGenPackage(*obj, *path, flds, g.FileType, g.File, g.OutputPrefix)
+		err := process.Generate(gp)
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
+
 }

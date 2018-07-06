@@ -1,0 +1,8 @@
+create procedure dbo.Get{{.Name }}
+as 
+begin
+        select
+            *
+        from
+            {{.Name}}
+end

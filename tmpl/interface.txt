@@ -1,0 +1,9 @@
+using System;
+
+namespace LPGAStatsService.Data {
+    public interface I{{ .Name }} {
+        {{ range $index,$field := .Fields }}
+        {{$field.Type}}{{if $field.Nullable}}?{{end}} {{$field.Name}} { get; set; }
+        {{- end }}
+    }
+}

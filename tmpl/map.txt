@@ -1,0 +1,7 @@
+
+var serviceObj = service.Get{{.Name }}();
+{{.Name}} localObj = new {{.Name}}(
+        {{- range $index,$field := .Fields }}serviceObj.{{$field.Name}}{{- if lt (plus1 $index) (len $.Fields)}},
+        {{end}}{{- end}}
+);
+return localObj;

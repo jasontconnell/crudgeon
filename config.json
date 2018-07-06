@@ -1,0 +1,10 @@
+{
+    "generations": [
+        { "file": "tmpl\\class.txt", "fileType": "cs", "outputPrefix": ""},
+        { "file": "tmpl\\readproc.txt", "fileType": "sql", "outputPrefix": "Get"},
+        { "file": "tmpl\\updateproc.txt", "fileType": "sql", "outputPrefix": "Save"},
+        { "file": "tmpl\\table.txt", "fileType": "sql", "outputPrefix": "tbl"},
+        { "file": "tmpl\\map.txt", "fileType": "cs", "outputPrefix": "Map_"},
+        { "file": "tmpl\\interface.txt", "fileType": "cs", "outputPrefix": "I"}
+    ]
+}

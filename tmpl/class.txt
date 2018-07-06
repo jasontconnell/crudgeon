@@ -1,0 +1,26 @@
+using System;
+using SqlMap.Attributes;
+
+namespace LPGAStatsService.Data {
+    [StoredProc(Name="Get{{.Name}}", ProcType=ProcType.Read)]
+    [StoredProc(Name="Save{{.Name}}", ProcType=ProcType.Update)]
+    public partial class {{ .Name }} : I{{ .Name }} {
+
+        public {{.Name}}(){
+            
+        }
+
+        public {{ .Name }}({{- range $index,$field := .Fields }} {{$field.Type}}{{if $field.Nullable}}?{{end}} {{$field.Name}}{{- if lt (plus1 $index) (len $.Fields)}},
+                {{end}}{{- end}}) {
+            {{- range $index,$field := .Fields }}
+            this.{{$field.Name}} = {{$field.Name}};
+            {{- end}}
+        }
+
+        {{ range $index,$field := .Fields }}
+        [Column]
+        public {{$field.Type}}{{if $field.Nullable}}?{{end}} {{$field.Name}} { get; set; }
+        {{- end }}
+
+    }
+}
