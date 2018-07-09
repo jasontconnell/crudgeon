@@ -81,6 +81,8 @@ func getSqlType(sqltype data.SqlType) string {
 		t = "bigint"
 	case data.SDateTime:
 		t = "datetime"
+	case data.SBit:
+		t = "bit"
 	}
 	return t
 }
@@ -102,6 +104,8 @@ func getCsType(cstype data.CsType) string {
 		t = "long"
 	case data.CDateTime:
 		t = "DateTime"
+	case data.CBool:
+		t = "bool"
 	}
 	return t
 }

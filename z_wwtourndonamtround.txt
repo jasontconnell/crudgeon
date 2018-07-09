@@ -1,0 +1,94 @@
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public short year {
+            get {
+                return this.yearField;
+            }
+            set {
+                this.yearField = value;
+                this.RaisePropertyChanged("year");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=1)]
+        public System.Nullable<short> Tournamentnumber {
+            get {
+                return this.tournamentnumberField;
+            }
+            set {
+                this.tournamentnumberField = value;
+                this.RaisePropertyChanged("Tournamentnumber");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public string Code {
+            get {
+                return this.codeField;
+            }
+            set {
+                this.codeField = value;
+                this.RaisePropertyChanged("Code");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public string Name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+                this.RaisePropertyChanged("Name");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public int TournamentID {
+            get {
+                return this.tournamentIDField;
+            }
+            set {
+                this.tournamentIDField = value;
+                this.RaisePropertyChanged("TournamentID");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        public short Round {
+            get {
+                return this.roundField;
+            }
+            set {
+                this.roundField = value;
+                this.RaisePropertyChanged("Round");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        public bool UseRoundForWoundedWarriorEagles {
+            get {
+                return this.useRoundForWoundedWarriorEaglesField;
+            }
+            set {
+                this.useRoundForWoundedWarriorEaglesField = value;
+                this.RaisePropertyChanged("UseRoundForWoundedWarriorEagles");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
+        public decimal WoundedWarriorEaglesDonationAmount {
+            get {
+                return this.woundedWarriorEaglesDonationAmountField;
+            }
+            set {
+                this.woundedWarriorEaglesDonationAmountField = value;
+                this.RaisePropertyChanged("WoundedWarriorEaglesDonationAmount");
+            }
+        }

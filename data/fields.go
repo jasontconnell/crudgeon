@@ -12,6 +12,7 @@ const (
 	CShort
 	CLong
 	CDateTime
+	CBool
 )
 
 const (
@@ -23,6 +24,7 @@ const (
 	SShort
 	SLong
 	SDateTime
+	SBit
 )
 
 type Field struct {

@@ -1,0 +1,574 @@
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=0)]
+        public System.Nullable<int> TournamentID {
+            get {
+                return this.tournamentIDField;
+            }
+            set {
+                this.tournamentIDField = value;
+                this.RaisePropertyChanged("TournamentID");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string CourseName {
+            get {
+                return this.courseNameField;
+            }
+            set {
+                this.courseNameField = value;
+                this.RaisePropertyChanged("CourseName");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=2)]
+        public System.Nullable<int> hole1_yds {
+            get {
+                return this.hole1_ydsField;
+            }
+            set {
+                this.hole1_ydsField = value;
+                this.RaisePropertyChanged("hole1_yds");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=3)]
+        public System.Nullable<int> hole2_yds {
+            get {
+                return this.hole2_ydsField;
+            }
+            set {
+                this.hole2_ydsField = value;
+                this.RaisePropertyChanged("hole2_yds");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=4)]
+        public System.Nullable<int> hole3_yds {
+            get {
+                return this.hole3_ydsField;
+            }
+            set {
+                this.hole3_ydsField = value;
+                this.RaisePropertyChanged("hole3_yds");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=5)]
+        public System.Nullable<int> hole4_yds {
+            get {
+                return this.hole4_ydsField;
+            }
+            set {
+                this.hole4_ydsField = value;
+                this.RaisePropertyChanged("hole4_yds");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=6)]
+        public System.Nullable<int> hole5_yds {
+            get {
+                return this.hole5_ydsField;
+            }
+            set {
+                this.hole5_ydsField = value;
+                this.RaisePropertyChanged("hole5_yds");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=7)]
+        public System.Nullable<int> hole6_yds {
+            get {
+                return this.hole6_ydsField;
+            }
+            set {
+                this.hole6_ydsField = value;
+                this.RaisePropertyChanged("hole6_yds");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=8)]
+        public System.Nullable<int> hole7_yds {
+            get {
+                return this.hole7_ydsField;
+            }
+            set {
+                this.hole7_ydsField = value;
+                this.RaisePropertyChanged("hole7_yds");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=9)]
+        public System.Nullable<int> hole8_yds {
+            get {
+                return this.hole8_ydsField;
+            }
+            set {
+                this.hole8_ydsField = value;
+                this.RaisePropertyChanged("hole8_yds");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=10)]
+        public System.Nullable<int> hole9_yds {
+            get {
+                return this.hole9_ydsField;
+            }
+            set {
+                this.hole9_ydsField = value;
+                this.RaisePropertyChanged("hole9_yds");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=11)]
+        public System.Nullable<int> hole10_yds {
+            get {
+                return this.hole10_ydsField;
+            }
+            set {
+                this.hole10_ydsField = value;
+                this.RaisePropertyChanged("hole10_yds");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=12)]
+        public System.Nullable<int> hole11_yds {
+            get {
+                return this.hole11_ydsField;
+            }
+            set {
+                this.hole11_ydsField = value;
+                this.RaisePropertyChanged("hole11_yds");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=13)]
+        public System.Nullable<int> hole12_yds {
+            get {
+                return this.hole12_ydsField;
+            }
+            set {
+                this.hole12_ydsField = value;
+                this.RaisePropertyChanged("hole12_yds");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=14)]
+        public System.Nullable<int> hole13_yds {
+            get {
+                return this.hole13_ydsField;
+            }
+            set {
+                this.hole13_ydsField = value;
+                this.RaisePropertyChanged("hole13_yds");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=15)]
+        public System.Nullable<int> hole14_yds {
+            get {
+                return this.hole14_ydsField;
+            }
+            set {
+                this.hole14_ydsField = value;
+                this.RaisePropertyChanged("hole14_yds");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=16)]
+        public System.Nullable<int> hole15_yds {
+            get {
+                return this.hole15_ydsField;
+            }
+            set {
+                this.hole15_ydsField = value;
+                this.RaisePropertyChanged("hole15_yds");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=17)]
+        public System.Nullable<int> hole16_yds {
+            get {
+                return this.hole16_ydsField;
+            }
+            set {
+                this.hole16_ydsField = value;
+                this.RaisePropertyChanged("hole16_yds");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=18)]
+        public System.Nullable<int> hole17_yds {
+            get {
+                return this.hole17_ydsField;
+            }
+            set {
+                this.hole17_ydsField = value;
+                this.RaisePropertyChanged("hole17_yds");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=19)]
+        public System.Nullable<int> hole18_ydd {
+            get {
+                return this.hole18_yddField;
+            }
+            set {
+                this.hole18_yddField = value;
+                this.RaisePropertyChanged("hole18_ydd");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=20)]
+        public System.Nullable<int> hole1_par {
+            get {
+                return this.hole1_parField;
+            }
+            set {
+                this.hole1_parField = value;
+                this.RaisePropertyChanged("hole1_par");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=21)]
+        public System.Nullable<int> hole2_par {
+            get {
+                return this.hole2_parField;
+            }
+            set {
+                this.hole2_parField = value;
+                this.RaisePropertyChanged("hole2_par");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=22)]
+        public System.Nullable<int> hole3_par {
+            get {
+                return this.hole3_parField;
+            }
+            set {
+                this.hole3_parField = value;
+                this.RaisePropertyChanged("hole3_par");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=23)]
+        public System.Nullable<int> hole4_par {
+            get {
+                return this.hole4_parField;
+            }
+            set {
+                this.hole4_parField = value;
+                this.RaisePropertyChanged("hole4_par");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=24)]
+        public System.Nullable<int> hole5_par {
+            get {
+                return this.hole5_parField;
+            }
+            set {
+                this.hole5_parField = value;
+                this.RaisePropertyChanged("hole5_par");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=25)]
+        public System.Nullable<int> hole6_par {
+            get {
+                return this.hole6_parField;
+            }
+            set {
+                this.hole6_parField = value;
+                this.RaisePropertyChanged("hole6_par");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=26)]
+        public System.Nullable<int> hole7_par {
+            get {
+                return this.hole7_parField;
+            }
+            set {
+                this.hole7_parField = value;
+                this.RaisePropertyChanged("hole7_par");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=27)]
+        public System.Nullable<int> hole8_par {
+            get {
+                return this.hole8_parField;
+            }
+            set {
+                this.hole8_parField = value;
+                this.RaisePropertyChanged("hole8_par");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=28)]
+        public System.Nullable<int> hole9_par {
+            get {
+                return this.hole9_parField;
+            }
+            set {
+                this.hole9_parField = value;
+                this.RaisePropertyChanged("hole9_par");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=29)]
+        public System.Nullable<int> hole10_par {
+            get {
+                return this.hole10_parField;
+            }
+            set {
+                this.hole10_parField = value;
+                this.RaisePropertyChanged("hole10_par");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=30)]
+        public System.Nullable<int> hole11_par {
+            get {
+                return this.hole11_parField;
+            }
+            set {
+                this.hole11_parField = value;
+                this.RaisePropertyChanged("hole11_par");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=31)]
+        public System.Nullable<int> hole12_par {
+            get {
+                return this.hole12_parField;
+            }
+            set {
+                this.hole12_parField = value;
+                this.RaisePropertyChanged("hole12_par");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=32)]
+        public System.Nullable<int> hole13_par {
+            get {
+                return this.hole13_parField;
+            }
+            set {
+                this.hole13_parField = value;
+                this.RaisePropertyChanged("hole13_par");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=33)]
+        public System.Nullable<int> hole14_par {
+            get {
+                return this.hole14_parField;
+            }
+            set {
+                this.hole14_parField = value;
+                this.RaisePropertyChanged("hole14_par");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=34)]
+        public System.Nullable<int> hole15_par {
+            get {
+                return this.hole15_parField;
+            }
+            set {
+                this.hole15_parField = value;
+                this.RaisePropertyChanged("hole15_par");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=35)]
+        public System.Nullable<int> hole16_par {
+            get {
+                return this.hole16_parField;
+            }
+            set {
+                this.hole16_parField = value;
+                this.RaisePropertyChanged("hole16_par");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=36)]
+        public System.Nullable<int> hole17_par {
+            get {
+                return this.hole17_parField;
+            }
+            set {
+                this.hole17_parField = value;
+                this.RaisePropertyChanged("hole17_par");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=37)]
+        public System.Nullable<int> hole18_par {
+            get {
+                return this.hole18_parField;
+            }
+            set {
+                this.hole18_parField = value;
+                this.RaisePropertyChanged("hole18_par");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=38)]
+        public System.Nullable<int> par_in {
+            get {
+                return this.par_inField;
+            }
+            set {
+                this.par_inField = value;
+                this.RaisePropertyChanged("par_in");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=39)]
+        public System.Nullable<int> par_out {
+            get {
+                return this.par_outField;
+            }
+            set {
+                this.par_outField = value;
+                this.RaisePropertyChanged("par_out");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=40)]
+        public System.Nullable<int> total_par {
+            get {
+                return this.total_parField;
+            }
+            set {
+                this.total_parField = value;
+                this.RaisePropertyChanged("total_par");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=41)]
+        public System.Nullable<int> total_yds {
+            get {
+                return this.total_ydsField;
+            }
+            set {
+                this.total_ydsField = value;
+                this.RaisePropertyChanged("total_yds");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=42)]
+        public System.Nullable<int> yds_in {
+            get {
+                return this.yds_inField;
+            }
+            set {
+                this.yds_inField = value;
+                this.RaisePropertyChanged("yds_in");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=43)]
+        public System.Nullable<int> yds_out {
+            get {
+                return this.yds_outField;
+            }
+            set {
+                this.yds_outField = value;
+                this.RaisePropertyChanged("yds_out");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=44)]
+        public string Tournament_code {
+            get {
+                return this.tournament_codeField;
+            }
+            set {
+                this.tournament_codeField = value;
+                this.RaisePropertyChanged("Tournament_code");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=45)]
+        public System.Nullable<short> year {
+            get {
+                return this.yearField;
+            }
+            set {
+                this.yearField = value;
+                this.RaisePropertyChanged("year");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=46)]
+        public System.Nullable<System.DateTime> DateStamp {
+            get {
+                return this.dateStampField;
+            }
+            set {
+                this.dateStampField = value;
+                this.RaisePropertyChanged("DateStamp");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=47)]
+        public string ModifiedByID {
+            get {
+                return this.modifiedByIDField;
+            }
+            set {
+                this.modifiedByIDField = value;
+                this.RaisePropertyChanged("ModifiedByID");
+            }
+        }

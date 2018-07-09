@@ -1,0 +1,34 @@
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public int asoftournamentid {
+            get {
+                return this.asoftournamentidField;
+            }
+            set {
+                this.asoftournamentidField = value;
+                this.RaisePropertyChanged("asoftournamentid");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=1)]
+        public System.Nullable<int> WoundedWarriorEagles {
+            get {
+                return this.woundedWarriorEaglesField;
+            }
+            set {
+                this.woundedWarriorEaglesField = value;
+                this.RaisePropertyChanged("WoundedWarriorEagles");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=2)]
+        public System.Nullable<decimal> WoundedWarriorEaglesDonationAmount {
+            get {
+                return this.woundedWarriorEaglesDonationAmountField;
+            }
+            set {
+                this.woundedWarriorEaglesDonationAmountField = value;
+                this.RaisePropertyChanged("WoundedWarriorEaglesDonationAmount");
+            }
+        }

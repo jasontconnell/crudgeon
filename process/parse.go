@@ -92,6 +92,9 @@ func getTypes(t string) (data.CsType, data.SqlType) {
 	case "DateTime", "System.DateTime":
 		ct = data.CDateTime
 		st = data.SDateTime
+	case "bool":
+		ct = data.CBool
+		st = data.SBit
 	}
 
 	return ct, st

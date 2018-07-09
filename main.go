@@ -6,6 +6,7 @@ import (
 	"lpgagen/configuration"
 	"lpgagen/process"
 	"os"
+	"time"
 )
 
 func main() {
@@ -13,6 +14,8 @@ func main() {
 	path := flag.String("path", "", "output location")
 	obj := flag.String("obj", "", "object name")
 	flag.Parse()
+
+	n := time.Now()
 
 	if *file == "" || *obj == "" {
 		flag.PrintDefaults()
@@ -36,4 +39,5 @@ func main() {
 		}
 	}
 
+	log.Println("Finished", *obj, time.Since(n))
 }

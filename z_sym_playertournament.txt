@@ -1,0 +1,862 @@
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public int AccountID {
+            get {
+                return this.accountIDField;
+            }
+            set {
+                this.accountIDField = value;
+                this.RaisePropertyChanged("AccountID");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string PlayFirstName {
+            get {
+                return this.playFirstNameField;
+            }
+            set {
+                this.playFirstNameField = value;
+                this.RaisePropertyChanged("PlayFirstName");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public string PlayLastName {
+            get {
+                return this.playLastNameField;
+            }
+            set {
+                this.playLastNameField = value;
+                this.RaisePropertyChanged("PlayLastName");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public string PlayMiddleName {
+            get {
+                return this.playMiddleNameField;
+            }
+            set {
+                this.playMiddleNameField = value;
+                this.RaisePropertyChanged("PlayMiddleName");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public string IsAmateur {
+            get {
+                return this.isAmateurField;
+            }
+            set {
+                this.isAmateurField = value;
+                this.RaisePropertyChanged("IsAmateur");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        public int TournamentID {
+            get {
+                return this.tournamentIDField;
+            }
+            set {
+                this.tournamentIDField = value;
+                this.RaisePropertyChanged("TournamentID");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        public string Code {
+            get {
+                return this.codeField;
+            }
+            set {
+                this.codeField = value;
+                this.RaisePropertyChanged("Code");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
+        public string TournamentName {
+            get {
+                return this.tournamentNameField;
+            }
+            set {
+                this.tournamentNameField = value;
+                this.RaisePropertyChanged("TournamentName");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=8)]
+        public string ResultCode {
+            get {
+                return this.resultCodeField;
+            }
+            set {
+                this.resultCodeField = value;
+                this.RaisePropertyChanged("ResultCode");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=9)]
+        public short Round1 {
+            get {
+                return this.round1Field;
+            }
+            set {
+                this.round1Field = value;
+                this.RaisePropertyChanged("Round1");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=10)]
+        public short Round2 {
+            get {
+                return this.round2Field;
+            }
+            set {
+                this.round2Field = value;
+                this.RaisePropertyChanged("Round2");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=11)]
+        public short Round3 {
+            get {
+                return this.round3Field;
+            }
+            set {
+                this.round3Field = value;
+                this.RaisePropertyChanged("Round3");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=12)]
+        public short Round4 {
+            get {
+                return this.round4Field;
+            }
+            set {
+                this.round4Field = value;
+                this.RaisePropertyChanged("Round4");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=13)]
+        public double OfficialMoney {
+            get {
+                return this.officialMoneyField;
+            }
+            set {
+                this.officialMoneyField = value;
+                this.RaisePropertyChanged("OfficialMoney");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=14)]
+        public double UnofficialMoney {
+            get {
+                return this.unofficialMoneyField;
+            }
+            set {
+                this.unofficialMoneyField = value;
+                this.RaisePropertyChanged("UnofficialMoney");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=15)]
+        public double PrizeMoney {
+            get {
+                return this.prizeMoneyField;
+            }
+            set {
+                this.prizeMoneyField = value;
+                this.RaisePropertyChanged("PrizeMoney");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=16)]
+        public short OfficialRounds {
+            get {
+                return this.officialRoundsField;
+            }
+            set {
+                this.officialRoundsField = value;
+                this.RaisePropertyChanged("OfficialRounds");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=17)]
+        public short Putts {
+            get {
+                return this.puttsField;
+            }
+            set {
+                this.puttsField = value;
+                this.RaisePropertyChanged("Putts");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=18)]
+        public short Greens {
+            get {
+                return this.greensField;
+            }
+            set {
+                this.greensField = value;
+                this.RaisePropertyChanged("Greens");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=19)]
+        public short GreensAttempted {
+            get {
+                return this.greensAttemptedField;
+            }
+            set {
+                this.greensAttemptedField = value;
+                this.RaisePropertyChanged("GreensAttempted");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=20)]
+        public short GirPutts {
+            get {
+                return this.girPuttsField;
+            }
+            set {
+                this.girPuttsField = value;
+                this.RaisePropertyChanged("GirPutts");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=21)]
+        public short Strokes {
+            get {
+                return this.strokesField;
+            }
+            set {
+                this.strokesField = value;
+                this.RaisePropertyChanged("Strokes");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=22)]
+        public short SandSaves {
+            get {
+                return this.sandSavesField;
+            }
+            set {
+                this.sandSavesField = value;
+                this.RaisePropertyChanged("SandSaves");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=23)]
+        public short SandTraps {
+            get {
+                return this.sandTrapsField;
+            }
+            set {
+                this.sandTrapsField = value;
+                this.RaisePropertyChanged("SandTraps");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=24)]
+        public short DriveDistance {
+            get {
+                return this.driveDistanceField;
+            }
+            set {
+                this.driveDistanceField = value;
+                this.RaisePropertyChanged("DriveDistance");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=25)]
+        public short DrivesMeasured {
+            get {
+                return this.drivesMeasuredField;
+            }
+            set {
+                this.drivesMeasuredField = value;
+                this.RaisePropertyChanged("DrivesMeasured");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=26)]
+        public short Fairways {
+            get {
+                return this.fairwaysField;
+            }
+            set {
+                this.fairwaysField = value;
+                this.RaisePropertyChanged("Fairways");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=27)]
+        public short FairwaysAttempted {
+            get {
+                return this.fairwaysAttemptedField;
+            }
+            set {
+                this.fairwaysAttemptedField = value;
+                this.RaisePropertyChanged("FairwaysAttempted");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=28)]
+        public short RoundsUnderPar {
+            get {
+                return this.roundsUnderParField;
+            }
+            set {
+                this.roundsUnderParField = value;
+                this.RaisePropertyChanged("RoundsUnderPar");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=29)]
+        public short RoundsIn60s {
+            get {
+                return this.roundsIn60sField;
+            }
+            set {
+                this.roundsIn60sField = value;
+                this.RaisePropertyChanged("RoundsIn60s");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=30)]
+        public short FinishPosition {
+            get {
+                return this.finishPositionField;
+            }
+            set {
+                this.finishPositionField = value;
+                this.RaisePropertyChanged("FinishPosition");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=31)]
+        public double SolheimCupPoints {
+            get {
+                return this.solheimCupPointsField;
+            }
+            set {
+                this.solheimCupPointsField = value;
+                this.RaisePropertyChanged("SolheimCupPoints");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=32)]
+        public double RookieOfTheYearPoints {
+            get {
+                return this.rookieOfTheYearPointsField;
+            }
+            set {
+                this.rookieOfTheYearPointsField = value;
+                this.RaisePropertyChanged("RookieOfTheYearPoints");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=33)]
+        public double PlayerOfTheYearPoints {
+            get {
+                return this.playerOfTheYearPointsField;
+            }
+            set {
+                this.playerOfTheYearPointsField = value;
+                this.RaisePropertyChanged("PlayerOfTheYearPoints");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=34)]
+        public short Aces {
+            get {
+                return this.acesField;
+            }
+            set {
+                this.acesField = value;
+                this.RaisePropertyChanged("Aces");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=35)]
+        public short MaxAcesInRound {
+            get {
+                return this.maxAcesInRoundField;
+            }
+            set {
+                this.maxAcesInRoundField = value;
+                this.RaisePropertyChanged("MaxAcesInRound");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=36)]
+        public short MaxAcesInRoundRound {
+            get {
+                return this.maxAcesInRoundRoundField;
+            }
+            set {
+                this.maxAcesInRoundRoundField = value;
+                this.RaisePropertyChanged("MaxAcesInRoundRound");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=37)]
+        public short Birdies {
+            get {
+                return this.birdiesField;
+            }
+            set {
+                this.birdiesField = value;
+                this.RaisePropertyChanged("Birdies");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=38)]
+        public short MaxBirdiesInRound {
+            get {
+                return this.maxBirdiesInRoundField;
+            }
+            set {
+                this.maxBirdiesInRoundField = value;
+                this.RaisePropertyChanged("MaxBirdiesInRound");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=39)]
+        public short MaxBirdiesInRoundRound {
+            get {
+                return this.maxBirdiesInRoundRoundField;
+            }
+            set {
+                this.maxBirdiesInRoundRoundField = value;
+                this.RaisePropertyChanged("MaxBirdiesInRoundRound");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=40)]
+        public short Eagles {
+            get {
+                return this.eaglesField;
+            }
+            set {
+                this.eaglesField = value;
+                this.RaisePropertyChanged("Eagles");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=41)]
+        public short MaxEaglesInRound {
+            get {
+                return this.maxEaglesInRoundField;
+            }
+            set {
+                this.maxEaglesInRoundField = value;
+                this.RaisePropertyChanged("MaxEaglesInRound");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=42)]
+        public short MaxEaglesInRoundRound {
+            get {
+                return this.maxEaglesInRoundRoundField;
+            }
+            set {
+                this.maxEaglesInRoundRoundField = value;
+                this.RaisePropertyChanged("MaxEaglesInRoundRound");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=43)]
+        public short Pars {
+            get {
+                return this.parsField;
+            }
+            set {
+                this.parsField = value;
+                this.RaisePropertyChanged("Pars");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=44)]
+        public short MaxParsInRound {
+            get {
+                return this.maxParsInRoundField;
+            }
+            set {
+                this.maxParsInRoundField = value;
+                this.RaisePropertyChanged("MaxParsInRound");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=45)]
+        public short MaxParsInRoundRound {
+            get {
+                return this.maxParsInRoundRoundField;
+            }
+            set {
+                this.maxParsInRoundRoundField = value;
+                this.RaisePropertyChanged("MaxParsInRoundRound");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=46)]
+        public short Bogeys {
+            get {
+                return this.bogeysField;
+            }
+            set {
+                this.bogeysField = value;
+                this.RaisePropertyChanged("Bogeys");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=47)]
+        public short MaxBogeysInRound {
+            get {
+                return this.maxBogeysInRoundField;
+            }
+            set {
+                this.maxBogeysInRoundField = value;
+                this.RaisePropertyChanged("MaxBogeysInRound");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=48)]
+        public short MaxBogeysInRoundRound {
+            get {
+                return this.maxBogeysInRoundRoundField;
+            }
+            set {
+                this.maxBogeysInRoundRoundField = value;
+                this.RaisePropertyChanged("MaxBogeysInRoundRound");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=49)]
+        public short DoubleBogeys {
+            get {
+                return this.doubleBogeysField;
+            }
+            set {
+                this.doubleBogeysField = value;
+                this.RaisePropertyChanged("DoubleBogeys");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=50)]
+        public short MaxDoubleBogeysInRound {
+            get {
+                return this.maxDoubleBogeysInRoundField;
+            }
+            set {
+                this.maxDoubleBogeysInRoundField = value;
+                this.RaisePropertyChanged("MaxDoubleBogeysInRound");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=51)]
+        public short MaxDoubleBogeysInRoundRound {
+            get {
+                return this.maxDoubleBogeysInRoundRoundField;
+            }
+            set {
+                this.maxDoubleBogeysInRoundRoundField = value;
+                this.RaisePropertyChanged("MaxDoubleBogeysInRoundRound");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=52)]
+        public short Other {
+            get {
+                return this.otherField;
+            }
+            set {
+                this.otherField = value;
+                this.RaisePropertyChanged("Other");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=53)]
+        public short MaxOtherInRound {
+            get {
+                return this.maxOtherInRoundField;
+            }
+            set {
+                this.maxOtherInRoundField = value;
+                this.RaisePropertyChanged("MaxOtherInRound");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=54)]
+        public short MaxOtherInRoundRound {
+            get {
+                return this.maxOtherInRoundRoundField;
+            }
+            set {
+                this.maxOtherInRoundRoundField = value;
+                this.RaisePropertyChanged("MaxOtherInRoundRound");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=55)]
+        public short Par3Strokes {
+            get {
+                return this.par3StrokesField;
+            }
+            set {
+                this.par3StrokesField = value;
+                this.RaisePropertyChanged("Par3Strokes");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=56)]
+        public short Par3HolesPlayed {
+            get {
+                return this.par3HolesPlayedField;
+            }
+            set {
+                this.par3HolesPlayedField = value;
+                this.RaisePropertyChanged("Par3HolesPlayed");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=57)]
+        public short Par4Strokes {
+            get {
+                return this.par4StrokesField;
+            }
+            set {
+                this.par4StrokesField = value;
+                this.RaisePropertyChanged("Par4Strokes");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=58)]
+        public short Par4HolesPlayed {
+            get {
+                return this.par4HolesPlayedField;
+            }
+            set {
+                this.par4HolesPlayedField = value;
+                this.RaisePropertyChanged("Par4HolesPlayed");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=59)]
+        public short Par5Strokes {
+            get {
+                return this.par5StrokesField;
+            }
+            set {
+                this.par5StrokesField = value;
+                this.RaisePropertyChanged("Par5Strokes");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=60)]
+        public short Par5HolesPlayed {
+            get {
+                return this.par5HolesPlayedField;
+            }
+            set {
+                this.par5HolesPlayedField = value;
+                this.RaisePropertyChanged("Par5HolesPlayed");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=61)]
+        public short HolesUnderPar {
+            get {
+                return this.holesUnderParField;
+            }
+            set {
+                this.holesUnderParField = value;
+                this.RaisePropertyChanged("HolesUnderPar");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=62)]
+        public short Low9Score {
+            get {
+                return this.low9ScoreField;
+            }
+            set {
+                this.low9ScoreField = value;
+                this.RaisePropertyChanged("Low9Score");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=63)]
+        public short Low9ScoreRound {
+            get {
+                return this.low9ScoreRoundField;
+            }
+            set {
+                this.low9ScoreRoundField = value;
+                this.RaisePropertyChanged("Low9ScoreRound");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=64)]
+        public short Low18Score {
+            get {
+                return this.low18ScoreField;
+            }
+            set {
+                this.low18ScoreField = value;
+                this.RaisePropertyChanged("Low18Score");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=65)]
+        public short Low18ScoreRound {
+            get {
+                return this.low18ScoreRoundField;
+            }
+            set {
+                this.low18ScoreRoundField = value;
+                this.RaisePropertyChanged("Low18ScoreRound");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=66)]
+        public short Low36Score {
+            get {
+                return this.low36ScoreField;
+            }
+            set {
+                this.low36ScoreField = value;
+                this.RaisePropertyChanged("Low36Score");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=67)]
+        public short Low54Score {
+            get {
+                return this.low54ScoreField;
+            }
+            set {
+                this.low54ScoreField = value;
+                this.RaisePropertyChanged("Low54Score");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=68)]
+        public short Low72Score {
+            get {
+                return this.low72ScoreField;
+            }
+            set {
+                this.low72ScoreField = value;
+                this.RaisePropertyChanged("Low72Score");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=69)]
+        public int PlayerID {
+            get {
+                return this.playerIDField;
+            }
+            set {
+                this.playerIDField = value;
+                this.RaisePropertyChanged("PlayerID");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=70)]
+        public int WGWRID {
+            get {
+                return this.wGWRIDField;
+            }
+            set {
+                this.wGWRIDField = value;
+                this.RaisePropertyChanged("WGWRID");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=71)]
+        public int TotalPar {
+            get {
+                return this.totalParField;
+            }
+            set {
+                this.totalParField = value;
+                this.RaisePropertyChanged("TotalPar");
+            }
+        }

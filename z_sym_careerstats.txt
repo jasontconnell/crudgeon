@@ -1,0 +1,1606 @@
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=0)]
+        public System.Nullable<int> AccountID {
+            get {
+                return this.accountIDField;
+            }
+            set {
+                this.accountIDField = value;
+                this.RaisePropertyChanged("AccountID");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string PlayFirstName {
+            get {
+                return this.playFirstNameField;
+            }
+            set {
+                this.playFirstNameField = value;
+                this.RaisePropertyChanged("PlayFirstName");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public string PlayLastName {
+            get {
+                return this.playLastNameField;
+            }
+            set {
+                this.playLastNameField = value;
+                this.RaisePropertyChanged("PlayLastName");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public string PlayMiddleName {
+            get {
+                return this.playMiddleNameField;
+            }
+            set {
+                this.playMiddleNameField = value;
+                this.RaisePropertyChanged("PlayMiddleName");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=4)]
+        public System.Nullable<int> official_rounds {
+            get {
+                return this.official_roundsField;
+            }
+            set {
+                this.official_roundsField = value;
+                this.RaisePropertyChanged("official_rounds");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=5)]
+        public System.Nullable<int> official_stroke_rounds {
+            get {
+                return this.official_stroke_roundsField;
+            }
+            set {
+                this.official_stroke_roundsField = value;
+                this.RaisePropertyChanged("official_stroke_rounds");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=6)]
+        public System.Nullable<int> official_stat_rounds {
+            get {
+                return this.official_stat_roundsField;
+            }
+            set {
+                this.official_stat_roundsField = value;
+                this.RaisePropertyChanged("official_stat_rounds");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=7)]
+        public System.Nullable<int> official_events {
+            get {
+                return this.official_eventsField;
+            }
+            set {
+                this.official_eventsField = value;
+                this.RaisePropertyChanged("official_events");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=8)]
+        public System.Nullable<int> official_stroke_events {
+            get {
+                return this.official_stroke_eventsField;
+            }
+            set {
+                this.official_stroke_eventsField = value;
+                this.RaisePropertyChanged("official_stroke_events");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=9)]
+        public System.Nullable<int> official_stat_events {
+            get {
+                return this.official_stat_eventsField;
+            }
+            set {
+                this.official_stat_eventsField = value;
+                this.RaisePropertyChanged("official_stat_events");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=10)]
+        public System.Nullable<int> putts {
+            get {
+                return this.puttsField;
+            }
+            set {
+                this.puttsField = value;
+                this.RaisePropertyChanged("putts");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=11)]
+        public System.Nullable<decimal> putts_average {
+            get {
+                return this.putts_averageField;
+            }
+            set {
+                this.putts_averageField = value;
+                this.RaisePropertyChanged("putts_average");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=12)]
+        public System.Nullable<int> Greens {
+            get {
+                return this.greensField;
+            }
+            set {
+                this.greensField = value;
+                this.RaisePropertyChanged("Greens");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=13)]
+        public System.Nullable<decimal> greens_percentage {
+            get {
+                return this.greens_percentageField;
+            }
+            set {
+                this.greens_percentageField = value;
+                this.RaisePropertyChanged("greens_percentage");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=14)]
+        public System.Nullable<int> greensattempted {
+            get {
+                return this.greensattemptedField;
+            }
+            set {
+                this.greensattemptedField = value;
+                this.RaisePropertyChanged("greensattempted");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=15)]
+        public System.Nullable<int> girputts {
+            get {
+                return this.girputtsField;
+            }
+            set {
+                this.girputtsField = value;
+                this.RaisePropertyChanged("girputts");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=16)]
+        public System.Nullable<decimal> gir_putts_average {
+            get {
+                return this.gir_putts_averageField;
+            }
+            set {
+                this.gir_putts_averageField = value;
+                this.RaisePropertyChanged("gir_putts_average");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=17)]
+        public System.Nullable<int> strokes {
+            get {
+                return this.strokesField;
+            }
+            set {
+                this.strokesField = value;
+                this.RaisePropertyChanged("strokes");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=18)]
+        public System.Nullable<decimal> strokes_average {
+            get {
+                return this.strokes_averageField;
+            }
+            set {
+                this.strokes_averageField = value;
+                this.RaisePropertyChanged("strokes_average");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=19)]
+        public System.Nullable<int> sand_saves {
+            get {
+                return this.sand_savesField;
+            }
+            set {
+                this.sand_savesField = value;
+                this.RaisePropertyChanged("sand_saves");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=20)]
+        public System.Nullable<decimal> sand_saves_average {
+            get {
+                return this.sand_saves_averageField;
+            }
+            set {
+                this.sand_saves_averageField = value;
+                this.RaisePropertyChanged("sand_saves_average");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=21)]
+        public System.Nullable<decimal> sand_saves_percentage {
+            get {
+                return this.sand_saves_percentageField;
+            }
+            set {
+                this.sand_saves_percentageField = value;
+                this.RaisePropertyChanged("sand_saves_percentage");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=22)]
+        public System.Nullable<int> sand_traps {
+            get {
+                return this.sand_trapsField;
+            }
+            set {
+                this.sand_trapsField = value;
+                this.RaisePropertyChanged("sand_traps");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=23)]
+        public System.Nullable<decimal> sand_traps_average {
+            get {
+                return this.sand_traps_averageField;
+            }
+            set {
+                this.sand_traps_averageField = value;
+                this.RaisePropertyChanged("sand_traps_average");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=24)]
+        public System.Nullable<int> drive_distance {
+            get {
+                return this.drive_distanceField;
+            }
+            set {
+                this.drive_distanceField = value;
+                this.RaisePropertyChanged("drive_distance");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=25)]
+        public System.Nullable<decimal> drive_average {
+            get {
+                return this.drive_averageField;
+            }
+            set {
+                this.drive_averageField = value;
+                this.RaisePropertyChanged("drive_average");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=26)]
+        public System.Nullable<int> drives_measured {
+            get {
+                return this.drives_measuredField;
+            }
+            set {
+                this.drives_measuredField = value;
+                this.RaisePropertyChanged("drives_measured");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=27)]
+        public System.Nullable<int> fairways {
+            get {
+                return this.fairwaysField;
+            }
+            set {
+                this.fairwaysField = value;
+                this.RaisePropertyChanged("fairways");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=28)]
+        public System.Nullable<int> fairways_attempted {
+            get {
+                return this.fairways_attemptedField;
+            }
+            set {
+                this.fairways_attemptedField = value;
+                this.RaisePropertyChanged("fairways_attempted");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=29)]
+        public System.Nullable<decimal> fairways_percentage {
+            get {
+                return this.fairways_percentageField;
+            }
+            set {
+                this.fairways_percentageField = value;
+                this.RaisePropertyChanged("fairways_percentage");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=30)]
+        public System.Nullable<int> rounds_under_par {
+            get {
+                return this.rounds_under_parField;
+            }
+            set {
+                this.rounds_under_parField = value;
+                this.RaisePropertyChanged("rounds_under_par");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=31)]
+        public System.Nullable<decimal> rounds_under_par_percentage {
+            get {
+                return this.rounds_under_par_percentageField;
+            }
+            set {
+                this.rounds_under_par_percentageField = value;
+                this.RaisePropertyChanged("rounds_under_par_percentage");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=32)]
+        public System.Nullable<int> rounds_in_60s {
+            get {
+                return this.rounds_in_60sField;
+            }
+            set {
+                this.rounds_in_60sField = value;
+                this.RaisePropertyChanged("rounds_in_60s");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=33)]
+        public System.Nullable<decimal> rounds_in_60s_percentage {
+            get {
+                return this.rounds_in_60s_percentageField;
+            }
+            set {
+                this.rounds_in_60s_percentageField = value;
+                this.RaisePropertyChanged("rounds_in_60s_percentage");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=34)]
+        public System.Nullable<int> top_10_finishes {
+            get {
+                return this.top_10_finishesField;
+            }
+            set {
+                this.top_10_finishesField = value;
+                this.RaisePropertyChanged("top_10_finishes");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=35)]
+        public System.Nullable<decimal> top_10_finishes_percentage {
+            get {
+                return this.top_10_finishes_percentageField;
+            }
+            set {
+                this.top_10_finishes_percentageField = value;
+                this.RaisePropertyChanged("top_10_finishes_percentage");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=36)]
+        public System.Nullable<int> wins {
+            get {
+                return this.winsField;
+            }
+            set {
+                this.winsField = value;
+                this.RaisePropertyChanged("wins");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=37)]
+        public System.Nullable<short> best_finish {
+            get {
+                return this.best_finishField;
+            }
+            set {
+                this.best_finishField = value;
+                this.RaisePropertyChanged("best_finish");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=38)]
+        public System.Nullable<int> state_farm_points {
+            get {
+                return this.state_farm_pointsField;
+            }
+            set {
+                this.state_farm_pointsField = value;
+                this.RaisePropertyChanged("state_farm_points");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=39)]
+        public System.Nullable<double> solheim_cup_points {
+            get {
+                return this.solheim_cup_pointsField;
+            }
+            set {
+                this.solheim_cup_pointsField = value;
+                this.RaisePropertyChanged("solheim_cup_points");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=40)]
+        public System.Nullable<int> rookie_of_the_year_points {
+            get {
+                return this.rookie_of_the_year_pointsField;
+            }
+            set {
+                this.rookie_of_the_year_pointsField = value;
+                this.RaisePropertyChanged("rookie_of_the_year_points");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=41)]
+        public System.Nullable<int> player_of_the_year_points {
+            get {
+                return this.player_of_the_year_pointsField;
+            }
+            set {
+                this.player_of_the_year_pointsField = value;
+                this.RaisePropertyChanged("player_of_the_year_points");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=42)]
+        public System.Nullable<decimal> official_money {
+            get {
+                return this.official_moneyField;
+            }
+            set {
+                this.official_moneyField = value;
+                this.RaisePropertyChanged("official_money");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=43)]
+        public System.Nullable<int> aces {
+            get {
+                return this.acesField;
+            }
+            set {
+                this.acesField = value;
+                this.RaisePropertyChanged("aces");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=44)]
+        public System.Nullable<decimal> aces_average {
+            get {
+                return this.aces_averageField;
+            }
+            set {
+                this.aces_averageField = value;
+                this.RaisePropertyChanged("aces_average");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=45)]
+        public System.Nullable<short> acesinround {
+            get {
+                return this.acesinroundField;
+            }
+            set {
+                this.acesinroundField = value;
+                this.RaisePropertyChanged("acesinround");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=46)]
+        public System.Nullable<int> birdies {
+            get {
+                return this.birdiesField;
+            }
+            set {
+                this.birdiesField = value;
+                this.RaisePropertyChanged("birdies");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=47)]
+        public System.Nullable<decimal> birdies_average {
+            get {
+                return this.birdies_averageField;
+            }
+            set {
+                this.birdies_averageField = value;
+                this.RaisePropertyChanged("birdies_average");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=48)]
+        public System.Nullable<short> birdiesinround {
+            get {
+                return this.birdiesinroundField;
+            }
+            set {
+                this.birdiesinroundField = value;
+                this.RaisePropertyChanged("birdiesinround");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=49)]
+        public System.Nullable<int> eagles {
+            get {
+                return this.eaglesField;
+            }
+            set {
+                this.eaglesField = value;
+                this.RaisePropertyChanged("eagles");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=50)]
+        public System.Nullable<short> eaglesinroundround {
+            get {
+                return this.eaglesinroundroundField;
+            }
+            set {
+                this.eaglesinroundroundField = value;
+                this.RaisePropertyChanged("eaglesinroundround");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=51)]
+        public System.Nullable<short> parsinround {
+            get {
+                return this.parsinroundField;
+            }
+            set {
+                this.parsinroundField = value;
+                this.RaisePropertyChanged("parsinround");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=52)]
+        public System.Nullable<int> doublebogeys {
+            get {
+                return this.doublebogeysField;
+            }
+            set {
+                this.doublebogeysField = value;
+                this.RaisePropertyChanged("doublebogeys");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=53)]
+        public System.Nullable<decimal> double_bogeys_average {
+            get {
+                return this.double_bogeys_averageField;
+            }
+            set {
+                this.double_bogeys_averageField = value;
+                this.RaisePropertyChanged("double_bogeys_average");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=54)]
+        public System.Nullable<int> par_3_strokes {
+            get {
+                return this.par_3_strokesField;
+            }
+            set {
+                this.par_3_strokesField = value;
+                this.RaisePropertyChanged("par_3_strokes");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=55)]
+        public System.Nullable<decimal> par_3_strokes_average {
+            get {
+                return this.par_3_strokes_averageField;
+            }
+            set {
+                this.par_3_strokes_averageField = value;
+                this.RaisePropertyChanged("par_3_strokes_average");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=56)]
+        public System.Nullable<int> par_4_strokes {
+            get {
+                return this.par_4_strokesField;
+            }
+            set {
+                this.par_4_strokesField = value;
+                this.RaisePropertyChanged("par_4_strokes");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=57)]
+        public System.Nullable<decimal> par_4_strokes_average {
+            get {
+                return this.par_4_strokes_averageField;
+            }
+            set {
+                this.par_4_strokes_averageField = value;
+                this.RaisePropertyChanged("par_4_strokes_average");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=58)]
+        public System.Nullable<int> par_5_strokes {
+            get {
+                return this.par_5_strokesField;
+            }
+            set {
+                this.par_5_strokesField = value;
+                this.RaisePropertyChanged("par_5_strokes");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=59)]
+        public System.Nullable<decimal> par_5_strokes_average {
+            get {
+                return this.par_5_strokes_averageField;
+            }
+            set {
+                this.par_5_strokes_averageField = value;
+                this.RaisePropertyChanged("par_5_strokes_average");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=60)]
+        public System.Nullable<int> holes_under_par {
+            get {
+                return this.holes_under_parField;
+            }
+            set {
+                this.holes_under_parField = value;
+                this.RaisePropertyChanged("holes_under_par");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=61)]
+        public System.Nullable<decimal> holes_under_par_average {
+            get {
+                return this.holes_under_par_averageField;
+            }
+            set {
+                this.holes_under_par_averageField = value;
+                this.RaisePropertyChanged("holes_under_par_average");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=62)]
+        public System.Nullable<short> low9score {
+            get {
+                return this.low9scoreField;
+            }
+            set {
+                this.low9scoreField = value;
+                this.RaisePropertyChanged("low9score");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=63)]
+        public System.Nullable<int> low_18_score {
+            get {
+                return this.low_18_scoreField;
+            }
+            set {
+                this.low_18_scoreField = value;
+                this.RaisePropertyChanged("low_18_score");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=64)]
+        public System.Nullable<short> low_54_score {
+            get {
+                return this.low_54_scoreField;
+            }
+            set {
+                this.low_54_scoreField = value;
+                this.RaisePropertyChanged("low_54_score");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=65)]
+        public System.Nullable<short> low_72_score {
+            get {
+                return this.low_72_scoreField;
+            }
+            set {
+                this.low_72_scoreField = value;
+                this.RaisePropertyChanged("low_72_score");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=66)]
+        public System.Nullable<int> official_events_1 {
+            get {
+                return this.official_events_1Field;
+            }
+            set {
+                this.official_events_1Field = value;
+                this.RaisePropertyChanged("official_events_1");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=67)]
+        public System.Nullable<int> official_events_2 {
+            get {
+                return this.official_events_2Field;
+            }
+            set {
+                this.official_events_2Field = value;
+                this.RaisePropertyChanged("official_events_2");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=68)]
+        public System.Nullable<int> official_rounds_rank {
+            get {
+                return this.official_rounds_rankField;
+            }
+            set {
+                this.official_rounds_rankField = value;
+                this.RaisePropertyChanged("official_rounds_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=69)]
+        public System.Nullable<int> official_stroke_rounds_rank {
+            get {
+                return this.official_stroke_rounds_rankField;
+            }
+            set {
+                this.official_stroke_rounds_rankField = value;
+                this.RaisePropertyChanged("official_stroke_rounds_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=70)]
+        public System.Nullable<int> official_stat_rounds_rank {
+            get {
+                return this.official_stat_rounds_rankField;
+            }
+            set {
+                this.official_stat_rounds_rankField = value;
+                this.RaisePropertyChanged("official_stat_rounds_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=71)]
+        public System.Nullable<int> official_events_rank {
+            get {
+                return this.official_events_rankField;
+            }
+            set {
+                this.official_events_rankField = value;
+                this.RaisePropertyChanged("official_events_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=72)]
+        public System.Nullable<int> official_stroke_events_rank {
+            get {
+                return this.official_stroke_events_rankField;
+            }
+            set {
+                this.official_stroke_events_rankField = value;
+                this.RaisePropertyChanged("official_stroke_events_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=73)]
+        public System.Nullable<int> official_stat_events_rank {
+            get {
+                return this.official_stat_events_rankField;
+            }
+            set {
+                this.official_stat_events_rankField = value;
+                this.RaisePropertyChanged("official_stat_events_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=74)]
+        public System.Nullable<int> putts_rank {
+            get {
+                return this.putts_rankField;
+            }
+            set {
+                this.putts_rankField = value;
+                this.RaisePropertyChanged("putts_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=75)]
+        public System.Nullable<int> putts_average_rank {
+            get {
+                return this.putts_average_rankField;
+            }
+            set {
+                this.putts_average_rankField = value;
+                this.RaisePropertyChanged("putts_average_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=76)]
+        public System.Nullable<int> Greens_rank {
+            get {
+                return this.greens_rankField;
+            }
+            set {
+                this.greens_rankField = value;
+                this.RaisePropertyChanged("Greens_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=77)]
+        public System.Nullable<int> greens_percentage_rank {
+            get {
+                return this.greens_percentage_rankField;
+            }
+            set {
+                this.greens_percentage_rankField = value;
+                this.RaisePropertyChanged("greens_percentage_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=78)]
+        public System.Nullable<int> greensattempted_rank {
+            get {
+                return this.greensattempted_rankField;
+            }
+            set {
+                this.greensattempted_rankField = value;
+                this.RaisePropertyChanged("greensattempted_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=79)]
+        public System.Nullable<int> girputts_rank {
+            get {
+                return this.girputts_rankField;
+            }
+            set {
+                this.girputts_rankField = value;
+                this.RaisePropertyChanged("girputts_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=80)]
+        public System.Nullable<int> gir_putts_average_rank {
+            get {
+                return this.gir_putts_average_rankField;
+            }
+            set {
+                this.gir_putts_average_rankField = value;
+                this.RaisePropertyChanged("gir_putts_average_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=81)]
+        public System.Nullable<int> strokes_rank {
+            get {
+                return this.strokes_rankField;
+            }
+            set {
+                this.strokes_rankField = value;
+                this.RaisePropertyChanged("strokes_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=82)]
+        public System.Nullable<int> strokes_average_rank {
+            get {
+                return this.strokes_average_rankField;
+            }
+            set {
+                this.strokes_average_rankField = value;
+                this.RaisePropertyChanged("strokes_average_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=83)]
+        public System.Nullable<int> sand_saves_rank {
+            get {
+                return this.sand_saves_rankField;
+            }
+            set {
+                this.sand_saves_rankField = value;
+                this.RaisePropertyChanged("sand_saves_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=84)]
+        public System.Nullable<int> sand_saves_average_rank {
+            get {
+                return this.sand_saves_average_rankField;
+            }
+            set {
+                this.sand_saves_average_rankField = value;
+                this.RaisePropertyChanged("sand_saves_average_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=85)]
+        public System.Nullable<int> sand_saves_percentage_rank {
+            get {
+                return this.sand_saves_percentage_rankField;
+            }
+            set {
+                this.sand_saves_percentage_rankField = value;
+                this.RaisePropertyChanged("sand_saves_percentage_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=86)]
+        public System.Nullable<int> sand_traps_rank {
+            get {
+                return this.sand_traps_rankField;
+            }
+            set {
+                this.sand_traps_rankField = value;
+                this.RaisePropertyChanged("sand_traps_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=87)]
+        public System.Nullable<int> sand_traps_average_rank {
+            get {
+                return this.sand_traps_average_rankField;
+            }
+            set {
+                this.sand_traps_average_rankField = value;
+                this.RaisePropertyChanged("sand_traps_average_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=88)]
+        public System.Nullable<int> drive_distance_rank {
+            get {
+                return this.drive_distance_rankField;
+            }
+            set {
+                this.drive_distance_rankField = value;
+                this.RaisePropertyChanged("drive_distance_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=89)]
+        public System.Nullable<int> drive_average_rank {
+            get {
+                return this.drive_average_rankField;
+            }
+            set {
+                this.drive_average_rankField = value;
+                this.RaisePropertyChanged("drive_average_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=90)]
+        public System.Nullable<int> drives_measured_rank {
+            get {
+                return this.drives_measured_rankField;
+            }
+            set {
+                this.drives_measured_rankField = value;
+                this.RaisePropertyChanged("drives_measured_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=91)]
+        public System.Nullable<int> fairways_rank {
+            get {
+                return this.fairways_rankField;
+            }
+            set {
+                this.fairways_rankField = value;
+                this.RaisePropertyChanged("fairways_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=92)]
+        public System.Nullable<int> fairways_attempted_rank {
+            get {
+                return this.fairways_attempted_rankField;
+            }
+            set {
+                this.fairways_attempted_rankField = value;
+                this.RaisePropertyChanged("fairways_attempted_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=93)]
+        public System.Nullable<int> fairways_percentage_rank {
+            get {
+                return this.fairways_percentage_rankField;
+            }
+            set {
+                this.fairways_percentage_rankField = value;
+                this.RaisePropertyChanged("fairways_percentage_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=94)]
+        public System.Nullable<int> rounds_under_par_rank {
+            get {
+                return this.rounds_under_par_rankField;
+            }
+            set {
+                this.rounds_under_par_rankField = value;
+                this.RaisePropertyChanged("rounds_under_par_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=95)]
+        public System.Nullable<int> rounds_under_par_percentage_rank {
+            get {
+                return this.rounds_under_par_percentage_rankField;
+            }
+            set {
+                this.rounds_under_par_percentage_rankField = value;
+                this.RaisePropertyChanged("rounds_under_par_percentage_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=96)]
+        public System.Nullable<int> rounds_in_60s_rank {
+            get {
+                return this.rounds_in_60s_rankField;
+            }
+            set {
+                this.rounds_in_60s_rankField = value;
+                this.RaisePropertyChanged("rounds_in_60s_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=97)]
+        public System.Nullable<int> rounds_in_60s_percentage_rank {
+            get {
+                return this.rounds_in_60s_percentage_rankField;
+            }
+            set {
+                this.rounds_in_60s_percentage_rankField = value;
+                this.RaisePropertyChanged("rounds_in_60s_percentage_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=98)]
+        public System.Nullable<int> top_10_finishes_rank {
+            get {
+                return this.top_10_finishes_rankField;
+            }
+            set {
+                this.top_10_finishes_rankField = value;
+                this.RaisePropertyChanged("top_10_finishes_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=99)]
+        public System.Nullable<int> top_10_finishes_percentage_rank {
+            get {
+                return this.top_10_finishes_percentage_rankField;
+            }
+            set {
+                this.top_10_finishes_percentage_rankField = value;
+                this.RaisePropertyChanged("top_10_finishes_percentage_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=100)]
+        public System.Nullable<int> wins_rank {
+            get {
+                return this.wins_rankField;
+            }
+            set {
+                this.wins_rankField = value;
+                this.RaisePropertyChanged("wins_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=101)]
+        public System.Nullable<int> best_finish_rank {
+            get {
+                return this.best_finish_rankField;
+            }
+            set {
+                this.best_finish_rankField = value;
+                this.RaisePropertyChanged("best_finish_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=102)]
+        public System.Nullable<int> state_farm_points_rank {
+            get {
+                return this.state_farm_points_rankField;
+            }
+            set {
+                this.state_farm_points_rankField = value;
+                this.RaisePropertyChanged("state_farm_points_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=103)]
+        public System.Nullable<int> solheim_cup_points_rank {
+            get {
+                return this.solheim_cup_points_rankField;
+            }
+            set {
+                this.solheim_cup_points_rankField = value;
+                this.RaisePropertyChanged("solheim_cup_points_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=104)]
+        public System.Nullable<int> rookie_of_the_year_points_rank {
+            get {
+                return this.rookie_of_the_year_points_rankField;
+            }
+            set {
+                this.rookie_of_the_year_points_rankField = value;
+                this.RaisePropertyChanged("rookie_of_the_year_points_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=105)]
+        public System.Nullable<int> player_of_the_year_points_rank {
+            get {
+                return this.player_of_the_year_points_rankField;
+            }
+            set {
+                this.player_of_the_year_points_rankField = value;
+                this.RaisePropertyChanged("player_of_the_year_points_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=106)]
+        public System.Nullable<int> official_money_rank {
+            get {
+                return this.official_money_rankField;
+            }
+            set {
+                this.official_money_rankField = value;
+                this.RaisePropertyChanged("official_money_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=107)]
+        public System.Nullable<int> aces_rank {
+            get {
+                return this.aces_rankField;
+            }
+            set {
+                this.aces_rankField = value;
+                this.RaisePropertyChanged("aces_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=108)]
+        public System.Nullable<int> aces_average_rank {
+            get {
+                return this.aces_average_rankField;
+            }
+            set {
+                this.aces_average_rankField = value;
+                this.RaisePropertyChanged("aces_average_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=109)]
+        public System.Nullable<int> acesinround_rank {
+            get {
+                return this.acesinround_rankField;
+            }
+            set {
+                this.acesinround_rankField = value;
+                this.RaisePropertyChanged("acesinround_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=110)]
+        public System.Nullable<int> birdies_rank {
+            get {
+                return this.birdies_rankField;
+            }
+            set {
+                this.birdies_rankField = value;
+                this.RaisePropertyChanged("birdies_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=111)]
+        public System.Nullable<int> birdies_average_rank {
+            get {
+                return this.birdies_average_rankField;
+            }
+            set {
+                this.birdies_average_rankField = value;
+                this.RaisePropertyChanged("birdies_average_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=112)]
+        public System.Nullable<int> birdiesinround_rank {
+            get {
+                return this.birdiesinround_rankField;
+            }
+            set {
+                this.birdiesinround_rankField = value;
+                this.RaisePropertyChanged("birdiesinround_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=113)]
+        public System.Nullable<int> eagles_rank {
+            get {
+                return this.eagles_rankField;
+            }
+            set {
+                this.eagles_rankField = value;
+                this.RaisePropertyChanged("eagles_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=114)]
+        public System.Nullable<int> eaglesinroundround_rank {
+            get {
+                return this.eaglesinroundround_rankField;
+            }
+            set {
+                this.eaglesinroundround_rankField = value;
+                this.RaisePropertyChanged("eaglesinroundround_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=115)]
+        public System.Nullable<int> parsinround_rank {
+            get {
+                return this.parsinround_rankField;
+            }
+            set {
+                this.parsinround_rankField = value;
+                this.RaisePropertyChanged("parsinround_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=116)]
+        public System.Nullable<int> doublebogeys_rank {
+            get {
+                return this.doublebogeys_rankField;
+            }
+            set {
+                this.doublebogeys_rankField = value;
+                this.RaisePropertyChanged("doublebogeys_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=117)]
+        public System.Nullable<int> double_bogeys_average_rank {
+            get {
+                return this.double_bogeys_average_rankField;
+            }
+            set {
+                this.double_bogeys_average_rankField = value;
+                this.RaisePropertyChanged("double_bogeys_average_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=118)]
+        public System.Nullable<int> par_3_strokes_rank {
+            get {
+                return this.par_3_strokes_rankField;
+            }
+            set {
+                this.par_3_strokes_rankField = value;
+                this.RaisePropertyChanged("par_3_strokes_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=119)]
+        public System.Nullable<int> par_3_strokes_average_rank {
+            get {
+                return this.par_3_strokes_average_rankField;
+            }
+            set {
+                this.par_3_strokes_average_rankField = value;
+                this.RaisePropertyChanged("par_3_strokes_average_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=120)]
+        public System.Nullable<int> par_4_strokes_rank {
+            get {
+                return this.par_4_strokes_rankField;
+            }
+            set {
+                this.par_4_strokes_rankField = value;
+                this.RaisePropertyChanged("par_4_strokes_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=121)]
+        public System.Nullable<int> par_4_strokes_average_rank {
+            get {
+                return this.par_4_strokes_average_rankField;
+            }
+            set {
+                this.par_4_strokes_average_rankField = value;
+                this.RaisePropertyChanged("par_4_strokes_average_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=122)]
+        public System.Nullable<int> par_5_strokes_rank {
+            get {
+                return this.par_5_strokes_rankField;
+            }
+            set {
+                this.par_5_strokes_rankField = value;
+                this.RaisePropertyChanged("par_5_strokes_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=123)]
+        public System.Nullable<int> par_5_strokes_average_rank {
+            get {
+                return this.par_5_strokes_average_rankField;
+            }
+            set {
+                this.par_5_strokes_average_rankField = value;
+                this.RaisePropertyChanged("par_5_strokes_average_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=124)]
+        public System.Nullable<int> holes_under_par_rank {
+            get {
+                return this.holes_under_par_rankField;
+            }
+            set {
+                this.holes_under_par_rankField = value;
+                this.RaisePropertyChanged("holes_under_par_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=125)]
+        public System.Nullable<int> holes_under_par_average_rank {
+            get {
+                return this.holes_under_par_average_rankField;
+            }
+            set {
+                this.holes_under_par_average_rankField = value;
+                this.RaisePropertyChanged("holes_under_par_average_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=126)]
+        public System.Nullable<int> low9score_rank {
+            get {
+                return this.low9score_rankField;
+            }
+            set {
+                this.low9score_rankField = value;
+                this.RaisePropertyChanged("low9score_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=127)]
+        public System.Nullable<int> low_18_score_rank {
+            get {
+                return this.low_18_score_rankField;
+            }
+            set {
+                this.low_18_score_rankField = value;
+                this.RaisePropertyChanged("low_18_score_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=128)]
+        public System.Nullable<int> low_54_score_rank {
+            get {
+                return this.low_54_score_rankField;
+            }
+            set {
+                this.low_54_score_rankField = value;
+                this.RaisePropertyChanged("low_54_score_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=129)]
+        public System.Nullable<int> low_72_score_rank {
+            get {
+                return this.low_72_score_rankField;
+            }
+            set {
+                this.low_72_score_rankField = value;
+                this.RaisePropertyChanged("low_72_score_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=130)]
+        public System.Nullable<int> official_events_1_rank {
+            get {
+                return this.official_events_1_rankField;
+            }
+            set {
+                this.official_events_1_rankField = value;
+                this.RaisePropertyChanged("official_events_1_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=131)]
+        public System.Nullable<int> official_events_2_rank {
+            get {
+                return this.official_events_2_rankField;
+            }
+            set {
+                this.official_events_2_rankField = value;
+                this.RaisePropertyChanged("official_events_2_rank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=132)]
+        public System.Nullable<int> PlayerID {
+            get {
+                return this.playerIDField;
+            }
+            set {
+                this.playerIDField = value;
+                this.RaisePropertyChanged("PlayerID");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=133)]
+        public System.Nullable<int> WGWRID {
+            get {
+                return this.wGWRIDField;
+            }
+            set {
+                this.wGWRIDField = value;
+                this.RaisePropertyChanged("WGWRID");
+            }
+        }

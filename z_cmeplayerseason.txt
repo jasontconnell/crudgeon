@@ -1,0 +1,202 @@
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=0)]
+        public System.Nullable<int> AccountID {
+            get {
+                return this.accountIDField;
+            }
+            set {
+                this.accountIDField = value;
+                this.RaisePropertyChanged("AccountID");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string PlayFirstName {
+            get {
+                return this.playFirstNameField;
+            }
+            set {
+                this.playFirstNameField = value;
+                this.RaisePropertyChanged("PlayFirstName");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public string PlayLastName {
+            get {
+                return this.playLastNameField;
+            }
+            set {
+                this.playLastNameField = value;
+                this.RaisePropertyChanged("PlayLastName");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public string PlayMiddleName {
+            get {
+                return this.playMiddleNameField;
+            }
+            set {
+                this.playMiddleNameField = value;
+                this.RaisePropertyChanged("PlayMiddleName");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public short TourChampionshipSeason {
+            get {
+                return this.tourChampionshipSeasonField;
+            }
+            set {
+                this.tourChampionshipSeasonField = value;
+                this.RaisePropertyChanged("TourChampionshipSeason");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=5)]
+        public System.Nullable<short> TourChampionshipEvents {
+            get {
+                return this.tourChampionshipEventsField;
+            }
+            set {
+                this.tourChampionshipEventsField = value;
+                this.RaisePropertyChanged("TourChampionshipEvents");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=6)]
+        public System.Nullable<short> TourChampionshipWins {
+            get {
+                return this.tourChampionshipWinsField;
+            }
+            set {
+                this.tourChampionshipWinsField = value;
+                this.RaisePropertyChanged("TourChampionshipWins");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=7)]
+        public System.Nullable<short> TourChampionshipTop10Finishes {
+            get {
+                return this.tourChampionshipTop10FinishesField;
+            }
+            set {
+                this.tourChampionshipTop10FinishesField = value;
+                this.RaisePropertyChanged("TourChampionshipTop10Finishes");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=8)]
+        public System.Nullable<int> WGWRID {
+            get {
+                return this.wGWRIDField;
+            }
+            set {
+                this.wGWRIDField = value;
+                this.RaisePropertyChanged("WGWRID");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=9)]
+        public System.Nullable<decimal> TourChampionshipSeasonCurrentPoints {
+            get {
+                return this.tourChampionshipSeasonCurrentPointsField;
+            }
+            set {
+                this.tourChampionshipSeasonCurrentPointsField = value;
+                this.RaisePropertyChanged("TourChampionshipSeasonCurrentPoints");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=10)]
+        public System.Nullable<decimal> TourChampionshipSeasonPreviousEventPoints {
+            get {
+                return this.tourChampionshipSeasonPreviousEventPointsField;
+            }
+            set {
+                this.tourChampionshipSeasonPreviousEventPointsField = value;
+                this.RaisePropertyChanged("TourChampionshipSeasonPreviousEventPoints");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=11)]
+        public System.Nullable<decimal> TourChampionshipSeasonCurrentPointsBehindLeader {
+            get {
+                return this.tourChampionshipSeasonCurrentPointsBehindLeaderField;
+            }
+            set {
+                this.tourChampionshipSeasonCurrentPointsBehindLeaderField = value;
+                this.RaisePropertyChanged("TourChampionshipSeasonCurrentPointsBehindLeader");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=12)]
+        public System.Nullable<decimal> TourChampionshipSeasonCurrentPointsRank {
+            get {
+                return this.tourChampionshipSeasonCurrentPointsRankField;
+            }
+            set {
+                this.tourChampionshipSeasonCurrentPointsRankField = value;
+                this.RaisePropertyChanged("TourChampionshipSeasonCurrentPointsRank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=13)]
+        public System.Nullable<decimal> TourChampionshipSeasonPreviousEventPointsRank {
+            get {
+                return this.tourChampionshipSeasonPreviousEventPointsRankField;
+            }
+            set {
+                this.tourChampionshipSeasonPreviousEventPointsRankField = value;
+                this.RaisePropertyChanged("TourChampionshipSeasonPreviousEventPointsRank");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=14)]
+        public System.Nullable<int> PlayerID {
+            get {
+                return this.playerIDField;
+            }
+            set {
+                this.playerIDField = value;
+                this.RaisePropertyChanged("PlayerID");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=15)]
+        public System.Nullable<decimal> TourChampionshipSeasonPointsEventNumber {
+            get {
+                return this.tourChampionshipSeasonPointsEventNumberField;
+            }
+            set {
+                this.tourChampionshipSeasonPointsEventNumberField = value;
+                this.RaisePropertyChanged("TourChampionshipSeasonPointsEventNumber");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=16)]
+        public System.Nullable<decimal> TourChampionshipSeasonPointsEventCount {
+            get {
+                return this.tourChampionshipSeasonPointsEventCountField;
+            }
+            set {
+                this.tourChampionshipSeasonPointsEventCountField = value;
+                this.RaisePropertyChanged("TourChampionshipSeasonPointsEventCount");
+            }
+        }

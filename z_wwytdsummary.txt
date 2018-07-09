@@ -1,0 +1,35 @@
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public short Season {
+            get {
+                return this.seasonField;
+            }
+            set {
+                this.seasonField = value;
+                this.RaisePropertyChanged("Season");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=1)]
+        public System.Nullable<int> EaglesCount {
+            get {
+                return this.eaglesCountField;
+            }
+            set {
+                this.eaglesCountField = value;
+                this.RaisePropertyChanged("EaglesCount");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=2)]
+        public System.Nullable<decimal> TotalRaised {
+            get {
+                return this.totalRaisedField;
+            }
+            set {
+                this.totalRaisedField = value;
+                this.RaisePropertyChanged("TotalRaised");
+            }
+        }
+        
