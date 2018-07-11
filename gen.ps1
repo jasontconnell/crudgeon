@@ -7,6 +7,9 @@ go build
 .\lpgagen -file z_playeryear.txt -path "C:\Jason\lpgagen" -obj Stats_PlayerYear
 .\lpgagen -file z_ptssched.txt -path "C:\Jason\lpgagen" -obj Stats_RacePointsSchedule
 
+.\lpgagen -file z_cmeplayerseason.txt -path "C:\Jason\lpgagen" -obj Stats_CMEPlayerSeason
+.\lpgagen -file z_cmeplayerfinal.txt -path "C:\Jason\lpgagen" -obj Stats_CMEPlayerFinal
+
 
 .\lpgagen -file z_rolexmajoraward.txt -path "C:\Jason\lpgagen" -obj Stats_RolexMajorAward
 .\lpgagen -file z_tournaments.txt -path "C:\Jason\lpgagen" -obj Stats_Tournament
