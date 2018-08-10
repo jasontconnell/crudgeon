@@ -21,7 +21,7 @@ namespace LPGAStatsService.Data {
 
         {{ range $index,$field := .Fields }}
         [DataMember(Name="{{$field.RawName}}")]
-        [Column]
+        {{ if not $field.SqlIgnore }}[Column]{{else}}[IgnoreCol]{{ end }}
         public {{$field.Type}}{{if $field.Nullable}}?{{end}} {{$field.Name}} { get; set; }
         {{ end }}
 

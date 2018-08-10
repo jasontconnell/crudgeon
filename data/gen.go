@@ -10,8 +10,10 @@ type GenPackage struct {
 }
 
 type GenField struct {
-	RawName  string
-	Name     string
-	Type     string
-	Nullable bool
+	RawName   string
+	Name      string
+	Type      string
+	Nullable  bool
+	CsIgnore  bool
+	SqlIgnore bool
 }

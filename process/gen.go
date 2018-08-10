@@ -48,10 +48,8 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, pre
 			nullable = f.SqlNullable
 		}
 
-		ignore := false
-		if fileType == "sql" {
-			ignore = f.SqlType == data.SIgnore
-		}
+		sqlignore := f.SqlType == data.SIgnore
+		csignore := f.CsType == data.CIgnore
 
 		if fileType == "cs" && f.CsType == data.CCustom {
 			nullable = false
@@ -64,8 +62,10 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, pre
 			cname = strings.ToUpper(cname)
 		}
 
+		ignore := (sqlignore && fileType == "sql") || (csignore && fileType == "cs")
+
 		if !ignore {
-			gf := data.GenField{RawName: rawname, Name: cname, Type: getTypeName(f, fileType), Nullable: nullable}
+			gf := data.GenField{RawName: rawname, Name: cname, Type: getTypeName(f, fileType), Nullable: nullable, CsIgnore: false, SqlIgnore: sqlignore}
 			pkg.Fields = append(pkg.Fields, gf)
 		}
 	}

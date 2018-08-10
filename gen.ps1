@@ -39,3 +39,17 @@ go build
 .\lpgagen -file datafiles\api_tournamentcourse.txt -path "C:\Jason\lpgagen" -obj StatsAPI_TournamentCourse
 .\lpgagen -file datafiles\api_tournamentcoursehole.txt -path "C:\Jason\lpgagen" -obj StatsAPI_TournamentCourseHole
 .\lpgagen -file datafiles\api_player.txt -path "C:\Jason\lpgagen" -obj StatsAPI_Player
+.\lpgagen -file datafiles\api_playerscorecard.txt -path "C:\Jason\lpgagen" -obj StatsAPI_PlayerScorecard
+.\lpgagen -file datafiles\api_playerscorecardround.txt -path "C:\Jason\lpgagen" -obj StatsAPI_PlayerScorecard
+.\lpgagen -file datafiles\api_playerscorecardroundhole.txt -path "C:\Jason\lpgagen" -obj StatsAPI_PlayerScorecardRoundHole
+
+.\lpgagen -file datafiles\api_playerhistory.txt -path "C:\Jason\lpgagen" -obj StatsAPI_PlayerHistory
+.\lpgagen -file datafiles\api_playerhistoryevent.txt -path "C:\Jason\lpgagen" -obj StatsAPI_PlayerHistoryEvent
+.\lpgagen -file datafiles\api_playerquickview.txt -path "C:\Jason\lpgagen" -obj StatsAPI_PlayerQuickView
+.\lpgagen -file datafiles\api_playerquickviewstats.txt -path "C:\Jason\lpgagen" -obj StatsAPI_PlayerQuickViewStats
+
+.\lpgagen -file datafiles\api_cmegloberace.txt -path "C:\Jason\lpgagen" -obj StatsAPI_CMEGlobeRace
+.\lpgagen -file datafiles\api_cmegloberacestat.txt -path "C:\Jason\lpgagen" -obj StatsAPI_CMEGlobeRaceStat
+
+.\lpgagen -file datafiles\api_cmepointsschedule.txt -path "C:\Jason\lpgagen" -obj StatsAPI_CMEPointsSchedule
+.\lpgagen -file datafiles\api_cmepointsscheduleentry.txt -path "C:\Jason\lpgagen" -obj StatsAPI_CMEPointsScheduleEntry

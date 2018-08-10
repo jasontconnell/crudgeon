@@ -14,6 +14,7 @@ const (
 	CDateTime
 	CBool
 	CCustom
+	CIgnore
 )
 
 const (
