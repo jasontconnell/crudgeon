@@ -1,0 +1,6 @@
+public int position {get;set;}
+public decimal lpgaOfficialEventsWithCutPoints {get;set;}
+public decimal lpgaMajorEventsPoints {get;set;}
+public decimal lpgaOfficialEventsWithoutCutPoints {get;set;}
+public decimal lorenaOchoaInvitationalPoints {get;set;}
+public decimal currentValue {get;set;}

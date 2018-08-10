@@ -1,0 +1,5 @@
+public string tournamentId {get;set;}
+public int year {get;set;}
+public int tournamentNumber {get;set;}
+
+public List<IStatsAPI_CMEPointsScheduleEntry> pointsEntries {get;set;}

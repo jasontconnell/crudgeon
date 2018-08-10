@@ -1,0 +1,7 @@
+public int accountId {get;set;}
+public string tournamentSeriesCode {get;set;}
+public decimal totalOfficialMoney {get;set;}
+public string totalOfficialMoneyRank {get;set;}
+public decimal totalEventScoringAverage {get;set;}
+
+public List<IStatsAPI_PlayerHistoryEvent> historicEvents {get;set;}

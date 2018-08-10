@@ -53,3 +53,18 @@ go build
 
 .\lpgagen -file datafiles\api_cmepointsschedule.txt -path "C:\Jason\lpgagen" -obj StatsAPI_CMEPointsSchedule
 .\lpgagen -file datafiles\api_cmepointsscheduleentry.txt -path "C:\Jason\lpgagen" -obj StatsAPI_CMEPointsScheduleEntry
+
+.\lpgagen -file datafiles\api_playerrolexpoints.txt -path "C:\Jason\lpgagen" -obj StatsAPI_PlayerRolexPoints
+.\lpgagen -file datafiles\api_playerrolexpointsevent.txt -path "C:\Jason\lpgagen" -obj StatsAPI_PlayerRolexPointsEvent
+
+.\lpgagen -file datafiles\api_tournamentparticipant.txt -path "C:\Jason\lpgagen" -obj StatsAPI_TournamentParticipantList
+.\lpgagen -file datafiles\api_tournamentparticipantentry.txt -path "C:\Jason\lpgagen" -obj StatsAPI_TournamentParticipantListEntry
+
+.\lpgagen -file datafiles\api_playerperformance.txt -path "C:\Jason\lpgagen" -obj StatsAPI_PlayerPerformance
+
+
+.\lpgagen -file datafiles\api_tournamenthistory.txt -path "C:\Jason\lpgagen" -obj StatsAPI_TournamentHistory
+
+.\lpgagen -file datafiles\api_playerquickviewboxscorelist.txt -path "C:\Jason\lpgagen" -obj StatsAPI_PlayerQuickViewBoxScoreList
+.\lpgagen -file datafiles\api_playerquickviewboxscorelistentry.txt -path "C:\Jason\lpgagen" -obj StatsAPI_PlayerQuickViewBoxScoreListEntry
+

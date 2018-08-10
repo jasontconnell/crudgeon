@@ -1,0 +1,1 @@
+public List<IStatsAPI_PlayerRolexPointsEvent> myEvents {get;set;}

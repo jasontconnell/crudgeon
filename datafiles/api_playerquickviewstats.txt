@@ -1,0 +1,2 @@
+public string statName {get;set;}
+public string statValue {get;set;}

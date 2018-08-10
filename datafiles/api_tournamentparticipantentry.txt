@@ -1,0 +1,4 @@
+public int accountId {get;set;}
+public string playFirstName {get;set;}
+public string playLastName {get;set;}
+public string resultCode {get;set;}
