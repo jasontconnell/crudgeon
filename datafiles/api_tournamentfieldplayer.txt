@@ -1,0 +1,13 @@
+public int id {get;set;}
+public string playFirstName|FirstName { get;set;}            
+public string playMiddleName|MiddleName {get;set;}
+public string playLastName|LastName {get;set;}
+public int fieldRank {get;set;}
+public string abCategory {get;set;}
+public int abRank {get;set;}
+public string playerOrAlternate {get;set;}
+public bool isMember {get;set;}
+public bool IsCMEPointsEligible {get;set;}
+public bool isSponsorInvite {get;set;}
+public int moneyListRank {get;set;}
+public string playerStatus {get;set;}

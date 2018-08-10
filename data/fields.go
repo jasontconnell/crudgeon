@@ -13,6 +13,7 @@ const (
 	CLong
 	CDateTime
 	CBool
+	CCustom
 )
 
 const (
@@ -25,9 +26,11 @@ const (
 	SLong
 	SDateTime
 	SBit
+	SIgnore
 )
 
 type Field struct {
+	RawName     string
 	Name        string
 	Type        string
 	CsNullable  bool

@@ -1,0 +1,13 @@
+public int courseId {get;set;}
+public string courseName {get;set;}
+pubilc string locationCity {get;set;}
+public string locationState {get;set;}
+public string locationCountry {get;set;}
+public int courseYardsIn {get;set;}
+public int courseYardsOut {get;set;}
+public int courseYardsTotal {get;set;}
+public int courseParIn {get;set;}
+public int courseParOut {get;set;}
+public int courseParTotal {get;set;}
+
+public List<IStatsAPI_TournamentCourseHole> standardHoleDetails|Holes {get;set;}

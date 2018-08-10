@@ -1,7 +1,9 @@
 using System;
 using SqlMap.Attributes;
+using System.Runtime.Serialization;
 
 namespace LPGAStatsService.Data {
+    [DataContract]
     [StoredProc(Name="Get{{.Name}}", ProcType=ProcType.Read)]
     [StoredProc(Name="Save{{.Name}}", ProcType=ProcType.Update)]
     public partial class {{ .Name }} : I{{ .Name }} {
@@ -18,9 +20,10 @@ namespace LPGAStatsService.Data {
         }
 
         {{ range $index,$field := .Fields }}
+        [DataMember(Name="{{$field.RawName}}")]
         [Column]
         public {{$field.Type}}{{if $field.Nullable}}?{{end}} {{$field.Name}} { get; set; }
-        {{- end }}
+        {{ end }}
 
     }
 }

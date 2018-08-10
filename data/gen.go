@@ -10,6 +10,7 @@ type GenPackage struct {
 }
 
 type GenField struct {
+	RawName  string
 	Name     string
 	Type     string
 	Nullable bool

@@ -7,6 +7,7 @@ import (
 	"lpgagen/data"
 	"os"
 	"path/filepath"
+	"strings"
 	"text/template"
 )
 
@@ -46,27 +47,45 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, pre
 		if fileType == "sql" {
 			nullable = f.SqlNullable
 		}
-		gf := data.GenField{Name: f.Name, Type: getTypeName(f.CsType, f.SqlType, fileType), Nullable: nullable}
 
-		pkg.Fields = append(pkg.Fields, gf)
+		ignore := false
+		if fileType == "sql" {
+			ignore = f.SqlType == data.SIgnore
+		}
+
+		if fileType == "cs" && f.CsType == data.CCustom {
+			nullable = false
+		}
+
+		name, rawname := f.Name, f.RawName
+
+		cname := strings.Title(name)
+		if len(cname) < 3 {
+			cname = strings.ToUpper(cname)
+		}
+
+		if !ignore {
+			gf := data.GenField{RawName: rawname, Name: cname, Type: getTypeName(f, fileType), Nullable: nullable}
+			pkg.Fields = append(pkg.Fields, gf)
+		}
 	}
 
 	return pkg
 }
 
-func getTypeName(cstype data.CsType, sqltype data.SqlType, fileType string) string {
+func getTypeName(f data.Field, fileType string) string {
 	switch fileType {
 	case "sql":
-		return getSqlType(sqltype)
+		return getSqlType(f)
 	case "cs":
-		return getCsType(cstype)
+		return getCsType(f)
 	}
 	return ""
 }
 
-func getSqlType(sqltype data.SqlType) string {
+func getSqlType(f data.Field) string {
 	var t string
-	switch sqltype {
+	switch f.SqlType {
 	case data.SInt:
 		t = "int"
 	case data.SString:
@@ -87,9 +106,9 @@ func getSqlType(sqltype data.SqlType) string {
 	return t
 }
 
-func getCsType(cstype data.CsType) string {
+func getCsType(f data.Field) string {
 	var t string
-	switch cstype {
+	switch f.CsType {
 	case data.CInt:
 		t = "int"
 	case data.CString:
@@ -106,6 +125,8 @@ func getCsType(cstype data.CsType) string {
 		t = "DateTime"
 	case data.CBool:
 		t = "bool"
+	case data.CCustom:
+		t = f.Type
 	}
 	return t
 }

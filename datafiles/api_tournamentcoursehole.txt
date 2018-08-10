@@ -1,0 +1,3 @@
+public int holeNumber {get;set;}
+public int holeYardage {get;set;}
+public int holePar {get;set;}

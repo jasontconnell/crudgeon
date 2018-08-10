@@ -1,0 +1,5 @@
+public int tournamentId { get; set; }
+public string tournamentName { get; set; }
+public int fieldMaxPlayers {get; set; }
+public string tournamentStatus  {get; set; }
+public List<IStatsAPI_TournamentFieldPlayer> field|Players { get; set; }
