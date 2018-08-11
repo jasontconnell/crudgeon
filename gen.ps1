@@ -67,4 +67,8 @@ go build
 
 .\lpgagen -file datafiles\api_playerquickviewboxscorelist.txt -path "C:\Jason\lpgagen" -obj StatsAPI_PlayerQuickViewBoxScoreList
 .\lpgagen -file datafiles\api_playerquickviewboxscorelistentry.txt -path "C:\Jason\lpgagen" -obj StatsAPI_PlayerQuickViewBoxScoreListEntry
+.\lpgagen -file datafiles\api_playerquickviewboxscorelistentryround.txt -path "C:\Jason\lpgagen" -obj StatsAPI_PlayerQuickViewBoxScoreListEntryRound
+
+.\lpgagen -file datafiles\api_tournamentyearlist.txt -path "C:\Jason\lpgagen" -obj StatsAPI_TournamentYearList
+.\lpgagen -file datafiles\api_tournamentyearlistentry.txt -path "C:\Jason\lpgagen" -obj StatsAPI_TournamentYearListEntry
 
