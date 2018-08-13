@@ -32,7 +32,7 @@ func main() {
 	cfg := configuration.LoadConfig("config.json")
 
 	for _, g := range cfg.Generations {
-		gp := process.GetGenPackage(*obj, *path, flds, g.FileType, g.File, g.OutputPrefix)
+		gp := process.GetGenPackage(*obj, *path, flds, g.FileType, g.File, g.OutputPrefix, g.Folder)
 		err := process.Generate(gp)
 		if err != nil {
 			log.Fatal(err)

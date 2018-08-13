@@ -23,7 +23,7 @@ func Generate(pkg data.GenPackage) error {
 		return err
 	}
 
-	err = fileutil.MakeDirs(filepath.Join(pkg.Path, pkg.Name))
+	err = fileutil.MakeDirs(pkg.Path)
 	if err != nil {
 		return err
 	}
@@ -36,12 +36,12 @@ func Generate(pkg data.GenPackage) error {
 		return terr
 	}
 
-	output := filepath.Join(pkg.Path, pkg.Name, pkg.OutputFile)
+	output := filepath.Join(pkg.Path, pkg.OutputFile)
 	return ioutil.WriteFile(output, buffer.Bytes(), os.ModePerm)
 }
 
-func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, prefix string) data.GenPackage {
-	pkg := data.GenPackage{Name: name, Path: path, TemplateFile: tmplFile, Prefix: prefix, OutputFile: prefix + name + "." + fileType}
+func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, prefix, folder string) data.GenPackage {
+	pkg := data.GenPackage{Name: name, Path: filepath.Join(path, folder), TemplateFile: tmplFile, Prefix: prefix, OutputFile: prefix + name + "." + fileType}
 	for _, f := range flds {
 		nullable := f.CsNullable
 		if fileType == "sql" {

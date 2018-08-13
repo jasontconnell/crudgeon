@@ -4,4 +4,4 @@ public string playerFirstName {get;set;}
 public string playerMiddleName {get;set;}
 public string playerLastName {get;set;}
 
-public List<IStatsAPI_CMEGlobeRaceStats> statistics {get;set;}
+public List<IStatsAPI_CMEGlobeRaceStat> statistics {get;set;}

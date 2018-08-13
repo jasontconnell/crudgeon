@@ -3,4 +3,4 @@ public string tournamentName {get;set;}
 public DateTime tournamentStartDate {get;set;}
 public DateTime tournamentEndDate {get;set;}
 
-public List<ItournamentParticipantEntry> tournamentParticipants {get;set;}
+public List<IStatsAPI_TournamentParticipantListEntry> tournamentParticipants {get;set;}
