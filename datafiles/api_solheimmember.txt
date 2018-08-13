@@ -1,0 +1,6 @@
+		public int AccountId { get; set; }
+		public string PlayerFullName { get; set; }
+		public string PlayerFirstName { get; set; }
+		public string PlayerMiddleName { get; set; }
+		public string PlayerLastName { get; set; }
+		public List<IStatsAPI_SolheimMemberStatistic> Statistics { get; set; }

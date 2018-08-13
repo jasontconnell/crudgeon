@@ -72,3 +72,6 @@ go build
 .\lpgagen -file datafiles\api_tournamentyearlist.txt -path "C:\Jason\lpgagen" -obj StatsAPI_TournamentYearList
 .\lpgagen -file datafiles\api_tournamentyearlistentry.txt -path "C:\Jason\lpgagen" -obj StatsAPI_TournamentYearListEntry
 
+.\lpgagen -file datafiles\api_solheim.txt -path "C:\Jason\lpgagen" -obj StatsAPI_Solheim
+.\lpgagen -file datafiles\api_solheimmember.txt -path "C:\Jason\lpgagen" -obj StatsAPI_SolheimMember
+.\lpgagen -file datafiles\api_solheimmemberstats.txt -path "C:\Jason\lpgagen" -obj StatsAPI_SolheimMemberStatistic

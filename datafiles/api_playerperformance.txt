@@ -1,5 +1,5 @@
 public int accountId {get;set;}
-public string year {get;set;}
+public int year {get;set;}
 public string officialMoneyTotalYTD {get;set;}
 public string officialMoneyTotalYTDRank {get;set;}
 public string averageDrivingDistanceYTD {get;set;}
