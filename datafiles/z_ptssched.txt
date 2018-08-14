@@ -1,6 +1,6 @@
 public int ScoringFinishPosition { get;set; }
-public System.Nullable<int> LPGAOfficialEventsWithCutPoints { get;set; }
-public System.Nullable<int> LPGAMajorEventsPoints { get;set; }
-public System.Nullable<int> LPGAOfficialEventsWithoutCutPoints { get;set; }
-public System.Nullable<int> LorenaOchoaInvitationalPoints { get;set; }
+public Nullable<int> LPGAOfficialEventsWithCutPoints { get;set; }
+public Nullable<int> LPGAMajorEventsPoints { get;set; }
+public Nullable<int> LPGAOfficialEventsWithoutCutPoints { get;set; }
+public Nullable<int> LorenaOchoaInvitationalPoints { get;set; }
 public int TournamentID { get;set; }

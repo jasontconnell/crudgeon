@@ -2,6 +2,7 @@ package process
 
 import (
 	"bytes"
+	"fmt"
 	"github.com/jasontconnell/fileutil"
 	"io/ioutil"
 	"lpgagen/data"
@@ -43,90 +44,88 @@ func Generate(pkg data.GenPackage) error {
 func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, prefix, folder string) data.GenPackage {
 	pkg := data.GenPackage{Name: name, Path: filepath.Join(path, folder), TemplateFile: tmplFile, Prefix: prefix, OutputFile: prefix + name + "." + fileType}
 	for _, f := range flds {
-		nullable := f.CsNullable
-		if fileType == "sql" {
-			nullable = f.SqlNullable
-		}
-
-		sqlignore := f.SqlType == data.SIgnore
-		csignore := f.CsType == data.CIgnore
-
-		if fileType == "cs" && f.CsType == data.CCustom {
-			nullable = false
-		}
-
-		name, rawname := f.Name, f.RawName
-
+		name, field := f.Name, f.FieldName
 		cname := strings.Title(name)
 		if len(cname) < 3 {
 			cname = strings.ToUpper(cname)
 		}
 
-		ignore := (sqlignore && fileType == "sql") || (csignore && fileType == "cs")
+		sqltype := getSqlType(f.Type)
+		if fileType == "sql" && sqltype == "" {
+			continue
+		}
+
+		isInterface := f.Type != f.ConcreteType
+		typeName, concreteTypeName, elementType := f.Type, f.Type, f.Type
+		if f.Collection {
+			listType := "List"
+			if isInterface {
+				listType = "IEnumerable"
+			}
+			typeName = fmt.Sprintf("%s<%s>", listType, typeName)
+		}
+		if fileType == "sql" {
+			typeName = sqltype
+		}
+
+		nullable := f.Nullable
+		sqlignore := sqltype == "" || f.Collection
+
+		if !isBaseType(typeName) {
+			nullable = false
+		}
+
+		concreteProperty := ""
+		if isInterface {
+			concreteProperty = cname + "_Concrete"
+			concreteTypeName = f.ConcreteType
+			if f.Collection {
+				concreteTypeName = fmt.Sprintf("List<%s>", concreteTypeName)
+			}
+		}
+
+		ignore := (sqlignore && fileType == "sql")
 
 		if !ignore {
-			gf := data.GenField{RawName: rawname, Name: cname, Type: getTypeName(f, fileType), Nullable: nullable, CsIgnore: false, SqlIgnore: sqlignore}
+			gf := data.GenField{
+				FieldName:        field,
+				Name:             cname,
+				Type:             typeName,
+				ConcreteType:     concreteTypeName,
+				ConcreteProperty: concreteProperty,
+				ElementType:      elementType,
+				Nullable:         nullable,
+				CsIgnore:         false,
+				SqlIgnore:        sqlignore,
+				JsonIgnore:       f.JsonIgnore,
+				IsInterface:      isInterface,
+				Collection:       f.Collection,
+			}
 			pkg.Fields = append(pkg.Fields, gf)
 		}
 	}
 
+	confields := []data.GenField{}
+	for _, f := range pkg.Fields {
+		if !f.IsInterface {
+			pkg.ConstructorFields = append(pkg.ConstructorFields, f)
+		} else if f.IsInterface {
+			ngfld := data.GenField{
+				FieldName:        f.FieldName,
+				Name:             f.Name + "_Concrete",
+				Type:             f.ConcreteType,
+				ConcreteType:     f.ConcreteType,
+				ConcreteProperty: "",
+				Nullable:         f.Nullable,
+				CsIgnore:         f.CsIgnore,
+				SqlIgnore:        f.SqlIgnore,
+				JsonIgnore:       false,
+				IsInterface:      false,
+				Collection:       f.Collection,
+			}
+			confields = append(confields, ngfld)
+		}
+	}
+	pkg.Fields = append(pkg.Fields, confields...)
 	return pkg
-}
-
-func getTypeName(f data.Field, fileType string) string {
-	switch fileType {
-	case "sql":
-		return getSqlType(f)
-	case "cs":
-		return getCsType(f)
-	}
-	return ""
-}
-
-func getSqlType(f data.Field) string {
-	var t string
-	switch f.SqlType {
-	case data.SInt:
-		t = "int"
-	case data.SString:
-		t = "varchar(100)"
-	case data.SDecimal:
-		t = "decimal(18,2)"
-	case data.SDouble:
-		t = "decimal(18,2)"
-	case data.SShort:
-		t = "smallint"
-	case data.SLong:
-		t = "bigint"
-	case data.SDateTime:
-		t = "datetime"
-	case data.SBit:
-		t = "bit"
-	}
-	return t
-}
-
-func getCsType(f data.Field) string {
-	var t string
-	switch f.CsType {
-	case data.CInt:
-		t = "int"
-	case data.CString:
-		t = "string"
-	case data.CDecimal:
-		t = "decimal"
-	case data.CDouble:
-		t = "double"
-	case data.CShort:
-		t = "short"
-	case data.CLong:
-		t = "long"
-	case data.CDateTime:
-		t = "DateTime"
-	case data.CBool:
-		t = "bool"
-	case data.CCustom:
-		t = f.Type
-	}
-	return t
 }

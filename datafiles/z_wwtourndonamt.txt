@@ -1,6 +1,6 @@
 public short year { get;set; }
-public System.Nullable<short> tournamentnumber { get;set; }
+public Nullable<short> tournamentnumber { get;set; }
 public int tournamentid { get;set; }
 public string DateOfLastRoundContainingEagles { get;set; }
-public System.Nullable<int> TournamentWoundedWariorEagles { get;set; }
-public System.Nullable<decimal> YearToDateOfLastRoundDonationAmount { get;set; }
+public Nullable<int> TournamentWoundedWariorEagles { get;set; }
+public Nullable<decimal> YearToDateOfLastRoundDonationAmount { get;set; }

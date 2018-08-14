@@ -1,0 +1,164 @@
+[
+   {
+      "field": "accountId",
+      "name": "accountId",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "year",
+      "name": "year",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "officialMoneyTotalYTD",
+      "name": "officialMoneyTotalYTD",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "officialMoneyTotalYTDRank",
+      "name": "officialMoneyTotalYTDRank",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "averageDrivingDistanceYTD",
+      "name": "averageDrivingDistanceYTD",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "averageDrivingDistanceYTDRank",
+      "name": "averageDrivingDistanceYTDRank",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "drivingAccuracyYTDPercentage",
+      "name": "drivingAccuracyYTDPercentage",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "drivingAccuracyYTDPercentageRank",
+      "name": "drivingAccuracyYTDPercentageRank",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "greensInRegulationYTDPercentage",
+      "name": "greensInRegulationYTDPercentage",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "greensInRegulationYTDPercentageRank",
+      "name": "greensInRegulationYTDPercentageRank",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "puttsPerGIRYTD",
+      "name": "puttsPerGIRYTD",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "puttsPerGIRYTDRank",
+      "name": "puttsPerGIRYTDRank",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "puttingAverageYTD",
+      "name": "puttingAverageYTD",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "puttingAverageYTDRank",
+      "name": "puttingAverageYTDRank",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "sandSavesYTDPercentage",
+      "name": "sandSavesYTDPercentage",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "sandSavesYTDPercentageRank",
+      "name": "sandSavesYTDPercentageRank",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "scoringAverageYTD",
+      "name": "scoringAverageYTD",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "scoringAverageYTDRank",
+      "name": "scoringAverageYTDRank",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   }
+]

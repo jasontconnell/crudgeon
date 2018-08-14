@@ -1,4 +1,4 @@
-public System.Nullable<int> AccountID { get;set; }
+public Nullable<int> AccountID { get;set; }
 public short RolexAnnikaMajorAwardSeason { get;set; }
 public string PlayFirstName { get;set; }
 public string PlayLastName { get;set; }

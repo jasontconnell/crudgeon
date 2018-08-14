@@ -1,0 +1,56 @@
+[
+   {
+      "field": "position",
+      "name": "position",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "lpgaOfficialEventsWithCutPoints",
+      "name": "lpgaOfficialEventsWithCutPoints",
+      "type": "decimal",
+      "concreteType": "decimal",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "lpgaMajorEventsPoints",
+      "name": "lpgaMajorEventsPoints",
+      "type": "decimal",
+      "concreteType": "decimal",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "lpgaOfficialEventsWithoutCutPoints",
+      "name": "lpgaOfficialEventsWithoutCutPoints",
+      "type": "decimal",
+      "concreteType": "decimal",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "lorenaOchoaInvitationalPoints",
+      "name": "lorenaOchoaInvitationalPoints",
+      "type": "decimal",
+      "concreteType": "decimal",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "currentValue",
+      "name": "currentValue",
+      "type": "decimal",
+      "concreteType": "decimal",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   }
+]

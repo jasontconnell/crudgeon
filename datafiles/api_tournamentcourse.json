@@ -1,0 +1,101 @@
+[
+   {
+      "field": "courseId",
+      "name": "courseId",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "courseName",
+      "name": "courseName",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "locationState",
+      "name": "locationState",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "locationCountry",
+      "name": "locationCountry",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "courseYardsIn",
+      "name": "courseYardsIn",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "courseYardsOut",
+      "name": "courseYardsOut",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "courseYardsTotal",
+      "name": "courseYardsTotal",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "courseParIn",
+      "name": "courseParIn",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "courseParOut",
+      "name": "courseParOut",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "courseParTotal",
+      "name": "courseParTotal",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "standardHoleDetails",
+      "name": "Holes",
+      "type": "IStatsAPI_TournamentCourseHole",
+      "concreteType": "StatsAPI_TournamentCourseHole",
+      "nullable": true,
+      "collection": true,
+      "jsonIgnore": false
+   }
+]

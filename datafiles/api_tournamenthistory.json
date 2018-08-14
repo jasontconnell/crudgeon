@@ -1,0 +1,38 @@
+[
+   {
+      "field": "latestTournamentCode",
+      "name": "latestTournamentCode",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "latestTournamentId",
+      "name": "latestTournamentId",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "latestYear",
+      "name": "latestYear",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "tournaments",
+      "name": "tournaments",
+      "type": "IStatsAPI_Tournament",
+      "concreteType": "StatsAPI_Tournament",
+      "nullable": true,
+      "collection": true,
+      "jsonIgnore": false
+   }
+]

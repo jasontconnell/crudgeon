@@ -1,0 +1,47 @@
+[
+   {
+      "field": "tournamentId",
+      "name": "tournamentId",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "tournamentName",
+      "name": "tournamentName",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "tournamentStartDate",
+      "name": "tournamentStartDate",
+      "type": "DateTime",
+      "concreteType": "DateTime",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "tournamentEndDate",
+      "name": "tournamentEndDate",
+      "type": "DateTime",
+      "concreteType": "DateTime",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "tournamentParticipants",
+      "name": "tournamentParticipants",
+      "type": "IStatsAPI_TournamentParticipantListEntry",
+      "concreteType": "StatsAPI_TournamentParticipantListEntry",
+      "nullable": true,
+      "collection": true,
+      "jsonIgnore": false
+   }
+]

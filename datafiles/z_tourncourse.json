@@ -1,0 +1,416 @@
+[
+   {
+      "field": "TournamentID",
+      "name": "TournamentID",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "CourseName",
+      "name": "CourseName",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "hole1_yds",
+      "name": "hole1_yds",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "hole2_yds",
+      "name": "hole2_yds",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "hole3_yds",
+      "name": "hole3_yds",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "hole4_yds",
+      "name": "hole4_yds",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "hole5_yds",
+      "name": "hole5_yds",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "hole6_yds",
+      "name": "hole6_yds",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "hole7_yds",
+      "name": "hole7_yds",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "hole8_yds",
+      "name": "hole8_yds",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "hole9_yds",
+      "name": "hole9_yds",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "hole10_yds",
+      "name": "hole10_yds",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "hole11_yds",
+      "name": "hole11_yds",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "hole12_yds",
+      "name": "hole12_yds",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "hole13_yds",
+      "name": "hole13_yds",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "hole14_yds",
+      "name": "hole14_yds",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "hole15_yds",
+      "name": "hole15_yds",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "hole16_yds",
+      "name": "hole16_yds",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "hole17_yds",
+      "name": "hole17_yds",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "hole18_ydd",
+      "name": "hole18_ydd",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "hole1_par",
+      "name": "hole1_par",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "hole2_par",
+      "name": "hole2_par",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "hole3_par",
+      "name": "hole3_par",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "hole4_par",
+      "name": "hole4_par",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "hole5_par",
+      "name": "hole5_par",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "hole6_par",
+      "name": "hole6_par",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "hole7_par",
+      "name": "hole7_par",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "hole8_par",
+      "name": "hole8_par",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "hole9_par",
+      "name": "hole9_par",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "hole10_par",
+      "name": "hole10_par",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "hole11_par",
+      "name": "hole11_par",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "hole12_par",
+      "name": "hole12_par",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "hole13_par",
+      "name": "hole13_par",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "hole14_par",
+      "name": "hole14_par",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "hole15_par",
+      "name": "hole15_par",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "hole16_par",
+      "name": "hole16_par",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "hole17_par",
+      "name": "hole17_par",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "hole18_par",
+      "name": "hole18_par",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "par_in",
+      "name": "par_in",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "par_out",
+      "name": "par_out",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "total_par",
+      "name": "total_par",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "total_yds",
+      "name": "total_yds",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "yds_in",
+      "name": "yds_in",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "yds_out",
+      "name": "yds_out",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "Tournament_code",
+      "name": "Tournament_code",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "year",
+      "name": "year",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   }
+]

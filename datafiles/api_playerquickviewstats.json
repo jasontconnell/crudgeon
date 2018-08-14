@@ -1,0 +1,20 @@
+[
+   {
+      "field": "statName",
+      "name": "statName",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "statValue",
+      "name": "statValue",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   }
+]

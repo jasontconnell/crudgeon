@@ -1,0 +1,38 @@
+[
+   {
+      "field": "tournamentId",
+      "name": "tournamentId",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "year",
+      "name": "year",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "tournamentNumber",
+      "name": "tournamentNumber",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "pointsEntries",
+      "name": "pointsEntries",
+      "type": "IStatsAPI_CMEPointsScheduleEntry",
+      "concreteType": "StatsAPI_CMEPointsScheduleEntry",
+      "nullable": true,
+      "collection": true,
+      "jsonIgnore": false
+   }
+]

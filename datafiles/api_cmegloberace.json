@@ -1,0 +1,56 @@
+[
+   {
+      "field": "accountId",
+      "name": "accountId",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "playerFullName",
+      "name": "playerFullName",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "playerFirstName",
+      "name": "playerFirstName",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "playerMiddleName",
+      "name": "playerMiddleName",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "playerLastName",
+      "name": "playerLastName",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "statistics",
+      "name": "statistics",
+      "type": "IStatsAPI_CMEGlobeRaceStat",
+      "concreteType": "StatsAPI_CMEGlobeRaceStat",
+      "nullable": true,
+      "collection": true,
+      "jsonIgnore": false
+   }
+]

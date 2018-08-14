@@ -1,0 +1,1568 @@
+[
+   {
+      "field": "AccountID",
+      "name": "AccountID",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "PlayFirstName",
+      "name": "PlayFirstName",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "PlayLastName",
+      "name": "PlayLastName",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "PlayMiddleName",
+      "name": "PlayMiddleName",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "Year",
+      "name": "Year",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "officialrounds",
+      "name": "officialrounds",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "officialroundsrank",
+      "name": "officialroundsrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "officialevents",
+      "name": "officialevents",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "officialeventsrank",
+      "name": "officialeventsrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "putts",
+      "name": "putts",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "puttsrank",
+      "name": "puttsrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "puttsaverage",
+      "name": "puttsaverage",
+      "type": "double",
+      "concreteType": "double",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "puttsaveragerank",
+      "name": "puttsaveragerank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "greens",
+      "name": "greens",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "greensrank",
+      "name": "greensrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "greenspercentage",
+      "name": "greenspercentage",
+      "type": "double",
+      "concreteType": "double",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "greenspercentagerank",
+      "name": "greenspercentagerank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "greensattempted",
+      "name": "greensattempted",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "greensattemptedrank",
+      "name": "greensattemptedrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "girputts",
+      "name": "girputts",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "girputtsrank",
+      "name": "girputtsrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "girputtsaverage",
+      "name": "girputtsaverage",
+      "type": "double",
+      "concreteType": "double",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "girputtsaveragerank",
+      "name": "girputtsaveragerank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "strokes",
+      "name": "strokes",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "strokesrank",
+      "name": "strokesrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "strokesaverage",
+      "name": "strokesaverage",
+      "type": "double",
+      "concreteType": "double",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "strokesaveragerank",
+      "name": "strokesaveragerank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "sandsaves",
+      "name": "sandsaves",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "sandsavesrank",
+      "name": "sandsavesrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "sandsavesaverage",
+      "name": "sandsavesaverage",
+      "type": "double",
+      "concreteType": "double",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "sandsavesaveragerank",
+      "name": "sandsavesaveragerank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "sandsavespercentage",
+      "name": "sandsavespercentage",
+      "type": "double",
+      "concreteType": "double",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "sandsavespercentagerank",
+      "name": "sandsavespercentagerank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "sandtraps",
+      "name": "sandtraps",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "sandtrapsrank",
+      "name": "sandtrapsrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "sandtrapsaverage",
+      "name": "sandtrapsaverage",
+      "type": "double",
+      "concreteType": "double",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "sandtrapsaveragerank",
+      "name": "sandtrapsaveragerank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "drivedistance",
+      "name": "drivedistance",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "drivedistancerank",
+      "name": "drivedistancerank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "driveaverage",
+      "name": "driveaverage",
+      "type": "double",
+      "concreteType": "double",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "driveaveragerank",
+      "name": "driveaveragerank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "drivesmeasured",
+      "name": "drivesmeasured",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "drivesmeasuredrank",
+      "name": "drivesmeasuredrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "fairways",
+      "name": "fairways",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "fairwaysrank",
+      "name": "fairwaysrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "fairwaysattempted",
+      "name": "fairwaysattempted",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "fairwaysattemptedrank",
+      "name": "fairwaysattemptedrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "fairwayspercentage",
+      "name": "fairwayspercentage",
+      "type": "double",
+      "concreteType": "double",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "fairwayspercentagerank",
+      "name": "fairwayspercentagerank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "roundsunderpar",
+      "name": "roundsunderpar",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "roundsunderparrank",
+      "name": "roundsunderparrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "roundsunderparpercentage",
+      "name": "roundsunderparpercentage",
+      "type": "double",
+      "concreteType": "double",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "roundsunderparpercentagerank",
+      "name": "roundsunderparpercentagerank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "roundsin60s",
+      "name": "roundsin60s",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "roundsin60srank",
+      "name": "roundsin60srank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "roundsin60spercentage",
+      "name": "roundsin60spercentage",
+      "type": "double",
+      "concreteType": "double",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "roundsin60spercentagerank",
+      "name": "roundsin60spercentagerank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "top10finishes",
+      "name": "top10finishes",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "top10finishesrank",
+      "name": "top10finishesrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "top10finishespercentage",
+      "name": "top10finishespercentage",
+      "type": "double",
+      "concreteType": "double",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "top10finishespercentagerank",
+      "name": "top10finishespercentagerank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "wins",
+      "name": "wins",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "winsrank",
+      "name": "winsrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "bestfinish",
+      "name": "bestfinish",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "bestfinishrank",
+      "name": "bestfinishrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "solheimcuppoints",
+      "name": "solheimcuppoints",
+      "type": "double",
+      "concreteType": "double",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "solheimcuppointsrank",
+      "name": "solheimcuppointsrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "rookieoftheyearpoints",
+      "name": "rookieoftheyearpoints",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "rookieoftheyearpointsrank",
+      "name": "rookieoftheyearpointsrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "playeroftheyearpoints",
+      "name": "playeroftheyearpoints",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "playeroftheyearpointsrank",
+      "name": "playeroftheyearpointsrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "officialmoney",
+      "name": "officialmoney",
+      "type": "decimal",
+      "concreteType": "decimal",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "officialmoneyrank",
+      "name": "officialmoneyrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "previousofficialmoney",
+      "name": "previousofficialmoney",
+      "type": "decimal",
+      "concreteType": "decimal",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "previousofficialmoneyrank",
+      "name": "previousofficialmoneyrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "aces",
+      "name": "aces",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "acesrank",
+      "name": "acesrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "acesaverage",
+      "name": "acesaverage",
+      "type": "double",
+      "concreteType": "double",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "acesaveragerank",
+      "name": "acesaveragerank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "acesinround",
+      "name": "acesinround",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "acesinroundrank",
+      "name": "acesinroundrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "acesinroundround",
+      "name": "acesinroundround",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "acesinroundtournamentid",
+      "name": "acesinroundtournamentid",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "birdies",
+      "name": "birdies",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "birdiesrank",
+      "name": "birdiesrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "birdiesaverage",
+      "name": "birdiesaverage",
+      "type": "double",
+      "concreteType": "double",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "birdiesaveragerank",
+      "name": "birdiesaveragerank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "birdiesinround",
+      "name": "birdiesinround",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "birdiesinroundrank",
+      "name": "birdiesinroundrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "birdiesinroundround",
+      "name": "birdiesinroundround",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "birdiesinroundtournamentid",
+      "name": "birdiesinroundtournamentid",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "eagles",
+      "name": "eagles",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "eaglesrank",
+      "name": "eaglesrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "eaglesaverage",
+      "name": "eaglesaverage",
+      "type": "double",
+      "concreteType": "double",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "eaglesaveragerank",
+      "name": "eaglesaveragerank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "eaglesinround",
+      "name": "eaglesinround",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "eaglesinroundrank",
+      "name": "eaglesinroundrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "eaglesinroundround",
+      "name": "eaglesinroundround",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "eaglesinroundtournamentid",
+      "name": "eaglesinroundtournamentid",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "pars",
+      "name": "pars",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "parsrank",
+      "name": "parsrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "parsaverage",
+      "name": "parsaverage",
+      "type": "double",
+      "concreteType": "double",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "parsaveragerank",
+      "name": "parsaveragerank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "parsinround",
+      "name": "parsinround",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "parsinroundrank",
+      "name": "parsinroundrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "parsinroundround",
+      "name": "parsinroundround",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "parsinroundtournamentid",
+      "name": "parsinroundtournamentid",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "bogeys",
+      "name": "bogeys",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "bogeysrank",
+      "name": "bogeysrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "bogeysaverage",
+      "name": "bogeysaverage",
+      "type": "double",
+      "concreteType": "double",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "bogeysaveragerank",
+      "name": "bogeysaveragerank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "bogeysinround",
+      "name": "bogeysinround",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "bogeysinroundrank",
+      "name": "bogeysinroundrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "bogeysinroundround",
+      "name": "bogeysinroundround",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "bogeysinroundtournamentid",
+      "name": "bogeysinroundtournamentid",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "doublebogeys",
+      "name": "doublebogeys",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "doublebogeysrank",
+      "name": "doublebogeysrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "doublebogeysaverage",
+      "name": "doublebogeysaverage",
+      "type": "double",
+      "concreteType": "double",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "doublebogeysaveragerank",
+      "name": "doublebogeysaveragerank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "doublebogeysinround",
+      "name": "doublebogeysinround",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "doublebogeysinroundrank",
+      "name": "doublebogeysinroundrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "doublebogeysinroundround",
+      "name": "doublebogeysinroundround",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "doublebogeysinroundtournamentid",
+      "name": "doublebogeysinroundtournamentid",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "other",
+      "name": "other",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "otherrank",
+      "name": "otherrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "otheraverage",
+      "name": "otheraverage",
+      "type": "double",
+      "concreteType": "double",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "otheraveragerank",
+      "name": "otheraveragerank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "otherinround",
+      "name": "otherinround",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "otherinroundrank",
+      "name": "otherinroundrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "otherinroundround",
+      "name": "otherinroundround",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "otherinroundtournamentid",
+      "name": "otherinroundtournamentid",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "par3strokes",
+      "name": "par3strokes",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "par3strokesrank",
+      "name": "par3strokesrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "par3average",
+      "name": "par3average",
+      "type": "double",
+      "concreteType": "double",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "par3averagerank",
+      "name": "par3averagerank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "par4strokes",
+      "name": "par4strokes",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "par4strokesrank",
+      "name": "par4strokesrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "par4average",
+      "name": "par4average",
+      "type": "double",
+      "concreteType": "double",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "par4averagerank",
+      "name": "par4averagerank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "par5strokes",
+      "name": "par5strokes",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "par5strokesrank",
+      "name": "par5strokesrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "par5average",
+      "name": "par5average",
+      "type": "double",
+      "concreteType": "double",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "par5averagerank",
+      "name": "par5averagerank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "holesunderpar",
+      "name": "holesunderpar",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "holesunderparrank",
+      "name": "holesunderparrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "holesunderparaverage",
+      "name": "holesunderparaverage",
+      "type": "double",
+      "concreteType": "double",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "holesunderparaveragerank",
+      "name": "holesunderparaveragerank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "low9score",
+      "name": "low9score",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "low9scorerank",
+      "name": "low9scorerank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "low9scoreround",
+      "name": "low9scoreround",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "low9scoretournamentid",
+      "name": "low9scoretournamentid",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "low18score",
+      "name": "low18score",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "low18scorerank",
+      "name": "low18scorerank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "low18scoreround",
+      "name": "low18scoreround",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "low18scoretournamentid",
+      "name": "low18scoretournamentid",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "low36score",
+      "name": "low36score",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "low36scorerank",
+      "name": "low36scorerank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "low36scoretournamentid",
+      "name": "low36scoretournamentid",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "low54score",
+      "name": "low54score",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "low54scorerank",
+      "name": "low54scorerank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "low54scoretournamentid",
+      "name": "low54scoretournamentid",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "low72score",
+      "name": "low72score",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "low72scorerank",
+      "name": "low72scorerank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "low72scoretournamentid",
+      "name": "low72scoretournamentid",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "officialstatrounds",
+      "name": "officialstatrounds",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "officialstatroundsrank",
+      "name": "officialstatroundsrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "officialstrokerounds",
+      "name": "officialstrokerounds",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "officialstrokeroundsrank",
+      "name": "officialstrokeroundsrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "officialstrokeevents",
+      "name": "officialstrokeevents",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "officialstrokeeventsrank",
+      "name": "officialstrokeeventsrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "officialstatevents",
+      "name": "officialstatevents",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "officialstateventsrank",
+      "name": "officialstateventsrank",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "PlayerID",
+      "name": "PlayerID",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "WGWRID",
+      "name": "WGWRID",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   }
+]

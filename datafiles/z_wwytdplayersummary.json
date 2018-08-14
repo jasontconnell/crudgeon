@@ -1,0 +1,56 @@
+[
+   {
+      "field": "Season",
+      "name": "Season",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "AccountID",
+      "name": "AccountID",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "PlayFirstName",
+      "name": "PlayFirstName",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "PlayLastName",
+      "name": "PlayLastName",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "EaglesCount",
+      "name": "EaglesCount",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "YTDContributionAmount",
+      "name": "YTDContributionAmount",
+      "type": "decimal",
+      "concreteType": "decimal",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   }
+]

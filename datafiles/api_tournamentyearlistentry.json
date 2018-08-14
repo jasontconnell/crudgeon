@@ -1,0 +1,11 @@
+[
+   {
+      "field": "Year",
+      "name": "Year",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   }
+]

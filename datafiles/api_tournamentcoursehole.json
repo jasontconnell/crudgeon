@@ -1,0 +1,29 @@
+[
+   {
+      "field": "holeNumber",
+      "name": "holeNumber",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "holeYardage",
+      "name": "holeYardage",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "holePar",
+      "name": "holePar",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   }
+]

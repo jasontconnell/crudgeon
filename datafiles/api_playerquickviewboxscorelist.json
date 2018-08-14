@@ -1,0 +1,11 @@
+[
+   {
+      "field": "boxScores",
+      "name": "boxScores",
+      "type": "IStatsAPI_PlayerQuickViewBoxScoreListEntry",
+      "concreteType": "StatsAPI_PlayerQuickViewBoxScoreListEntry",
+      "nullable": true,
+      "collection": true,
+      "jsonIgnore": false
+   }
+]

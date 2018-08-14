@@ -1,0 +1,56 @@
+[
+   {
+      "field": "AccountId",
+      "name": "AccountId",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "PlayerFullName",
+      "name": "PlayerFullName",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "PlayerFirstName",
+      "name": "PlayerFirstName",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "PlayerMiddleName",
+      "name": "PlayerMiddleName",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "PlayerLastName",
+      "name": "PlayerLastName",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "Statistics",
+      "name": "Statistics",
+      "type": "IStatsAPI_SolheimMemberStatistic",
+      "concreteType": "StatsAPI_SolheimMemberStatistic",
+      "nullable": true,
+      "collection": true,
+      "jsonIgnore": false
+   }
+]

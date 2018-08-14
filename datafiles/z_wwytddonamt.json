@@ -1,0 +1,29 @@
+[
+   {
+      "field": "asoftournamentid",
+      "name": "asoftournamentid",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "WoundedWarriorEagles",
+      "name": "WoundedWarriorEagles",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "WoundedWarriorEaglesDonationAmount",
+      "name": "WoundedWarriorEaglesDonationAmount",
+      "type": "decimal",
+      "concreteType": "decimal",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   }
+]

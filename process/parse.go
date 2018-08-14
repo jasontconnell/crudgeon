@@ -9,16 +9,18 @@ import (
 )
 
 var fldreg *regexp.Regexp = regexp.MustCompile(`\W*(?:private|public) (.*?) (.*?) *{`)
-var nilreg *regexp.Regexp = regexp.MustCompile(`System.Nullable<(.*?)>`)
+var genericreg *regexp.Regexp = regexp.MustCompile(`([a-zA-Z\.]*?)<(.*?)>`)
 
 type parsed struct {
 	t           string
 	name        string
 	csnullable  bool
 	sqlnullable bool
+	collection  bool
+	isInterface bool
 }
 
-func Parse(file string) ([]data.Field, error) {
+func ParseFields(file string) ([]data.Field, error) {
 	contents, err := ioutil.ReadFile(file)
 
 	if err != nil {
@@ -29,29 +31,31 @@ func Parse(file string) ([]data.Field, error) {
 
 	flds := []data.Field{}
 	for _, p := range parsed {
-		ct, st := getTypes(p.t)
-		if ct == data.CNone || st == data.SNone {
-			return nil, fmt.Errorf("Type not found for %v", p.name)
+		if p.t == "" {
+			return nil, fmt.Errorf("Type not found for %v %v", p.t, p.name)
 		}
 
 		csnull := p.csnullable
-		if ct == data.CCustom {
+		if !p.csnullable && !isBaseType(p.t) {
 			csnull = true
 		}
 
-		name, rawname := p.name, p.name
+		jsonIgnore := false
+
+		concreteType := p.t
+		if p.isInterface {
+			concreteType = string(concreteType[1:])
+			jsonIgnore = true
+		}
+
+		name, field := p.name, p.name
 		names := strings.Split(p.name, "|")
 		if len(names) == 2 {
 			name = names[1]
-			rawname = names[0]
+			field = names[0]
 		}
 
-		fld := data.Field{Type: p.t, Name: name, RawName: rawname, CsNullable: csnull, SqlNullable: p.sqlnullable}
-
-		fld.CsType = ct
-		fld.SqlType = st
-
-		flds = append(flds, fld)
+		flds = append(flds, data.Field{Type: p.t, ConcreteType: concreteType, Name: name, FieldName: field, Nullable: csnull, Collection: p.collection, JsonIgnore: jsonIgnore, IsInterface: p.isInterface})
 	}
 
 	return flds, nil
@@ -64,15 +68,28 @@ func getParsed(c string) []parsed {
 	for _, m := range matches {
 		t := m[1]
 
-		tmatches := nilreg.FindAllStringSubmatch(t, -1)
-		nullable := len(tmatches) > 0
+		tmatches := genericreg.FindAllStringSubmatch(t, -1)
+		var nullable, collection bool
 		if len(tmatches) > 0 {
-			t = tmatches[0][1]
+			nullable = true
+			collection = isCollection(tmatches[0][1])
+			t = tmatches[0][2]
+		} else {
+			nullable = !isBaseType(t)
 		}
 
+		isInterface := nullable && strings.HasPrefix(t, "I")
+		nullable = nullable || collection || isInterface
 		sqlnullable := nullable || t == "string"
 
-		p := parsed{t: t, name: strings.TrimSuffix(m[2], "Field"), csnullable: nullable, sqlnullable: sqlnullable}
+		p := parsed{
+			t:           t,
+			name:        strings.TrimSuffix(m[2], "Field"),
+			csnullable:  nullable,
+			sqlnullable: sqlnullable,
+			collection:  collection,
+			isInterface: isInterface,
+		}
 
 		plist = append(plist, p)
 	}
@@ -80,38 +97,40 @@ func getParsed(c string) []parsed {
 	return plist
 }
 
-func getTypes(t string) (data.CsType, data.SqlType) {
-	ct := data.CNone
-	st := data.SNone
+func isCollection(t string) bool {
+	return strings.HasPrefix(t, "List") || strings.HasPrefix(t, "IEnumerable")
+}
+
+func isBaseType(t string) bool {
+	switch t {
+	case "int", "short", "string", "decimal", "double", "long", "DateTime", "bool":
+		return true
+	}
+	return false
+}
+
+func getSqlType(t string) string {
+	st := ""
 	switch t {
 	case "int":
-		ct = data.CInt
-		st = data.SInt
+		st = "int"
 	case "short":
-		ct = data.CShort
-		st = data.SShort
+		st = "smallint"
 	case "string":
-		ct = data.CString
-		st = data.SString
+		st = "varchar(150)"
 	case "decimal":
-		ct = data.CDecimal
-		st = data.SDecimal
+		st = "decimal(18,2)"
 	case "double":
-		ct = data.CDouble
-		st = data.SDouble
+		st = "double"
 	case "long":
-		ct = data.CLong
-		st = data.SLong
-	case "DateTime", "System.DateTime":
-		ct = data.CDateTime
-		st = data.SDateTime
+		st = "bigint"
+	case "DateTime":
+		st = "datetime"
 	case "bool":
-		ct = data.CBool
-		st = data.SBit
+		st = "bit"
 	default: // don't ignore in C# but don't allow saving in sql
-		ct = data.CCustom
-		st = data.SIgnore
+		st = ""
 	}
 
-	return ct, st
+	return st
 }

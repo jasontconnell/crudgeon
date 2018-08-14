@@ -2,6 +2,7 @@ using System;
 using SqlMap.Attributes;
 using System.Runtime.Serialization;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LPGAStatsService.Data {
     [DataContract]
@@ -13,20 +14,23 @@ namespace LPGAStatsService.Data {
             
         }
 
-        {{- if (len .Fields) gt 0 }}
-        public {{ .Name }}({{- range $index,$field := .Fields }} {{$field.Type}}{{if $field.Nullable}}?{{end}} {{$field.Name}}{{- if lt (plus1 $index) (len $.Fields)}},
+        {{- if (len .ConstructorFields) gt 0 }}
+        public {{ .Name }}({{- range $index,$field := .ConstructorFields }} {{$field.Type}}{{if $field.Nullable}}?{{end}} {{$field.Name}}{{- if lt (plus1 $index) (len $.ConstructorFields)}},
                 {{end}}{{- end}}) {
-            {{- range $index,$field := .Fields }}
+            {{- range $index,$field := .ConstructorFields }}
             this.{{$field.Name}} = {{$field.Name}};
             {{- end}}
         }
         {{- end }}
 
         {{ range $index,$field := .Fields }}
-        [DataMember(Name="{{$field.RawName}}")]
+        {{ if not $field.JsonIgnore }}[DataMember(Name="{{$field.FieldName}}")]{{ end }}
         {{ if not $field.SqlIgnore }}[Column]{{else}}[IgnoreCol]{{ end }}
-        public {{$field.Type}}{{if $field.Nullable}}?{{end}} {{$field.Name}} { get; set; }
-        {{ end }}
+        public {{$field.Type}}{{if $field.Nullable}}?{{end}} {{$field.Name}} { 
+                {{- if not $field.IsInterface }} get; set;
+                {{- else if $field.Collection}}get { return Enumerable.Cast<{{$field.ElementType}}>({{$field.ConcreteProperty}}); } set { this.{{$field.ConcreteProperty}} = ({{$field.ConcreteType}})value; }
+                {{else}} get { return ({{$field.Type}})this.{{$field.ConcreteProperty}}; } set { this.{{$field.ConcreteProperty}} = ({{$field.ConcreteType}})value; }{{end}}  }
+        {{- end }}
 
     }
 }

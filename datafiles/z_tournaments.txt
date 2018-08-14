@@ -6,5 +6,5 @@ public string City { get;set; }
 public string StateName { get;set; }
 public string CountryName { get;set; }
 public string CountryAbbreviation { get;set; }
-public System.Nullable<System.DateTime> StartDate { get;set; }
-public System.Nullable<System.DateTime> EndDate { get;set; }
+public Nullable<DateTime> StartDate { get;set; }
+public Nullable<DateTime> EndDate { get;set; }

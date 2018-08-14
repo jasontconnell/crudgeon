@@ -1,0 +1,155 @@
+[
+   {
+      "field": "roundStartDate",
+      "name": "roundStartDate",
+      "type": "DateTime",
+      "concreteType": "DateTime",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "roundEndDate",
+      "name": "roundEndDate",
+      "type": "DateTime",
+      "concreteType": "DateTime",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "roundNumber",
+      "name": "roundNumber",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "isRoundOfficial",
+      "name": "isRoundOfficial",
+      "type": "bool",
+      "concreteType": "bool",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "scoreIn",
+      "name": "scoreIn",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "scoreOut",
+      "name": "scoreOut",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "scoreTotal",
+      "name": "scoreTotal",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "parIn",
+      "name": "parIn",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "parOut",
+      "name": "parOut",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "parTotal",
+      "name": "parTotal",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "yardageIn",
+      "name": "yardageIn",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "yardageOut",
+      "name": "yardageOut",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "yardageTotal",
+      "name": "yardageTotal",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "scoreInStatus",
+      "name": "scoreInStatus",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "scoreOutStatus",
+      "name": "scoreOutStatus",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "scoreTotalStatus",
+      "name": "scoreTotalStatus",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "holes",
+      "name": "holes",
+      "type": "IStatsAPI_PlayerScorecardRoundHole",
+      "concreteType": "StatsAPI_PlayerScorecardRoundHole",
+      "nullable": true,
+      "collection": true,
+      "jsonIgnore": false
+   }
+]

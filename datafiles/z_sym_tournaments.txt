@@ -1,10 +1,10 @@
-public System.Nullable<int> TournamentID { get;set; }
+public Nullable<int> TournamentID { get;set; }
 public string code { get;set; }
-public System.Nullable<short> Year { get;set; }
+public Nullable<short> Year { get;set; }
 public string Name { get;set; }
 public string City { get;set; }
 public string StateName { get;set; }
 public string CountryName { get;set; }
 public string CountryAbbreviation { get;set; }
-public System.Nullable<System.DateTime> StartDate { get;set; }
-public System.Nullable<System.DateTime> EndDate { get;set; }
+public Nullable<DateTime> StartDate { get;set; }
+public Nullable<DateTime> EndDate { get;set; }

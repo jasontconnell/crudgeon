@@ -1,0 +1,92 @@
+[
+   {
+      "field": "tournamentYear",
+      "name": "tournamentYear",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "tournamentStartDate",
+      "name": "tournamentStartDate",
+      "type": "DateTime",
+      "concreteType": "DateTime",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "tournamentEndDate",
+      "name": "tournamentEndDate",
+      "type": "DateTime",
+      "concreteType": "DateTime",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "tournamentId",
+      "name": "tournamentId",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "tournamentName",
+      "name": "tournamentName",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "playerTournamentResultCode",
+      "name": "playerTournamentResultCode",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "eventRolexPointsEarned",
+      "name": "eventRolexPointsEarned",
+      "type": "decimal",
+      "concreteType": "decimal",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "cumulativeRolexPointsEarned",
+      "name": "cumulativeRolexPointsEarned",
+      "type": "decimal",
+      "concreteType": "decimal",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "eventRolexPointsRank",
+      "name": "eventRolexPointsRank",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "cumulativeRolexPointsRank",
+      "name": "cumulativeRolexPointsRank",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   }
+]

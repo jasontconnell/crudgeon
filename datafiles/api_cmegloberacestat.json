@@ -1,0 +1,20 @@
+[
+   {
+      "field": "name",
+      "name": "name",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "value",
+      "name": "value",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   }
+]

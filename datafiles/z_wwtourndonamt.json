@@ -1,0 +1,56 @@
+[
+   {
+      "field": "year",
+      "name": "year",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "tournamentnumber",
+      "name": "tournamentnumber",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "tournamentid",
+      "name": "tournamentid",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "DateOfLastRoundContainingEagles",
+      "name": "DateOfLastRoundContainingEagles",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "TournamentWoundedWariorEagles",
+      "name": "TournamentWoundedWariorEagles",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "YearToDateOfLastRoundDonationAmount",
+      "name": "YearToDateOfLastRoundDonationAmount",
+      "type": "decimal",
+      "concreteType": "decimal",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   }
+]

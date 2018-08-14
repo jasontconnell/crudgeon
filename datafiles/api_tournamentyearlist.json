@@ -1,0 +1,11 @@
+[
+   {
+      "field": "years",
+      "name": "years",
+      "type": "IStatsAPI_TournamentYearListEntry",
+      "concreteType": "StatsAPI_TournamentYearListEntry",
+      "nullable": true,
+      "collection": true,
+      "jsonIgnore": false
+   }
+]

@@ -1,0 +1,65 @@
+[
+   {
+      "field": "AccountID",
+      "name": "AccountID",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": true,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "RolexAnnikaMajorAwardSeason",
+      "name": "RolexAnnikaMajorAwardSeason",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "PlayFirstName",
+      "name": "PlayFirstName",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "PlayLastName",
+      "name": "PlayLastName",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "PlayMiddleName",
+      "name": "PlayMiddleName",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "RolexAnnikaMajorAwardPoints",
+      "name": "RolexAnnikaMajorAwardPoints",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "MajorWins",
+      "name": "MajorWins",
+      "type": "short",
+      "concreteType": "short",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   }
+]

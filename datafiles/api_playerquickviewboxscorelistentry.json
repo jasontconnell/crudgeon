@@ -1,0 +1,344 @@
+[
+   {
+      "field": "year",
+      "name": "year",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "tournamentId",
+      "name": "tournamentId",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "tournamentName",
+      "name": "tournamentName",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "tournamentNumber",
+      "name": "tournamentNumber",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "accountId",
+      "name": "accountId",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "playerFirstName",
+      "name": "FirstName",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "playerLastName",
+      "name": "LastName",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "playerResultCode",
+      "name": "playerResultCode",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "playerFinalScore",
+      "name": "playerFinalScore",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "playerEventOfficialMoneyTotal",
+      "name": "playerEventOfficialMoneyTotal",
+      "type": "decimal",
+      "concreteType": "decimal",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "tournamentPar",
+      "name": "tournamentPar",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "playerFinalToPar",
+      "name": "playerFinalToPar",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "fairwaysHit",
+      "name": "fairwaysHit",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "fairwaysHitRank",
+      "name": "fairwaysHitRank",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "fairwaysAttempted",
+      "name": "fairwaysAttempted",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "fairwaysHitPercentage",
+      "name": "fairwaysHitPercentage",
+      "type": "decimal",
+      "concreteType": "decimal",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "drivingDistance",
+      "name": "drivingDistance",
+      "type": "string",
+      "concreteType": "string",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "drivingDistanceRank",
+      "name": "drivingDistanceRank",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "drivingDistanceDrivesMeasured",
+      "name": "drivingDistanceDrivesMeasured",
+      "type": "decimal",
+      "concreteType": "decimal",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "drivingDistanceAggregate",
+      "name": "drivingDistanceAggregate",
+      "type": "decimal",
+      "concreteType": "decimal",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "greensHit",
+      "name": "greensHit",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "greensHitRank",
+      "name": "greensHitRank",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "greensAttempted",
+      "name": "greensAttempted",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "greensHitPercentage",
+      "name": "greensHitPercentage",
+      "type": "decimal",
+      "concreteType": "decimal",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "puttsHit",
+      "name": "puttsHit",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "puttsHitRank",
+      "name": "puttsHitRank",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "par3Score",
+      "name": "par3Score",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "par4Score",
+      "name": "par4Score",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "par5Score",
+      "name": "par5Score",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "eaglesCount",
+      "name": "eaglesCount",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "birdiesCount",
+      "name": "birdiesCount",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "parsCount",
+      "name": "parsCount",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "bogiesCount",
+      "name": "bogiesCount",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "sandSaves",
+      "name": "sandSaves",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "sandSavesRank",
+      "name": "sandSavesRank",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "sandSavesAttempted",
+      "name": "sandSavesAttempted",
+      "type": "int",
+      "concreteType": "int",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "sandSavesHitPercentage",
+      "name": "sandSavesHitPercentage",
+      "type": "decimal",
+      "concreteType": "decimal",
+      "nullable": false,
+      "collection": false,
+      "jsonIgnore": false
+   },
+   {
+      "field": "roundBoxScores",
+      "name": "roundBoxScores",
+      "type": "IStatsAPI_PlayerQuickViewBoxScoreListEntryRound",
+      "concreteType": "StatsAPI_PlayerQuickViewBoxScoreListEntryRound",
+      "nullable": true,
+      "collection": true,
+      "jsonIgnore": false
+   }
+]
