@@ -8,16 +8,18 @@ import (
 	"strings"
 )
 
-var fldreg *regexp.Regexp = regexp.MustCompile(`\W*(?:private|public) (.*?) (.*?) *{`)
+var fldreg *regexp.Regexp = regexp.MustCompile(`\W*(?:private|public) (.*?) (.*?) +{.*?}( *//[a-z\+\-]+)?`)
 var genericreg *regexp.Regexp = regexp.MustCompile(`([a-zA-Z\.]*?)<(.*?)>`)
+var instructreg *regexp.Regexp = regexp.MustCompile(`//(.*?)$`)
 
 type parsed struct {
-	t           string
-	name        string
-	csnullable  bool
-	sqlnullable bool
-	collection  bool
-	isInterface bool
+	t            string
+	name         string
+	csnullable   bool
+	sqlnullable  bool
+	collection   bool
+	isInterface  bool
+	instructions string
 }
 
 func ParseFields(file string) ([]data.Field, error) {
@@ -55,7 +57,15 @@ func ParseFields(file string) ([]data.Field, error) {
 			field = names[0]
 		}
 
-		flds = append(flds, data.Field{Type: p.t, ConcreteType: concreteType, Name: name, FieldName: field, Nullable: csnull, Collection: p.collection, JsonIgnore: jsonIgnore, IsInterface: p.isInterface})
+		var inst data.FieldInstruct
+		if p.instructions != "" {
+			inst, err = parseFieldInstruct(p.instructions)
+			if err != nil {
+				return nil, err
+			}
+		}
+
+		flds = append(flds, data.Field{Type: p.t, ConcreteType: concreteType, Name: name, FieldName: field, Nullable: csnull, Collection: p.collection, JsonIgnore: jsonIgnore, IsInterface: p.isInterface, Instructions: inst})
 	}
 
 	return flds, nil
@@ -78,17 +88,24 @@ func getParsed(c string) []parsed {
 			nullable = !isBaseType(t)
 		}
 
+		instructions := ""
+		imatches := instructreg.FindAllStringSubmatch(m[0], -1)
+		if len(imatches) > 0 {
+			instructions = imatches[0][1]
+		}
+
 		isInterface := nullable && strings.HasPrefix(t, "I")
 		nullable = nullable || collection || isInterface
 		sqlnullable := nullable || t == "string"
 
 		p := parsed{
-			t:           t,
-			name:        strings.TrimSuffix(m[2], "Field"),
-			csnullable:  nullable,
-			sqlnullable: sqlnullable,
-			collection:  collection,
-			isInterface: isInterface,
+			t:            t,
+			name:         strings.TrimSuffix(m[2], "Field"),
+			csnullable:   nullable,
+			sqlnullable:  sqlnullable,
+			collection:   collection,
+			isInterface:  isInterface,
+			instructions: instructions,
 		}
 
 		plist = append(plist, p)
@@ -133,4 +150,27 @@ func getSqlType(t string) string {
 	}
 
 	return st
+}
+
+func parseFieldInstruct(instructions string) (data.FieldInstruct, error) {
+	inst := data.FieldInstruct{}
+	ss := strings.Split(instructions, ",")
+	for _, s := range ss {
+		flg := s[0] == '+'
+		if !flg && s[0] != '-' {
+			return inst, fmt.Errorf("Need + or - as first character for instructions, %s ... %s", instructions, s)
+		}
+
+		p := string(s[1:])
+
+		switch p {
+		case "sqlignore":
+			inst.SqlIgnore = flg
+		case "jsonignore":
+			inst.JsonIgnore = flg
+		default:
+			return inst, fmt.Errorf("Invalid instruction: %s", p)
+		}
+	}
+	return inst, nil
 }

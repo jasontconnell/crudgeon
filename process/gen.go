@@ -41,80 +41,97 @@ func Generate(pkg data.GenPackage) error {
 	return ioutil.WriteFile(output, buffer.Bytes(), os.ModePerm)
 }
 
-func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, prefix, folder string, forInterface bool) data.GenPackage {
+func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, prefix, folder string, instruction string) (data.GenPackage, error) {
+	inst, err := parseInstructions(instruction)
+	if err != nil {
+		return data.GenPackage{}, err
+	}
+
 	pkg := data.GenPackage{Name: name, Path: filepath.Join(path, folder), TemplateFile: tmplFile, Prefix: prefix, OutputFile: prefix + name + "." + fileType}
-	for _, f := range flds {
-		field := f.FieldName
-		cname := strings.Title(f.Name)
-		if len(cname) < 3 {
-			cname = strings.ToUpper(cname)
-		}
-
-		if cname == "ID" {
-			cname = name + "ID"
-		}
-
-		sqltype := getSqlType(f.Type)
-		if fileType == "sql" && sqltype == "" {
-			continue
-		}
-
-		isInterface := f.Type != f.ConcreteType
-		typeName, concreteTypeName, elementType := f.Type, f.Type, f.Type
-		if f.Collection {
-			listType := "List"
-			if isInterface {
-				listType = "IEnumerable"
+	if inst.Fields {
+		for _, f := range flds {
+			if f.Collection && !inst.Collections {
+				continue
 			}
-			typeName = fmt.Sprintf("%s<%s>", listType, typeName)
-		}
-		if fileType == "sql" {
-			typeName = sqltype
-		}
 
-		nullable := f.Nullable
-		sqlignore := sqltype == "" || f.Collection
+			field := f.FieldName
+			cname := strings.Title(f.Name)
+			if len(cname) < 3 {
+				cname = strings.ToUpper(cname)
+			}
 
-		if !isBaseType(typeName) {
-			nullable = false
-		}
+			if cname == "ID" {
+				cname = name + "ID"
+			}
 
-		concreteProperty := ""
-		if isInterface {
-			concreteProperty = cname + "_Concrete"
-			concreteTypeName = f.ConcreteType
+			sqltype := getSqlType(f.Type)
+			if fileType == "sql" && sqltype == "" {
+				continue
+			}
+
+			isInterface := f.Type != f.ConcreteType
+			typeName, concreteTypeName, elementType := f.Type, f.Type, f.Type
 			if f.Collection {
-				concreteTypeName = fmt.Sprintf("List<%s>", concreteTypeName)
+				listType := "List"
+				if isInterface {
+					listType = "IEnumerable"
+				}
+				typeName = fmt.Sprintf("%s<%s>", listType, typeName)
 			}
-		}
-
-		ignore := (sqlignore && fileType == "sql")
-
-		if !ignore {
-			gf := data.GenField{
-				FieldName:        field,
-				Name:             cname,
-				Type:             typeName,
-				ConcreteType:     concreteTypeName,
-				ConcreteProperty: concreteProperty,
-				ElementType:      elementType,
-				Nullable:         nullable,
-				CsIgnore:         false,
-				SqlIgnore:        sqlignore,
-				JsonIgnore:       f.JsonIgnore,
-				IsInterface:      isInterface,
-				Collection:       f.Collection,
+			if fileType == "sql" {
+				typeName = sqltype
 			}
-			pkg.Fields = append(pkg.Fields, gf)
+
+			nullable := f.Nullable
+			sqlignore := sqltype == "" || f.Collection || f.Instructions.SqlIgnore
+
+			if !isBaseType(typeName) {
+				nullable = false
+			}
+
+			concreteProperty := ""
+			if isInterface {
+				concreteProperty = cname + "_Concrete"
+				concreteTypeName = f.ConcreteType
+				if f.Collection {
+					concreteTypeName = fmt.Sprintf("List<%s>", concreteTypeName)
+				}
+			}
+
+			ignore := (sqlignore && fileType == "sql")
+
+			if !ignore {
+				gf := data.GenField{
+					FieldName:        field,
+					Name:             cname,
+					Type:             typeName,
+					ConcreteType:     concreteTypeName,
+					ConcreteProperty: concreteProperty,
+					ElementType:      elementType,
+					Nullable:         nullable,
+					CsIgnore:         false,
+					SqlIgnore:        sqlignore,
+					JsonIgnore:       f.JsonIgnore,
+					IsInterface:      isInterface,
+					Collection:       f.Collection,
+				}
+				pkg.Fields = append(pkg.Fields, gf)
+			}
 		}
 	}
 
-	if !forInterface {
-		confields := []data.GenField{}
+	if inst.Constructor {
 		for _, f := range pkg.Fields {
 			if !f.IsInterface {
 				pkg.ConstructorFields = append(pkg.ConstructorFields, f)
-			} else if f.IsInterface {
+			}
+		}
+	}
+
+	if inst.Concretes {
+		confields := []data.GenField{}
+		for _, f := range pkg.Fields {
+			if f.IsInterface {
 				ngfld := data.GenField{
 					FieldName:        f.FieldName,
 					Name:             f.Name + "_Concrete",
@@ -134,14 +151,45 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, pre
 		pkg.Fields = append(pkg.Fields, confields...)
 	}
 
-	pkfld := data.GenField{
-		FieldName:  "",
-		Name:       "ID",
-		Type:       "int",
-		JsonIgnore: true,
+	if inst.Id {
+		pkfld := data.GenField{
+			FieldName:  "",
+			Name:       "ID",
+			Type:       "int",
+			JsonIgnore: true,
+		}
+
+		pkg.Fields = append([]data.GenField{pkfld}, pkg.Fields...)
 	}
 
-	pkg.Fields = append([]data.GenField{pkfld}, pkg.Fields...)
+	return pkg, nil
+}
 
-	return pkg
+func parseInstructions(instructions string) (data.GenInstruct, error) {
+	inst := data.GenInstruct{}
+	ss := strings.Split(instructions, ",")
+	for _, s := range ss {
+		flg := s[0] == '+'
+		if !flg && s[0] != '-' {
+			return inst, fmt.Errorf("Need + or - as first character for instructions, %s ... %s", instructions, s)
+		}
+
+		p := string(s[1:])
+
+		switch p {
+		case "id":
+			inst.Id = flg
+		case "fields":
+			inst.Fields = flg
+		case "collections":
+			inst.Collections = flg
+		case "constructor":
+			inst.Constructor = flg
+		case "concretes":
+			inst.Concretes = flg
+		default:
+			return inst, fmt.Errorf("Invalid instruction: %s", p)
+		}
+	}
+	return inst, nil
 }

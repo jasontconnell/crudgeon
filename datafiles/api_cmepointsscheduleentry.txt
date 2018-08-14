@@ -1,3 +1,6 @@
+public int tournamentId {get;set;}
+public int year {get;set;}
+
 public int position {get;set;}
 public decimal lpgaOfficialEventsWithCutPoints {get;set;}
 public decimal lpgaMajorEventsPoints {get;set;}

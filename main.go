@@ -4,7 +4,7 @@ import (
 	"flag"
 	"log"
 	"lpgagen/configuration"
-	"lpgagen/data"
+	//"lpgagen/data"
 	"lpgagen/process"
 	"os"
 	"time"
@@ -14,29 +14,16 @@ func main() {
 	file := flag.String("file", "", "source file")
 	path := flag.String("path", "", "output location")
 	obj := flag.String("obj", "", "object name")
-	jsonout := flag.String("jsonout", "", "convert to json and save and quit")
-	jsonfile := flag.String("json", "", "json file version")
 	flag.Parse()
 
 	n := time.Now()
 
-	if *file == "" && *jsonfile == "" {
+	if *file == "" {
 		flag.PrintDefaults()
 		os.Exit(1)
 	}
 
-	var err error
-	var flds []data.Field
-	if *file != "" {
-		flds, err = process.ParseFields(*file)
-	} else if *jsonfile != "" {
-		flds, err = process.ParseJsonFields(*jsonfile)
-	}
-
-	if *jsonout != "" {
-		process.GenerateJson(flds, *jsonout)
-		os.Exit(0)
-	}
+	flds, err := process.ParseFields(*file)
 
 	if *obj == "" {
 		flag.PrintDefaults()
@@ -51,8 +38,12 @@ func main() {
 	cfg := configuration.LoadConfig("config.json")
 
 	for _, g := range cfg.Generations {
-		gp := process.GetGenPackage(*obj, *path, flds, g.FileType, g.File, g.OutputPrefix, g.Folder, g.ForInterface)
-		err := process.Generate(gp)
+		gp, err := process.GetGenPackage(*obj, *path, flds, g.FileType, g.File, g.OutputPrefix, g.Folder, g.Instruction)
+
+		if err != nil {
+			log.Fatal(err)
+		}
+		err = process.Generate(gp)
 		if err != nil {
 			log.Fatal(err)
 		}

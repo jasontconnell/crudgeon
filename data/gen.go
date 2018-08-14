@@ -24,3 +24,11 @@ type GenField struct {
 	IsInterface      bool
 	Collection       bool
 }
+
+type GenInstruct struct {
+	Id          bool
+	Fields      bool
+	Collections bool
+	Concretes   bool
+	Constructor bool
+}

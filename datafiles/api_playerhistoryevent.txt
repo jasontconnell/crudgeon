@@ -1,3 +1,5 @@
+public int accountId {get;set;}
+
 public int tournamentId {get;set;}
 public string tournamentName {get;set;}
 public string tournamentSeriesCode {get;set;}
