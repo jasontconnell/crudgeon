@@ -54,7 +54,6 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, pre
 			cname = name + "ID"
 		}
 
-
 		sqltype := getSqlType(f.Type)
 		if fileType == "sql" && sqltype == "" {
 			continue
@@ -135,10 +134,10 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, pre
 		pkg.Fields = append(pkg.Fields, confields...)
 	}
 
-	pkfld := data.GenField {
-		FieldName: "",
-		Name: "ID",
-		Type: "int",
+	pkfld := data.GenField{
+		FieldName:  "",
+		Name:       "ID",
+		Type:       "int",
 		JsonIgnore: true,
 	}
 
