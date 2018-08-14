@@ -1,5 +1,7 @@
-public int tournamentId {get;set;}
-public int courseId {get;set;}
+/api/tournament/2018047
+
+public int tournamentId|TournamentCode {get;set;}
+public int courseId|CourseNum {get;set;}
 
 public int holeNumber {get;set;}
 public int holeYardage {get;set;}

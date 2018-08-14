@@ -4,6 +4,7 @@ type GenPackage struct {
 	Name              string
 	Path              string
 	OutputFile        string
+	Namespace         string
 	Fields            []GenField
 	ConstructorFields []GenField
 	TemplateFile      string

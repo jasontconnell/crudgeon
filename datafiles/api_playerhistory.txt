@@ -1,3 +1,5 @@
+/api/PlayerHistoricEventPerformance/?AccountId=[]&TournamentId=[]
+
 public int accountId {get;set;}
 public string tournamentSeriesCode {get;set;}
 public decimal totalOfficialMoney {get;set;}

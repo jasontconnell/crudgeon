@@ -1,7 +1,9 @@
+/api/TourRaceForTheCMEGlobe/
+
 public int accountId {get;set;}
-public string playerFullName {get;set;}
-public string playerFirstName {get;set;}
-public string playerMiddleName {get;set;}
-public string playerLastName {get;set;}
+public string playerFullName|FullName {get;set;} //+sqlignore
+public string playerFirstName|FirstName {get;set;} //+sqlignore
+public string playerMiddleName|MiddleName {get;set;} //+sqlignore
+public string playerLastName|LastName {get;set;} //+sqlignore
 
 public List<IStatsAPI_CMEGlobeRaceStat> statistics {get;set;}

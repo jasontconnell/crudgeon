@@ -1,6 +1,8 @@
-		public int AccountId { get; set; }
-		public string PlayerFullName { get; set; }
-		public string PlayerFirstName { get; set; }
-		public string PlayerMiddleName { get; set; }
-		public string PlayerLastName { get; set; }
-		public List<IStatsAPI_SolheimMemberStatistic> Statistics { get; set; }
+/api/Solheim/
+
+public int AccountId { get; set; }
+public string PlayerFullName { get; set; } //+sqlignore
+public string PlayerFirstName|FirstName { get; set; } //+sqlignore
+public string PlayerMiddleName|MiddleName { get; set; } //+sqlignore
+public string PlayerLastName|LastName { get; set; } //+sqlignore
+public List<IStatsAPI_SolheimMemberStatistic> Statistics { get; set; }

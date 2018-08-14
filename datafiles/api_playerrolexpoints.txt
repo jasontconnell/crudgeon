@@ -1,1 +1,5 @@
+/api/PlayerRolexPlayerOfTheYearPoints/?AccountId=98334
+
+public int accountId {get;set;}
+
 public List<IStatsAPI_PlayerRolexPointsEvent> myEvents {get;set;}

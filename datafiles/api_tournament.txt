@@ -1,4 +1,6 @@
-public int id { get; set; }
+/api/tournament/2018047
+
+public int id|TournamentCode { get; set; }
 public string code { get; set; }
 public string name { get; set; }
 public int year { get; set; }

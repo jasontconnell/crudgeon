@@ -1,0 +1,4 @@
+/api/PlayerQuickviewOfficialMoney/?AccountId=98334&TournamentId=2018047
+
+public string statName {get;set;}
+public string statValue {get;set;}

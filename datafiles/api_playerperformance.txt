@@ -1,3 +1,5 @@
+/api/PlayerPerformanceStatsYTD/?AccountId=98334&Date=08-01-2018
+
 public int accountId {get;set;}
 public int year {get;set;}
 public string officialMoneyTotalYTD {get;set;}

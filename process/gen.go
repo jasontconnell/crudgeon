@@ -41,13 +41,13 @@ func Generate(pkg data.GenPackage) error {
 	return ioutil.WriteFile(output, buffer.Bytes(), os.ModePerm)
 }
 
-func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, prefix, folder string, instruction string) (data.GenPackage, error) {
+func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns, prefix, folder string, instruction string) (data.GenPackage, error) {
 	inst, err := parseInstructions(instruction)
 	if err != nil {
 		return data.GenPackage{}, err
 	}
 
-	pkg := data.GenPackage{Name: name, Path: filepath.Join(path, folder), TemplateFile: tmplFile, Prefix: prefix, OutputFile: prefix + name + "." + fileType}
+	pkg := data.GenPackage{Name: name, Namespace: ns, Path: filepath.Join(path, folder), TemplateFile: tmplFile, Prefix: prefix, OutputFile: prefix + name + "." + fileType}
 	if inst.Fields {
 		for _, f := range flds {
 			if f.Collection && !inst.Collections {
@@ -58,10 +58,6 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, pre
 			cname := strings.Title(f.Name)
 			if len(cname) < 3 {
 				cname = strings.ToUpper(cname)
-			}
-
-			if cname == "ID" {
-				cname = name + "ID"
 			}
 
 			sqltype := getSqlType(f.Type)
@@ -89,6 +85,8 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, pre
 				nullable = false
 			}
 
+			jsonIgnore := f.JsonIgnore || f.Instructions.JsonIgnore
+
 			concreteProperty := ""
 			if isInterface {
 				concreteProperty = cname + "_Concrete"
@@ -111,7 +109,7 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, pre
 					Nullable:         nullable,
 					CsIgnore:         false,
 					SqlIgnore:        sqlignore,
-					JsonIgnore:       f.JsonIgnore,
+					JsonIgnore:       jsonIgnore,
 					IsInterface:      isInterface,
 					Collection:       f.Collection,
 				}

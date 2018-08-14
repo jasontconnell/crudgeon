@@ -1,3 +1,6 @@
+/api/player/
+/api/player/[playerid]
+
 public int accountid|AccountId {get;set;}
 public string playfirstname|FirstName {get;set;}
 public string playmiddlename|MiddleName {get;set;}

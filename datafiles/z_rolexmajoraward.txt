@@ -1,7 +1,7 @@
 public Nullable<int> AccountID { get;set; }
 public short RolexAnnikaMajorAwardSeason { get;set; }
-public string PlayFirstName { get;set; }
-public string PlayLastName { get;set; }
-public string PlayMiddleName { get;set; }
+public string PlayFirstName|FirstName{ get;set; } //+sqlignore
+public string PlayLastName|LastName{ get;set; } //+sqlignore
+public string PlayMiddleName|MiddleName{ get;set; } //+sqlignore
 public short RolexAnnikaMajorAwardPoints { get;set; }
 public short MajorWins { get;set; }

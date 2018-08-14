@@ -1,5 +1,7 @@
-public int tournamentId {get;set;}
-public string tournamentName {get;set;}
+/api/TournamentParticipants/?TournamentId=2018047
+
+public int tournamentId|TournamentCode {get;set;}
+public string tournamentName {get;set;} //+sqlignore
 public DateTime tournamentStartDate {get;set;}
 public DateTime tournamentEndDate {get;set;}
 

@@ -1,5 +1,8 @@
-public int tournamentId { get; set; }
-public string tournamentName { get; set; }
+/api/tournament/2018047
+
+public int tournamentId|TournamentCode { get; set; }
+
+public string tournamentName { get; set; } //+sqlignore
 public int fieldMaxPlayers {get; set; }
 public string tournamentStatus  {get; set; }
 public List<IStatsAPI_TournamentFieldPlayer> field|Players { get; set; }

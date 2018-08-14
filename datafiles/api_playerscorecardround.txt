@@ -1,3 +1,7 @@
+/api/PlayerScorecard?AccountId=98334&TournamentId=2018047
+
+public int accountId {get;set;}
+public int tournamentId {get;set;}
 
 public DateTime roundStartDate {get;set;}
 public DateTime roundEndDate {get;set;}

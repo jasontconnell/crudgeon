@@ -5,7 +5,7 @@
         { "file": "tmpl\\updateproc.txt", "fileType": "sql", "outputPrefix": "Save", "folder": "SQL", "instruction": "+id,+fields"},
         { "file": "tmpl\\delproc.txt", "fileType": "sql", "outputPrefix": "Delete", "folder": "SQL", "instruction": "+id"},
         { "file": "tmpl\\table.txt", "fileType": "sql", "outputPrefix": "tbl", "folder": "SQL","instruction": "+id,+fields"},
-        { "file": "tmpl\\map.txt", "fileType": "cs", "outputPrefix": "Map_", "folder": "MapCode","instruction": "+id,+collections,+fields"},
+        { "file": "tmpl\\map.txt", "fileType": "cs", "outputPrefix": "Map_", "folder": "MapCode","instruction": "+id,+collections,+fields,+constructor"},
         { "file": "tmpl\\interface.txt", "fileType": "cs", "outputPrefix": "I", "folder": "ModelInterfaces", "instruction": "+id,+fields"}
     ]
 }

@@ -1,1 +1,4 @@
+public int accountId {get;set;}
+public int year {get;set;}
+
 public List<IStatsAPI_PlayerQuickViewBoxScoreListEntry> boxScores {get;set;}

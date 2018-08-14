@@ -1,8 +1,11 @@
-public int tournamentId {get;set;}
-public int id {get;set;}
-public string playFirstName|FirstName { get;set;}            
-public string playMiddleName|MiddleName {get;set;}
-public string playLastName|LastName {get;set;}
+/api/tournament/2018047
+
+public int tournamentId|TournamentCode {get;set;}
+public int id|AccountId {get;set;}
+
+public string playFirstName|FirstName { get;set;} //+sqlignore
+public string playMiddleName|MiddleName {get;set;} //+sqlignore
+public string playLastName|LastName {get;set;} //+sqlignore
 public int fieldRank {get;set;}
 public string abCategory {get;set;}
 public int abRank {get;set;}

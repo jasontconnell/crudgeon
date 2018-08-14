@@ -1,7 +1,7 @@
 public Nullable<int> AccountID { get;set; }
-public string PlayFirstName { get;set; }
-public string PlayLastName { get;set; }
-public string PlayMiddleName { get;set; }
+public string PlayFirstName|FirstName{ get;set; } //+sqlignore
+public string PlayLastName|LastName{ get;set; } //+sqlignore
+public string PlayMiddleName|MiddleName{ get;set; } //+sqlignore
 public short TourChampionshipSeason { get;set; }
 public Nullable<short> TourChampionshipEvents { get;set; }
 public Nullable<short> TourChampionshipWins { get;set; }

@@ -1,3 +1,5 @@
+/api/TourRaceForTheCMEGlobePointsSchedule/
+
 public string tournamentId|TournamentIdString {get;set;}  //+sqlignore
 public int year {get;set;}
 public int tournamentNumber {get;set;}

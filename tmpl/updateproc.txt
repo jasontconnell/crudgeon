@@ -5,7 +5,6 @@ create procedure dbo.Save{{.Name}}
 
 as
 begin
-
     declare @id int
     select @id = ID from {{.Name}} where ID = -1
 
@@ -31,7 +30,4 @@ begin
             {{- end}}
         )
     end
-
-
-
 end
