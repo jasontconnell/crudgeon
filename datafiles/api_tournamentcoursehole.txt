@@ -1,3 +1,6 @@
+public int tournamentId {get;set;}
+public int courseId {get;set;}
+
 public int holeNumber {get;set;}
 public int holeYardage {get;set;}
 public int holePar {get;set;}

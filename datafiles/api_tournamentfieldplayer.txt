@@ -1,3 +1,4 @@
+public int tournamentId {get;set;}
 public int id {get;set;}
 public string playFirstName|FirstName { get;set;}            
 public string playMiddleName|MiddleName {get;set;}

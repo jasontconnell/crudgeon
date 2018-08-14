@@ -1,3 +1,4 @@
+public int tournamentId {get;set;}
 public int courseId {get;set;}
 public string courseName {get;set;}
 pubilc string locationCity {get;set;}

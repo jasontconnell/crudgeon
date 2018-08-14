@@ -8,6 +8,7 @@ namespace LPGAStatsService.Data {
     [DataContract]
     [StoredProc(Name="Get{{.Name}}", ProcType=ProcType.Read)]
     [StoredProc(Name="Save{{.Name}}", ProcType=ProcType.Update)]
+    [StoredProc(Name="Delete{{.Name}}", ProcType=ProcType.Delete)]
     public partial class {{ .Name }} : I{{ .Name }} {
 
         public {{.Name}}(){
@@ -24,7 +25,7 @@ namespace LPGAStatsService.Data {
         {{- end }}
 
         {{- range $index,$field := .Fields }}
-        {{- if not $field.JsonIgnore }}[DataMember(Name="{{$field.FieldName}}")]{{ end }}
+        {{ if not $field.JsonIgnore }}[DataMember(Name="{{$field.FieldName}}")]{{ end }}
         {{ if not $field.SqlIgnore }}[Column]{{else}}[IgnoreCol]{{ end }}
         public {{$field.Type}}{{if $field.Nullable}}?{{end}} {{$field.Name}} { 
                 {{- if not $field.IsInterface }} get; set;
