@@ -23,13 +23,13 @@ namespace LPGAStatsService.Data {
         }
         {{- end }}
 
-        {{ range $index,$field := .Fields }}
-        {{ if not $field.JsonIgnore }}[DataMember(Name="{{$field.FieldName}}")]{{ end }}
+        {{- range $index,$field := .Fields }}
+        {{- if not $field.JsonIgnore }}[DataMember(Name="{{$field.FieldName}}")]{{ end }}
         {{ if not $field.SqlIgnore }}[Column]{{else}}[IgnoreCol]{{ end }}
         public {{$field.Type}}{{if $field.Nullable}}?{{end}} {{$field.Name}} { 
                 {{- if not $field.IsInterface }} get; set;
                 {{- else if $field.Collection}}get { return Enumerable.Cast<{{$field.ElementType}}>({{$field.ConcreteProperty}}); } set { this.{{$field.ConcreteProperty}} = ({{$field.ConcreteType}})value; }
-                {{else}} get { return ({{$field.Type}})this.{{$field.ConcreteProperty}}; } set { this.{{$field.ConcreteProperty}} = ({{$field.ConcreteType}})value; }{{end}}  }
+                {{- else}} get { return ({{$field.Type}})this.{{$field.ConcreteProperty}}; } set { this.{{$field.ConcreteProperty}} = ({{$field.ConcreteType}})value; }{{end}}  }
         {{- end }}
 
     }

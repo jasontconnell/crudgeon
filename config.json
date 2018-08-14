@@ -5,6 +5,6 @@
         { "file": "tmpl\\updateproc.txt", "fileType": "sql", "outputPrefix": "Save", "folder": "SQL"},
         { "file": "tmpl\\table.txt", "fileType": "sql", "outputPrefix": "tbl", "folder": "SQL"},
         { "file": "tmpl\\map.txt", "fileType": "cs", "outputPrefix": "Map_", "folder": "MapCode"},
-        { "file": "tmpl\\interface.txt", "fileType": "cs", "outputPrefix": "I", "folder": "ModelInterfaces"}
+        { "file": "tmpl\\interface.txt", "fileType": "cs", "outputPrefix": "I", "folder": "ModelInterfaces", "forInterface": true}
     ]
 }

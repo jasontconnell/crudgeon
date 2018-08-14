@@ -41,14 +41,19 @@ func Generate(pkg data.GenPackage) error {
 	return ioutil.WriteFile(output, buffer.Bytes(), os.ModePerm)
 }
 
-func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, prefix, folder string) data.GenPackage {
+func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, prefix, folder string, forInterface bool) data.GenPackage {
 	pkg := data.GenPackage{Name: name, Path: filepath.Join(path, folder), TemplateFile: tmplFile, Prefix: prefix, OutputFile: prefix + name + "." + fileType}
 	for _, f := range flds {
-		name, field := f.Name, f.FieldName
-		cname := strings.Title(name)
+		field := f.FieldName
+		cname := strings.Title(f.Name)
 		if len(cname) < 3 {
 			cname = strings.ToUpper(cname)
 		}
+
+		if cname == "ID" {
+			cname = name + "ID"
+		}
+
 
 		sqltype := getSqlType(f.Type)
 		if fileType == "sql" && sqltype == "" {
@@ -105,27 +110,39 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, pre
 		}
 	}
 
-	confields := []data.GenField{}
-	for _, f := range pkg.Fields {
-		if !f.IsInterface {
-			pkg.ConstructorFields = append(pkg.ConstructorFields, f)
-		} else if f.IsInterface {
-			ngfld := data.GenField{
-				FieldName:        f.FieldName,
-				Name:             f.Name + "_Concrete",
-				Type:             f.ConcreteType,
-				ConcreteType:     f.ConcreteType,
-				ConcreteProperty: "",
-				Nullable:         f.Nullable,
-				CsIgnore:         f.CsIgnore,
-				SqlIgnore:        f.SqlIgnore,
-				JsonIgnore:       false,
-				IsInterface:      false,
-				Collection:       f.Collection,
+	if !forInterface {
+		confields := []data.GenField{}
+		for _, f := range pkg.Fields {
+			if !f.IsInterface {
+				pkg.ConstructorFields = append(pkg.ConstructorFields, f)
+			} else if f.IsInterface {
+				ngfld := data.GenField{
+					FieldName:        f.FieldName,
+					Name:             f.Name + "_Concrete",
+					Type:             f.ConcreteType,
+					ConcreteType:     f.ConcreteType,
+					ConcreteProperty: "",
+					Nullable:         f.Nullable,
+					CsIgnore:         f.CsIgnore,
+					SqlIgnore:        f.SqlIgnore,
+					JsonIgnore:       false,
+					IsInterface:      false,
+					Collection:       f.Collection,
+				}
+				confields = append(confields, ngfld)
 			}
-			confields = append(confields, ngfld)
 		}
+		pkg.Fields = append(pkg.Fields, confields...)
 	}
-	pkg.Fields = append(pkg.Fields, confields...)
+
+	pkfld := data.GenField {
+		FieldName: "",
+		Name: "ID",
+		Type: "int",
+		JsonIgnore: true,
+	}
+
+	pkg.Fields = append([]data.GenField{pkfld}, pkg.Fields...)
+
 	return pkg
 }
