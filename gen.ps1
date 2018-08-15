@@ -1,35 +1,35 @@
 go build
 
-.\lpgagen -file datafiles\z_careerMoney.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_CareerMoney -ns LPGAStatsService.Data
-.\lpgagen -file datafiles\z_careerstats.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_CareerStats -ns LPGAStatsService.Data
-.\lpgagen -file datafiles\z_dataheartbeat.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_DataHeartbeat -ns LPGAStatsService.Data
-.\lpgagen -file datafiles\z_playertournament.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_PlayerTournament -ns LPGAStatsService.Data
-.\lpgagen -file datafiles\z_playeryear.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_PlayerYear -ns LPGAStatsService.Data
-.\lpgagen -file datafiles\z_ptssched.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_RacePointsSchedule -ns LPGAStatsService.Data
+.\lpgagen -file datafiles\z_careerMoney.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_CareerMoney -ns LPGAStatsService.Data -usefield
+.\lpgagen -file datafiles\z_careerstats.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_CareerStats -ns LPGAStatsService.Data -usefield
+.\lpgagen -file datafiles\z_dataheartbeat.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_DataHeartbeat -ns LPGAStatsService.Data -usefield
+.\lpgagen -file datafiles\z_playertournament.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_PlayerTournament -ns LPGAStatsService.Data -usefield
+.\lpgagen -file datafiles\z_playeryear.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_PlayerYear -ns LPGAStatsService.Data -usefield
+.\lpgagen -file datafiles\z_ptssched.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_RacePointsSchedule -ns LPGAStatsService.Data -usefield
 
-.\lpgagen -file datafiles\z_cmeplayerseason.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_CMEPlayerSeason -ns LPGAStatsService.Data
-.\lpgagen -file datafiles\z_cmeplayerfinal.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_CMEPlayerFinal -ns LPGAStatsService.Data
-
-
-.\lpgagen -file datafiles\z_rolexmajoraward.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_RolexMajorAward -ns LPGAStatsService.Data
-.\lpgagen -file datafiles\z_tournaments.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_Tournament -ns LPGAStatsService.Data
-.\lpgagen -file datafiles\z_tourncourse.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_TournamentCourse -ns LPGAStatsService.Data
-
-.\lpgagen -file datafiles\z_wwtourndonamt.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_WWTournDonationAmount -ns LPGAStatsService.Data
-.\lpgagen -file datafiles\z_wwtourndonamtround.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_WWTournDonationAmountRound -ns LPGAStatsService.Data
-.\lpgagen -file datafiles\z_wwytddonamt.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_WWYTDDonationAmount -ns LPGAStatsService.Data
-.\lpgagen -file datafiles\z_wwytdplayersummary.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_WWYTDPlayerSummary -ns LPGAStatsService.Data
-.\lpgagen -file datafiles\z_wwytdsummary.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_WWYTDSummary -ns LPGAStatsService.Data
+.\lpgagen -file datafiles\z_cmeplayerseason.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_CMEPlayerSeason -ns LPGAStatsService.Data -usefield
+.\lpgagen -file datafiles\z_cmeplayerfinal.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_CMEPlayerFinal -ns LPGAStatsService.Data -usefield
 
 
+.\lpgagen -file datafiles\z_rolexmajoraward.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_RolexMajorAward -ns LPGAStatsService.Data -usefield
+.\lpgagen -file datafiles\z_tournaments.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_Tournament -ns LPGAStatsService.Data -usefield
+.\lpgagen -file datafiles\z_tourncourse.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_TournamentCourse -ns LPGAStatsService.Data -usefield
+
+.\lpgagen -file datafiles\z_wwtourndonamt.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_WWTournDonationAmount -ns LPGAStatsService.Data -usefield
+.\lpgagen -file datafiles\z_wwtourndonamtround.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_WWTournDonationAmountRound -ns LPGAStatsService.Data -usefield
+.\lpgagen -file datafiles\z_wwytddonamt.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_WWYTDDonationAmount -ns LPGAStatsService.Data -usefield
+.\lpgagen -file datafiles\z_wwytdplayersummary.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_WWYTDPlayerSummary -ns LPGAStatsService.Data -usefield
+.\lpgagen -file datafiles\z_wwytdsummary.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_WWYTDSummary -ns LPGAStatsService.Data -usefield
 
 
-.\lpgagen -file datafiles\z_sym_careerstats.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_SymetraCareerStats -ns LPGAStatsService.Data
-.\lpgagen -file datafiles\z_sym_playertournament.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_SymetraPlayerTournament -ns LPGAStatsService.Data
-.\lpgagen -file datafiles\z_sym_playeryear.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_SymetraPlayerYear -ns LPGAStatsService.Data
-.\lpgagen -file datafiles\z_sym_playertournament.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_SymetraPlayerTournament -ns LPGAStatsService.Data
-.\lpgagen -file datafiles\z_sym_tournaments.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_SymetraTournament -ns LPGAStatsService.Data
-.\lpgagen -file datafiles\z_sym_tourncourse.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_SymetraTournamentCourse -ns LPGAStatsService.Data
+
+
+.\lpgagen -file datafiles\z_sym_careerstats.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_SymetraCareerStats -ns LPGAStatsService.Data -usefield
+.\lpgagen -file datafiles\z_sym_playertournament.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_SymetraPlayerTournament -ns LPGAStatsService.Data -usefield
+.\lpgagen -file datafiles\z_sym_playeryear.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_SymetraPlayerYear -ns LPGAStatsService.Data -usefield
+.\lpgagen -file datafiles\z_sym_playertournament.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_SymetraPlayerTournament -ns LPGAStatsService.Data -usefield
+.\lpgagen -file datafiles\z_sym_tournaments.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_SymetraTournament -ns LPGAStatsService.Data -usefield
+.\lpgagen -file datafiles\z_sym_tourncourse.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_SymetraTournamentCourse -ns LPGAStatsService.Data -usefield
 
 
 

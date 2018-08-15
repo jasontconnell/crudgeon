@@ -41,7 +41,7 @@ func Generate(pkg data.GenPackage) error {
 	return ioutil.WriteFile(output, buffer.Bytes(), os.ModePerm)
 }
 
-func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns, prefix, folder string, flagstr string) (data.GenPackage, error) {
+func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns, prefix, folder string, flagstr string, usefieldname bool) (data.GenPackage, error) {
 	flags, err := parseFlags(flagstr)
 	if err != nil {
 		return data.GenPackage{}, err
@@ -58,6 +58,10 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 			cname := strings.Title(f.Name)
 			if len(cname) < 3 {
 				cname = strings.ToUpper(cname)
+			}
+
+			if usefieldname {
+				cname = field
 			}
 
 			sqltype := getSqlType(f.Type)

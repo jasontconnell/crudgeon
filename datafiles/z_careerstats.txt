@@ -1,7 +1,7 @@
 public Nullable<int> AccountID { get;set; }
-public string PlayFirstName|FirstName{ get;set; } //+sqlignore
-public string PlayLastName|LastName{ get;set; } //+sqlignore
-public string PlayMiddleName|MiddleName{ get;set; } //+sqlignore
+public string PlayFirstName { get;set; }
+public string PlayLastName { get;set; }
+public string PlayMiddleName { get;set; }
 public Nullable<int> official_rounds { get;set; }
 public Nullable<int> official_stroke_rounds { get;set; }
 public Nullable<int> official_stat_rounds { get;set; }

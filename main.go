@@ -15,6 +15,7 @@ func main() {
 	path := flag.String("path", "", "output location")
 	obj := flag.String("obj", "", "object name")
 	ns := flag.String("ns", "", "namespace")
+	fld := flag.Bool("usefield", false, "use field name for property name")
 	flag.Parse()
 
 	n := time.Now()
@@ -39,7 +40,7 @@ func main() {
 	cfg := configuration.LoadConfig("config.json")
 
 	for _, g := range cfg.Generations {
-		gp, err := process.GetGenPackage(*obj, *path, flds, g.FileType, g.File, *ns, g.OutputPrefix, g.Folder, g.Flags)
+		gp, err := process.GetGenPackage(*obj, *path, flds, g.FileType, g.File, *ns, g.OutputPrefix, g.Folder, g.Flags, *fld)
 
 		if err != nil {
 			log.Fatal(err)
