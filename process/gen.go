@@ -81,7 +81,8 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 			nullable := f.Nullable
 			sqlignore := sqltype == "" || f.Collection || f.Flags.SqlIgnore
 
-			if !isBaseType(typeName) {
+			isbase := isBaseType(typeName)
+			if !isbase {
 				nullable = false
 			}
 
@@ -112,6 +113,7 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 					JsonIgnore:       jsonIgnore,
 					IsInterface:      isInterface,
 					Collection:       f.Collection,
+					IsBaseType:       isbase,
 				}
 				pkg.Fields = append(pkg.Fields, gf)
 			}
