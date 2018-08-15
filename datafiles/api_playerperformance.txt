@@ -2,19 +2,36 @@
 
 public int accountId {get;set;}
 public int year {get;set;}
-public string officialMoneyTotalYTD {get;set;}
-public string officialMoneyTotalYTDRank {get;set;}
-public string averageDrivingDistanceYTD {get;set;}
-public string averageDrivingDistanceYTDRank {get;set;}
-public string drivingAccuracyYTDPercentage {get;set;}
-public string drivingAccuracyYTDPercentageRank {get;set;}
-public string greensInRegulationYTDPercentage {get;set;}
-public string greensInRegulationYTDPercentageRank {get;set;}
-public string puttsPerGIRYTD {get;set;}
-public string puttsPerGIRYTDRank {get;set;}
-public string puttingAverageYTD {get;set;}
-public string puttingAverageYTDRank {get;set;}
-public string sandSavesYTDPercentage {get;set;}
-public string sandSavesYTDPercentageRank {get;set;}
-public string scoringAverageYTD {get;set;}
-public string scoringAverageYTDRank {get;set;}
+public string officialMoneyTotalYTD|OfficialMoneyTotalYTDString {get;set;} //+sqlignore
+public string officialMoneyTotalYTDRank|OfficialMoneyTotalYTDRankString {get;set;} //+sqlignore
+public string averageDrivingDistanceYTD|AverageDrivingDistanceYTDString {get;set;} //+sqlignore
+public string averageDrivingDistanceYTDRank|AverageDrivingDistanceYTDRankString {get;set;} //+sqlignore
+public string drivingAccuracyYTDPercentage|DrivingAccuracyYTDPercentageString {get;set;} //+sqlignore
+public string drivingAccuracyYTDPercentageRank|DrivingAccuracyYTDPercentageRankString {get;set;} //+sqlignore
+public string greensInRegulationYTDPercentage|GreensInRegulationYTDPercentageString {get;set;} //+sqlignore
+public string greensInRegulationYTDPercentageRank|GreensInRegulationYTDPercentageRankString {get;set;} //+sqlignore
+public string puttsPerGIRYTD|PuttsPerGIRYTDString {get;set;} //+sqlignore
+public string puttsPerGIRYTDRank|PuttsPerGIRYTDRankString {get;set;} //+sqlignore
+public string puttingAverageYTD|PuttingAverageYTDString {get;set;} //+sqlignore
+public string puttingAverageYTDRank|PuttingAverageYTDRankString {get;set;} //+sqlignore
+public string sandSavesYTDPercentage|SandSavesYTDPercentageString {get;set;} //+sqlignore
+public string sandSavesYTDPercentageRank|SandSavesYTDPercentageRankString {get;set;} //+sqlignore
+public string scoringAverageYTD|ScoringAverageYTDString {get;set;} //+sqlignore
+public string scoringAverageYTDRank|ScoringAverageYTDRankString {get;set;} //+sqlignore
+
+public int OfficialMoneyTotalYTD {get;set;} //+csignore
+public int OfficialMoneyTotalYTDRank {get;set;} //+csignore
+public decimal AverageDrivingDistanceYTD {get;set;} //+csignore
+public int AverageDrivingDistanceYTDRank {get;set;} //+csignore
+public decimal DrivingAccuracyYTDPercentage {get;set;} //+csignore
+public int DrivingAccuracyYTDPercentageRank {get;set;} //+csignore
+public decimal GreensInRegulationYTDPercentage {get;set;} //+csignore
+public int GreensInRegulationYTDPercentageRank {get;set;} //+csignore
+public decimal PuttsPerGIRYTD {get;set;} //+csignore
+public int PuttsPerGIRYTDRank {get;set;} //+csignore
+public decimal PuttingAverageYTD {get;set;} //+csignore
+public int PuttingAverageYTDRank {get;set;} //+csignore
+public decimal SandSavesYTDPercentage {get;set;} //+csignore
+public int SandSavesYTDPercentageRank {get;set;} //+csignore
+public decimal ScoringAverageYTD {get;set;} //+csignore
+public int ScoringAverageYTDRank {get;set;} //+csignore

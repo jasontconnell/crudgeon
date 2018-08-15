@@ -9,7 +9,7 @@ public string playshortname|ShortName {get;set;}
 public int heightinchcomponent|HeightInches {get;set;}
 public int heightfeetcomponent|HeightFeet {get;set;}
 public string Height {get;set;}
-public DateTime birthdate {get;set;}
+public string birthdate {get;set;}
 public string family {get;set;}
 public string birthplace {get;set;}
 public string hometown {get;set;}
@@ -24,7 +24,7 @@ public string educationcountry {get;set;}
 public int firstprofessionalyear {get;set;}
 public int firstrookieyear {get;set;}
 public string headshoturl {get;set;}
-public string bio {get;set;}
+protected string bio {get;set;}
 public string twitterHandle {get;set;}
 public string facebookURL {get;set;}
 public string pinterestURL {get;set;}

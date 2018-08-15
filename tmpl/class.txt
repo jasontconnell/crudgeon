@@ -3,6 +3,7 @@ using SqlMap.Attributes;
 using System.Runtime.Serialization;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace {{ .Namespace }} {
     [DataContract]
@@ -32,6 +33,16 @@ namespace {{ .Namespace }} {
                 {{- else if $field.Collection}}get { return Enumerable.Cast<{{$field.ElementType}}>({{$field.ConcreteProperty}}); } set { this.{{$field.ConcreteProperty}} = ({{$field.ConcreteType}})value; }
                 {{- else}} get { return ({{$field.Type}})this.{{$field.ConcreteProperty}}; } set { this.{{$field.ConcreteProperty}} = ({{$field.ConcreteType}})value; }{{end}}  }
         {{- end }}
+
+        override public string ToString(){
+            StringBuilder sb = new StringBuilder();
+            {{- range $index,$field := .Fields }}
+                {{- if not $field.IsInterface}}
+                sb.AppendFormat("{0}: {1}{2}", "{{$field.Name}}", this.{{$field.Name}}, Environment.NewLine);
+                {{- end}}
+            {{- end}}
+            return sb.ToString();
+        }
 
     }
 }

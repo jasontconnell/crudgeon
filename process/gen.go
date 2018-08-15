@@ -41,16 +41,16 @@ func Generate(pkg data.GenPackage) error {
 	return ioutil.WriteFile(output, buffer.Bytes(), os.ModePerm)
 }
 
-func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns, prefix, folder string, instruction string) (data.GenPackage, error) {
-	inst, err := parseInstructions(instruction)
+func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns, prefix, folder string, flagstr string) (data.GenPackage, error) {
+	flags, err := parseFlags(flagstr)
 	if err != nil {
 		return data.GenPackage{}, err
 	}
 
 	pkg := data.GenPackage{Name: name, Namespace: ns, Path: filepath.Join(path, folder), TemplateFile: tmplFile, Prefix: prefix, OutputFile: prefix + name + "." + fileType}
-	if inst.Fields {
+	if flags.Fields {
 		for _, f := range flds {
-			if f.Collection && !inst.Collections {
+			if f.Collection && !flags.Collections {
 				continue
 			}
 
@@ -79,13 +79,13 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 			}
 
 			nullable := f.Nullable
-			sqlignore := sqltype == "" || f.Collection || f.Instructions.SqlIgnore
+			sqlignore := sqltype == "" || f.Collection || f.Flags.SqlIgnore
 
 			if !isBaseType(typeName) {
 				nullable = false
 			}
 
-			jsonIgnore := f.JsonIgnore || f.Instructions.JsonIgnore
+			jsonIgnore := f.JsonIgnore || f.Flags.JsonIgnore
 
 			concreteProperty := ""
 			if isInterface {
@@ -96,7 +96,7 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 				}
 			}
 
-			ignore := (sqlignore && fileType == "sql")
+			ignore := (sqlignore && fileType == "sql") || (f.Flags.CsIgnore && fileType == "cs")
 
 			if !ignore {
 				gf := data.GenField{
@@ -118,7 +118,7 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 		}
 	}
 
-	if inst.Constructor {
+	if flags.Constructor {
 		for _, f := range pkg.Fields {
 			if !f.IsInterface {
 				pkg.ConstructorFields = append(pkg.ConstructorFields, f)
@@ -126,7 +126,7 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 		}
 	}
 
-	if inst.Concretes {
+	if flags.Concretes {
 		confields := []data.GenField{}
 		for _, f := range pkg.Fields {
 			if f.IsInterface {
@@ -149,7 +149,7 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 		pkg.Fields = append(pkg.Fields, confields...)
 	}
 
-	if inst.Id {
+	if flags.Id {
 		pkfld := data.GenField{
 			FieldName:  "",
 			Name:       "ID",
@@ -163,31 +163,31 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 	return pkg, nil
 }
 
-func parseInstructions(instructions string) (data.GenInstruct, error) {
-	inst := data.GenInstruct{}
-	ss := strings.Split(instructions, ",")
+func parseFlags(flagstr string) (data.GenFlags, error) {
+	flags := data.GenFlags{}
+	ss := strings.Split(flagstr, ",")
 	for _, s := range ss {
 		flg := s[0] == '+'
 		if !flg && s[0] != '-' {
-			return inst, fmt.Errorf("Need + or - as first character for instructions, %s ... %s", instructions, s)
+			return flags, fmt.Errorf("Need + or - as first character for flag, %s ... %s", flagstr, s)
 		}
 
 		p := string(s[1:])
 
 		switch p {
 		case "id":
-			inst.Id = flg
+			flags.Id = flg
 		case "fields":
-			inst.Fields = flg
+			flags.Fields = flg
 		case "collections":
-			inst.Collections = flg
+			flags.Collections = flg
 		case "constructor":
-			inst.Constructor = flg
+			flags.Constructor = flg
 		case "concretes":
-			inst.Concretes = flg
+			flags.Concretes = flg
 		default:
-			return inst, fmt.Errorf("Invalid instruction: %s", p)
+			return flags, fmt.Errorf("Invalid flags: %s", p)
 		}
 	}
-	return inst, nil
+	return flags, nil
 }

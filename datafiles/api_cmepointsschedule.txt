@@ -1,4 +1,4 @@
-/api/TourRaceForTheCMEGlobePointsSchedule/
+/api/TourRaceForTheCMEGlobePointsSchedule/?TournamentId=2018047
 
 public string tournamentId|TournamentIdString {get;set;}  //+sqlignore
 public int year {get;set;}

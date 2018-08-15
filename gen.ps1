@@ -50,6 +50,7 @@ go build
 .\lpgagen -file datafiles\api_playerquickviewofficialmoneystatistic.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj StatsAPI_PlayerQuickViewOfficialMoneyStatistic -ns LPGAStatsService.Data
 
 .\lpgagen -file datafiles\api_cmegloberace.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj StatsAPI_CMEGlobeRace -ns LPGAStatsService.Data
+.\lpgagen -file datafiles\api_cmegloberacemember.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj StatsAPI_CMEGlobeRaceMember -ns LPGAStatsService.Data
 .\lpgagen -file datafiles\api_cmegloberacestat.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj StatsAPI_CMEGlobeRaceStat -ns LPGAStatsService.Data
 
 .\lpgagen -file datafiles\api_cmepointsschedule.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj StatsAPI_CMEPointsSchedule -ns LPGAStatsService.Data

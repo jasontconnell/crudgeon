@@ -26,7 +26,7 @@ type GenField struct {
 	Collection       bool
 }
 
-type GenInstruct struct {
+type GenFlags struct {
 	Id          bool
 	Fields      bool
 	Collections bool

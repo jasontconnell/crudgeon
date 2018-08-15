@@ -39,7 +39,7 @@ func main() {
 	cfg := configuration.LoadConfig("config.json")
 
 	for _, g := range cfg.Generations {
-		gp, err := process.GetGenPackage(*obj, *path, flds, g.FileType, g.File, *ns, g.OutputPrefix, g.Folder, g.Instruction)
+		gp, err := process.GetGenPackage(*obj, *path, flds, g.FileType, g.File, *ns, g.OutputPrefix, g.Folder, g.Flags)
 
 		if err != nil {
 			log.Fatal(err)

@@ -13,7 +13,7 @@ type Generation struct {
 	FileType     string `json:"fileType"`
 	OutputPrefix string `json:"outputPrefix"`
 	Folder       string `json:"folder"`
-	Instruction  string `json:"instruction"`
+	Flags        string `json:"flags"`
 }
 
 func LoadConfig(filename string) Config {
