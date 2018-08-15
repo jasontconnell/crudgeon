@@ -40,7 +40,7 @@ go build
 .\lpgagen -file datafiles\api_tournamentcoursehole.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj StatsAPI_TournamentCourseHole -ns LPGAStatsService.Data
 .\lpgagen -file datafiles\api_player.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj StatsAPI_Player -ns LPGAStatsService.Data
 .\lpgagen -file datafiles\api_playerscorecard.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj StatsAPI_PlayerScorecard -ns LPGAStatsService.Data
-.\lpgagen -file datafiles\api_playerscorecardround.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj StatsAPI_PlayerScorecard -ns LPGAStatsService.Data
+.\lpgagen -file datafiles\api_playerscorecardround.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj StatsAPI_PlayerScorecardRound -ns LPGAStatsService.Data
 .\lpgagen -file datafiles\api_playerscorecardroundhole.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj StatsAPI_PlayerScorecardRoundHole -ns LPGAStatsService.Data
 
 .\lpgagen -file datafiles\api_playerhistory.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj StatsAPI_PlayerHistory -ns LPGAStatsService.Data
@@ -72,7 +72,6 @@ go build
 .\lpgagen -file datafiles\api_playerquickviewboxscorelistentry.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj StatsAPI_PlayerQuickViewBoxScoreListEntry -ns LPGAStatsService.Data
 .\lpgagen -file datafiles\api_playerquickviewboxscorelistentryround.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj StatsAPI_PlayerQuickViewBoxScoreListEntryRound -ns LPGAStatsService.Data
 
-.\lpgagen -file datafiles\api_tournamentyearlist.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj StatsAPI_TournamentYearList -ns LPGAStatsService.Data
 .\lpgagen -file datafiles\api_tournamentyearlistentry.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj StatsAPI_TournamentYearListEntry -ns LPGAStatsService.Data
 
 .\lpgagen -file datafiles\api_solheim.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj StatsAPI_Solheim -ns LPGAStatsService.Data

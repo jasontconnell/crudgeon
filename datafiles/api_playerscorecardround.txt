@@ -3,8 +3,8 @@
 public int accountId {get;set;}
 public int tournamentId {get;set;}
 
-public DateTime roundStartDate {get;set;}
-public DateTime roundEndDate {get;set;}
+public Nullable<DateTime> roundStartDate {get;set;}
+public Nullable<DateTime> roundEndDate {get;set;}
 public int roundNumber {get;set;}
 public bool isRoundOfficial {get;set;}
 public int scoreIn {get;set;}
