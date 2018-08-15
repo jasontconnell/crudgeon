@@ -27,7 +27,7 @@ namespace {{ .Namespace }} {
         {{- end }}
 
         {{- range $index,$field := .Fields }}
-        {{ if and ($field.IsBaseType)  (not $field.JsonIgnore) (not $field.SqlIgnore) }}[Hash({{$index}})]
+        {{ if and ($field.IsBaseType)  (not $field.JsonIgnore) (not $field.SqlIgnore) (ne $field.Name "ID") }}[Hash({{$index}})]
         {{ end}}
         {{- if not $field.JsonIgnore }}[DataMember(Name="{{$field.FieldName}}")]
         {{ end }}
