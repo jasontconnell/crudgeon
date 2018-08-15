@@ -15,4 +15,4 @@ public string playerFinalResultCode {get;set;}
 public decimal playerOfficialMoneyTotal {get;set;}
 public string tournamentPrimaryCourseName {get;set;}
 
-public List<IStatsAPI_PlayerQuickViewOfficialMoneyStatistic> statistics {get;set;}
+public List<IStatsAPI_PlayerQuickViewOfficialMoneyComponentStatistic> statistics {get;set;}

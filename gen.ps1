@@ -46,8 +46,9 @@ go build
 .\lpgagen -file datafiles\api_playerhistory.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj StatsAPI_PlayerHistory -ns LPGAStatsService.Data
 .\lpgagen -file datafiles\api_playerhistoryevent.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj StatsAPI_PlayerHistoryEvent -ns LPGAStatsService.Data
 
-.\lpgagen -file datafiles\api_playerquickviewofficialmoney.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj StatsAPI_PlayerQuickViewOfficialMoney -ns LPGAStatsService.Data
-.\lpgagen -file datafiles\api_playerquickviewofficialmoneystatistic.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj StatsAPI_PlayerQuickViewOfficialMoneyStatistic -ns LPGAStatsService.Data
+.\lpgagen -file datafiles\api_playerquickviewofficialmoneycomponents.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj StatsAPI_PlayerQuickViewOfficialMoneyComponentList -ns LPGAStatsService.Data
+.\lpgagen -file datafiles\api_playerquickviewofficialmoney.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj StatsAPI_PlayerQuickViewOfficialMoneyComponent -ns LPGAStatsService.Data
+.\lpgagen -file datafiles\api_playerquickviewofficialmoneystatistic.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj StatsAPI_PlayerQuickViewOfficialMoneyComponentStatistic -ns LPGAStatsService.Data
 
 .\lpgagen -file datafiles\api_cmegloberace.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj StatsAPI_CMEGlobeRace -ns LPGAStatsService.Data
 .\lpgagen -file datafiles\api_cmegloberacemember.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj StatsAPI_CMEGlobeRaceMember -ns LPGAStatsService.Data

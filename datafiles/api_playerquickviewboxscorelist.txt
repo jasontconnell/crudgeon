@@ -1,3 +1,5 @@
+/api/PlayerQuickviewBoxScores/?accountId=98334&year=2018
+
 public int accountId {get;set;}
 public int year {get;set;}
 
