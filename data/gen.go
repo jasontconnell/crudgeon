@@ -7,6 +7,7 @@ type GenPackage struct {
 	Namespace         string
 	Fields            []GenField
 	ConstructorFields []GenField
+	KeyFields         []GenField
 	TemplateFile      string
 	Prefix            string
 }
@@ -34,4 +35,5 @@ type GenFlags struct {
 	Collections bool
 	Concretes   bool
 	Constructor bool
+	Keys        bool
 }

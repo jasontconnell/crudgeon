@@ -135,10 +135,10 @@ func getSqlType(t string) string {
 		st = "smallint"
 	case "string":
 		st = "varchar(150)"
-	case "decimal":
-		st = "decimal(18,2)"
-	case "double":
-		st = "double"
+	case "decimal", "double":
+		st = "decimal(18,7)"
+	// case "double":
+	// 	st = "decimal(13,7)"
 	case "long":
 		st = "bigint"
 	case "DateTime":
@@ -172,6 +172,10 @@ func parseFieldFlags(instructions string) (data.FieldFlags, error) {
 			flags.CsIgnore = flg
 		case "key":
 			flags.Key = flg
+		case "index":
+			flags.Index = flg
+		case "nomap":
+			flags.NoMap = flg
 		default:
 			return flags, fmt.Errorf("Invalid flag: %s", p)
 		}

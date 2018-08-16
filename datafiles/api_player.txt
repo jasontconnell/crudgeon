@@ -1,6 +1,9 @@
 /api/player/
 /api/player/[playerid]
 
+public string Tour {get;set;} //+sqlignore
+public int TourId {get;set;} //+key,+noinput,+jsonignore
+
 public int accountid|AccountId {get;set;} //+key
 public string playfirstname|FirstName {get;set;}
 public string playmiddlename|MiddleName {get;set;}
@@ -21,8 +24,8 @@ public string education {get;set;}
 public string educationcity {get;set;}
 public string educationstate {get;set;}
 public string educationcountry {get;set;}
-public int firstprofessionalyear {get;set;}
-public int firstrookieyear {get;set;}
+public Nullable<int> firstprofessionalyear {get;set;}
+public Nullable<int> firstrookieyear {get;set;}
 public string headshoturl {get;set;}
 protected string bio {get;set;}
 public string twitterHandle {get;set;}

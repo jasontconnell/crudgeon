@@ -17,4 +17,6 @@ type FieldFlags struct {
 	JsonIgnore bool
 	CsIgnore   bool
 	Key        bool
+	Index      bool
+	NoMap      bool
 }

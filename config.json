@@ -1,10 +1,10 @@
 {
     "generations": [
         { "file": "tmpl\\class.txt", "fileType": "cs", "outputPrefix": "", "folder": "Model", "flags": "+id,+collections,+concretes,+constructor,+fields"},
-        { "file": "tmpl\\readproc.txt", "fileType": "sql", "outputPrefix": "Get", "folder": "SQL", "flags": "+id,+fields"},
-        { "file": "tmpl\\updateproc.txt", "fileType": "sql", "outputPrefix": "Save", "folder": "SQL", "flags": "+fields"},
+        { "file": "tmpl\\readproc.txt", "fileType": "sql", "outputPrefix": "Get", "folder": "SQL", "flags": "+id,+keys"},
+        { "file": "tmpl\\updateproc.txt", "fileType": "sql", "outputPrefix": "Save", "folder": "SQL", "flags": "+fields,+keys"},
         { "file": "tmpl\\delproc.txt", "fileType": "sql", "outputPrefix": "Delete", "folder": "SQL", "flags": "+id"},
-        { "file": "tmpl\\table.txt", "fileType": "sql", "outputPrefix": "tbl", "folder": "SQL","flags": "+id,+fields"},
+        { "file": "tmpl\\table.txt", "fileType": "sql", "outputPrefix": "tbl", "folder": "SQL","flags": "-id,+fields,+keys"},
         { "file": "tmpl\\map.txt", "fileType": "cs", "outputPrefix": "Map_", "folder": "MapCode","flags": "+id,+collections,+fields,+constructor"},
         { "file": "tmpl\\interface.txt", "fileType": "cs", "outputPrefix": "I", "folder": "ModelInterfaces", "flags": "+id,+fields,+collections"}
     ]

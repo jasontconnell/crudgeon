@@ -6,12 +6,14 @@ create procedure dbo.Save{{.Name}}
 as
 begin
     declare @id int
-    select @id = ID from {{.Name}} where ID = -1
+    select @id = ID from {{.Name}} where {{ range $index,$field := .KeyFields }}
+        {{$field.Name}} = @{{$field.Name}} {{if lt (plus1 $index) (len $.KeyFields)}}and{{end}}
+    {{- end}}
 
     if exists (select ID from {{ .Name }} where ID = @id)
     begin
 
-        Update {{.Name}} set
+        update {{.Name}} set
             {{- range $index,$field := .Fields }}
                 {{$field.Name}} = @{{$field.Name}}{{if lt (plus1 $index) (len $.Fields)}}, {{end}}
             {{- end}}

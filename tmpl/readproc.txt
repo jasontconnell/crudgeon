@@ -1,8 +1,16 @@
 create procedure dbo.Get{{.Name }}
+{{ range $index,$field := .KeyFields }}
+    @{{$field.Name}} {{$field.Type}}{{if $field.Nullable }}{{end}}{{if lt (plus1 $index) (len $.KeyFields)}},{{end}}
+{{- end}}
 as 
 begin
         select
             *
         from
             {{.Name}}
+        {{ if (len .KeyFields) gt 0 }}
+        where {{ range $index,$field := .KeyFields }}
+            {{$field.Name}} = @{{$field.Name}} {{if lt (plus1 $index) (len $.KeyFields)}}and {{end}}
+        {{- end}}
+        {{- end }}
 end

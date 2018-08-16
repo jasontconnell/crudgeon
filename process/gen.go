@@ -48,7 +48,7 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 	}
 
 	pkg := data.GenPackage{Name: name, Namespace: ns, Path: filepath.Join(path, folder), TemplateFile: tmplFile, Prefix: prefix, OutputFile: prefix + name + "." + fileType}
-	if flags.Fields {
+	if flags.Fields || flags.Constructor || flags.Keys || flags.Concretes {
 		for _, f := range flds {
 			if f.Collection && !flags.Collections {
 				continue
@@ -133,6 +133,14 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 		}
 	}
 
+	if flags.Keys {
+		for _, f := range pkg.Fields {
+			if f.Key {
+				pkg.KeyFields = append(pkg.KeyFields, f)
+			}
+		}
+	}
+
 	if flags.Concretes {
 		confields := []data.GenField{}
 		for _, f := range pkg.Fields {
@@ -193,6 +201,8 @@ func parseFlags(flagstr string) (data.GenFlags, error) {
 			flags.Constructor = flg
 		case "concretes":
 			flags.Concretes = flg
+		case "keys":
+			flags.Keys = flg
 		default:
 			return flags, fmt.Errorf("Invalid flags: %s", p)
 		}
