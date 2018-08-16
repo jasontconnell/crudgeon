@@ -1,6 +1,6 @@
 public int TournamentID { get;set; } //+key
 public string Code { get;set; }
-public short Year { get;set; }
+public short Year { get;set; } //+key
 public string Name { get;set; }
 public string City { get;set; }
 public string StateName { get;set; }

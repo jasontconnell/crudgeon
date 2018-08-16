@@ -1,6 +1,6 @@
 /api/tournament/2018047
 
-public int id|TournamentCode { get; set; } //+key
+public int id|TournamentId { get; set; } //+key
 public string code { get; set; }
 public string name { get; set; }
 public int year { get; set; }

@@ -1,3 +1,10 @@
+IF  EXISTS (SELECT * FROM sys.objects 
+WHERE object_id = OBJECT_ID(N'dbo.{{.Name }}') AND type in (N'U'))
+begin
+    drop table dbo.{{.Name }}
+end
+GO
+
 create table dbo.{{.Name}} (
     ID int identity(1,1) not null,
     {{ range $index,$field := .Fields }}

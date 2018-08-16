@@ -18,13 +18,8 @@ var fns = template.FuncMap{
 	},
 }
 
-func Generate(pkg data.GenPackage) error {
+func Generate(pkg data.GenPackage, objdir bool) error {
 	tmpl, err := template.New(pkg.TemplateFile).Funcs(fns).ParseFiles(pkg.TemplateFile)
-	if err != nil {
-		return err
-	}
-
-	err = fileutil.MakeDirs(pkg.Path)
 	if err != nil {
 		return err
 	}
@@ -37,7 +32,17 @@ func Generate(pkg data.GenPackage) error {
 		return terr
 	}
 
-	output := filepath.Join(pkg.Path, pkg.OutputFile)
+	path := pkg.Path
+	if objdir {
+		path = filepath.Join(path, pkg.Name)
+	}
+
+	err = fileutil.MakeDirs(path)
+	if err != nil {
+		return err
+	}
+
+	output := filepath.Join(path, pkg.OutputFile)
 	return ioutil.WriteFile(output, buffer.Bytes(), os.ModePerm)
 }
 
@@ -65,7 +70,11 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 			}
 
 			sqltype := getSqlType(f.Type)
-			if fileType == "sql" && sqltype == "" {
+			if fileType == "sql" && (sqltype == "" || f.Flags.SqlIgnore) {
+				continue
+			}
+
+			if fileType == "cs" && f.Flags.CsIgnore {
 				continue
 			}
 
@@ -101,27 +110,23 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 				}
 			}
 
-			ignore := (sqlignore && fileType == "sql") || (f.Flags.CsIgnore && fileType == "cs")
-
-			if !ignore {
-				gf := data.GenField{
-					FieldName:        field,
-					Name:             cname,
-					Type:             typeName,
-					ConcreteType:     concreteTypeName,
-					ConcreteProperty: concreteProperty,
-					ElementType:      elementType,
-					Nullable:         nullable,
-					CsIgnore:         false,
-					SqlIgnore:        sqlignore,
-					JsonIgnore:       jsonIgnore,
-					IsInterface:      isInterface,
-					Collection:       f.Collection,
-					Key:              f.Flags.Key,
-					IsBaseType:       isbase,
-				}
-				pkg.Fields = append(pkg.Fields, gf)
+			gf := data.GenField{
+				FieldName:        field,
+				Name:             cname,
+				Type:             typeName,
+				ConcreteType:     concreteTypeName,
+				ConcreteProperty: concreteProperty,
+				ElementType:      elementType,
+				Nullable:         nullable,
+				CsIgnore:         f.Flags.CsIgnore,
+				SqlIgnore:        sqlignore,
+				JsonIgnore:       jsonIgnore,
+				IsInterface:      isInterface,
+				Collection:       f.Collection,
+				Key:              f.Flags.Key,
+				IsBaseType:       isbase,
 			}
+			pkg.Fields = append(pkg.Fields, gf)
 		}
 	}
 

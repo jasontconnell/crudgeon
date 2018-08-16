@@ -1,6 +1,8 @@
 /api/TourRaceForTheCMEGlobe/
 
+public int TourId {get;set;} //+key,+jsonignore
 public int accountId {get;set;} //+key
+
 public string playerFullName|FullName {get;set;} //+sqlignore
 public string playerFirstName|FirstName {get;set;} //+sqlignore
 public string playerMiddleName|MiddleName {get;set;} //+sqlignore

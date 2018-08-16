@@ -1,6 +1,13 @@
+IF  EXISTS (SELECT * FROM sys.objects 
+WHERE object_id = OBJECT_ID(N'dbo.Get{{.Name }}') AND type in (N'P'))
+begin
+    drop procedure dbo.Get{{.Name }}
+end
+GO
+
 create procedure dbo.Get{{.Name }}
 {{ range $index,$field := .KeyFields }}
-    @{{$field.Name}} {{$field.Type}}{{if $field.Nullable }}{{end}}{{if lt (plus1 $index) (len $.KeyFields)}},{{end}}
+    @{{$field.Name}} {{$field.Type}} = null{{if lt (plus1 $index) (len $.KeyFields)}},{{end}}
 {{- end}}
 as 
 begin
@@ -10,7 +17,7 @@ begin
             {{.Name}}
         {{ if (len .KeyFields) gt 0 }}
         where {{ range $index,$field := .KeyFields }}
-            {{$field.Name}} = @{{$field.Name}} {{if lt (plus1 $index) (len $.KeyFields)}}and {{end}}
+            (@{{$field.Name}} is null OR {{$field.Name}} = @{{$field.Name}}) {{if lt (plus1 $index) (len $.KeyFields)}}and {{end}}
         {{- end}}
         {{- end }}
 end

@@ -45,7 +45,7 @@ func main() {
 		if err != nil {
 			log.Fatal(err)
 		}
-		err = process.Generate(gp)
+		err = process.Generate(gp, g.CreateObjDir)
 		if err != nil {
 			log.Fatal(err)
 		}

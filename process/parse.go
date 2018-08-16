@@ -8,9 +8,9 @@ import (
 	"strings"
 )
 
-var fldreg *regexp.Regexp = regexp.MustCompile(`\W*(?:private|public) (.*?) (.*?) +{.*?}( *//[a-z\+\-]+)?`)
+var fldreg *regexp.Regexp = regexp.MustCompile(`\W*(?:private|public) (.*?) (.*?) +{.*?}( *//[a-z\+\-,]+)?`)
 var genericreg *regexp.Regexp = regexp.MustCompile(`([a-zA-Z\.]*?)<(.*?)>`)
-var flagsreg *regexp.Regexp = regexp.MustCompile(`//(.*?)$`)
+var flagsreg *regexp.Regexp = regexp.MustCompile(`//([\+\-a-z,]*?)$`)
 
 type parsed struct {
 	t           string

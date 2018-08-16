@@ -14,6 +14,7 @@ type Generation struct {
 	OutputPrefix string `json:"outputPrefix"`
 	Folder       string `json:"folder"`
 	Flags        string `json:"flags"`
+	CreateObjDir bool   `json:"objdir"`
 }
 
 func LoadConfig(filename string) Config {
