@@ -153,26 +153,28 @@ func getSqlType(t string) string {
 }
 
 func parseFieldFlags(instructions string) (data.FieldFlags, error) {
-	inst := data.FieldFlags{}
+	flags := data.FieldFlags{}
 	ss := strings.Split(instructions, ",")
 	for _, s := range ss {
 		flg := s[0] == '+'
 		if !flg && s[0] != '-' {
-			return inst, fmt.Errorf("Need + or - as first character for instructions, %s: %s", instructions, s)
+			return flags, fmt.Errorf("Need + or - as first character for flags, %s: %s", instructions, s)
 		}
 
 		p := string(s[1:])
 
 		switch p {
 		case "sqlignore":
-			inst.SqlIgnore = flg
+			flags.SqlIgnore = flg
 		case "jsonignore":
-			inst.JsonIgnore = flg
+			flags.JsonIgnore = flg
 		case "csignore":
-			inst.CsIgnore = flg
+			flags.CsIgnore = flg
+		case "hashkey":
+			flags.HashKey = flg
 		default:
-			return inst, fmt.Errorf("Invalid instruction: %s", p)
+			return flags, fmt.Errorf("Invalid flag: %s", p)
 		}
 	}
-	return inst, nil
+	return flags, nil
 }

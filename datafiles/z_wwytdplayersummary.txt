@@ -1,5 +1,5 @@
 public short Season { get;set; }
-public Nullable<int> AccountID { get;set; }
+public Nullable<int> AccountID { get;set; } //+hashkey
 public string PlayFirstName { get;set; }
 public string PlayLastName { get;set; }
 public Nullable<int> EaglesCount { get;set; }

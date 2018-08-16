@@ -1,6 +1,6 @@
 /api/Solheim/
 
-public int AccountId { get; set; }
+public int AccountId { get; set; } //+hashkey
 public string PlayerFullName { get; set; } //+sqlignore
 public string PlayerFirstName|FirstName { get; set; } //+sqlignore
 public string PlayerMiddleName|MiddleName { get; set; } //+sqlignore

@@ -1,11 +1,11 @@
 /api/PlayerRolexPlayerOfTheYearPoints/?AccountId=98334
 
-public int accountId {get;set;}
+public int accountId {get;set;} //+hashkey
 
-public int tournamentYear {get;set;}
+public int tournamentYear {get;set;} //+hashkey
 public DateTime tournamentStartDate {get;set;}
 public DateTime tournamentEndDate {get;set;}
-public int tournamentId {get;set;}
+public int tournamentId {get;set;} //+hashkey
 public string tournamentName {get;set;}
 public string playerTournamentResultCode {get;set;}
 public decimal eventRolexPointsEarned {get;set;}

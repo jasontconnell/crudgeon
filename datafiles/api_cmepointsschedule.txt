@@ -1,7 +1,7 @@
 /api/TourRaceForTheCMEGlobePointsSchedule/?TournamentId=2018047
 
-public string tournamentId|TournamentIdString {get;set;}  //+sqlignore
-public int year {get;set;}
+public string tournamentId|TournamentIdString {get;set;}  //+sqlignore,+hashkey
+public int year {get;set;} //+hashkey
 public int tournamentNumber {get;set;}
 
 public List<IStatsAPI_CMEPointsScheduleEntry> pointsEntries {get;set;}

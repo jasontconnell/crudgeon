@@ -1,8 +1,8 @@
 /api/TournamentParticipants/?TournamentId=2018047
 
-public int tournamentId|TournamentCode {get;set;}
+public int tournamentId|TournamentCode {get;set;} //+hashkey
 
-public int accountId {get;set;}
+public int accountId {get;set;} //+hashkey
 public string playFirstName|FirstName {get;set;} //+sqlignore
 public string playLastName|LastName {get;set;} //+sqlignore
 public string resultCode {get;set;}

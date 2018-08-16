@@ -1,3 +1,3 @@
-public short Season { get;set; }
+public short Season { get;set; } //+hashkey
 public Nullable<int> EaglesCount { get;set; }
 public Nullable<decimal> TotalRaised { get;set; }

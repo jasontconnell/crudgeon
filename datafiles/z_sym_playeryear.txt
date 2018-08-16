@@ -1,8 +1,8 @@
-public int AccountID { get;set; }
+public int AccountID { get;set; } //+hashkey
 public string PlayFirstName { get;set; }
 public string PlayLastName { get;set; }
 public string PlayMiddleName { get;set; }
-public short Year { get;set; }
+public short Year { get;set; } //+hashkey
 public short officialrounds { get;set; }
 public short officialroundsrank { get;set; }
 public short officialevents { get;set; }

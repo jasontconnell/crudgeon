@@ -1,9 +1,9 @@
 /api/PlayerQuickviewOfficialMoney/?AccountId=98334&TournamentId=2018047
 
-public int accountId {get;set;}
-public int tournamentId {get;set;}
+public int accountId {get;set;} //+hashkey
+public int tournamentId {get;set;} //+hashkey
 
-public int year {get;set;}
+public int year {get;set;} //+hashkey
 public string tournamentName {get;set;} //+sqlignore
 public DateTime startDate {get;set;}
 public DateTime endDate {get;set;}

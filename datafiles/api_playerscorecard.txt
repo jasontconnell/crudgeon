@@ -1,9 +1,9 @@
 /api/PlayerScorecard?AccountId=98334&TournamentId=2018047
 
-public int accountId {get;set;}
+public int accountId {get;set;} //+hashkey
 
 public bool isEventOfficial {get;set;}
-public int tournamentId {get;set;}
+public int tournamentId {get;set;} //+hashkey
 public string tournamentName {get;set;}
 public int playerId {get;set;}
 public string playerFirstName|FirstName {get;set;} //+sqlignore

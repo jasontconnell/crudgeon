@@ -1,6 +1,6 @@
-public short year { get;set; }
+public short year { get;set; } //+hashkey
 public Nullable<short> tournamentnumber { get;set; }
-public int tournamentid { get;set; }
+public int tournamentid { get;set; } //+hashkey
 public string DateOfLastRoundContainingEagles { get;set; }
 public Nullable<int> TournamentWoundedWariorEagles { get;set; }
 public Nullable<decimal> YearToDateOfLastRoundDonationAmount { get;set; }

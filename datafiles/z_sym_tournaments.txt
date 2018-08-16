@@ -1,4 +1,4 @@
-public Nullable<int> TournamentID { get;set; }
+public Nullable<int> TournamentID { get;set; } //+hashkey
 public string code { get;set; }
 public Nullable<short> Year { get;set; }
 public string Name { get;set; }

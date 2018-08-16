@@ -1,7 +1,7 @@
 /api/TournamentHistory/?tournamentId=2018047
 
 public string latestTournamentCode {get;set;}
-public int latestTournamentId {get;set;}
+public int latestTournamentId {get;set;} //+hashkey
 public int latestYear {get;set;}
 
 public List<IStatsAPI_Tournament> tournaments {get;set;}

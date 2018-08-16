@@ -117,6 +117,7 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 					JsonIgnore:       jsonIgnore,
 					IsInterface:      isInterface,
 					Collection:       f.Collection,
+					HashKey:          f.Flags.HashKey,
 					IsBaseType:       isbase,
 				}
 				pkg.Fields = append(pkg.Fields, gf)
@@ -161,6 +162,7 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 			Name:       "ID",
 			Type:       "int",
 			JsonIgnore: true,
+			SqlIgnore:  true,
 		}
 
 		pkg.Fields = append([]data.GenField{pkfld}, pkg.Fields...)

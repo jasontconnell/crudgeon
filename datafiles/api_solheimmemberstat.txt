@@ -1,6 +1,6 @@
 /api/Solheim/
 
-public int AccountId { get; set; }
+public int AccountId { get; set; } //+hashkey
 
-public string Name { get; set; }
+public string Name { get; set; } //+hashkey
 public string Value { get; set; }

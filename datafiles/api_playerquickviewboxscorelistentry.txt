@@ -1,8 +1,8 @@
 /api/PlayerQuickviewBoxScores/?accountId=98334&year=2018
 
-public int accountId {get;set;}
-public int year {get;set;}
-public int tournamentId {get;set;}
+public int accountId {get;set;} //+hashkey
+public int year {get;set;} //+hashkey
+public int tournamentId {get;set;} //+hashkey
 
 public string tournamentName {get;set;} //+sqlignore
 public int tournamentNumber {get;set;}

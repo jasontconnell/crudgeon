@@ -1,9 +1,9 @@
-public Nullable<int> AccountID { get;set; }
+public Nullable<int> AccountID { get;set; } //+hashkey
 public string PlayFirstName { get;set; }
 public string PlayLastName { get;set; }
 public string PlayMiddleName { get;set; }
 public string IsAmateur { get;set; }
-public int TournamentID { get;set; }
+public int TournamentID { get;set; } //+hashkey
 public string Code { get;set; }
 public string TournamentName { get;set; }
 public string ResultCode { get;set; }
