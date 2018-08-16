@@ -1,7 +1,7 @@
 /api/TourRaceForTheCMEGlobePointsSchedule/?TournamentId=2018047
 
-public int tournamentId {get;set;} //+hashkey
-public int year {get;set;} //+hashkey
+public int tournamentId {get;set;} //+key
+public int year {get;set;} //+key
 
 public int position {get;set;}
 public decimal lpgaOfficialEventsWithCutPoints {get;set;}

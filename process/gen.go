@@ -117,7 +117,7 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 					JsonIgnore:       jsonIgnore,
 					IsInterface:      isInterface,
 					Collection:       f.Collection,
-					HashKey:          f.Flags.HashKey,
+					Key:              f.Flags.Key,
 					IsBaseType:       isbase,
 				}
 				pkg.Fields = append(pkg.Fields, gf)

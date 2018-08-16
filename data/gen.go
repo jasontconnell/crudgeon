@@ -24,7 +24,7 @@ type GenField struct {
 	JsonIgnore       bool
 	IsInterface      bool
 	Collection       bool
-	HashKey          bool
+	Key              bool
 	IsBaseType       bool
 }
 

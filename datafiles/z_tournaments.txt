@@ -1,4 +1,4 @@
-public int TournamentID { get;set; } //+hashkey
+public int TournamentID { get;set; } //+key
 public string Code { get;set; }
 public short Year { get;set; }
 public string Name { get;set; }

@@ -1,4 +1,4 @@
-public Nullable<int> AccountID { get;set; } //+hashkey
+public Nullable<int> AccountID { get;set; } //+key
 public string PlayFirstName { get;set; }
 public string PlayLastName { get;set; }
 public string PlayMiddleName { get;set; }

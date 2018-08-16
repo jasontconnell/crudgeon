@@ -1,7 +1,7 @@
 /api/PlayerPerformanceStatsYTD/?AccountId=98334&Date=08-01-2018
 
-public int accountId {get;set;} //+hashkey
-public int year {get;set;} //+hashkey
+public int accountId {get;set;} //+key
+public int year {get;set;} //+key
 public string officialMoneyTotalYTD|OfficialMoneyTotalYTDString {get;set;} //+sqlignore
 public string officialMoneyTotalYTDRank|OfficialMoneyTotalYTDRankString {get;set;} //+sqlignore
 public string averageDrivingDistanceYTD|AverageDrivingDistanceYTDString {get;set;} //+sqlignore

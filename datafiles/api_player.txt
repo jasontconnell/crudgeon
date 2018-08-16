@@ -1,7 +1,7 @@
 /api/player/
 /api/player/[playerid]
 
-public int accountid|AccountId {get;set;} //+hashkey
+public int accountid|AccountId {get;set;} //+key
 public string playfirstname|FirstName {get;set;}
 public string playmiddlename|MiddleName {get;set;}
 public string playlastname|LastName {get;set;}

@@ -1,3 +1,3 @@
-public int asoftournamentid { get;set; } //+hashkey
+public int asoftournamentid { get;set; } //+key
 public Nullable<int> WoundedWarriorEagles { get;set; }
 public Nullable<decimal> WoundedWarriorEaglesDonationAmount { get;set; }

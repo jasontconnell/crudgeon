@@ -1,4 +1,4 @@
-public Nullable<int> AccountID { get;set; } //+hashkey
+public Nullable<int> AccountID { get;set; } //+key
 public short RolexAnnikaMajorAwardSeason { get;set; }
 public string PlayFirstName { get;set; }
 public string PlayLastName { get;set; }

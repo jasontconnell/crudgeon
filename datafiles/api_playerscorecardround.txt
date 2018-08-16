@@ -1,7 +1,7 @@
 /api/PlayerScorecard?AccountId=98334&TournamentId=2018047
 
-public int accountId {get;set;} //+hashkey
-public int tournamentId {get;set;} //+hashkey
+public int accountId {get;set;} //+key
+public int tournamentId {get;set;} //+key
 
 public Nullable<DateTime> roundStartDate {get;set;}
 public Nullable<DateTime> roundEndDate {get;set;}

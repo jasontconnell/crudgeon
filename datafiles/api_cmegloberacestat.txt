@@ -1,6 +1,6 @@
 /api/TourRaceForTheCMEGlobe/
 
-public int accountId {get;set;} //+hashkey
+public int accountId {get;set;} //+key
 
 public string name {get;set;}
 public string value {get;set;}

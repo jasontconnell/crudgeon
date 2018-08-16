@@ -1,5 +1,5 @@
-public int TournamentID { get;set; } //+hashkey
-public string CourseName { get;set; } //+hashkey
+public int TournamentID { get;set; } //+key
+public string CourseName { get;set; } //+key
 public Nullable<int> hole1_yds { get;set; }
 public Nullable<int> hole2_yds { get;set; }
 public Nullable<int> hole3_yds { get;set; }

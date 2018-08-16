@@ -1,7 +1,7 @@
 /api/tournament/2018047
 
-public int tournamentId|TournamentCode {get;set;} //+hashkey
-public int id|AccountId {get;set;} //+hashkey
+public int tournamentId|TournamentCode {get;set;} //+key
+public int id|AccountId {get;set;} //+key
 
 public string playFirstName|FirstName { get;set;} //+sqlignore
 public string playMiddleName|MiddleName {get;set;} //+sqlignore

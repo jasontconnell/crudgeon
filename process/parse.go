@@ -170,8 +170,8 @@ func parseFieldFlags(instructions string) (data.FieldFlags, error) {
 			flags.JsonIgnore = flg
 		case "csignore":
 			flags.CsIgnore = flg
-		case "hashkey":
-			flags.HashKey = flg
+		case "key":
+			flags.Key = flg
 		default:
 			return flags, fmt.Errorf("Invalid flag: %s", p)
 		}

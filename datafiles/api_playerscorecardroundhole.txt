@@ -1,8 +1,8 @@
 /api/PlayerScorecard?AccountId=98334&TournamentId=2018047
 
-public int accountId {get;set;} //+hashkey
-public int tournamentId {get;set;} //+hashkey
-public int roundNumber {get;set;} //+hashkey
+public int accountId {get;set;} //+key
+public int tournamentId {get;set;} //+key
+public int roundNumber {get;set;} //+key
 
 public Nullable<DateTime> holePlayedDate {get;set;}
 public bool isHoleOfficial {get;set;}

@@ -1,8 +1,8 @@
 /api/tournament/2018047
 
-public int tournamentId|TournamentCode {get;set;} //+hashkey
-public int courseId|CourseNum {get;set;} //+hashkey
+public int tournamentId|TournamentCode {get;set;} //+key
+public int courseId|CourseNum {get;set;} //+key
 
-public int holeNumber {get;set;} //+hashkey
+public int holeNumber {get;set;} //+key
 public int holeYardage {get;set;}
 public int holePar {get;set;}

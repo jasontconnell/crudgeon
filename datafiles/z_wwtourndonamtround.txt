@@ -1,8 +1,8 @@
-public short year { get;set; } //+hashkey
+public short year { get;set; } //+key
 public Nullable<short> Tournamentnumber { get;set; }
 public string Code { get;set; }
 public string Name { get;set; }
-public int TournamentID { get;set; } //+hashkey
-public short Round { get;set; } //+hashkey
+public int TournamentID { get;set; } //+key
+public short Round { get;set; } //+key
 public bool UseRoundForWoundedWarriorEagles { get;set; }
 public decimal WoundedWarriorEaglesDonationAmount { get;set; }

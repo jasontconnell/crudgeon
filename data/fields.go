@@ -16,5 +16,5 @@ type FieldFlags struct {
 	SqlIgnore  bool
 	JsonIgnore bool
 	CsIgnore   bool
-	HashKey    bool
+	Key        bool
 }
