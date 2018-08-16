@@ -35,3 +35,5 @@ public decimal SandSavesYTDPercentage {get;set;} //+csignore
 public int SandSavesYTDPercentageRank {get;set;} //+csignore
 public decimal ScoringAverageYTD {get;set;} //+csignore
 public int ScoringAverageYTDRank {get;set;} //+csignore
+
+public DateTime UpdateDate {get;set;}
