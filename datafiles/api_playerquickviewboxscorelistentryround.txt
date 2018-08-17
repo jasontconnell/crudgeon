@@ -1,10 +1,12 @@
 /api/PlayerQuickviewBoxScores/?accountId=98334&year=2018
 
+public int TourId {get;set;} //+key,+jsonignore
+
 public int accountId {get;set;} //+key
 public int year {get;set;} //+key
 public int tournamentId {get;set;} //+key
 
-public int roundNumber {get;set;}
+public int roundNumber {get;set;} //+key
 public string playerRoundResultCode {get;set;}
 public int playerRoundScore {get;set;}
 public int roundPar {get;set;}
