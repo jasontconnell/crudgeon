@@ -1,3 +1,5 @@
+public int TourId {get;set;} //+key,+jsonignore
+
 public Nullable<int> AccountID { get;set; } //+key
 public string PlayFirstName { get;set; }
 public string PlayLastName { get;set; }
@@ -130,5 +132,5 @@ public Nullable<int> low_54_score_rank { get;set; }
 public Nullable<int> low_72_score_rank { get;set; }
 public Nullable<int> official_events_1_rank { get;set; }
 public Nullable<int> official_events_2_rank { get;set; }
-public int PlayerID { get;set; }
+public Nullable<int> PlayerID { get;set; }
 public Nullable<int> WGWRID { get;set; }

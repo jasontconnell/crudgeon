@@ -37,7 +37,7 @@ namespace {{ .Namespace }} {
         {{ end }}
         public {{$field.Type}}{{if $field.Nullable}}?{{end}} {{$field.Name}} { 
                 {{- if not $field.IsInterface }} get; set;
-                {{- else if $field.Collection}}get { return Enumerable.Cast<{{$field.ElementType}}>({{$field.ConcreteProperty}}); } set { this.{{$field.ConcreteProperty}} = ({{$field.ConcreteType}})value; }
+                {{- else if $field.Collection}}get { return {{$field.ConcreteProperty}} == null ? null : Enumerable.Cast<{{$field.ElementType}}>({{$field.ConcreteProperty}}); } set { this.{{$field.ConcreteProperty}} = ({{$field.ConcreteType}})value; }
                 {{- else}} get { return ({{$field.Type}})this.{{$field.ConcreteProperty}}; } set { this.{{$field.ConcreteProperty}} = ({{$field.ConcreteType}})value; }{{end}}  }
         {{- end }}
 

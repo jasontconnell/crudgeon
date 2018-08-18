@@ -9,8 +9,8 @@ public int year { get; set; }
 public string cityName { get; set; }
 public string stateName { get; set; }
 public string countryName { get; set; }
-public DateTime startDate { get; set; }
-public DateTime endDate { get; set; }
+public Nullable<DateTime> startDate { get; set; }
+public Nullable<DateTime> endDate { get; set; }
 public int tournamentNumber { get; set; }
 public int roundCount { get; set; }
 public decimal purse { get; set; }

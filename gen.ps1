@@ -22,17 +22,6 @@ go build
 .\lpgagen -file datafiles\z_wwytdsummary.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_WWYTDSummary -ns LPGAStatsService.Data -usefield
 
 
-
-
-.\lpgagen -file datafiles\z_sym_careerstats.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_SymetraCareerStats -ns LPGAStatsService.Data -usefield
-.\lpgagen -file datafiles\z_sym_playertournament.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_SymetraPlayerTournament -ns LPGAStatsService.Data -usefield
-.\lpgagen -file datafiles\z_sym_playeryear.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_SymetraPlayerYear -ns LPGAStatsService.Data -usefield
-.\lpgagen -file datafiles\z_sym_playertournament.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_SymetraPlayerTournament -ns LPGAStatsService.Data -usefield
-.\lpgagen -file datafiles\z_sym_tournaments.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_SymetraTournament -ns LPGAStatsService.Data -usefield
-.\lpgagen -file datafiles\z_sym_tourncourse.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj Stats_SymetraTournamentCourse -ns LPGAStatsService.Data -usefield
-
-
-
 .\lpgagen -file datafiles\api_tournament.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj StatsAPI_Tournament -ns LPGAStatsService.Data
 .\lpgagen -file datafiles\api_tournamentfield.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj StatsAPI_TournamentField -ns LPGAStatsService.Data
 .\lpgagen -file datafiles\api_tournamentfieldplayer.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj StatsAPI_TournamentFieldPlayer -ns LPGAStatsService.Data
