@@ -4,7 +4,7 @@
         { "file": "tmpl\\readproc.txt", "fileType": "sql", "outputPrefix": "Get", "folder": "SQL", "flags": "+id,+keys","objdir": true},
         { "file": "tmpl\\updateproc.txt", "fileType": "sql", "outputPrefix": "Save", "folder": "SQL", "flags": "+fields,+keys","objdir": true},
         { "file": "tmpl\\delproc.txt", "fileType": "sql", "outputPrefix": "Delete", "folder": "SQL", "flags": "+keys","objdir": true},
-        { "file": "tmpl\\table.txt", "fileType": "sql", "outputPrefix": "tbl", "folder": "SQL","flags": "-id,+fields,+keys","objdir": true},
+        { "file": "tmpl\\table.txt", "fileType": "sql", "outputPrefix": "tbl", "folder": "SQL","flags": "+id,+fields,+keys","objdir": true},
         { "file": "tmpl\\map.txt", "fileType": "cs", "outputPrefix": "Map_", "folder": "MapCode","flags": "+id,+collections,+fields,+constructor","objdir":true},
         { "file": "tmpl\\interface.txt", "fileType": "cs", "outputPrefix": "I", "folder": "ModelInterfaces", "flags": "+id,+fields,+collections","objdir":false}
     ]

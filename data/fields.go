@@ -13,6 +13,7 @@ type Field struct {
 }
 
 type FieldFlags struct {
+	IsId       bool
 	SqlIgnore  bool
 	JsonIgnore bool
 	CsIgnore   bool

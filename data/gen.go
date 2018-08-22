@@ -10,6 +10,7 @@ type GenPackage struct {
 	KeyFields         []GenField
 	TemplateFile      string
 	Prefix            string
+	Flags             GenFlags
 }
 
 type GenField struct {
@@ -27,6 +28,7 @@ type GenField struct {
 	Collection       bool
 	Key              bool
 	IsBaseType       bool
+	Flags            FieldFlags
 }
 
 type GenFlags struct {

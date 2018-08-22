@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using Hasher.Attributes;
 
+// this code is generated, do not modify. use partial classes / interfaces to add stuff
 namespace {{ .Namespace }} {
     [DataContract]
     [StoredProc(Name="Get{{.Name}}", ProcType=ProcType.Read)]
@@ -33,7 +34,7 @@ namespace {{ .Namespace }} {
         {{ end}}
         {{- if not $field.JsonIgnore }}[DataMember(Name="{{$field.FieldName}}")]
         {{ end }}
-        {{- if not $field.SqlIgnore }}[Column]{{else}}[IgnoreCol]
+        {{- if not $field.SqlIgnore }}[Column(IsInput={{ if $field.Key }}true{{else}}false{{end}})]{{else}}[IgnoreCol]
         {{ end }}
         public {{$field.Type}}{{if $field.Nullable}}?{{end}} {{$field.Name}} { 
                 {{- if not $field.IsInterface }} get; set;

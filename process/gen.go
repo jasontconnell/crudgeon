@@ -52,7 +52,7 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 		return data.GenPackage{}, err
 	}
 
-	pkg := data.GenPackage{Name: name, Namespace: ns, Path: filepath.Join(path, folder), TemplateFile: tmplFile, Prefix: prefix, OutputFile: prefix + name + "." + fileType}
+	pkg := data.GenPackage{Name: name, Namespace: ns, Path: filepath.Join(path, folder), TemplateFile: tmplFile, Prefix: prefix, OutputFile: prefix + name + "." + fileType, Flags: flags}
 	if flags.Fields || flags.Constructor || flags.Keys || flags.Concretes {
 		for _, f := range flds {
 			if f.Collection && !flags.Collections {
@@ -179,6 +179,7 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 			Type:       "int",
 			JsonIgnore: true,
 			SqlIgnore:  true,
+			Flags:      data.FieldFlags{IsId: true},
 		}
 
 		pkg.Fields = append([]data.GenField{pkfld}, pkg.Fields...)

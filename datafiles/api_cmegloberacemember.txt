@@ -9,3 +9,6 @@ public string playerMiddleName|MiddleName {get;set;} //+sqlignore
 public string playerLastName|LastName {get;set;} //+sqlignore
 
 public List<IStatsAPI_CMEGlobeRaceStat> statistics {get;set;}
+
+public int Points {get;set;} //+jsonignore,+csignore
+public int Rank {get;set;} //+jsonignore,+csignore

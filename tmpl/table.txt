@@ -4,11 +4,13 @@ begin
     drop table dbo.{{.Name }}
 end
 GO
+{{- $genpkg := . }}
 
 create table dbo.{{.Name}} (
-    ID int identity(1,1) not null,
+    {{ if .Flags.Id }}ID int identity(1,1) not null,{{ end }}
     {{ range $index,$field := .Fields }}
-        {{ $field.Name}} {{$field.Type}} {{ if $field.Nullable }}null{{else}}not null{{end}}{{- if lt (plus1 $index) (len $.Fields)}},{{end}}
+        {{- if and ($genpkg.Flags.Id) ($field.Flags.IsId) }}{{- else}}
+        {{ $field.Name}} {{$field.Type}} {{ if $field.Nullable }}null{{else}}not null{{end}}{{- if lt (plus1 $index) (len $.Fields)}},{{end}}{{end}}
     {{- end}},
     {{ if (len .KeyFields) gt 0 }}
         INDEX [Idx_{{.Name}}] NONCLUSTERED (
