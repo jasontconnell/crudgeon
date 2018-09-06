@@ -1,0 +1,4 @@
+github.com/jasontconnell/conf v0.0.0-20180214221311-246c2addc6bb h1:FWcEf/zuYhEQOOZVJZNdJOsN4Cn3Fe5J/Ld/r/xRbuA=
+github.com/jasontconnell/conf v0.0.0-20180214221311-246c2addc6bb/go.mod h1:nWfVYYLqM+8T/yaz+OAYPVUuETD0AtrL9tVnuAw9uK4=
+github.com/jasontconnell/fileutil v0.0.0-20180705140955-7760a5c0054b h1:W+nlDVxY8p8WFxSC40xF9DsEX7SJL1jyUjpcaz01f3E=
+github.com/jasontconnell/fileutil v0.0.0-20180705140955-7760a5c0054b/go.mod h1:qDNbaz3r1bsPKwP1+8VtaJx5UqtU+8RvylSbDMnlkMc=

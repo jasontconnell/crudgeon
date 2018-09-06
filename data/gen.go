@@ -1,6 +1,11 @@
 package data
 
+import (
+	"fmt"
+)
+
 type GenPackage struct {
+	Generate          bool
 	Name              string
 	Path              string
 	OutputFile        string
@@ -38,4 +43,19 @@ type GenFlags struct {
 	Concretes   bool
 	Constructor bool
 	Keys        bool
+	SqlIgnore   bool
+	CsIgnore    bool
+}
+
+func (gf GenFlags) String() string {
+	return fmt.Sprintf(`
+		Id:          %v
+		Fields:      %v
+		Collections: %v
+		Concretes:   %v
+		Constructor: %v
+		Keys:        %v
+		SqlIgnore:   %v
+		CsIgnore:    %v
+	`, gf.Id, gf.Fields, gf.Collections, gf.Concretes, gf.Constructor, gf.Keys, gf.SqlIgnore, gf.CsIgnore)
 }

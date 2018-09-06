@@ -19,6 +19,9 @@ var fns = template.FuncMap{
 }
 
 func Generate(pkg data.GenPackage, objdir bool) error {
+	if !pkg.Generate {
+		return nil
+	}
 	tmpl, err := template.New(pkg.TemplateFile).Funcs(fns).ParseFiles(pkg.TemplateFile)
 	if err != nil {
 		return err
@@ -46,13 +49,27 @@ func Generate(pkg data.GenPackage, objdir bool) error {
 	return ioutil.WriteFile(output, buffer.Bytes(), os.ModePerm)
 }
 
-func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns, prefix, folder string, flagstr string, usefieldname bool) (data.GenPackage, error) {
-	flags, err := parseFlags(flagstr)
+func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns, prefix, folder string, flagstr string, fileflags data.GenFlags, usefieldname bool) (data.GenPackage, error) {
+	flags, err := parseGenFlags(flagstr)
+
+	flags.Id = flags.Id || fileflags.Id
+	flags.Fields = flags.Fields || fileflags.Fields
+	flags.Collections = flags.Collections || fileflags.Collections
+	flags.Concretes = flags.Concretes || fileflags.Concretes
+	flags.Constructor = flags.Constructor || fileflags.Constructor
+	flags.Keys = flags.Keys || fileflags.Keys
+	flags.SqlIgnore = flags.SqlIgnore || fileflags.SqlIgnore
+	flags.CsIgnore = flags.CsIgnore || fileflags.CsIgnore
+
+	if (fileType == "sql") && flags.SqlIgnore || (fileType == "cs" && flags.CsIgnore) {
+		return data.GenPackage{Generate: false}, nil
+	}
+
 	if err != nil {
 		return data.GenPackage{}, err
 	}
 
-	pkg := data.GenPackage{Name: name, Namespace: ns, Path: filepath.Join(path, folder), TemplateFile: tmplFile, Prefix: prefix, OutputFile: prefix + name + "." + fileType, Flags: flags}
+	pkg := data.GenPackage{Generate: true, Name: name, Namespace: ns, Path: filepath.Join(path, folder), TemplateFile: tmplFile, Prefix: prefix, OutputFile: prefix + name + "." + fileType, Flags: flags}
 	if flags.Fields || flags.Constructor || flags.Keys || flags.Concretes {
 		for _, f := range flds {
 			if f.Collection && !flags.Collections {
@@ -188,7 +205,7 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 	return pkg, nil
 }
 
-func parseFlags(flagstr string) (data.GenFlags, error) {
+func parseGenFlags(flagstr string) (data.GenFlags, error) {
 	flags := data.GenFlags{}
 	ss := strings.Split(flagstr, ",")
 	for _, s := range ss {
@@ -212,6 +229,10 @@ func parseFlags(flagstr string) (data.GenFlags, error) {
 			flags.Concretes = flg
 		case "keys":
 			flags.Keys = flg
+		case "sqlignore":
+			flags.SqlIgnore = flg
+		case "csignore":
+			flags.CsIgnore = flg
 		default:
 			return flags, fmt.Errorf("Invalid flags: %s", p)
 		}

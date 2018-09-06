@@ -1,0 +1,14 @@
+public int playerId {get;set;} //+key
+
+public string firstName {get;set;}
+public string lastName {get;set;}
+public string country {get;set;}
+public string rank|RankString {get;set;} //+sqlignore
+public string rankChange|RankChangeString {get;set;} //+sqlignore
+public decimal avgPts|AveragePoints {get;set;}
+public decimal ttlPts|TotalPoints {get;set;}
+public int ttlTournaments|TotalTournaments {get;set;}
+
+// should be in partial class
+public int Rank {get;set;} //+csignore
+public int RankChange {get;set;} //+csignore

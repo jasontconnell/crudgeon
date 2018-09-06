@@ -25,7 +25,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	flds, err := process.ParseFields(*file)
+	pfile, err := process.ParseFile(*file)
 
 	if *obj == "" {
 		flag.PrintDefaults()
@@ -40,7 +40,7 @@ func main() {
 	cfg := configuration.LoadConfig("config.json")
 
 	for _, g := range cfg.Generations {
-		gp, err := process.GetGenPackage(*obj, *path, flds, g.FileType, g.File, *ns, g.OutputPrefix, g.Folder, g.Flags, *fld)
+		gp, err := process.GetGenPackage(*obj, *path, pfile.Fields, g.FileType, g.File, *ns, g.OutputPrefix, g.Folder, g.Flags, pfile.GenFlags, *fld)
 
 		if err != nil {
 			log.Fatal(err)

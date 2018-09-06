@@ -1,6 +1,8 @@
 package process
 
 import (
+	"bufio"
+	"bytes"
 	"fmt"
 	"io/ioutil"
 	"lpgagen/data"
@@ -8,11 +10,16 @@ import (
 	"strings"
 )
 
-var fldreg *regexp.Regexp = regexp.MustCompile(`\W*(?:private|public) (.*?) (.*?) +{.*?}( *//[a-z\+\-,]+)?`)
+var fldreg *regexp.Regexp = regexp.MustCompile(`^\W*(?:private|public) (.*?) (.*?) +{.*?}( *//[a-z\+\-,]+)?$`)
 var genericreg *regexp.Regexp = regexp.MustCompile(`([a-zA-Z\.]*?)<(.*?)>`)
-var flagsreg *regexp.Regexp = regexp.MustCompile(`//([\+\-a-z,]*?)$`)
+var globalflagsreg *regexp.Regexp = regexp.MustCompile(`^//([\+\-a-z,]*?)$`)
 
-type parsed struct {
+type ParsedFile struct {
+	Fields   []data.Field
+	GenFlags data.GenFlags
+}
+
+type parsedField struct {
 	t           string
 	name        string
 	csnullable  bool
@@ -22,19 +29,24 @@ type parsed struct {
 	flags       string
 }
 
-func ParseFields(file string) ([]data.Field, error) {
+func ParseFile(file string) (ParsedFile, error) {
 	contents, err := ioutil.ReadFile(file)
 
+	parsed := ParsedFile{}
+
 	if err != nil {
-		return nil, err
+		return parsed, err
 	}
 
-	parsed := getParsed(string(contents))
+	flags, fields, err := getParsed(string(contents))
+	if err != nil {
+		return parsed, err
+	}
 
 	flds := []data.Field{}
-	for _, p := range parsed {
+	for _, p := range fields {
 		if p.t == "" {
-			return nil, fmt.Errorf("Type not found for %v %v", p.t, p.name)
+			return parsed, fmt.Errorf("Type not found for %v %v", p.t, p.name)
 		}
 
 		csnull := p.csnullable
@@ -61,57 +73,70 @@ func ParseFields(file string) ([]data.Field, error) {
 		if p.flags != "" {
 			flags, err = parseFieldFlags(p.flags)
 			if err != nil {
-				return nil, err
+				return parsed, err
 			}
 		}
 
 		flds = append(flds, data.Field{Type: p.t, ConcreteType: concreteType, Name: name, FieldName: field, Nullable: csnull, Collection: p.collection, JsonIgnore: jsonIgnore, IsInterface: p.isInterface, Flags: flags})
 	}
 
-	return flds, nil
+	pfile := ParsedFile{Fields: flds, GenFlags: flags}
+
+	return pfile, nil
 }
 
-func getParsed(c string) []parsed {
-	plist := []parsed{}
+func getParsed(c string) (data.GenFlags, []parsedField, error) {
+	plist := []parsedField{}
+	genflags := data.GenFlags{}
 
-	matches := fldreg.FindAllStringSubmatch(c, -1)
-	for _, m := range matches {
-		t := m[1]
+	s := bufio.NewScanner(bytes.NewBufferString(c))
 
-		tmatches := genericreg.FindAllStringSubmatch(t, -1)
-		var nullable, collection bool
-		if len(tmatches) > 0 {
-			nullable = true
-			collection = isCollection(tmatches[0][1])
-			t = tmatches[0][2]
-		} else {
-			nullable = !isBaseType(t)
+	for s.Scan() {
+		line := s.Text()
+		globflags := globalflagsreg.FindAllStringSubmatch(line, -1)
+		for _, m := range globflags {
+			var err error
+			genflags, err = parseGenFlags(m[1])
+			if err != nil {
+				return genflags, nil, err
+			}
 		}
 
-		flagstr := ""
-		imatches := flagsreg.FindAllStringSubmatch(m[0], -1)
-		if len(imatches) > 0 {
-			flagstr = imatches[0][1]
+		matches := fldreg.FindAllStringSubmatch(line, -1)
+		for _, m := range matches {
+			t := m[1]
+
+			tmatches := genericreg.FindAllStringSubmatch(t, -1)
+			var nullable, collection bool
+			if len(tmatches) > 0 {
+				nullable = true
+				collection = isCollection(tmatches[0][1])
+				t = tmatches[0][2]
+			} else {
+				nullable = !isBaseType(t)
+			}
+
+			flagstr := strings.TrimPrefix(m[3], " //")
+
+			isInterface := nullable && strings.HasPrefix(t, "I")
+			nullable = nullable || collection || isInterface
+			sqlnullable := nullable || t == "string"
+
+			p := parsedField{
+				t:           t,
+				name:        strings.TrimSuffix(m[2], "Field"),
+				csnullable:  nullable,
+				sqlnullable: sqlnullable,
+				collection:  collection,
+				isInterface: isInterface,
+				flags:       flagstr,
+			}
+
+			plist = append(plist, p)
 		}
-
-		isInterface := nullable && strings.HasPrefix(t, "I")
-		nullable = nullable || collection || isInterface
-		sqlnullable := nullable || t == "string"
-
-		p := parsed{
-			t:           t,
-			name:        strings.TrimSuffix(m[2], "Field"),
-			csnullable:  nullable,
-			sqlnullable: sqlnullable,
-			collection:  collection,
-			isInterface: isInterface,
-			flags:       flagstr,
-		}
-
-		plist = append(plist, p)
 	}
 
-	return plist
+	return genflags, plist, nil
 }
 
 func isCollection(t string) bool {

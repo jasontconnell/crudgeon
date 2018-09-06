@@ -8,3 +8,9 @@ public string PlayerFirstName|FirstName { get; set; } //+sqlignore
 public string PlayerMiddleName|MiddleName { get; set; } //+sqlignore
 public string PlayerLastName|LastName { get; set; } //+sqlignore
 public List<IStatsAPI_SolheimMemberStatistic> Statistics { get; set; }
+
+
+// from statistics
+
+public decimal Points {get;set;} //+csignore
+public int Rank {get;set;} //+csignore

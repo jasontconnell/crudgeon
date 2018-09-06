@@ -66,3 +66,8 @@ go build
 .\lpgagen -file datafiles\api_solheim.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj StatsAPI_Solheim -ns LPGAStatsService.Data
 .\lpgagen -file datafiles\api_solheimmember.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj StatsAPI_SolheimMember -ns LPGAStatsService.Data
 .\lpgagen -file datafiles\api_solheimmemberstat.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj StatsAPI_SolheimMemberStatistic -ns LPGAStatsService.Data
+
+
+.\lpgagen -file datafiles\r_rankwrapper.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj RankingAPI_Wrapper -ns LPGAStatsService.Data
+.\lpgagen -file datafiles\r_rankingweek.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj RankingAPI_Week -ns LPGAStatsService.Data
+.\lpgagen -file datafiles\r_rankingplayer.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGAStatsService.Data" -obj RankingAPI_Player -ns LPGAStatsService.Data

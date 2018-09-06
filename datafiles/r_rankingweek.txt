@@ -1,0 +1,6 @@
+public int weekId {get;set;}
+public DateTime startDate {get;set;}
+pubilc DateTime endDate {get;set;}
+public DateTime publishDate {get;set;}
+public DateTime lastUpdateDate {get;set;}
+
