@@ -3,7 +3,7 @@
 public int TourId {get;set;} //+key,+jsonignore
 public int TournamentId {get;set;} //+csignore,+key
 
-public string tournamentId|TournamentIdString {get;set;}  //+sqlignore,+key
+public string tournamentId|TournamentIdString {get;set;} //+sqlignore,+key
 public int year {get;set;} //+key
 public int tournamentNumber {get;set;}
 

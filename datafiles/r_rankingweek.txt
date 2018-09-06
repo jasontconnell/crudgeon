@@ -1,6 +1,7 @@
+//+sqlignore
 public int weekId {get;set;}
-public DateTime startDate {get;set;}
-pubilc DateTime endDate {get;set;}
-public DateTime publishDate {get;set;}
-public DateTime lastUpdateDate {get;set;}
+public string startDate|StartDateString {get;set;}
+pubilc string endDate|EndDateString {get;set;}
+public string publishDate {get;set;}
+public string lastUpdateDate {get;set;}
 

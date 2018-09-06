@@ -4,7 +4,7 @@ public Nullable<int> AccountID { get;set; } //+key
 public string PlayFirstName { get;set; }
 public string PlayLastName { get;set; }
 public string PlayMiddleName { get;set; }
-public short TourChampionshipSeason { get;set; }
+public short TourChampionshipSeason { get;set; } //+key
 public Nullable<short> TourChampionshipEvents { get;set; }
 public Nullable<short> TourChampionshipWins { get;set; }
 public Nullable<short> TourChampionshipTop10Finishes { get;set; }

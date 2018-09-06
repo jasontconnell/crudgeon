@@ -86,12 +86,14 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 				cname = field
 			}
 
+			sqlignore := f.Flags.SqlIgnore
 			sqltype := getSqlType(f.Type)
-			if fileType == "sql" && (sqltype == "" || f.Flags.SqlIgnore) {
+			if fileType == "sql" && (sqltype == "" || sqlignore) {
 				continue
 			}
 
-			if fileType == "cs" && f.Flags.CsIgnore {
+			csignore := f.Flags.CsIgnore
+			if fileType == "cs" && csignore {
 				continue
 			}
 
@@ -109,7 +111,6 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 			}
 
 			nullable := f.Nullable
-			sqlignore := sqltype == "" || f.Collection || f.Flags.SqlIgnore
 
 			isBase := false
 			if fileType == "cs" {
@@ -119,7 +120,8 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 				}
 			}
 
-			jsonIgnore := f.JsonIgnore || f.Flags.JsonIgnore
+			sqlignore = f.Collection || sqlignore || !isBase
+			jsonIgnore := f.JsonIgnore || f.Flags.JsonIgnore || flags.JsonIgnore
 
 			concreteProperty := ""
 			if isInterface {
@@ -233,6 +235,8 @@ func parseGenFlags(flagstr string) (data.GenFlags, error) {
 			flags.SqlIgnore = flg
 		case "csignore":
 			flags.CsIgnore = flg
+		case "jsonignore":
+			flags.JsonIgnore = flg
 		default:
 			return flags, fmt.Errorf("Invalid flags: %s", p)
 		}

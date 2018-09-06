@@ -45,6 +45,7 @@ type GenFlags struct {
 	Keys        bool
 	SqlIgnore   bool
 	CsIgnore    bool
+	JsonIgnore bool
 }
 
 func (gf GenFlags) String() string {
@@ -57,5 +58,6 @@ func (gf GenFlags) String() string {
 		Keys:        %v
 		SqlIgnore:   %v
 		CsIgnore:    %v
-	`, gf.Id, gf.Fields, gf.Collections, gf.Concretes, gf.Constructor, gf.Keys, gf.SqlIgnore, gf.CsIgnore)
+		JsonIgnore:  %v
+	`, gf.Id, gf.Fields, gf.Collections, gf.Concretes, gf.Constructor, gf.Keys, gf.SqlIgnore, gf.CsIgnore, gf.JsonIgnore)
 }

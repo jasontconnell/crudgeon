@@ -1,3 +1,4 @@
+//+sqlignore
 /api/TourRaceForTheCMEGlobe/
 
 public List<IStatsAPI_CMEGlobeRaceMember> members {get;set;}
