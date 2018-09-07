@@ -14,3 +14,6 @@ public List<IStatsAPI_SolheimMemberStatistic> Statistics { get; set; }
 
 public decimal Points {get;set;} //+csignore
 public int Rank {get;set;} //+csignore
+public bool RankTied {get;set;} //+csignore
+public int TotalRounds {get;set;} //+csignore
+public int TargetYear {get;set;} //+csignore

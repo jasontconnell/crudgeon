@@ -7,8 +7,8 @@ public int tournamentId {get;set;} //+key
 
 public Nullable<int> year {get;set;}
 public string tournamentName {get;set;} //+sqlignore
-public DateTime startDate {get;set;}
-public DateTime endDate {get;set;}
+public Nullable<DateTime> startDate {get;set;}
+public Nullable<DateTime> endDate {get;set;}
 
 public int playerFinalScore {get;set;}
 public int playerFinalToPar {get;set;}
