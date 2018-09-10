@@ -3,10 +3,10 @@
 public int TourId {get;set;} //+key,+jsonignore
 public int accountId {get;set;} //+key
 public int tournamentId {get;set;} //+key
+public int roundNumber {get;set;} //+key
 
 public Nullable<DateTime> roundStartDate {get;set;}
 public Nullable<DateTime> roundEndDate {get;set;}
-public int roundNumber {get;set;}
 public bool isRoundOfficial {get;set;}
 public int scoreIn {get;set;}
 public int scoreOut {get;set;}
