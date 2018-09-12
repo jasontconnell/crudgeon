@@ -4,6 +4,8 @@ public int TourId {get;set;} //+key,+jsonignore
 public int accountId {get;set;} //+key
 
 public int tournamentId {get;set;} //+key
+public int year {get;set;} //+key
+
 public string tournamentName {get;set;}
 public string tournamentSeriesCode {get;set;}
 public DateTime tournamentStartDate {get;set;}
@@ -12,7 +14,6 @@ public string tournamentCity {get;set;}
 public string tournamentState {get;set;}
 public string tournamentCountry {get;set;}
 public string playerFinishResultCode {get;set;}
-public int year {get;set;}
 public string courseName {get;set;}
 public int par {get;set;}
 public int playersFinalScore {get;set;}

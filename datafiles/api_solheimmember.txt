@@ -1,7 +1,5 @@
 /api/Solheim/
 
-public int TourId {get;set;} //+key,+jsonignore
-
 public int accountId { get; set; } //+key
 public string playerFullName { get; set; } //+sqlignore
 public string playerFirstName|FirstName { get; set; } //+sqlignore
@@ -16,4 +14,4 @@ public decimal Points {get;set;} //+csignore
 public int Rank {get;set;} //+csignore
 public bool RankTied {get;set;} //+csignore
 public int TotalRounds {get;set;} //+csignore
-public int TargetYear {get;set;} //+csignore
+public int TargetYear {get;set;} //+key,+csignore
