@@ -8,4 +8,3 @@ public string Status|RoundStatusString {get;set;} //+sqlignore
 
 public DateTime StartDate {get;set;} //+xmlignore,+csignore
 public DateTime EndDate {get;set;} //+xmlignore,+csignore
-public RoundStatus Status {get;set;} //+xmlignore,+csignore

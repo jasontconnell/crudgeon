@@ -1,6 +1,6 @@
 //+jsonignore,+xmlroot Tournament
 public int ID|TournamentId {get;set;} //+key
-public string Name {get;set;}
+public string Name {get;set;} //+key
 public string StartDate|StartDateString {get;set;} //+sqlignore
 public string EndDate|EndDateString {get;set;} //+sqlignore
 public string Status|StatusString {get;set;} //+sqlignore
@@ -16,4 +16,3 @@ public List<IULCrown_TournamentRound> Rounds|RoundList {get;set;} //+xmlwrapper 
 
 public DateTime StartDate {get;set;} //+xmlignore,+csignore
 public DateTime EndDate {get;set;} //+xmlignore,+csignore
-public TournamentStatus Status {get;set;} //+xmlignore,+csignore

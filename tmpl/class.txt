@@ -32,7 +32,7 @@ namespace {{ .Namespace }} {
         {{- range $index,$field := .Fields }}
         {{ if $field.Key }}[HashKey({{$index}})]
         {{ end }}
-        {{- if and ($field.IsBaseType) (not $field.JsonIgnore) (not $field.SqlIgnore) (ne $field.Name "ID") }}[Hash({{$index}})]
+        {{- if and ($field.IsBaseType) (not $field.SqlIgnore) (ne $field.Name "ID") (not $field.Key)}}[Hash({{$index}})]
         {{ end}}
         {{- if not $field.JsonIgnore }}[DataMember(Name="{{$field.FieldName}}")]
         {{ end }}
