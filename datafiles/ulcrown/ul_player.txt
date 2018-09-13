@@ -1,0 +1,7 @@
+//+jsonignore
+
+public int ID|PlayerId {get;set;} //+key
+public string FirstName {get;set;}
+public string LastName {get;set;}
+
+public IULCrown_PlayerScorecard Scorecard {get;set;}

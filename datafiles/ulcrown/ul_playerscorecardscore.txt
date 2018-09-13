@@ -1,0 +1,7 @@
+public int ID|ScoreId {get;set;}
+public int HoleID|HoleNum {get;set;}
+public string Score|ScoreString {get;set;} //+sqlignore
+public int PlusMinus {get;set;}
+public string Status {get;set;}
+
+public int Score {get;set;} //+xmlignore

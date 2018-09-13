@@ -11,7 +11,7 @@ public int Players {get;set;}
 public string TimeZone {get;set;}
 public string StatusReason {get;set;}
 
-public List<IULCrown_TournamentRound> Rounds|RoundList {get;set;}
+public List<IULCrown_TournamentRound> Rounds|RoundList {get;set;} //+xmlwrapper Round
 
 
 public DateTime StartDate {get;set;} //+xmlignore,+csignore

@@ -1,0 +1,3 @@
+//+jsonignore,+sqlignore,+xmlroot GolfDataFeed
+
+public IULCrown_TeamSummaryTournament Tournament {get;set;}

@@ -19,6 +19,7 @@ type GenPackage struct {
 }
 
 type GenField struct {
+	Access string
 	FieldName           string
 	Name                string
 	Type                string

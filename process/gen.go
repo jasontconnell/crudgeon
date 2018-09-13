@@ -144,11 +144,9 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 			}
 
 			xmlwrapper := f.Flags.XmlWrapper && fileType == "cs"
-			if isInterface && xmlwrapper {
-				concreteProperty = concreteProperty + "." + f.Name
-			}
 
 			gf := data.GenField{
+				Access: "public",
 				FieldName:           field,
 				Name:                cname,
 				Type:                typeName,
@@ -205,6 +203,7 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 				}
 
 				ngfld := data.GenField{
+					Access: "public",
 					FieldName:           field,
 					Name:                f.Name + "_Concrete",
 					Type:                typeName,
@@ -231,6 +230,7 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 
 	if flags.Id {
 		pkfld := data.GenField{
+			Access: "public",
 			FieldName:  "",
 			Name:       "ID",
 			Type:       "int",

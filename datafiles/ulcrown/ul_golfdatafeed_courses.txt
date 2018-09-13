@@ -1,0 +1,4 @@
+//+sqlignore,+jsonignore,+xmlroot GolfDataFeed
+
+public string Type|FeedType {get;set;}
+public IULCrown_CourseTournament Tournament {get;set;}

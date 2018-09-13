@@ -1,0 +1,10 @@
+//+jsonignore
+
+public int ID|MatchNum {get;set;} //+key
+public string Leader|LeaderString {get;set;}
+public int Thru {get;set;}
+public string StatusString {get;set;}
+
+public List<IULCrown_TeamMatchScorecardTeam> Teams {get;set;} //+xmlwrapper Team
+
+public int Leader {get;set;} //+xmlignore

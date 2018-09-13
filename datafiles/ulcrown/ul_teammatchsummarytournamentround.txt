@@ -1,0 +1,7 @@
+//+jsonignore
+public int TournamentId {get;set;} //+key,+xmlignore
+
+public int ID|RoundNum {get;set;} //+key
+public string Format {get;set;}
+
+public List<IULCrown_TeamMatchSummaryMatch> Matches {get;set;} //+xmlwrapper Match

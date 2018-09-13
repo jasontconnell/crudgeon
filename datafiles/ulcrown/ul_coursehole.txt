@@ -1,0 +1,3 @@
+public int ID|HoleNum {get;set;}
+public int Par {get;set;}
+public int Yardage {get;set;}

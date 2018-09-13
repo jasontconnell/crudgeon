@@ -1,0 +1,5 @@
+public int ID|TeamScorecardId {get;set;} //+key
+public int RoundID|RoundNum {get;set;} //+key
+public int Thru {get;set;}
+
+public List<IULCrown_TeamMatchScorecardTeamScorecardScore> Scores {get;set;} //+xmlwrapper Score
