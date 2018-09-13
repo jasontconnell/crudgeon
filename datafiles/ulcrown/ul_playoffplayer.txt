@@ -1,6 +1,7 @@
 //+jsonignore
 
 public int TournamentId {get;set;} //+key,+xmlignore
+public int PlayoffNum {get;set;} //+key,+xmlignore
 public int TeamNum {get;set;} //+key,+xmlignore
 
 public int ID|PlayerId {get;set;} //+key
