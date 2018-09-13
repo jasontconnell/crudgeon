@@ -1,3 +1,4 @@
+//+xmlignore
 /api/PlayerQuickviewBoxScores/?accountId=98334&year=2018
 
 public int TourId {get;set;} //+key,+jsonignore

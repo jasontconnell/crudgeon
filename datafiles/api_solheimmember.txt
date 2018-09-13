@@ -1,3 +1,4 @@
+//+xmlignore
 /api/Solheim/
 
 public int accountId { get; set; } //+key

@@ -1,0 +1,11 @@
+//+jsonignore,+xmlroot Round
+public int TournamentId {get;set;} //+key,+xmlignore
+
+public int ID|RoundNum {get;set;} //+key
+public string StartDate|StartDateString {get;set;} //+sqlignore
+public string EndDate|EndDateString {get;set;} //+sqlignore
+public string Status|RoundStatusString {get;set;} //+sqlignore
+
+public DateTime StartDate {get;set;} //+xmlignore,+csignore
+public DateTime EndDate {get;set;} //+xmlignore,+csignore
+public RoundStatus Status {get;set;} //+xmlignore,+csignore

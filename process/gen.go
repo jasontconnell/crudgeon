@@ -60,6 +60,13 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 	flags.Keys = flags.Keys || fileflags.Keys
 	flags.SqlIgnore = flags.SqlIgnore || fileflags.SqlIgnore
 	flags.CsIgnore = flags.CsIgnore || fileflags.CsIgnore
+	flags.XmlIgnore = flags.XmlIgnore || fileflags.XmlIgnore
+	flags.JsonIgnore = flags.JsonIgnore || fileflags.JsonIgnore
+	flags.XmlRoot = flags.XmlRoot || fileflags.XmlRoot
+
+	if fileflags.XmlRootName != "" {
+		flags.XmlRootName = fileflags.XmlRootName
+	}
 
 	if (fileType == "sql") && flags.SqlIgnore || (fileType == "cs" && flags.CsIgnore) {
 		return data.GenPackage{Generate: false}, nil
@@ -97,6 +104,8 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 				continue
 			}
 
+			xmlignore := f.Flags.XmlIgnore || flags.XmlIgnore
+
 			isInterface := f.Type != f.ConcreteType
 			typeName, concreteTypeName, elementType := f.Type, f.Type, f.Type
 			if f.Collection {
@@ -124,29 +133,36 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 			jsonIgnore := f.JsonIgnore || f.Flags.JsonIgnore || flags.JsonIgnore
 
 			concreteProperty := ""
+			concreteElementType := ""
 			if isInterface {
 				concreteProperty = cname + "_Concrete"
 				concreteTypeName = f.ConcreteType
+				concreteElementType = f.ConcreteType
 				if f.Collection {
 					concreteTypeName = fmt.Sprintf("List<%s>", concreteTypeName)
 				}
 			}
 
+			xmlwrapper := f.Flags.XmlWrapper
+
 			gf := data.GenField{
-				FieldName:        field,
-				Name:             cname,
-				Type:             typeName,
-				ConcreteType:     concreteTypeName,
-				ConcreteProperty: concreteProperty,
-				ElementType:      elementType,
-				Nullable:         nullable,
-				CsIgnore:         f.Flags.CsIgnore,
-				SqlIgnore:        sqlignore,
-				JsonIgnore:       jsonIgnore,
-				IsInterface:      isInterface,
-				Collection:       f.Collection,
-				Key:              f.Flags.Key,
-				IsBaseType:       isBase,
+				FieldName:           field,
+				Name:                cname,
+				Type:                typeName,
+				ConcreteType:        concreteTypeName,
+				ConcreteProperty:    concreteProperty,
+				ConcreteElementType: concreteElementType,
+				ElementType:         elementType,
+				XmlWrapper:          xmlwrapper,
+				Nullable:            nullable,
+				CsIgnore:            f.Flags.CsIgnore,
+				SqlIgnore:           sqlignore,
+				JsonIgnore:          jsonIgnore,
+				XmlIgnore:           xmlignore,
+				IsInterface:         isInterface,
+				Collection:          f.Collection,
+				Key:                 f.Flags.Key,
+				IsBaseType:          isBase,
 			}
 			pkg.Fields = append(pkg.Fields, gf)
 		}
@@ -172,18 +188,31 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 		confields := []data.GenField{}
 		for _, f := range pkg.Fields {
 			if f.IsInterface {
+
+				field := f.FieldName
+				typeName := f.ConcreteType
+
+				// xmlwrappertype, xmlwrappername := f.ConcreteType, ""
+				// if !f.Flags.XmlIgnore && f.Flags.XmlWrapper && f.Collection {
+				// 	xmlwrappertype = typeName
+				// 	xmlwrappername = field
+				// 	typeName = field + "Wrapper"
+				// }
+
 				ngfld := data.GenField{
-					FieldName:        f.FieldName,
-					Name:             f.Name + "_Concrete",
-					Type:             f.ConcreteType,
-					ConcreteType:     f.ConcreteType,
-					ConcreteProperty: "",
-					Nullable:         f.Nullable,
-					CsIgnore:         f.CsIgnore,
-					SqlIgnore:        f.SqlIgnore,
-					JsonIgnore:       false,
-					IsInterface:      false,
-					Collection:       f.Collection,
+					FieldName:           field,
+					Name:                f.Name + "_Concrete",
+					Type:                typeName,
+					ConcreteType:        typeName,
+					ConcreteElementType: f.ConcreteElementType,
+					ConcreteProperty:    "",
+					Nullable:            f.Nullable,
+					CsIgnore:            f.CsIgnore,
+					SqlIgnore:           f.SqlIgnore,
+					XmlIgnore:           f.XmlIgnore,
+					JsonIgnore:          f.JsonIgnore,
+					IsInterface:         false,
+					Collection:          f.Collection,
 				}
 				confields = append(confields, ngfld)
 			}
@@ -205,41 +234,4 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 	}
 
 	return pkg, nil
-}
-
-func parseGenFlags(flagstr string) (data.GenFlags, error) {
-	flags := data.GenFlags{}
-	ss := strings.Split(flagstr, ",")
-	for _, s := range ss {
-		flg := s[0] == '+'
-		if !flg && s[0] != '-' {
-			return flags, fmt.Errorf("Need + or - as first character for flag, %s ... %s", flagstr, s)
-		}
-
-		p := string(s[1:])
-
-		switch p {
-		case "id":
-			flags.Id = flg
-		case "fields":
-			flags.Fields = flg
-		case "collections":
-			flags.Collections = flg
-		case "constructor":
-			flags.Constructor = flg
-		case "concretes":
-			flags.Concretes = flg
-		case "keys":
-			flags.Keys = flg
-		case "sqlignore":
-			flags.SqlIgnore = flg
-		case "csignore":
-			flags.CsIgnore = flg
-		case "jsonignore":
-			flags.JsonIgnore = flg
-		default:
-			return flags, fmt.Errorf("Invalid flags: %s", p)
-		}
-	}
-	return flags, nil
 }

@@ -17,7 +17,10 @@ type FieldFlags struct {
 	SqlIgnore  bool
 	JsonIgnore bool
 	CsIgnore   bool
+	XmlIgnore  bool
 	Key        bool
 	Index      bool
 	NoMap      bool
+
+	XmlWrapper bool
 }

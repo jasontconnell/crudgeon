@@ -1,3 +1,4 @@
+//+xmlignore
 /api/PlayerPerformanceStatsYTD/?AccountId=98334&Date=08-01-2018
 
 public int TourId {get;set;} //+key,+jsonignore

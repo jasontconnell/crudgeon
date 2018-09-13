@@ -1,6 +1,7 @@
 using System;
 using SqlMap.Attributes;
-using System.Runtime.Serialization;
+{{ if not .Flags.JsonIgnore }}using System.Runtime.Serialization;{{ end }}
+{{ if not .Flags.XmlIgnore }}using System.Xml.Serialization;{{ end }}
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,11 @@ using Hasher.Attributes;
 
 // this code is generated, do not modify. use partial classes / interfaces to add stuff
 namespace {{ .Namespace }} {
-    [DataContract]
-    [StoredProc(Name="Get{{.Name}}", ProcType=ProcType.Read)]
+    {{ if not .Flags.JsonIgnore }}[DataContract]{{end}}
+    {{ if not .Flags.SqlIgnore }}[StoredProc(Name="Get{{.Name}}", ProcType=ProcType.Read)]
     [StoredProc(Name="Save{{.Name}}", ProcType=ProcType.Update)]
-    [StoredProc(Name="Delete{{.Name}}", ProcType=ProcType.Delete)]
+    [StoredProc(Name="Delete{{.Name}}", ProcType=ProcType.Delete)]{{ end }}
+    {{ if .Flags.XmlRoot }}[XmlRoot("{{.Flags.XmlRootName}}")]{{ end }}
     public partial class {{ .Name }} : I{{ .Name }} {
 
         public {{.Name}}(){
@@ -26,7 +28,7 @@ namespace {{ .Namespace }} {
             {{- end}}
         }
         {{- end }}
-
+        {{- $genpkg := . }}
         {{- range $index,$field := .Fields }}
         {{ if $field.Key }}[HashKey({{$index}})]
         {{ end }}
@@ -34,14 +36,33 @@ namespace {{ .Namespace }} {
         {{ end}}
         {{- if not $field.JsonIgnore }}[DataMember(Name="{{$field.FieldName}}")]
         {{ end }}
-        {{- if not $field.SqlIgnore }}[Column{{- if $field.Key }}(Key=true){{ end}}]
-        {{else}}[IgnoreCol]
+
+        {{- if (not $genpkg.Flags.XmlIgnore) }}
+            {{- if and (not $field.XmlIgnore) (ne $field.Name "ID") (not $field.IsInterface) }}
+                {{- if not $field.IsBaseType }}[XmlElement("{{$field.FieldName}}"{{ if $field.Collection }}, Type = typeof({{$field.ConcreteElementType}}){{ end }})]
+                {{ else if $field.IsBaseType }}[XmlAttribute(AttributeName="{{$field.FieldName}}")]
+                {{ end }}
+            {{- else if or (eq $field.Name "ID") (and (ne $field.Name "ID") ($field.IsInterface)) }}
+                [XmlIgnore]
+            {{ end }}
         {{ end }}
+
+        {{- if not $field.SqlIgnore }}[Column{{- if $field.Key }}(Key=true){{ end}}]
+        {{- else if (ne $field.Name "ID")}}[IgnoreCol]
+        {{- end }}
         public {{$field.Type}}{{if $field.Nullable}}?{{end}} {{$field.Name}} { 
                 {{- if not $field.IsInterface }} get; set;
                 {{- else if $field.Collection}}get { return {{$field.ConcreteProperty}} == null ? null : Enumerable.Cast<{{$field.ElementType}}>({{$field.ConcreteProperty}}); } set { this.{{$field.ConcreteProperty}} = ({{$field.ConcreteType}})value; }
                 {{- else}} get { return ({{$field.Type}})this.{{$field.ConcreteProperty}}; } set { this.{{$field.ConcreteProperty}} = ({{$field.ConcreteType}})value; }{{end}}  }
-        {{- end }}
+
+        {{ if and (not $field.IsInterface) (not $field.Flags.XmlIgnore) ($field.Flags.XmlWrapper) }}
+        internal class {{$field.XmlWrapperType}} {
+            [XmlElement("{{$field.FieldName}}")]
+            public {{$field.Type}} {{$field.FieldName}} { get; set; }
+        }
+        {{ end }}
+        
+        {{ end }}
 
         override public string ToString(){
             StringBuilder sb = new StringBuilder();

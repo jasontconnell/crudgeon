@@ -1,3 +1,4 @@
+//+xmlignore
 public int TourId {get;set;} //+key,+jsonignore
 
 public short year { get;set; } //+key

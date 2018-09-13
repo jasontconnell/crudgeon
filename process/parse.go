@@ -10,9 +10,9 @@ import (
 	"strings"
 )
 
-var fldreg *regexp.Regexp = regexp.MustCompile(`^\W*(?:private|public) (.*?) (.*?) +{.*?}( *//[a-z\+\-,]+)?$`)
+var fldreg *regexp.Regexp = regexp.MustCompile(`^\W*(?:private|public) (.*?) (.*?) +{.*?}( *//[a-zA-Z\+\-, ]+)?$`)
 var genericreg *regexp.Regexp = regexp.MustCompile(`([a-zA-Z\.]*?)<(.*?)>`)
-var globalflagsreg *regexp.Regexp = regexp.MustCompile(`^//([\+\-a-z,]*?)$`)
+var globalflagsreg *regexp.Regexp = regexp.MustCompile(`^//([\+\-a-zA-Z, ]*?)$`)
 
 type ParsedFile struct {
 	Fields   []data.Field
@@ -175,35 +175,4 @@ func getSqlType(t string) string {
 	}
 
 	return st
-}
-
-func parseFieldFlags(instructions string) (data.FieldFlags, error) {
-	flags := data.FieldFlags{}
-	ss := strings.Split(instructions, ",")
-	for _, s := range ss {
-		flg := s[0] == '+'
-		if !flg && s[0] != '-' {
-			return flags, fmt.Errorf("Need + or - as first character for flags, %s: %s", instructions, s)
-		}
-
-		p := string(s[1:])
-
-		switch p {
-		case "sqlignore":
-			flags.SqlIgnore = flg
-		case "jsonignore":
-			flags.JsonIgnore = flg
-		case "csignore":
-			flags.CsIgnore = flg
-		case "key":
-			flags.Key = flg
-		case "index":
-			flags.Index = flg
-		case "nomap":
-			flags.NoMap = flg
-		default:
-			return flags, fmt.Errorf("Invalid flag: %s", p)
-		}
-	}
-	return flags, nil
 }

@@ -1,0 +1,3 @@
+//+sqlignore,+jsonignore
+public int ID|TournamentId {get;set;} //+key
+public string Name {get;set;}

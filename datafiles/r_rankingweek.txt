@@ -1,4 +1,4 @@
-//+sqlignore
+//+sqlignore,+xmlignore
 public int weekId {get;set;}
 public string startDate|StartDateString {get;set;}
 pubilc string endDate|EndDateString {get;set;}

@@ -1,0 +1,20 @@
+//+jsonignore
+public int TournamentId {get;set;} //+key,+xmlignore
+
+public int RoundNum {get;set;} //+key,+xmlignore
+
+public int ID|TeamId {get;set;} //+key
+public string Name {get;set;}
+public string ShortName {get;set;}
+public int Seed {get;set;}
+public string Pool {get;set;}
+public bool PoolRankTied {get;set;}
+public int OverallRank {get;set;}
+public bool OverallRankTied {get;set;}
+public bool WonTieBreaker {get;set;}
+public bool WonPlayoff {get;set;}
+public int RoundPoints {get;set;}
+public int TotalPoints {get;set;}
+public string Status {get;set;}
+
+public IULCrown_TeamSummaryRoundList Rounds {get;set;}

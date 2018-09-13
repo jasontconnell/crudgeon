@@ -1,3 +1,4 @@
+//+xmlignore
 public int playerId {get;set;} //+key
 
 public string firstName {get;set;}

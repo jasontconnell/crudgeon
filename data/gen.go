@@ -19,21 +19,26 @@ type GenPackage struct {
 }
 
 type GenField struct {
-	FieldName        string
-	Name             string
-	Type             string
-	ElementType      string
-	ConcreteType     string
-	ConcreteProperty string
-	Nullable         bool
-	CsIgnore         bool
-	SqlIgnore        bool
-	JsonIgnore       bool
-	IsInterface      bool
-	Collection       bool
-	Key              bool
-	IsBaseType       bool
-	Flags            FieldFlags
+	FieldName           string
+	Name                string
+	Type                string
+	ElementType         string
+	ConcreteType        string
+	ConcreteElementType string
+	ConcreteProperty    string
+	Nullable            bool
+	CsIgnore            bool
+	SqlIgnore           bool
+	JsonIgnore          bool
+	XmlIgnore           bool
+	IsInterface         bool
+	Collection          bool
+	Key                 bool
+	IsBaseType          bool
+	Flags               FieldFlags
+	XmlWrapper          bool
+	XmlWrapperType      string
+	XmlWrapperName      string
 }
 
 type GenFlags struct {
@@ -45,7 +50,10 @@ type GenFlags struct {
 	Keys        bool
 	SqlIgnore   bool
 	CsIgnore    bool
-	JsonIgnore bool
+	JsonIgnore  bool
+	XmlIgnore   bool
+	XmlRoot     bool
+	XmlRootName string
 }
 
 func (gf GenFlags) String() string {
@@ -59,5 +67,7 @@ func (gf GenFlags) String() string {
 		SqlIgnore:   %v
 		CsIgnore:    %v
 		JsonIgnore:  %v
-	`, gf.Id, gf.Fields, gf.Collections, gf.Concretes, gf.Constructor, gf.Keys, gf.SqlIgnore, gf.CsIgnore, gf.JsonIgnore)
+		XmlIgnore:   %v
+		XmlRoot:     %v (%v)
+	`, gf.Id, gf.Fields, gf.Collections, gf.Concretes, gf.Constructor, gf.Keys, gf.SqlIgnore, gf.CsIgnore, gf.JsonIgnore, gf.XmlIgnore, gf.XmlRoot, gf.XmlRootName)
 }
