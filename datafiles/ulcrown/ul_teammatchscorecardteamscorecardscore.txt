@@ -8,7 +8,9 @@ public int TeamScorecardNum {get;set;} //+key,+xmlignore
 
 public int ID|ScoreNum {get;set;} //+key
 public int HoleID|HoleNum {get;set;} //+key
-public int Score {get;set;}
+public string Score|ScoreString {get;set;} //+sqlignore
 public int PlusMinus {get;set;}
 public string MatchStatus {get;set;}
 public string Status {get;set;}
+
+public int Score {get;set;} //+csignore
