@@ -34,6 +34,10 @@ func parseFieldFlags(instructions string) (data.FieldFlags, error) {
 			flags.XmlIgnore = flg
 		case "xmlwrapper":
 			flags.XmlWrapper = flg
+			if len(flds) == 1 {
+				return flags, fmt.Errorf("Xml root flag must provide xml root name (+xmlroot XmlRootName)")
+			}
+			flags.XmlWrapperElement = flds[1]
 		default:
 			return flags, fmt.Errorf("Invalid flag: %s", flds)
 		}

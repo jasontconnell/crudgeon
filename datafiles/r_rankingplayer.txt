@@ -10,6 +10,6 @@ public decimal avgPts|AveragePoints {get;set;}
 public decimal ttlPts|TotalPoints {get;set;}
 public int ttlTournaments|TotalTournaments {get;set;}
 
-// should be in partial class
+//# should be in partial class
 public int Rank {get;set;} //+csignore
 public int RankChange {get;set;} //+csignore

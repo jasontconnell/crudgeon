@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace  {{ .Namespace }} {
     public partial interface I{{ .Name }} {
         {{ range $index,$field := .Fields }}
-        {{$field.Type}}{{if $field.Nullable}}?{{end}} {{$field.Name}} { get; set; }
+        {{$field.Type}}{{if $field.Nullable}}?{{end}} {{$field.Name}} { get; {{ if not $field.IsInterface }} set; {{ end }} }
         {{- end }}
     }
 }

@@ -1,4 +1,4 @@
 //+sqlignore,+jsonignore,+xmlroot GolfDataFeed
 
 public string Type|FeedType {get;set;}
-public List<IULCrown_Tournament> Tournaments {get;set;} //+xmlwrapper
+public List<IULCrown_Tournament> Tournaments {get;set;} //+xmlwrapper Tournament

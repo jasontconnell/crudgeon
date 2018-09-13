@@ -9,7 +9,7 @@ public string playerLastName|LastName { get; set; } //+sqlignore
 public List<IStatsAPI_SolheimMemberStatistic> statistics { get; set; }
 
 
-// from statistics
+//# from statistics
 
 public decimal Points {get;set;} //+csignore
 public int Rank {get;set;} //+csignore

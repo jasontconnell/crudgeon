@@ -143,7 +143,10 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 				}
 			}
 
-			xmlwrapper := f.Flags.XmlWrapper
+			xmlwrapper := f.Flags.XmlWrapper && fileType == "cs"
+			if isInterface && xmlwrapper {
+				concreteProperty = concreteProperty + "." + f.Name
+			}
 
 			gf := data.GenField{
 				FieldName:           field,
@@ -154,6 +157,7 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 				ConcreteElementType: concreteElementType,
 				ElementType:         elementType,
 				XmlWrapper:          xmlwrapper,
+				XmlWrapperElement:   f.Flags.XmlWrapperElement,
 				Nullable:            nullable,
 				CsIgnore:            f.Flags.CsIgnore,
 				SqlIgnore:           sqlignore,
@@ -192,12 +196,13 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 				field := f.FieldName
 				typeName := f.ConcreteType
 
-				// xmlwrappertype, xmlwrappername := f.ConcreteType, ""
-				// if !f.Flags.XmlIgnore && f.Flags.XmlWrapper && f.Collection {
-				// 	xmlwrappertype = typeName
-				// 	xmlwrappername = field
-				// 	typeName = field + "Wrapper"
-				// }
+				xmlwrappertype, xmlwrappername, xmlwrapperelement := f.ConcreteType, "", ""
+				if !f.XmlIgnore && f.XmlWrapper && f.Collection {
+					xmlwrappertype = typeName
+					xmlwrappername = field
+					xmlwrapperelement = f.XmlWrapperElement
+					typeName = field + "Wrapper"
+				}
 
 				ngfld := data.GenField{
 					FieldName:           field,
@@ -206,6 +211,10 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 					ConcreteType:        typeName,
 					ConcreteElementType: f.ConcreteElementType,
 					ConcreteProperty:    "",
+					XmlWrapper:          f.XmlWrapper,
+					XmlWrapperType:      xmlwrappertype,
+					XmlWrapperName:      xmlwrappername,
+					XmlWrapperElement:   xmlwrapperelement,
 					Nullable:            f.Nullable,
 					CsIgnore:            f.CsIgnore,
 					SqlIgnore:           f.SqlIgnore,
@@ -227,7 +236,7 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 			Type:       "int",
 			JsonIgnore: true,
 			SqlIgnore:  true,
-			Flags:      data.FieldFlags{IsId: true},
+			Id:         true,
 		}
 
 		pkg.Fields = append([]data.GenField{pkfld}, pkg.Fields...)

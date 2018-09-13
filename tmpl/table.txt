@@ -9,7 +9,7 @@ GO
 create table dbo.{{.Name}} (
     {{ if .Flags.Id }}ID int identity(1,1) not null,{{ end }}
     {{ range $index,$field := .Fields }}
-        {{- if and ($genpkg.Flags.Id) ($field.Flags.IsId) }}{{- else}}
+        {{- if and ($genpkg.Flags.Id) ($field.Id) }}{{- else}}
         {{ $field.Name}} {{$field.Type}} {{ if $field.Nullable }}null{{else}}not null{{end}}{{- if lt (plus1 $index) (len $.Fields)}},{{end}}{{end}}
     {{- end}},
     {{ if (len .KeyFields) gt 0 }}

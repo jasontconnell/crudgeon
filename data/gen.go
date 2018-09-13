@@ -35,10 +35,12 @@ type GenField struct {
 	Collection          bool
 	Key                 bool
 	IsBaseType          bool
-	Flags               FieldFlags
-	XmlWrapper          bool
-	XmlWrapperType      string
-	XmlWrapperName      string
+	//Flags               FieldFlags
+	XmlWrapper        bool
+	XmlWrapperType    string
+	XmlWrapperName    string
+	XmlWrapperElement string
+	Id                bool
 }
 
 type GenFlags struct {
