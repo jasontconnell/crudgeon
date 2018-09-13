@@ -1,4 +1,10 @@
+//+jsonignore
+
+public int TournamentId {get;set;} //+key,+xmlignore
+public int TeamNum {get;set;} //+key,+xmlignore
+
 public int HoleID|PlayoffHoleNum {get;set;} //+key
+
 public int Score {get;set;}
 public int PlusMinus {get;set;}
 public string Status {get;set;}

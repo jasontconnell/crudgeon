@@ -1,4 +1,4 @@
-//+jsonignore,+xmlroot Round
+//+jsonignore
 public int TournamentId {get;set;} //+key,+xmlignore
 
 public int ID|RoundNum {get;set;} //+key

@@ -1,3 +1,7 @@
+//+jsonignore
+
+public int TournamentId {get;set;} //+key,+xmlignore
+
 public int ID|TeamNum {get;set;}
 public string Name {get;set;}
 public string ShortName {get;set;}

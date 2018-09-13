@@ -1,6 +1,8 @@
 //+sqlignore,+jsonignore
 public int TournamentId {get;set;} //+key,+xmlignore
-public int RoundId {get;set;} //+key,+xmlignore
+public int RoundNum {get;set;} //+key,+xmlignore
+public int MatchNum {get;set;} //+key,+xmlignore
+
 public int ID|TeamNum {get;set;} //+key
 
 public string Name {get;set;} //+sqlignore

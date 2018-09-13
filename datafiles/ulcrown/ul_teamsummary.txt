@@ -1,6 +1,5 @@
 //+jsonignore
 public int TournamentId {get;set;} //+key,+xmlignore
-
 public int RoundNum {get;set;} //+key,+xmlignore
 
 public int ID|TeamId {get;set;} //+key

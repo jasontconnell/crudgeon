@@ -1,3 +1,8 @@
-public int ID|HoleNum {get;set;}
+//+jsonignore
+
+public int TournamentId {get;set;} //+key,+xmlignore
+public int CourseNum {get;set;} //+key,+xmlignore
+
+public int ID|HoleNum {get;set;}//+key
 public int Par {get;set;}
 public int Yardage {get;set;}

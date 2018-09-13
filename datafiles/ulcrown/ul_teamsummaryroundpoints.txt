@@ -1,8 +1,8 @@
 //+jsonignore
 
-public int TournamentId {get;set;} //+xmlignore
-public int TeamId {get;set;} //+xmlignore
-public int ID|RoundNum {get;set;}
+public int TournamentId {get;set;} //+key,+xmlignore
+public int TeamId {get;set;} //+key,+xmlignore
+public int ID|RoundNum {get;set;} //+key
 
 
 public int Points {get;set;}

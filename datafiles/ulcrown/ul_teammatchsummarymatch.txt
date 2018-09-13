@@ -1,5 +1,8 @@
 //+jsonignore
 
+public int TournamentId {get;set;} //+key,+xmlignore
+public int RoundNum {get;set;} //+key,+xmlignore
+
 public int ID|MatchNum {get;set;} //+key
 public int StartTee {get;set;}
 public string StartTime {get;set;}

@@ -1,4 +1,11 @@
-public int ID|TeamScorecardId {get;set;} //+key
+//+jsonignore
+
+public int TournamentId {get;set;} //+key,+xmlignore
+public int RoundNum {get;set;} //+key,+xmlignore
+public int MatchNum {get;set;} //+key,+xmlignore
+public int TeamNum {get;set;} //+key,+xmlignore
+
+public int ID|TeamScorecardNum {get;set;} //+key
 public int RoundID|RoundNum {get;set;} //+key
 public int Thru {get;set;}
 
