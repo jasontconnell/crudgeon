@@ -1,0 +1,7 @@
+public int ID|PlayoffNum {get;set;}
+public string Name {get;set;}
+public string Format {get;set;}
+
+public IULCrown_PlayoffCourse Course {get;set;}
+
+public List<IULCrown_PlayoffTeam> Teams {get;set;} //+xmlwrapper Team

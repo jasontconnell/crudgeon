@@ -1,0 +1,4 @@
+public int HoleID|PlayoffHoleNum {get;set;} //+key
+public int Score {get;set;}
+public int PlusMinus {get;set;}
+public string Status {get;set;}

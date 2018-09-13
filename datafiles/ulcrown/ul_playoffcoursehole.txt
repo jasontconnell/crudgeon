@@ -1,0 +1,5 @@
+public int ID|PlayoffHoleNum {get;set;} //+key
+public int Order {get;set;} //+key
+public int Number|CourseHoleNum {get;set;}
+public int Par {get;set;}
+public int Yardage {get;set;}

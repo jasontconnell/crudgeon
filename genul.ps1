@@ -7,6 +7,7 @@ go build
 .\lpgagen -file datafiles\ulcrown\ul_golfdatafeed_teammatchsummary.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGALiveScoringServices\ULCrown" -obj ULCrown_Feed_TeamMatchSummary -ns LPGALiveScoringServices.ULCrown
 .\lpgagen -file datafiles\ulcrown\ul_golfdatafeed_teammatchscorecard.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGALiveScoringServices\ULCrown" -obj ULCrown_Feed_TeamMatchScorecard -ns LPGALiveScoringServices.ULCrown
 .\lpgagen -file datafiles\ulcrown\ul_golfdatafeed_courses.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGALiveScoringServices\ULCrown" -obj ULCrown_Feed_Courses -ns LPGALiveScoringServices.ULCrown
+.\lpgagen -file datafiles\ulcrown\ul_golfdatafeed_playoffs.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGALiveScoringServices\ULCrown" -obj ULCrown_Feed_Playoffs -ns LPGALiveScoringServices.ULCrown
 
 
 #tournament
@@ -33,12 +34,25 @@ go build
 .\lpgagen -file datafiles\ulcrown\ul_teammatchscorecardmatch.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGALiveScoringServices\ULCrown" -obj ULCrown_TeamMatchScorecardMatch -ns LPGALiveScoringServices.ULCrown
 .\lpgagen -file datafiles\ulcrown\ul_teammatchscorecardteam.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGALiveScoringServices\ULCrown" -obj ULCrown_TeamMatchScorecardTeam -ns LPGALiveScoringServices.ULCrown
 .\lpgagen -file datafiles\ulcrown\ul_teammatchscorecardteamscorecard.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGALiveScoringServices\ULCrown" -obj ULCrown_TeamMatchScorecardTeamScorecard -ns LPGALiveScoringServices.ULCrown
-.\lpgagen -file datafiles\ulcrown\ul_teammatchscorecardteamscorecardscore.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGALiveScoringServices\ULCrown" -obj ULCrown_TeamMatchScorecardTeamScorecard -ns LPGALiveScoringServices.ULCrown
+.\lpgagen -file datafiles\ulcrown\ul_teammatchscorecardteamscorecardscore.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGALiveScoringServices\ULCrown" -obj ULCrown_TeamMatchScorecardTeamScorecardScore -ns LPGALiveScoringServices.ULCrown
 
 #course
 .\lpgagen -file datafiles\ulcrown\ul_coursetournament.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGALiveScoringServices\ULCrown" -obj ULCrown_CourseTournament -ns LPGALiveScoringServices.ULCrown
 .\lpgagen -file datafiles\ulcrown\ul_course.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGALiveScoringServices\ULCrown" -obj ULCrown_Course -ns LPGALiveScoringServices.ULCrown
 .\lpgagen -file datafiles\ulcrown\ul_coursehole.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGALiveScoringServices\ULCrown" -obj ULCrown_CourseHole -ns LPGALiveScoringServices.ULCrown
+
+
+#playoffs
+.\lpgagen -file datafiles\ulcrown\ul_playoff.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGALiveScoringServices\ULCrown" -obj ULCrown_Playoff -ns LPGALiveScoringServices.ULCrown
+.\lpgagen -file datafiles\ulcrown\ul_playoffcourse.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGALiveScoringServices\ULCrown" -obj ULCrown_PlayoffCourse -ns LPGALiveScoringServices.ULCrown
+.\lpgagen -file datafiles\ulcrown\ul_playoffcoursehole.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGALiveScoringServices\ULCrown" -obj ULCrown_PlayoffCourseHole -ns LPGALiveScoringServices.ULCrown
+.\lpgagen -file datafiles\ulcrown\ul_playoffplayerscorecard.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGALiveScoringServices\ULCrown" -obj ULCrown_PlayoffPlayerScorecard -ns LPGALiveScoringServices.ULCrown
+.\lpgagen -file datafiles\ulcrown\ul_playoffplayerscorecardscore.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGALiveScoringServices\ULCrown" -obj ULCrown_PlayoffPlayerScorecardScore -ns LPGALiveScoringServices.ULCrown
+.\lpgagen -file datafiles\ulcrown\ul_playoffteam.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGALiveScoringServices\ULCrown" -obj ULCrown_PlayoffTeam -ns LPGALiveScoringServices.ULCrown
+.\lpgagen -file datafiles\ulcrown\ul_playoffplayer.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGALiveScoringServices\ULCrown" -obj ULCrown_PlayoffPlayer -ns LPGALiveScoringServices.ULCrown
+.\lpgagen -file datafiles\ulcrown\ul_playoffteamscorecard.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGALiveScoringServices\ULCrown" -obj ULCrown_PlayoffTeamScorecard -ns LPGALiveScoringServices.ULCrown
+.\lpgagen -file datafiles\ulcrown\ul_playoffteamscorecardscore.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGALiveScoringServices\ULCrown" -obj ULCrown_PlayoffTeamScorecardScore -ns LPGALiveScoringServices.ULCrown
+.\lpgagen -file datafiles\ulcrown\ul_playofftournament.txt -path "C:\Users\jconnell\source\repos\LPGALiveScoring\LPGALiveScoringServices\ULCrown" -obj ULCrown_PlayoffTournament -ns LPGALiveScoringServices.ULCrown
 
 
 #player
