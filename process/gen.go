@@ -194,13 +194,13 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 				field := f.FieldName
 				typeName := f.ConcreteType
 
-				xmlwrappertype, xmlwrappername, xmlwrapperelement := f.ConcreteType, "", ""
-				if !f.XmlIgnore && f.XmlWrapper && f.Collection {
-					xmlwrappertype = typeName
-					xmlwrappername = field
-					xmlwrapperelement = f.XmlWrapperElement
-					typeName = pkg.Name + field + "Wrapper"
-				}
+				xmlwrappertype, xmlwrappername := f.ConcreteType, ""
+				// if !f.XmlIgnore && f.XmlWrapper && f.Collection {
+				// 	xmlwrappertype = typeName
+				// 	xmlwrappername = field
+				// 	xmlwrapperelement = f.XmlWrapperElement
+				// 	typeName = pkg.Name + field + "Wrapper"
+				// }
 
 				ngfld := data.GenField{
 					Access:              "public",
@@ -213,7 +213,7 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 					XmlWrapper:          f.XmlWrapper,
 					XmlWrapperType:      xmlwrappertype,
 					XmlWrapperName:      xmlwrappername,
-					XmlWrapperElement:   xmlwrapperelement,
+					XmlWrapperElement:   f.XmlWrapperElement,
 					Nullable:            f.Nullable,
 					CsIgnore:            f.CsIgnore,
 					SqlIgnore:           f.SqlIgnore,
