@@ -1,0 +1,17 @@
+//+xmlignore
+//# other comments can be here, it won't bother the generation, but I usually add # after // just as habit.
+
+you could also just have text if you want.
+
+public string emp_first_name|FirstName {get;set;} //+jsonignore
+public string emp_last_name|LastName {get;set;} //+jsonignore
+public string start_date|StartDateString {get;set;} //+sqlignore
+
+public decimal salary {get;set;}  //# 'salary' will be title cased so you will use 'Salary' everywhere instead.
+
+
+//# this will be added to a partial class so we can parse the start date and have an actual date.
+//# the StartDateString will be sql ignored so it won't try to add it to the database.
+//# so it won't create a column. It use StartDate as the DateTime field to generate SQL scripts and tables.
+
+public DateTime StartDate {get;set;} //+jsonignore,+csignore

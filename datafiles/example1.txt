@@ -1,0 +1,6 @@
+public string Name {get;set;} //+key
+public decimal Value {get;set;}
+public decimal Revenue {get;set;}
+public decimal Expenses {get;set;}
+
+public List<Employee> Employees {get;set;}
