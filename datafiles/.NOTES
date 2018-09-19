@@ -1,3 +1,0 @@
-api_cmepointsschedule  needs tournamentId int version
-
-playerperformance - needs partial with all values converted to number types
