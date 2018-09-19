@@ -23,17 +23,16 @@ public int years_old|Age {get;set;} //+sqlignore,+xmlignore
 
 ### TYPE:
 
-    As of now can be one of
-
-        * int
-        * short
-        * string
-        * decimal
-        * double
-        * long
-        * DateTime
-        * bool
-        * OR nullable versions of those with Nullable<TYPE>
+As of now can be one of
+* int
+* short
+* string
+* decimal
+* double
+* long
+* DateTime
+* bool
+* OR nullable versions of those with Nullable<TYPE>
 
 ### FIELDNAME:
     This can be optional. If you're happy with the title cased version of the data source's name, you'll just need field name, not property name.
@@ -44,26 +43,26 @@ public int years_old|Age {get;set;} //+sqlignore,+xmlignore
     See field name.
 
 ### FLAGS
-    Field Flags take the form //+flag,-flag after a field definition
+Field Flags take the form //+flag,-flag after a field definition
 
-    * + Enables the flag
-    * - Disables the flag
+* + Enables the flag
+* - Disables the flag
 
-    Available Field Flags:
+Available Field Flags:
 
-    1 sqlignore
-        * Don't generate sql properties for this, including column names and sql attributes.
-    2 jsonignore
-        * Don't generate json attributes for this property
-    3 key
-        * This field is part of the uniquely identifying set of fields for this object
-    4 nomap
-        * Don't map this on the ORM call to get data from the database. Like sql ignore for "get" operations
-    5 xmlignore
-        * Don't generate XML attributes for this object.
-    6 xmlwrapper  (array element name)
-        * This field is an XML Array in C# parlance. It will generate [XmlArray] and [XmlArrayItem] attributes
-        * The property name will be passed to [XmlArray] and the array element name will be passed to [XmlArrayItem]
+1. sqlignore
+    - Don't generate sql properties for this, including column names and sql attributes.
+2. jsonignore
+    - Don't generate json attributes for this property
+3. key
+    - This field is part of the uniquely identifying set of fields for this object
+4. nomap
+    - Don't map this on the ORM call to get data from the database. Like sql ignore for "get" operations
+5. xmlignore
+    - Don't generate XML attributes for this object.
+6. xmlwrapper  (array element name)
+    - This field is an XML Array in C# parlance. It will generate [XmlArray] and [XmlArrayItem] attributes
+    - The property name will be passed to [XmlArray] and the array element name will be passed to [XmlArrayItem]
         
 In addition to fields, flags can be added to the entire object. For instance
 
@@ -75,23 +74,23 @@ Will have xml ignore on the entire file. This is a different type of flag though
 
 Generation Flags control Generation. In the config.json, these will tell what data each template needs in order to work. Some need more data, some need less (Delete proc just need keys, for instance). Here are the possible GenFlags.
 
-    1. id
-        * include the "id" field which is implicit. If your object has a field named ID it has to be renamed with the ID|ObjectID field name|property name syntax.
-    2. fields
-        * include the fields in the generation. This is just base type fields.
-    3. collections
-        * include collections in generation. this will typically be used in code files as opposed to SQL files.
-    4. constructor
-        * include fields for a sensible constructor (no collections, just base type fields)
-    5. concretes
-        * also include concrete versions of interface classes
-        * this one requires a bit of explanation. It uses convention. If you object is not a base type and it start with an I, it's an interface. Sorry.
-    6. keys
-        * include keys as a separate object
-    7. sqlignore, csignore, jsonignore, xmlignore
-        * these will usually be included in the data files, not in the config like 1-7
-    8. xmlroot (xml root element name)
-        * this object is an xml root. you can use it like   //+xmlroot RootName
+1. id
+    - include the "id" field which is implicit. If your object has a field named ID it has to be renamed with the ID|ObjectID field name|property name syntax.
+2. fields
+    - include the fields in the generation. This is just base type fields.
+3. collections
+    - include collections in generation. this will typically be used in code files as opposed to SQL files.
+4. constructor
+    - include fields for a sensible constructor (no collections, just base type fields)
+5. concretes
+    - also include concrete versions of interface classes
+    - this one requires a bit of explanation. It uses convention. If you object is not a base type and it start with an I, it's an interface. Sorry.
+6. keys
+    - include keys as a separate object
+7. sqlignore, csignore, jsonignore, xmlignore
+    - these will usually be included in the data files, not in the config like 1-7
+8. xmlroot (xml root element name)
+    - this object is an xml root. you can use it like   //+xmlroot RootName
 
 ## Text Templates
 
