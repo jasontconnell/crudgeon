@@ -1,4 +1,4 @@
 *.exe
-vendor
 *.sql
 *.cs
+*.ps1
