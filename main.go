@@ -2,10 +2,9 @@ package main
 
 import (
 	"flag"
+	"github.com/jasontconnell/crudgeon/configuration"
+	"github.com/jasontconnell/crudgeon/process"
 	"log"
-	"lpgagen/configuration"
-	//"lpgagen/data"
-	"lpgagen/process"
 	"os"
 	"time"
 )

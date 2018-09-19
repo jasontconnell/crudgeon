@@ -1,4 +1,4 @@
-module lpgagen
+module github.com/jasontconnell/crudgeon
 
 require (
 	github.com/jasontconnell/conf v0.0.0-20180214221311-246c2addc6bb

@@ -3,8 +3,8 @@ package process
 import (
 	"bytes"
 	"encoding/json"
+	"github.com/jasontconnell/crudgeon/data"
 	"io/ioutil"
-	"lpgagen/data"
 	"os"
 )
 

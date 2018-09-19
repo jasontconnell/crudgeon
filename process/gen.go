@@ -3,9 +3,9 @@ package process
 import (
 	"bytes"
 	"fmt"
+	"github.com/jasontconnell/crudgeon/data"
 	"github.com/jasontconnell/fileutil"
 	"io/ioutil"
-	"lpgagen/data"
 	"os"
 	"path/filepath"
 	"strings"

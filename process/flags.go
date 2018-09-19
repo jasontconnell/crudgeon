@@ -2,7 +2,7 @@ package process
 
 import (
 	"fmt"
-	"lpgagen/data"
+	"github.com/jasontconnell/crudgeon/data"
 	"strings"
 )
 

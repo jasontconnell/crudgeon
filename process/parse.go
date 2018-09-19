@@ -4,8 +4,8 @@ import (
 	"bufio"
 	"bytes"
 	"fmt"
+	"github.com/jasontconnell/crudgeon/data"
 	"io/ioutil"
-	"lpgagen/data"
 	"regexp"
 	"strings"
 )
