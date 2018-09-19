@@ -35,9 +35,9 @@ As of now can be one of
 * OR nullable versions of those with Nullable<TYPE>
 
 ### FIELDNAME:
-    This can be optional. If you're happy with the title cased version of the data source's name, you'll just need field name, not property name.
-    However, if your data source is coming back with underscores or words you find redundant (e.g. PlayerFirstName on a Player object), you can provide
-    a field name and a property name.  (e.g.  public string PlayerFirstName|FirstName {get;set;})
+This can be optional. If you're happy with the title cased version of the data source's name, you'll just need field name, not property name.
+However, if your data source is coming back with underscores or words you find redundant (e.g. PlayerFirstName on a Player object), you can provide
+a field name and a property name.  (e.g.  public string PlayerFirstName|FirstName {get;set;})
 
 ### PROPERTYNAME:
     See field name.
