@@ -7,6 +7,7 @@ GO
 
 create procedure dbo.DeleteEmployee
 
+    @EmployeeID int,
     @FirstName varchar(150),
     @LastName varchar(150),
     @StartDate datetime
@@ -16,6 +17,7 @@ begin
 
     declare @id int
     select @id = ID from Employee where 
+        EmployeeID = @EmployeeID 
 
     delete from Employee where ID = @id
 

@@ -7,6 +7,7 @@ GO
 
 create procedure dbo.GetEmployee
 
+    @EmployeeID int = null
 as 
 begin
         select
@@ -14,4 +15,6 @@ begin
         from
             Employee
         
+        where 
+            (@EmployeeID is null OR EmployeeID = @EmployeeID) 
 end

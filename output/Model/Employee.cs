@@ -19,20 +19,27 @@ namespace Name.Space {
         public Employee(){
             
         }
-        public Employee( string FirstName,
+        public Employee( int EmployeeID,
+                 string FirstName,
                  string LastName,
                  string StartDateString) {
+            this.EmployeeID = EmployeeID;
             this.FirstName = FirstName;
             this.LastName = LastName;
             this.StartDateString = StartDateString;
         }
         public int ID { get; set;  }
         
-        [Hash(1)]
+        [HashKey(1)]
+        [DataMember(Name="employee_ssn")]
+        [Column(Key=true)]
+        public int EmployeeID { get; set;  }
+        
+        [Hash(2)]
         [Column]
         public string FirstName { get; set;  }
         
-        [Hash(2)]
+        [Hash(3)]
         [Column]
         public string LastName { get; set;  }
         
@@ -44,6 +51,7 @@ namespace Name.Space {
         override public string ToString(){
             StringBuilder sb = new StringBuilder();
                 sb.AppendFormat("{0}: {1}{2}", "ID", this.ID, Environment.NewLine);
+                sb.AppendFormat("{0}: {1}{2}", "EmployeeID", this.EmployeeID, Environment.NewLine);
                 sb.AppendFormat("{0}: {1}{2}", "FirstName", this.FirstName, Environment.NewLine);
                 sb.AppendFormat("{0}: {1}{2}", "LastName", this.LastName, Environment.NewLine);
                 sb.AppendFormat("{0}: {1}{2}", "StartDateString", this.StartDateString, Environment.NewLine);
