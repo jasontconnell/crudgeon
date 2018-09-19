@@ -6,7 +6,8 @@ crudgeon is a multi-output CRUD generator written in Go for a very specific set 
 
 go build
 
-```crudgeon -file datafiles\example1.txt -path output -obj Business
+```
+crudgeon -file datafiles\example1.txt -path output -obj Business
 crudgeon -file datafiles\example2.txt -path output -obj Employee
 ```
 
