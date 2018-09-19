@@ -4,7 +4,7 @@ public string Name {get;set;} //+key
 public string StartDate|StartDateString {get;set;} //+sqlignore
 public string EndDate|EndDateString {get;set;} //+sqlignore
 public string Status|StatusString {get;set;} //+sqlignore
-public string Format {get;set;}
+public string Format|FormatString {get;set;} //+sqlignore
 public int Rounds {get;set;}
 public int Courses {get;set;}
 public int Players {get;set;}
@@ -16,3 +16,6 @@ public List<IULCrown_TournamentRound> Rounds|RoundList {get;set;} //+xmlwrapper 
 
 public DateTime StartDate {get;set;} //+xmlignore,+csignore
 public DateTime EndDate {get;set;} //+xmlignore,+csignore
+
+public int Status {get;set;} //+xmlignore,+csignore
+public int Format {get;set;} //+xmlignore,+csignore

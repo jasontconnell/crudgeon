@@ -7,6 +7,7 @@ public string Name {get;set;}
 public string ShortName {get;set;}
 public string Seed|SeedString {get;set;}
 public string Pool {get;set;}
+public int PoolRank {get;set;}
 public string PoolRankTied|PoolRankTiedString {get;set;} //+sqlignore
 public int OverallRank {get;set;}
 public string OverallRankTied|OverallRankTiedString {get;set;} //+sqlignore
@@ -14,7 +15,7 @@ public string WonTieBreaker|WonTieBreakerString {get;set;} //+sqlignore
 public string WonPlayoff|WonPlayoffString {get;set;} //+sqlignore
 public int RoundPoints {get;set;}
 public int TotalPoints {get;set;}
-public string Status {get;set;}
+public string Status|StatusString {get;set;}
 
 public List<IULCrown_TeamSummaryRoundPoints> Rounds {get;set;} //+xmlwrapper Round
 
@@ -23,3 +24,4 @@ public bool OverallRankTied {get;set;} //+xmlignore,+csignore
 public bool WonTieBreaker {get;set;} //+xmlignore,+csignore
 public bool WonPlayoff {get;set;} //+xmlignore,+csignore
 public int Seed {get;set;} //+xmlignore,+csignore
+public int TeamRoundStatus {get;set;} //+xmlignore,+csignore

@@ -11,6 +11,8 @@ public int HoleID|HoleNum {get;set;} //+key
 public string Score|ScoreString {get;set;} //+sqlignore
 public int PlusMinus {get;set;}
 public string MatchStatus {get;set;}
-public string Status {get;set;}
+public string Status|StatusString {get;set;}
 
 public int Score {get;set;} //+csignore
+
+public int Status {get;set;} //+xmlignore,+csignore

@@ -6,10 +6,11 @@ public int RoundNum {get;set;} //+key,+xmlignore
 public int ID|MatchNum {get;set;} //+key
 public int StartTee {get;set;}
 public string StartTime {get;set;}
-public string Leader|LeaderString {get;set;}
+public string Leader|LeaderString {get;set;} //+sqlignore
 public int Thru {get;set;}
-public string StatusString {get;set;}
+public string Status|StatusString {get;set;} //+sqlignore
 
 public List<IULCrown_TeamMatchSummaryTeam> Teams {get;set;} //+xmlwrapper Team
 
-public int Leader {get;set;} //+xmlignore
+public int Leader {get;set;} //+xmlignore,+csignore
+public int Status {get;set;} //+xmlignore,+csignore

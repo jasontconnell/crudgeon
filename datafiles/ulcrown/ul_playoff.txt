@@ -1,11 +1,13 @@
-//+sqlignore,+jsonignore
+//+jsonignore
 
 public int TournamentId {get;set;} //+key,+xmlignore
 
-public int ID|PlayoffNum {get;set;}
+public int ID|PlayoffNum {get;set;} //+key
 public string Name {get;set;}
-public string Format {get;set;}
+public string Format|FormatString {get;set;} //+sqlignore
 
 public IULCrown_PlayoffCourse Course {get;set;}
 
 public List<IULCrown_PlayoffTeam> Teams {get;set;} //+xmlwrapper Team
+
+public int Format {get;set;} //+xmlignore,+csignore
