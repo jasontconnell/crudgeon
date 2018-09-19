@@ -8,7 +8,7 @@ using System.Text;
 using Hasher.Attributes;
 
 // this code is generated, do not modify. use partial classes / interfaces to add stuff
-namespace  {
+namespace Name.Space {
     [DataContract]
     [StoredProc(Name="GetEmployee", ProcType=ProcType.Read)]
     [StoredProc(Name="SaveEmployee", ProcType=ProcType.Update)]

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace   {
+namespace  Name.Space {
     public partial interface IBusiness {
         
         int ID { get; set; }
