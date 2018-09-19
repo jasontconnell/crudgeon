@@ -98,7 +98,8 @@ Generation Flags control Generation. In the config.json, these will tell what da
 
 The text template is passed a GenPackage object
 
-```type GenPackage struct {
+```
+type GenPackage struct {
 	Generate          bool
 	Name              string
 	Path              string
@@ -110,7 +111,8 @@ The text template is passed a GenPackage object
 	TemplateFile      string
 	Prefix            string
 	Flags             GenFlags
-}```
+}
+```
 
 Really all you would care about are Name, Namespace, Fields, ConstructorFields, KeyFields, Prefix, and Flags.
 
