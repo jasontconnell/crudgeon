@@ -126,7 +126,9 @@ As this is a multi-output code generator, you can configure the specific outputs
 
 The current "class" generator to generate classes:
 
-`{ "file": "tmpl\\class.txt", "fileType": "cs", "outputPrefix": "", "folder": "Model", "flags": "+id,+collections,+concretes,+constructor,+fields","objdir":false}`
+```
+{ "file": "tmpl\\class.txt", "fileType": "cs", "outputPrefix": "", "folder": "Model", "flags": "+id,+collections,+concretes,+constructor,+fields","objdir":false}
+```
 
 * file
     - use file as the template
