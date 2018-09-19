@@ -37,16 +37,16 @@ As of now can be one of
 ### FIELDNAME:
 This can be optional. If you're happy with the title cased version of the data source's name, you'll just need field name, not property name.
 However, if your data source is coming back with underscores or words you find redundant (e.g. PlayerFirstName on a Player object), you can provide
-a field name and a property name.  (e.g.  public string PlayerFirstName|FirstName {get;set;})
+a field name and a property name.  (e.g.  `public string PlayerFirstName|FirstName {get;set;}`)
 
 ### PROPERTYNAME:
-    See field name.
+See field name.
 
 ### FLAGS
 Field Flags take the form //+flag,-flag after a field definition
 
-* + Enables the flag
-* - Disables the flag
+* `+` Enables the flag
+* `-` Disables the flag
 
 Available Field Flags:
 
@@ -96,7 +96,7 @@ Generation Flags control Generation. In the config.json, these will tell what da
 
 The text template is passed a GenPackage object
 
-`type GenPackage struct {
+```type GenPackage struct {
 	Generate          bool
 	Name              string
 	Path              string
@@ -108,7 +108,7 @@ The text template is passed a GenPackage object
 	TemplateFile      string
 	Prefix            string
 	Flags             GenFlags
-}`
+}```
 
 Really all you would care about are Name, Namespace, Fields, ConstructorFields, KeyFields, Prefix, and Flags.
 
