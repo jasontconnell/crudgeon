@@ -1,3 +1,0 @@
-//+sqlignore,+xmlignore
-public IRankingAPI_Week week {get;set;}
-public List<IRankingAPI_Player> playerRanks {get;set;}

@@ -1,4 +1,0 @@
-//+sqlignore,+xmlignore
-/api/Solheim/
-
-public List<IStatsAPI_SolheimMember> members { get;set;}

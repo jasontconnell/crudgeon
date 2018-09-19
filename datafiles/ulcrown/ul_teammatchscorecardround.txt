@@ -1,7 +1,0 @@
-//+jsonignore,+sqlignore
-public int TournamentId {get;set;} //+key,+xmlignore
-
-public int ID|RoundNum {get;set;} //+key
-public string Format {get;set;}
-
-public IULCrown_TeamMatchScorecardMatch Match {get;set;}

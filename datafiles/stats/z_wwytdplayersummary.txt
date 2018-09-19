@@ -1,9 +1,0 @@
-//+xmlignore
-public int TourId {get;set;} //+key,+jsonignore
-
-public short Season { get;set; }
-public Nullable<int> AccountID { get;set; } //+key
-public string PlayFirstName { get;set; }
-public string PlayLastName { get;set; }
-public Nullable<int> EaglesCount { get;set; }
-public Nullable<decimal> YTDContributionAmount { get;set; }

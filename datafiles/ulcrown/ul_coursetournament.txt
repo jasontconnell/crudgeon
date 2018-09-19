@@ -1,7 +1,0 @@
-//+sqlignore,+jsonignore
-public int ID|TournamentId {get;set;} //+key
-public string Name {get;set;}
-
-public List<IULCrown_Course> Courses {get;set;} //+xmlwrapper Course
-
-public IULCrown_Course Course {get;set;}

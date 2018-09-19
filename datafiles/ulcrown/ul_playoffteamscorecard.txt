@@ -1,3 +1,0 @@
-//+sqlignore,+jsonignore
-
-public List<IULCrown_PlayoffTeamScorecardScore> Scores {get;set;} //+xmlwrapper Score

@@ -1,4 +1,0 @@
-//+sqlignore,+xmlignore
-/api/PlayerQuickviewOfficialMoney/?AccountId=98334&TournamentId=2018047
-
-public List<IStatsAPI_PlayerQuickViewOfficialMoneyComponent> components {get;set;}

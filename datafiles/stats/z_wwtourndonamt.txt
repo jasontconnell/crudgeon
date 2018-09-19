@@ -1,9 +1,0 @@
-//+xmlignore
-public int TourId {get;set;} //+key,+jsonignore
-
-public short year { get;set; } //+key
-public Nullable<short> tournamentnumber { get;set; }
-public int tournamentid { get;set; } //+key
-public string DateOfLastRoundContainingEagles { get;set; }
-public Nullable<int> TournamentWoundedWariorEagles { get;set; }
-public Nullable<decimal> YearToDateOfLastRoundDonationAmount { get;set; }

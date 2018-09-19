@@ -1,7 +1,0 @@
-//+xmlignore
-public int TourId {get;set;} //+key,+jsonignore
-
-public string DataViewName { get;set; } //+sqlignore
-public int HeartbeatType {get;set;} //+key
-public DateTime DateStamp { get;set; }
-public string years { get;set; }

@@ -1,9 +1,0 @@
-//+xmlignore
-public int TourId {get;set;} //+key,+jsonignore
-
-public int ScoringFinishPosition { get;set; }
-public Nullable<int> LPGAOfficialEventsWithCutPoints { get;set; }
-public Nullable<int> LPGAMajorEventsPoints { get;set; }
-public Nullable<int> LPGAOfficialEventsWithoutCutPoints { get;set; }
-public Nullable<int> LorenaOchoaInvitationalPoints { get;set; }
-public int TournamentID { get;set; } //+key

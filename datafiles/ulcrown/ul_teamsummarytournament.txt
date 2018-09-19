@@ -1,6 +1,0 @@
-//+sqlignore,+jsonignore
-public int ID|TournamentId {get;set;} //+key
-public string Name {get;set;}
-
-//# will be a list, no need to wrap it.
-public List<IULCrown_TeamSummaryTournamentRound> Round|Rounds {get;set;}
