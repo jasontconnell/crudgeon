@@ -35,6 +35,7 @@ As of now can be one of
 * DateTime
 * bool
 * OR nullable versions of those with Nullable<TYPE>
+* ANY object, but it will be ignored for SQL generation automatically.
 
 ### FIELDNAME:
 This can be optional. If you're happy with the title cased version of the data source's name, you'll just need field name, not property name.
