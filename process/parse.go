@@ -54,12 +54,9 @@ func ParseFile(file string) (ParsedFile, error) {
 			csnull = true
 		}
 
-		jsonIgnore := false
-
 		concreteType := p.t
 		if p.isInterface {
 			concreteType = string(concreteType[1:])
-			jsonIgnore = true
 		}
 
 		name, field := p.name, p.name
@@ -77,7 +74,7 @@ func ParseFile(file string) (ParsedFile, error) {
 			}
 		}
 
-		flds = append(flds, data.Field{Type: p.t, ConcreteType: concreteType, Name: name, FieldName: field, Nullable: csnull, Collection: p.collection, JsonIgnore: jsonIgnore, IsInterface: p.isInterface, Flags: flags})
+		flds = append(flds, data.Field{Type: p.t, ConcreteType: concreteType, Name: name, FieldName: field, Nullable: csnull, Collection: p.collection, IsInterface: p.isInterface, Flags: flags})
 	}
 
 	pfile := ParsedFile{Fields: flds, GenFlags: flags}

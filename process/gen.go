@@ -130,7 +130,7 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 			}
 
 			sqlignore = f.Collection || sqlignore || !isBase
-			jsonIgnore := f.JsonIgnore || f.Flags.JsonIgnore || flags.JsonIgnore
+			jsonIgnore := f.Flags.JsonIgnore || flags.JsonIgnore
 
 			concreteProperty := ""
 			concreteElementType := ""
@@ -141,6 +141,7 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 				if f.Collection {
 					concreteTypeName = fmt.Sprintf("List<%s>", concreteTypeName)
 				}
+				jsonIgnore = true
 			}
 
 			xmlwrapper := f.Flags.XmlWrapper && fileType == "cs"
@@ -218,7 +219,7 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 					CsIgnore:            f.CsIgnore,
 					SqlIgnore:           f.SqlIgnore,
 					XmlIgnore:           f.XmlIgnore,
-					JsonIgnore:          f.JsonIgnore,
+					JsonIgnore:          flags.JsonIgnore,
 					IsInterface:         false,
 					Collection:          f.Collection,
 				}

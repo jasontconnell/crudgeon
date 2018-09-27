@@ -7,7 +7,6 @@ type Field struct {
 	ConcreteType string     `json:"concreteType"`
 	Nullable     bool       `json:"nullable"`
 	Collection   bool       `json:"collection"`
-	JsonIgnore   bool       `json:"jsonIgnore"`
 	IsInterface  bool       `json:"-"`
 	Flags        FieldFlags `json:"-"`
 }
