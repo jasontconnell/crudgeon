@@ -8,6 +8,8 @@ import (
 
 	"github.com/jasontconnell/crudgeon/configuration"
 	"github.com/jasontconnell/crudgeon/process"
+
+	"path/filepath"
 )
 
 func main() {
@@ -40,8 +42,19 @@ func main() {
 
 	cfg := configuration.LoadConfig(*configFile)
 
+	tmplRoot, err := filepath.Abs(*configFile)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	tmplRoot = filepath.Dir(tmplRoot)
+
 	for _, g := range cfg.Generations {
-		gp, err := process.GetGenPackage(*obj, *path, pfile.Fields, g.FileType, g.File, *ns, g.OutputPrefix, g.Folder, g.Flags, pfile.GenFlags, *fld)
+		tmpfile := g.File
+		if !filepath.IsAbs(tmpfile) {
+			tmpfile = filepath.Join(tmplRoot, g.File)
+		}
+		gp, err := process.GetGenPackage(*obj, *path, pfile.Fields, g.FileType, tmpfile, *ns, g.OutputPrefix, g.Folder, g.Flags, pfile.GenFlags, *fld)
 
 		if err != nil {
 			log.Fatal(err)

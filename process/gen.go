@@ -3,13 +3,14 @@ package process
 import (
 	"bytes"
 	"fmt"
-	"github.com/jasontconnell/crudgeon/data"
-	"github.com/jasontconnell/fileutil"
 	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
 	"text/template"
+
+	"github.com/jasontconnell/crudgeon/data"
+	"github.com/jasontconnell/fileutil"
 )
 
 var fns = template.FuncMap{
