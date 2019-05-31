@@ -2,14 +2,16 @@ package main
 
 import (
 	"flag"
-	"github.com/jasontconnell/crudgeon/configuration"
-	"github.com/jasontconnell/crudgeon/process"
 	"log"
 	"os"
 	"time"
+
+	"github.com/jasontconnell/crudgeon/configuration"
+	"github.com/jasontconnell/crudgeon/process"
 )
 
 func main() {
+	configFile := flag.String("config", "config.json", "config file")
 	file := flag.String("file", "", "source file")
 	path := flag.String("path", "", "output location")
 	obj := flag.String("obj", "", "object name")
@@ -36,7 +38,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	cfg := configuration.LoadConfig("config.json")
+	cfg := configuration.LoadConfig(*configFile)
 
 	for _, g := range cfg.Generations {
 		gp, err := process.GetGenPackage(*obj, *path, pfile.Fields, g.FileType, g.File, *ns, g.OutputPrefix, g.Folder, g.Flags, pfile.GenFlags, *fld)
