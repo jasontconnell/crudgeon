@@ -2,8 +2,9 @@ package process
 
 import (
 	"fmt"
-	"github.com/jasontconnell/crudgeon/data"
 	"strings"
+
+	"github.com/jasontconnell/crudgeon/data"
 )
 
 func parseFieldFlags(instructions string) (data.FieldFlags, error) {
@@ -35,7 +36,7 @@ func parseFieldFlags(instructions string) (data.FieldFlags, error) {
 		case "xmlwrapper":
 			flags.XmlWrapper = flg
 			if len(flds) == 1 {
-				return flags, fmt.Errorf("Xml root flag must provide xml root name (+xmlroot XmlRootName)")
+				return flags, fmt.Errorf("Xml wrapper flag must provide xml wrapper name (+xmlwrapper XmlWrapperName)")
 			}
 			flags.XmlWrapperElement = flds[1]
 		default:
