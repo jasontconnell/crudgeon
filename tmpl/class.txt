@@ -1,5 +1,5 @@
 using System;
-using SqlMap.Attributes;
+{{ if not .Flags.SqlIgnore }}using SqlMap.Attributes;{{ end }}
 {{ if not .Flags.JsonIgnore }}using System.Runtime.Serialization;{{ end }}
 {{ if not .Flags.XmlIgnore }}using System.Xml.Serialization;{{ end }}
 using System.Collections.Generic;
@@ -52,9 +52,9 @@ namespace {{ .Namespace }} {
         [XmlIgnore]
             {{- end }}
         {{- end }}
-        {{- if not $field.SqlIgnore }}
+        {{- if (and (not $field.SqlIgnore) (not $genpkg.Flags.SqlIgnore)) }}
         [Column{{ if $field.Key }}(Key=true){{ end }}]
-        {{- else if (ne $field.Name "ID")}}
+        {{- else if (and (ne $field.Name "ID") ($field.IsBaseType) (not $genpkg.Flags.SqlIgnore)) }}
         [IgnoreCol]
         {{- end }}
         {{$field.Access}} {{$field.Type}}{{if $field.Nullable}}?{{end}} {{$field.Name}} { 
