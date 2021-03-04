@@ -3,9 +3,9 @@ package process
 import (
 	"bytes"
 	"encoding/json"
-	"github.com/jasontconnell/crudgeon/data"
-	"io/ioutil"
 	"os"
+
+	"github.com/jasontconnell/crudgeon/data"
 )
 
 func GenerateJson(fields []data.Field, file string) error {
@@ -15,7 +15,7 @@ func GenerateJson(fields []data.Field, file string) error {
 
 	enc.Encode(fields)
 
-	return ioutil.WriteFile(file, buffer.Bytes(), os.ModePerm)
+	return os.WriteFile(file, buffer.Bytes(), os.ModePerm)
 }
 
 func ParseJsonFields(file string) ([]data.Field, error) {

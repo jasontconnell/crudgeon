@@ -4,15 +4,16 @@ import (
 	"bufio"
 	"bytes"
 	"fmt"
-	"github.com/jasontconnell/crudgeon/data"
-	"io/ioutil"
+	"os"
 	"regexp"
 	"strings"
+
+	"github.com/jasontconnell/crudgeon/data"
 )
 
 var fldreg *regexp.Regexp = regexp.MustCompile(`^\W*(?:private|public) (.*?) (.*?) +{.*?}( *//[a-zA-Z\+\-, ]+)?$`)
 var genericreg *regexp.Regexp = regexp.MustCompile(`([a-zA-Z\.]*?)<(.*?)>`)
-var globalflagsreg *regexp.Regexp = regexp.MustCompile(`^//([\+\-a-zA-Z, ]*?)$`)
+var globalflagsreg *regexp.Regexp = regexp.MustCompile(`^//([\+\-a-zA-Z_, ]*?)$`)
 
 type ParsedFile struct {
 	Fields   []data.Field
@@ -30,7 +31,7 @@ type parsedField struct {
 }
 
 func ParseFile(file string) (ParsedFile, error) {
-	contents, err := ioutil.ReadFile(file)
+	contents, err := os.ReadFile(file)
 
 	parsed := ParsedFile{}
 
@@ -93,7 +94,7 @@ func getParsed(c string) (data.GenFlags, []parsedField, error) {
 		globflags := globalflagsreg.FindAllStringSubmatch(line, -1)
 		for _, m := range globflags {
 			var err error
-			genflags, err = parseGenFlags(m[1])
+			err = genflags.MergeParse(m[1])
 			if err != nil {
 				return genflags, nil, err
 			}

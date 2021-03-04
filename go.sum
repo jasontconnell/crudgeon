@@ -1,4 +1,12 @@
 github.com/jasontconnell/conf v0.0.0-20180214221311-246c2addc6bb h1:FWcEf/zuYhEQOOZVJZNdJOsN4Cn3Fe5J/Ld/r/xRbuA=
 github.com/jasontconnell/conf v0.0.0-20180214221311-246c2addc6bb/go.mod h1:nWfVYYLqM+8T/yaz+OAYPVUuETD0AtrL9tVnuAw9uK4=
+github.com/jasontconnell/conf v1.0.1 h1:/bFrRuruwC1JsB7oQ5GR5A1BE+DXmhTahlu7/fIa9uY=
+github.com/jasontconnell/conf v1.0.1/go.mod h1:nWfVYYLqM+8T/yaz+OAYPVUuETD0AtrL9tVnuAw9uK4=
+github.com/jasontconnell/conf v1.0.3 h1:KU7j5AOHHsjGFn8kyjmQyCqLjSaZxVQ+2PZ+5tkHKF8=
+github.com/jasontconnell/conf v1.0.3/go.mod h1:DwNCyZCKlP9MdwIxglIqtP7WYXGdCekMkHJd/udRHLk=
 github.com/jasontconnell/fileutil v0.0.0-20180705140955-7760a5c0054b h1:W+nlDVxY8p8WFxSC40xF9DsEX7SJL1jyUjpcaz01f3E=
 github.com/jasontconnell/fileutil v0.0.0-20180705140955-7760a5c0054b/go.mod h1:qDNbaz3r1bsPKwP1+8VtaJx5UqtU+8RvylSbDMnlkMc=
+github.com/jasontconnell/fileutil v1.0.0 h1:BGKROKrasVoXvo4blSxDTK1ulpMuyBm7BDQhq793Wks=
+github.com/jasontconnell/fileutil v1.0.0/go.mod h1:qDNbaz3r1bsPKwP1+8VtaJx5UqtU+8RvylSbDMnlkMc=
+github.com/pkg/errors v0.8.1 h1:iURUrRGxPUNPdy5/HRSm+Yj6okJ6UtLINN0Q9M4+h3I=
+github.com/pkg/errors v0.8.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=

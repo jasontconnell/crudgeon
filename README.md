@@ -11,7 +11,7 @@ crudgeon -file datafiles\example1.txt -path output -obj Business -ns Name.Space
 crudgeon -file datafiles\example2.txt -path output -obj Employee -ns Name.Space
 ```
 
-See genex.bat and sample input and output in datafiles and output folders.
+See genex.bat and sample input and output in datafiles and output folders. As of March 2021, you can pass a directory and have +class in each file, and pass the namespace still, and it'll work against the entire directory. This is much faster.
 
 ## Documentation
 
@@ -75,7 +75,7 @@ Will have xml ignore on the entire file. This is a different type of flag though
 
 ### Generation Flags
 
-Generation Flags control Generation. In the config.json, these will tell what data each template needs in order to work. Some need more data, some need less (Delete proc just need keys, for instance). Here are the possible GenFlags.
+Generation Flags control Generation. In the config.json, these will tell what data each template needs in order to work. Some need more data, some need less (Delete proc just need keys, for instance). Here are the possible GenFlags. Before the latest update, they all had to be on the first line. Now they can be anywhere really.
 
 1. id
     - include the "id" field which is implicit. If your object has a field named ID it has to be renamed with the ID|ObjectID field name|property name syntax.
@@ -94,6 +94,8 @@ Generation Flags control Generation. In the config.json, these will tell what da
     - these will usually be included in the data files, not in the config like 1-7
 8. xmlroot (xml root element name)
     - this object is an xml root. you can use it like   //+xmlroot RootName
+9. class (class name)
+    - this was added most recent. to give the file all the control about the object name it generates. so you can avoid passing it in through the obj flag. the obj flag takes precedence if both are present.
 
 ## Text Templates
 

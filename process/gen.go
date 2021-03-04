@@ -3,14 +3,12 @@ package process
 import (
 	"bytes"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
 	"text/template"
 
 	"github.com/jasontconnell/crudgeon/data"
-	"github.com/jasontconnell/fileutil"
 )
 
 var fns = template.FuncMap{
@@ -41,17 +39,21 @@ func Generate(pkg data.GenPackage, objdir bool) error {
 		path = filepath.Join(path, pkg.Name)
 	}
 
-	err = fileutil.MakeDirs(path)
+	err = os.MkdirAll(path, os.ModePerm)
 	if err != nil {
 		return err
 	}
 
 	output := filepath.Join(path, pkg.OutputFile)
-	return ioutil.WriteFile(output, buffer.Bytes(), os.ModePerm)
+	return os.WriteFile(output, buffer.Bytes(), os.ModePerm)
 }
 
 func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns, prefix, folder string, flagstr string, fileflags data.GenFlags, usefieldname bool) (data.GenPackage, error) {
-	flags, err := parseGenFlags(flagstr)
+	flags := data.GenFlags{}
+	err := flags.MergeParse(flagstr)
+	if err != nil {
+		return data.GenPackage{}, err
+	}
 
 	flags.Id = flags.Id || fileflags.Id
 	flags.Fields = flags.Fields || fileflags.Fields
@@ -64,6 +66,18 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 	flags.XmlIgnore = flags.XmlIgnore || fileflags.XmlIgnore
 	flags.JsonIgnore = flags.JsonIgnore || fileflags.JsonIgnore
 	flags.XmlRoot = flags.XmlRoot || fileflags.XmlRoot
+
+	// file specific flags
+	flags.Class = fileflags.Class
+	flags.ClassName = fileflags.ClassName
+
+	if name == "" && flags.ClassName == "" {
+		return data.GenPackage{Generate: false}, fmt.Errorf("No object name provided")
+	}
+
+	if name == "" {
+		name = flags.ClassName
+	}
 
 	if fileflags.XmlRootName != "" {
 		flags.XmlRootName = fileflags.XmlRootName
