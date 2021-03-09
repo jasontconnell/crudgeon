@@ -38,6 +38,21 @@ func parseFieldFlags(instructions string) (data.FieldFlags, error) {
 				return flags, fmt.Errorf("Xml wrapper flag must provide xml wrapper name (+xmlwrapper XmlWrapperName)")
 			}
 			flags.XmlWrapperElement = flds[1]
+		case "parsefromstring":
+			flags.ParseFromString = flg
+			if len(flds) == 1 {
+				return flags, fmt.Errorf("parse from string flag must provide string property name (+parsefromstring StringProperty DefaultVal Format)")
+			}
+
+			flags.ParseFromStringProperty = flds[1]
+			if len(flds) > 2 {
+				flags.ParseFromStringDefault = flds[2]
+			}
+			if len(flds) > 3 {
+				flags.ParseFromStringFormat = flds[3]
+			}
+
+			flags.ReadOnly = true
 		default:
 			return flags, fmt.Errorf("Invalid flag: %s", flds)
 		}

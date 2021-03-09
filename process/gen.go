@@ -181,6 +181,7 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 				Collection:          f.Collection,
 				Key:                 f.Flags.Key,
 				IsBaseType:          isBase,
+				Flags:               f.Flags,
 			}
 			pkg.Fields = append(pkg.Fields, gf)
 		}
@@ -237,6 +238,7 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 					JsonIgnore:          flags.JsonIgnore,
 					IsInterface:         false,
 					Collection:          f.Collection,
+					Flags:               f.Flags,
 				}
 				confields = append(confields, ngfld)
 			}

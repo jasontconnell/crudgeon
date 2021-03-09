@@ -23,4 +23,11 @@ type FieldFlags struct {
 
 	XmlWrapper        bool
 	XmlWrapperElement string
+
+	ParseFromString         bool
+	ParseFromStringProperty string
+	ParseFromStringFormat   string
+	ParseFromStringDefault  string
+
+	ReadOnly bool
 }

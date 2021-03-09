@@ -11,7 +11,7 @@ import (
 	"github.com/jasontconnell/crudgeon/data"
 )
 
-var fldreg *regexp.Regexp = regexp.MustCompile(`^\W*(?:private|public) (.*?) (.*?) +{.*?}( *//[a-zA-Z\+\-, ]+)?$`)
+var fldreg *regexp.Regexp = regexp.MustCompile(`^\W*(?:private|public) (.*?) (.*?) +{.*?}( *//[a-zA-Z\+\-,\." ]+)?$`)
 var genericreg *regexp.Regexp = regexp.MustCompile(`([a-zA-Z\.]*?)<(.*?)>`)
 var globalflagsreg *regexp.Regexp = regexp.MustCompile(`^//([\+\-a-zA-Z_, ]*?)$`)
 
@@ -67,15 +67,15 @@ func ParseFile(file string) (ParsedFile, error) {
 			field = names[0]
 		}
 
-		var flags data.FieldFlags
+		var fieldFlags data.FieldFlags
 		if p.flags != "" {
-			flags, err = parseFieldFlags(p.flags)
+			fieldFlags, err = parseFieldFlags(p.flags)
 			if err != nil {
 				return parsed, err
 			}
 		}
 
-		flds = append(flds, data.Field{Type: p.t, ConcreteType: concreteType, Name: name, FieldName: field, Nullable: csnull, Collection: p.collection, IsInterface: p.isInterface, Flags: flags})
+		flds = append(flds, data.Field{Type: p.t, ConcreteType: concreteType, Name: name, FieldName: field, Nullable: csnull, Collection: p.collection, IsInterface: p.isInterface, Flags: fieldFlags})
 	}
 
 	pfile := ParsedFile{Fields: flds, GenFlags: flags}
