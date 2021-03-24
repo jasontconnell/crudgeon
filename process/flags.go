@@ -53,6 +53,12 @@ func parseFieldFlags(instructions string) (data.FieldFlags, error) {
 			}
 
 			flags.ReadOnly = true
+		case "forcesql":
+			flags.ForceSql = flg
+			if len(flds) == 1 {
+				return flags, fmt.Errorf("forcesql flag must provide sql type (+forcesql sqltype)")
+			}
+			flags.ForceSqlType = flds[1]
 		default:
 			return flags, fmt.Errorf("Invalid flag: %s", flds)
 		}

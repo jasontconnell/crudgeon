@@ -110,6 +110,12 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 
 			sqlignore := f.Flags.SqlIgnore
 			sqltype := getSqlType(f.Type)
+
+			if f.Flags.ForceSql {
+				sqlignore = false
+				sqltype = f.Flags.ForceSqlType
+			}
+
 			if fileType == "sql" && (sqltype == "" || sqlignore) {
 				continue
 			}
@@ -144,7 +150,7 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 				}
 			}
 
-			sqlignore = f.Collection || sqlignore || !isBase
+			sqlignore = (f.Collection || sqlignore || !isBase) && !f.Flags.ForceSql
 			jsonIgnore := f.Flags.JsonIgnore || flags.JsonIgnore
 
 			concreteProperty := ""
@@ -189,7 +195,7 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 
 	if flags.Constructor {
 		for _, f := range pkg.Fields {
-			if !f.IsInterface {
+			if !f.IsInterface && !f.Flags.ReadOnly {
 				pkg.ConstructorFields = append(pkg.ConstructorFields, f)
 			}
 		}

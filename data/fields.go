@@ -29,5 +29,8 @@ type FieldFlags struct {
 	ParseFromStringFormat   string
 	ParseFromStringDefault  string
 
+	ForceSql     bool
+	ForceSqlType string
+
 	ReadOnly bool
 }
