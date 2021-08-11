@@ -12,7 +12,7 @@ create table dbo.{{.Name}} (
         {{- if and ($genpkg.Flags.Id) ($field.Id) }}{{- else}}
         {{ $field.Name}} {{$field.Type}} {{ if $field.Nullable }}null{{else}}not null{{end}}{{- if lt (plus1 $index) (len $.Fields)}},{{end}}{{end}}
     {{- end}},
-    {{ if (len .KeyFields) gt 0 }}
+    {{ if gt (len .KeyFields)  0 }}
         INDEX [Idx_{{.Name}}] NONCLUSTERED (
             {{ range $kindex,$key := .KeyFields }}
                 {{ $key.Name }} ASC {{ if lt (plus1 $kindex) (len $.KeyFields)}},{{ end }}

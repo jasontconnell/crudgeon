@@ -5,7 +5,9 @@ import (
 )
 
 type Config struct {
-	Generations []Generation `json:"generations"`
+	Generations        []Generation `json:"generations"`
+	ConcreteCollection string       `json:"concreteCollection"`
+	AbstractCollection string       `json:"abstractCollection"`
 }
 
 type Generation struct {

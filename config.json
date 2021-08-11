@@ -7,5 +7,7 @@
         { "file": "tmpl\\table.txt", "fileType": "sql", "outputPrefix": "tbl", "folder": "SQL","flags": "+id,+fields,+keys","objdir": true},
         { "file": "tmpl\\map.txt", "fileType": "cs", "outputPrefix": "Map_", "folder": "MapCode","flags": "+id,+collections,+fields,+constructor","objdir":true},
         { "file": "tmpl\\interface.txt", "fileType": "cs", "outputPrefix": "I", "folder": "ModelInterfaces", "flags": "+id,+fields,+collections","objdir":false}
-    ]
+    ],
+    "concreteCollection": "List",
+    "abstractCollection": "IEnumerable"
 }

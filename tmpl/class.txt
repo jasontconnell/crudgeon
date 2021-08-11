@@ -20,7 +20,7 @@ namespace {{ .Namespace }} {
             
         }
 
-        {{- if (len .ConstructorFields) gt 0 }}
+        {{- if gt (len .ConstructorFields)  0 }}
         public {{ .Name }}({{- range $index,$field := .ConstructorFields }} {{$field.Type}}{{if $field.Nullable}}?{{end}} {{$field.Name}}{{- if lt (plus1 $index) (len $.ConstructorFields)}},
                 {{end}}{{- end}}) {
             {{- range $index,$field := .ConstructorFields }}

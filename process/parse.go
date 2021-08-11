@@ -11,11 +11,12 @@ import (
 	"github.com/jasontconnell/crudgeon/data"
 )
 
-var fldreg *regexp.Regexp = regexp.MustCompile(`^\W*(?:private|public) (.*?) (.*?) +{.*?}( *//[a-zA-Z\+\-,\." ]+)?$`)
+var fldreg *regexp.Regexp = regexp.MustCompile(`^\W*(?:private|public) (.*?) (.*?) +{.*?}( *//[0-9a-zA-Z\+\-,\." ]+)?$`)
 var genericreg *regexp.Regexp = regexp.MustCompile(`([a-zA-Z\.]*?)<(.*?)>`)
 var globalflagsreg *regexp.Regexp = regexp.MustCompile(`^//([\+\-a-zA-Z_, ]*?)$`)
 
 type ParsedFile struct {
+	Path     string
 	Fields   []data.Field
 	GenFlags data.GenFlags
 }
@@ -33,7 +34,7 @@ type parsedField struct {
 func ParseFile(file string) (ParsedFile, error) {
 	contents, err := os.ReadFile(file)
 
-	parsed := ParsedFile{}
+	parsed := ParsedFile{Path: file}
 
 	if err != nil {
 		return parsed, err
@@ -78,9 +79,10 @@ func ParseFile(file string) (ParsedFile, error) {
 		flds = append(flds, data.Field{Type: p.t, ConcreteType: concreteType, Name: name, FieldName: field, Nullable: csnull, Collection: p.collection, IsInterface: p.isInterface, Flags: fieldFlags})
 	}
 
-	pfile := ParsedFile{Fields: flds, GenFlags: flags}
+	parsed.Fields = flds
+	parsed.GenFlags = flags
 
-	return pfile, nil
+	return parsed, nil
 }
 
 func getParsed(c string) (data.GenFlags, []parsedField, error) {
@@ -160,8 +162,6 @@ func getSqlType(t string) string {
 		st = "varchar(150)"
 	case "decimal", "double":
 		st = "decimal(18,7)"
-	// case "double":
-	// 	st = "decimal(13,7)"
 	case "long":
 		st = "bigint"
 	case "DateTime":

@@ -59,7 +59,6 @@ namespace Name.Space {
         
         [DataMember(Name="Employees")]
         [XmlElement("Employees")]
-        [IgnoreCol]
         public List<Employee> Employees { get; set;  }
         
 

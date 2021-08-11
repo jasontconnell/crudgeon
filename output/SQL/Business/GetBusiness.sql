@@ -17,4 +17,6 @@ begin
         
         where 
             (@Name is null OR Name = @Name) 
+
+        option(recompile) 
 end

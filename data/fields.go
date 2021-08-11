@@ -33,4 +33,6 @@ type FieldFlags struct {
 	ForceSqlType string
 
 	ReadOnly bool
+
+	Custom map[string]string
 }

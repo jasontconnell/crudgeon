@@ -5,6 +5,12 @@ import (
 	"strings"
 )
 
+type CustomFlag struct {
+	Name  string
+	Flag  bool
+	Value string
+}
+
 type GenPackage struct {
 	Generate          bool
 	Name              string
@@ -61,6 +67,8 @@ type GenFlags struct {
 	XmlRootName string
 	Class       bool
 	ClassName   string
+	ExactName   bool
+	Custom      map[string]CustomFlag
 }
 
 func (gf *GenFlags) MergeParse(flagstr string) error {
@@ -106,8 +114,18 @@ func (gf *GenFlags) MergeParse(flagstr string) error {
 				return fmt.Errorf("Class root flag must provide the class name (+class ClassName)")
 			}
 			gf.ClassName = flds[1]
+		case "exact":
+			gf.ExactName = flg
 		default:
-			return fmt.Errorf("Invalid flags: %s", flds)
+			if gf.Custom == nil {
+				gf.Custom = make(map[string]CustomFlag)
+			}
+			val := ""
+			if len(flds) > 1 {
+				val = flds[1]
+			}
+			cf := CustomFlag{Name: flds[0], Value: val, Flag: flg}
+			gf.Custom[cf.Name] = cf
 		}
 	}
 	return nil
@@ -126,5 +144,7 @@ func (gf GenFlags) String() string {
 		JsonIgnore:  %v
 		XmlIgnore:   %v
 		XmlRoot:     %v (%v)
-	`, gf.Id, gf.Fields, gf.Collections, gf.Concretes, gf.Constructor, gf.Keys, gf.SqlIgnore, gf.CsIgnore, gf.JsonIgnore, gf.XmlIgnore, gf.XmlRoot, gf.XmlRootName)
+		Class:       %s
+		Exact:       %v
+	`, gf.Id, gf.Fields, gf.Collections, gf.Concretes, gf.Constructor, gf.Keys, gf.SqlIgnore, gf.CsIgnore, gf.JsonIgnore, gf.XmlIgnore, gf.XmlRoot, gf.XmlRootName, gf.ClassName, gf.ExactName)
 }

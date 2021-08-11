@@ -41,7 +41,7 @@ func main() {
 	if *dir == "" {
 		pfile, err := process.ParseFile(*file)
 		if err != nil {
-			log.Fatal(err)
+			log.Fatal("in file", *file, err)
 		}
 		pfiles = append(pfiles, pfile)
 	} else {
@@ -50,10 +50,14 @@ func main() {
 			log.Fatal(err)
 		}
 
+		if len(paths) == 0 {
+			log.Fatal("no .txt files in", *dir)
+		}
+
 		for _, p := range paths {
 			pfile, err := process.ParseFile(p)
 			if err != nil {
-				log.Fatal(err)
+				log.Fatal("parsing file", pfile.Path, err)
 			}
 			pfiles = append(pfiles, pfile)
 		}
@@ -72,11 +76,11 @@ func main() {
 			gp, err := process.GetGenPackage(*obj, *path, pfile.Fields, g.FileType, tmpfile, *ns, g.OutputPrefix, g.Folder, g.Flags, pfile.GenFlags, *fld)
 
 			if err != nil {
-				log.Fatal(err)
+				log.Fatal("getting gen package from file: ", pfile.Path, " error: ", err)
 			}
 			err = process.Generate(gp, g.CreateObjDir)
 			if err != nil {
-				log.Fatal(err)
+				log.Fatal("generating from file: ", pfile.Path, " error: ", err)
 			}
 		}
 	}

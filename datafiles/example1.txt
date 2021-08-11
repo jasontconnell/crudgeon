@@ -1,3 +1,5 @@
+//+option recompile
+
 public string Name {get;set;} //+key
 public decimal Value {get;set;}
 public decimal Revenue {get;set;}

@@ -17,11 +17,45 @@ var fns = template.FuncMap{
 	},
 }
 
+func getPackageFunctions(pkg data.GenPackage) template.FuncMap {
+	m := make(template.FuncMap)
+
+	m["plus1"] = func(x int) int {
+		return x + 1
+	}
+
+	m["stringflag"] = func(k string) string {
+		val := ""
+		if pkg.Flags.Custom == nil {
+			return val
+		}
+		if v, ok := pkg.Flags.Custom[k]; ok {
+			val = v.Value
+		}
+		return val
+	}
+
+	m["bitflag"] = func(k string) bool {
+		val := false
+		if pkg.Flags.Custom == nil {
+			return val
+		}
+
+		if v, ok := pkg.Flags.Custom[k]; ok {
+			val = v.Flag
+		}
+
+		return val
+	}
+
+	return m
+}
+
 func Generate(pkg data.GenPackage, objdir bool) error {
 	if !pkg.Generate {
 		return nil
 	}
-	tmpl, err := template.New(pkg.TemplateFile).Funcs(fns).ParseFiles(pkg.TemplateFile)
+	tmpl, err := template.New(pkg.TemplateFile).Funcs(getPackageFunctions(pkg)).ParseFiles(pkg.TemplateFile)
 	if err != nil {
 		return err
 	}
@@ -48,7 +82,7 @@ func Generate(pkg data.GenPackage, objdir bool) error {
 	return os.WriteFile(output, buffer.Bytes(), os.ModePerm)
 }
 
-func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns, prefix, folder string, flagstr string, fileflags data.GenFlags, usefieldname bool) (data.GenPackage, error) {
+func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns, prefix, folder, flagstr string, fileflags data.GenFlags, usefieldname bool) (data.GenPackage, error) {
 	flags := data.GenFlags{}
 	err := flags.MergeParse(flagstr)
 	if err != nil {
@@ -67,12 +101,23 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 	flags.JsonIgnore = flags.JsonIgnore || fileflags.JsonIgnore
 	flags.XmlRoot = flags.XmlRoot || fileflags.XmlRoot
 
+	if flags.Custom == nil {
+		flags.Custom = make(map[string]data.CustomFlag)
+	}
+
+	if flags.Custom != nil && fileflags.Custom != nil {
+		for k, v := range fileflags.Custom {
+			flags.Custom[k] = v
+		}
+	}
+
 	// file specific flags
 	flags.Class = fileflags.Class
 	flags.ClassName = fileflags.ClassName
+	flags.ExactName = fileflags.ExactName
 
 	if name == "" && flags.ClassName == "" {
-		return data.GenPackage{Generate: false}, fmt.Errorf("No object name provided")
+		return data.GenPackage{Generate: false}, fmt.Errorf("No object name provided.")
 	}
 
 	if name == "" {
@@ -104,8 +149,8 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 				cname = strings.ToUpper(cname)
 			}
 
-			if usefieldname {
-				cname = field
+			if usefieldname || flags.ExactName {
+				cname = f.Name
 			}
 
 			sqlignore := f.Flags.SqlIgnore
