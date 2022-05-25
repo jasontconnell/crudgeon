@@ -53,22 +53,24 @@ type GenField struct {
 }
 
 type GenFlags struct {
-	Id          bool
-	Fields      bool
-	Collections bool
-	Concretes   bool
-	Constructor bool
-	Keys        bool
-	SqlIgnore   bool
-	CsIgnore    bool
-	JsonIgnore  bool
-	XmlIgnore   bool
-	XmlRoot     bool
-	XmlRootName string
-	Class       bool
-	ClassName   string
-	ExactName   bool
-	Custom      map[string]CustomFlag
+	Id           bool
+	Fields       bool
+	Collections  bool
+	Concretes    bool
+	Constructor  bool
+	Keys         bool
+	SqlIgnore    bool
+	CsIgnore     bool
+	JsonIgnore   bool
+	XmlIgnore    bool
+	XmlRoot      bool
+	XmlRootName  string
+	Class        bool
+	ClassName    string
+	HasNamespace bool
+	Namespace    string
+	ExactName    bool
+	Custom       map[string]CustomFlag
 }
 
 func (gf *GenFlags) MergeParse(flagstr string) error {
@@ -108,6 +110,12 @@ func (gf *GenFlags) MergeParse(flagstr string) error {
 				return fmt.Errorf("Xml root flag must provide xml root name (+xmlroot XmlRootName)")
 			}
 			gf.XmlRootName = flds[1]
+		case "namespace":
+			gf.HasNamespace = flg
+			if len(flds) == 1 {
+				return fmt.Errorf("Namespace flag needs a namespace (+namespace LocalNamespace)")
+			}
+			gf.Namespace = flds[1]
 		case "class":
 			gf.Class = flg
 			if len(flds) == 1 {

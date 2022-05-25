@@ -60,7 +60,15 @@ func parseFieldFlags(instructions string) (data.FieldFlags, error) {
 			}
 			flags.ForceSqlType = flds[1]
 		default:
-			return flags, fmt.Errorf("Invalid flag: %s", flds)
+			if flags.Custom == nil {
+				flags.Custom = make(map[string]data.CustomFlag)
+			}
+			val := ""
+			if len(flds) > 1 {
+				val = flds[1]
+			}
+			cf := data.CustomFlag{Name: flds[0], Value: val, Flag: flg}
+			flags.Custom[cf.Name] = cf
 		}
 	}
 	return flags, nil

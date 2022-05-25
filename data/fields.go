@@ -34,5 +34,5 @@ type FieldFlags struct {
 
 	ReadOnly bool
 
-	Custom map[string]string
+	Custom map[string]CustomFlag
 }

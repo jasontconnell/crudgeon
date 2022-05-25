@@ -48,6 +48,28 @@ func getPackageFunctions(pkg data.GenPackage) template.FuncMap {
 		return val
 	}
 
+	m["fldbitflag"] = func(fld data.GenField, k string) bool {
+		val := false
+		if fld.Flags.Custom == nil {
+			return val
+		}
+		if v, ok := fld.Flags.Custom[k]; ok {
+			val = v.Flag
+		}
+		return val
+	}
+
+	m["fldstringflag"] = func(fld data.GenField, k string) string {
+		val := ""
+		if fld.Flags.Custom == nil {
+			return val
+		}
+		if v, ok := fld.Flags.Custom[k]; ok {
+			val = v.Value
+		}
+		return val
+	}
+
 	return m
 }
 
