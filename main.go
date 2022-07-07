@@ -73,7 +73,7 @@ func main() {
 			if !filepath.IsAbs(tmpfile) {
 				tmpfile = filepath.Join(tmplRoot, g.File)
 			}
-			gp, err := process.GetGenPackage(*obj, *path, pfile.Fields, g.FileType, tmpfile, *ns, g.OutputPrefix, g.Folder, g.Flags, pfile.GenFlags, *fld)
+			gp, err := process.GetGenPackage(*obj, *path, pfile.Fields, g.FileType, tmpfile, *ns, g.OutputPrefix, g.OutputSuffix, g.Folder, g.Flags, pfile.GenFlags, *fld)
 
 			if err != nil {
 				log.Fatal("getting gen package from file: ", pfile.Path, " error: ", err)

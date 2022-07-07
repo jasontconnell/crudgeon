@@ -8,6 +8,8 @@ import (
 	"strings"
 	"text/template"
 
+	"github.com/google/uuid"
+
 	"github.com/jasontconnell/crudgeon/data"
 )
 
@@ -70,6 +72,12 @@ func getPackageFunctions(pkg data.GenPackage) template.FuncMap {
 		return val
 	}
 
+	m["newguid"] = func() string {
+		v := uuid.New()
+
+		return strings.ToLower(v.String())
+	}
+
 	return m
 }
 
@@ -104,7 +112,7 @@ func Generate(pkg data.GenPackage, objdir bool) error {
 	return os.WriteFile(output, buffer.Bytes(), os.ModePerm)
 }
 
-func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns, prefix, folder, flagstr string, fileflags data.GenFlags, usefieldname bool) (data.GenPackage, error) {
+func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns, prefix, suffix, folder, flagstr string, fileflags data.GenFlags, usefieldname bool) (data.GenPackage, error) {
 	flags := data.GenFlags{}
 	err := flags.MergeParse(flagstr)
 	if err != nil {
@@ -158,7 +166,7 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 		return data.GenPackage{}, err
 	}
 
-	pkg := data.GenPackage{Generate: true, Name: name, Namespace: ns, Path: filepath.Join(path, folder), TemplateFile: tmplFile, Prefix: prefix, OutputFile: prefix + name + "." + fileType, Flags: flags}
+	pkg := data.GenPackage{Generate: true, Name: name, Namespace: ns, Path: filepath.Join(path, folder), TemplateFile: tmplFile, Prefix: prefix, Suffix: suffix, OutputFile: prefix + name + suffix + "." + fileType, Flags: flags}
 	if flags.Fields || flags.Constructor || flags.Keys || flags.Concretes {
 		for _, f := range flds {
 			if f.Collection && !flags.Collections {

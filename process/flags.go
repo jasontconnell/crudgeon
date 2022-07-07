@@ -65,7 +65,7 @@ func parseFieldFlags(instructions string) (data.FieldFlags, error) {
 			}
 			val := ""
 			if len(flds) > 1 {
-				val = flds[1]
+				val = strings.Join(flds[1:], " ")
 			}
 			cf := data.CustomFlag{Name: flds[0], Value: val, Flag: flg}
 			flags.Custom[cf.Name] = cf

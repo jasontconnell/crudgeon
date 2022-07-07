@@ -14,6 +14,7 @@ type Generation struct {
 	File         string `json:"file"`
 	FileType     string `json:"fileType"`
 	OutputPrefix string `json:"outputPrefix"`
+	OutputSuffix string `json:"outputSuffix"`
 	Folder       string `json:"folder"`
 	Flags        string `json:"flags"`
 	CreateObjDir bool   `json:"objdir"`

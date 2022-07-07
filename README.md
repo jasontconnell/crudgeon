@@ -138,7 +138,9 @@ The current "class" generator to generate classes:
 * fileType
     - specify file type extension (cs in this case)
 * outputPrefix
-    - useful for generating multiple types of stored procedures, use "Get", "Update", "Delete", here for example
+    - useful for generating multiple files with the same type, e.g. stored procedures, use "Get", "Update", "Delete", here for example
+* outputSuffix
+    - useful for generating multiple files with the same type, e.g. classes and components, use "Model", "ModelView", etc. 
 * folder
     - create this folder and put the output in there
 * flags

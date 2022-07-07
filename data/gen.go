@@ -22,6 +22,7 @@ type GenPackage struct {
 	KeyFields         []GenField
 	TemplateFile      string
 	Prefix            string
+	Suffix            string
 	Flags             GenFlags
 }
 
