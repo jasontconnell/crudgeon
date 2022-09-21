@@ -11,9 +11,9 @@ import (
 	"github.com/jasontconnell/crudgeon/data"
 )
 
-var fldreg *regexp.Regexp = regexp.MustCompile(`^\W*(?:private|public) (.*?) (.*?) +{.*?}( *//[0-9a-zA-Z\+\-,\." ]+)?$`)
+var fldreg *regexp.Regexp = regexp.MustCompile(`^\W*(?:private|public) (.*?) (.*?) +{.*?}( *//[0-9a-zA-Z\+\-,\."\/_ ]+)?$`)
 var genericreg *regexp.Regexp = regexp.MustCompile(`([a-zA-Z\.]*?)<(.*?)>`)
-var globalflagsreg *regexp.Regexp = regexp.MustCompile(`^//([\+\-a-zA-Z_,0-9 ]*?)$`)
+var globalflagsreg *regexp.Regexp = regexp.MustCompile(`^//([\+\-a-zA-Z_,0-9\/_ ]*?)$`)
 
 type ParsedFile struct {
 	Path     string

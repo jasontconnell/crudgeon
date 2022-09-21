@@ -12,6 +12,7 @@ type Config struct {
 
 type Generation struct {
 	File         string `json:"file"`
+	Alias        string `json:"alias"`
 	FileType     string `json:"fileType"`
 	OutputPrefix string `json:"outputPrefix"`
 	OutputSuffix string `json:"outputSuffix"`

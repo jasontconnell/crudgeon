@@ -73,6 +73,12 @@ func main() {
 			if !filepath.IsAbs(tmpfile) {
 				tmpfile = filepath.Join(tmplRoot, g.File)
 			}
+
+			skip := pfile.GenFlags.HasSkip && pfile.GenFlags.Skip == g.Alias
+			if skip {
+				continue
+			}
+
 			gp, err := process.GetGenPackage(*obj, *path, pfile.Fields, g.FileType, tmpfile, *ns, g.OutputPrefix, g.OutputSuffix, g.Folder, g.Flags, pfile.GenFlags, *fld)
 
 			if err != nil {
