@@ -74,7 +74,8 @@ func main() {
 				tmpfile = filepath.Join(tmplRoot, g.File)
 			}
 
-			skip := pfile.GenFlags.HasSkip && pfile.GenFlags.Skip == g.Alias
+			skipFlag, ok := pfile.GenFlags.Skip[g.Alias]
+			skip := pfile.GenFlags.HasSkip && ok && skipFlag
 			if skip {
 				continue
 			}

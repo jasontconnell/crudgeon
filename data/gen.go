@@ -72,7 +72,7 @@ type GenFlags struct {
 	Namespace    string
 	ExactName    bool
 	HasSkip      bool
-	Skip         string
+	Skip         map[string]bool
 	Custom       map[string]CustomFlag
 }
 
@@ -129,7 +129,10 @@ func (gf *GenFlags) MergeParse(flagstr string) error {
 			gf.ExactName = flg
 		case "skip":
 			gf.HasSkip = flg
-			gf.Skip = flds[1]
+			if gf.Skip == nil {
+				gf.Skip = make(map[string]bool)
+			}
+			gf.Skip[flds[1]] = flg
 		default:
 			if gf.Custom == nil {
 				gf.Custom = make(map[string]CustomFlag)
