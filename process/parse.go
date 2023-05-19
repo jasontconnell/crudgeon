@@ -13,7 +13,7 @@ import (
 
 var fldreg *regexp.Regexp = regexp.MustCompile(`^\W*(?:private|public) (.*?) (.*?) +{.*?}( *//[0-9a-zA-Z\+\-,\."\/_ ]+)?$`)
 var genericreg *regexp.Regexp = regexp.MustCompile(`([a-zA-Z\.]*?)<(.*?)>`)
-var globalflagsreg *regexp.Regexp = regexp.MustCompile(`^//([\+\-a-zA-Z_,0-9\/_ ]*?)$`)
+var globalflagsreg *regexp.Regexp = regexp.MustCompile(`^/{2}([\+\-a-zA-Z_,0-9\/_ ]*?)$`)
 
 type ParsedFile struct {
 	Path     string

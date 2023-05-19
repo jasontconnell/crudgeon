@@ -1,6 +1,4 @@
 github.com/google/uuid v1.3.0 h1:t6JiXgmwXMjEs8VusXIJk2BXHsn+wx8BZdTaoZ5fu7I=
 github.com/google/uuid v1.3.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
-github.com/jasontconnell/conf v1.0.3 h1:KU7j5AOHHsjGFn8kyjmQyCqLjSaZxVQ+2PZ+5tkHKF8=
-github.com/jasontconnell/conf v1.0.3/go.mod h1:DwNCyZCKlP9MdwIxglIqtP7WYXGdCekMkHJd/udRHLk=
-github.com/pkg/errors v0.8.1 h1:iURUrRGxPUNPdy5/HRSm+Yj6okJ6UtLINN0Q9M4+h3I=
-github.com/pkg/errors v0.8.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
+github.com/jasontconnell/conf v1.1.1 h1:Y2mo1uAtSDXJxTXBreB/7wrgU7MiP8TUYy+L7oJt3IY=
+github.com/jasontconnell/conf v1.1.1/go.mod h1:UxSIE+LpOt24CfeF+a0xLNhjUPe/2SjI6yz8qgBqhJA=

@@ -2,7 +2,7 @@ module github.com/jasontconnell/crudgeon
 
 require (
 	github.com/google/uuid v1.3.0
-	github.com/jasontconnell/conf v1.0.3
+	github.com/jasontconnell/conf v1.1.1
 )
 
-go 1.16
+go 1.20
