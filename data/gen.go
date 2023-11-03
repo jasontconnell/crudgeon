@@ -45,6 +45,8 @@ type GenField struct {
 	Key                 bool
 	IsBaseType          bool
 
+	HashIgnore bool
+
 	Flags             FieldFlags
 	XmlWrapper        bool
 	XmlWrapperType    string
@@ -66,6 +68,7 @@ type GenFlags struct {
 	XmlIgnore    bool
 	XmlRoot      bool
 	XmlRootName  string
+	HashIgnore   bool
 	Class        bool
 	ClassName    string
 	HasNamespace bool
@@ -107,6 +110,8 @@ func (gf *GenFlags) MergeParse(flagstr string) error {
 			gf.JsonIgnore = flg
 		case "xmlignore":
 			gf.XmlIgnore = flg
+		case "hashignore":
+			gf.HashIgnore = flg
 		case "xmlroot":
 			gf.XmlRoot = flg
 			if len(flds) == 1 {

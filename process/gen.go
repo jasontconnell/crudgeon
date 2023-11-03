@@ -129,6 +129,7 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 	flags.CsIgnore = flags.CsIgnore || fileflags.CsIgnore
 	flags.XmlIgnore = flags.XmlIgnore || fileflags.XmlIgnore
 	flags.JsonIgnore = flags.JsonIgnore || fileflags.JsonIgnore
+	flags.HashIgnore = flags.HashIgnore || fileflags.HashIgnore
 	flags.XmlRoot = flags.XmlRoot || fileflags.XmlRoot
 
 	if flags.Custom == nil {
@@ -201,6 +202,7 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 			}
 
 			xmlignore := f.Flags.XmlIgnore || flags.XmlIgnore
+			hashIgnore := f.Flags.HashIgnore || flags.HashIgnore
 
 			isInterface := f.Type != f.ConcreteType
 			typeName, concreteTypeName, elementType := f.Type, f.Type, f.Type
@@ -258,6 +260,7 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 				SqlIgnore:           sqlignore,
 				JsonIgnore:          jsonIgnore,
 				XmlIgnore:           xmlignore,
+				HashIgnore:          hashIgnore,
 				IsInterface:         isInterface,
 				Collection:          f.Collection,
 				Key:                 f.Flags.Key,
@@ -317,6 +320,7 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 					SqlIgnore:           f.SqlIgnore,
 					XmlIgnore:           f.XmlIgnore,
 					JsonIgnore:          flags.JsonIgnore,
+					HashIgnore:          f.HashIgnore,
 					IsInterface:         false,
 					Collection:          f.Collection,
 					Flags:               f.Flags,

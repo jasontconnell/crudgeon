@@ -28,6 +28,8 @@ func parseFieldFlags(instructions string) (data.FieldFlags, error) {
 			flags.Key = flg
 		case "index":
 			flags.Index = flg
+		case "hashignore":
+			flags.HashIgnore = flg
 		case "nomap":
 			flags.NoMap = flg
 		case "xmlignore":

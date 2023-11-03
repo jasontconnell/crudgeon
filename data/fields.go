@@ -21,6 +21,8 @@ type FieldFlags struct {
 	Index      bool
 	NoMap      bool
 
+	HashIgnore bool
+
 	XmlWrapper        bool
 	XmlWrapperElement string
 
