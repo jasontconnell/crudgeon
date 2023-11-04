@@ -15,4 +15,4 @@ public decimal salary {get;set;}  //# 'salary' will be title cased so you will u
 //# the StartDateString will be sql ignored so it won't try to add it to the database.
 //# so it won't create a column. It use StartDate as the DateTime field to generate SQL scripts and tables.
 
-public DateTime StartDate {get;set;} //+jsonignore,+csignore
+public DateTime StartDate {get;set;} //+jsonignore,+codeignore

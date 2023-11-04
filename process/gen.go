@@ -112,7 +112,7 @@ func Generate(pkg data.GenPackage, objdir bool) error {
 	return os.WriteFile(output, buffer.Bytes(), os.ModePerm)
 }
 
-func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns, prefix, suffix, folder, flagstr string, fileflags data.GenFlags, usefieldname bool) (data.GenPackage, error) {
+func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, prefix, suffix, folder, ext, flagstr, coll, icoll string, fileflags data.GenFlags, usefieldname bool) (data.GenPackage, error) {
 	flags := data.GenFlags{}
 	err := flags.MergeParse(flagstr)
 	if err != nil {
@@ -126,7 +126,7 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 	flags.Constructor = flags.Constructor || fileflags.Constructor
 	flags.Keys = flags.Keys || fileflags.Keys
 	flags.SqlIgnore = flags.SqlIgnore || fileflags.SqlIgnore
-	flags.CsIgnore = flags.CsIgnore || fileflags.CsIgnore
+	flags.CodeIgnore = flags.CodeIgnore || fileflags.CodeIgnore
 	flags.XmlIgnore = flags.XmlIgnore || fileflags.XmlIgnore
 	flags.JsonIgnore = flags.JsonIgnore || fileflags.JsonIgnore
 	flags.HashIgnore = flags.HashIgnore || fileflags.HashIgnore
@@ -159,7 +159,7 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 		flags.XmlRootName = fileflags.XmlRootName
 	}
 
-	if (fileType == "sql") && flags.SqlIgnore || (fileType == "cs" && flags.CsIgnore) {
+	if db && flags.SqlIgnore || (!db && flags.CodeIgnore) {
 		return data.GenPackage{Generate: false}, nil
 	}
 
@@ -167,7 +167,7 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 		return data.GenPackage{}, err
 	}
 
-	pkg := data.GenPackage{Generate: true, Name: name, Namespace: ns, Path: filepath.Join(path, folder), TemplateFile: tmplFile, Prefix: prefix, Suffix: suffix, OutputFile: prefix + name + suffix + "." + fileType, Flags: flags}
+	pkg := data.GenPackage{Generate: true, Name: name, Namespace: ns, Path: filepath.Join(path, folder), TemplateFile: tmplFile, Prefix: prefix, Suffix: suffix, OutputFile: prefix + name + suffix + "." + ext, Flags: flags}
 	if flags.Fields || flags.Constructor || flags.Keys || flags.Concretes {
 		for _, f := range flds {
 			if f.Collection && !flags.Collections {
@@ -192,12 +192,12 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 				sqltype = f.Flags.ForceSqlType
 			}
 
-			if fileType == "sql" && (sqltype == "" || sqlignore) {
+			if db && (sqltype == "" || sqlignore) {
 				continue
 			}
 
-			csignore := f.Flags.CsIgnore
-			if fileType == "cs" && csignore {
+			codeignore := f.Flags.CodeIgnore
+			if !db && codeignore {
 				continue
 			}
 
@@ -207,20 +207,20 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 			isInterface := f.Type != f.ConcreteType
 			typeName, concreteTypeName, elementType := f.Type, f.Type, f.Type
 			if f.Collection {
-				listType := "List"
+				listType := coll
 				if isInterface {
-					listType = "IEnumerable"
+					listType = icoll
 				}
 				typeName = fmt.Sprintf("%s<%s>", listType, typeName)
 			}
-			if fileType == "sql" {
+			if db {
 				typeName = sqltype
 			}
 
 			nullable := f.Nullable
 
 			isBase := false
-			if fileType == "cs" {
+			if !db {
 				isBase = isBaseType(typeName)
 				if !isBase {
 					nullable = false
@@ -242,7 +242,7 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 				jsonIgnore = true
 			}
 
-			xmlwrapper := f.Flags.XmlWrapper && fileType == "cs"
+			xmlwrapper := f.Flags.XmlWrapper && !db
 
 			gf := data.GenField{
 				Access:              "public",
@@ -256,7 +256,7 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 				XmlWrapper:          xmlwrapper,
 				XmlWrapperElement:   f.Flags.XmlWrapperElement,
 				Nullable:            nullable,
-				CsIgnore:            f.Flags.CsIgnore,
+				CodeIgnore:          f.Flags.CodeIgnore,
 				SqlIgnore:           sqlignore,
 				JsonIgnore:          jsonIgnore,
 				XmlIgnore:           xmlignore,
@@ -316,7 +316,7 @@ func GetGenPackage(name, path string, flds []data.Field, fileType, tmplFile, ns,
 					XmlWrapperName:      xmlwrappername,
 					XmlWrapperElement:   f.XmlWrapperElement,
 					Nullable:            f.Nullable,
-					CsIgnore:            f.CsIgnore,
+					CodeIgnore:          f.CodeIgnore,
 					SqlIgnore:           f.SqlIgnore,
 					XmlIgnore:           f.XmlIgnore,
 					JsonIgnore:          flags.JsonIgnore,

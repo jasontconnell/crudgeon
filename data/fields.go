@@ -15,7 +15,7 @@ type FieldFlags struct {
 	IsId       bool
 	SqlIgnore  bool
 	JsonIgnore bool
-	CsIgnore   bool
+	CodeIgnore bool
 	XmlIgnore  bool
 	Key        bool
 	Index      bool

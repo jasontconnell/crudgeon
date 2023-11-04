@@ -22,13 +22,13 @@ type ParsedFile struct {
 }
 
 type parsedField struct {
-	t           string
-	name        string
-	csnullable  bool
-	sqlnullable bool
-	collection  bool
-	isInterface bool
-	flags       string
+	t            string
+	name         string
+	codenullable bool
+	sqlnullable  bool
+	collection   bool
+	isInterface  bool
+	flags        string
 }
 
 func ParseFile(file string) (ParsedFile, error) {
@@ -51,9 +51,9 @@ func ParseFile(file string) (ParsedFile, error) {
 			return parsed, fmt.Errorf("Type not found for %v %v", p.t, p.name)
 		}
 
-		csnull := p.csnullable
-		if !p.csnullable && !isBaseType(p.t) {
-			csnull = true
+		codenullable := p.codenullable
+		if !p.codenullable && !isBaseType(p.t) {
+			codenullable = true
 		}
 
 		concreteType := p.t
@@ -76,7 +76,7 @@ func ParseFile(file string) (ParsedFile, error) {
 			}
 		}
 
-		flds = append(flds, data.Field{Type: p.t, ConcreteType: concreteType, Name: name, FieldName: field, Nullable: csnull, Collection: p.collection, IsInterface: p.isInterface, Flags: fieldFlags})
+		flds = append(flds, data.Field{Type: p.t, ConcreteType: concreteType, Name: name, FieldName: field, Nullable: codenullable, Collection: p.collection, IsInterface: p.isInterface, Flags: fieldFlags})
 	}
 
 	parsed.Fields = flds
@@ -123,13 +123,13 @@ func getParsed(c string) (data.GenFlags, []parsedField, error) {
 			sqlnullable := nullable || t == "string"
 
 			p := parsedField{
-				t:           t,
-				name:        strings.TrimSuffix(m[2], "Field"),
-				csnullable:  nullable,
-				sqlnullable: sqlnullable,
-				collection:  collection,
-				isInterface: isInterface,
-				flags:       flagstr,
+				t:            t,
+				name:         strings.TrimSuffix(m[2], "Field"),
+				codenullable: nullable,
+				sqlnullable:  sqlnullable,
+				collection:   collection,
+				isInterface:  isInterface,
+				flags:        flagstr,
 			}
 
 			plist = append(plist, p)
@@ -140,7 +140,7 @@ func getParsed(c string) (data.GenFlags, []parsedField, error) {
 }
 
 func isCollection(t string) bool {
-	return strings.HasPrefix(t, "List") || strings.HasPrefix(t, "IEnumerable")
+	return strings.HasPrefix(t, "List")
 }
 
 func isBaseType(t string) bool {

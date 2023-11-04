@@ -22,8 +22,8 @@ func parseFieldFlags(instructions string) (data.FieldFlags, error) {
 			flags.SqlIgnore = flg
 		case "jsonignore":
 			flags.JsonIgnore = flg
-		case "csignore":
-			flags.CsIgnore = flg
+		case "codeignore":
+			flags.CodeIgnore = flg
 		case "key":
 			flags.Key = flg
 		case "index":

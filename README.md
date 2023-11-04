@@ -90,7 +90,7 @@ Generation Flags control Generation. In the config.json, these will tell what da
     - this one requires a bit of explanation. It uses convention. If you object is not a base type and it start with an I, it's an interface. Sorry.
 6. keys
     - include keys as a separate object
-7. sqlignore, csignore, jsonignore, xmlignore
+7. sqlignore, codeignore, jsonignore, xmlignore
     - these will usually be included in the data files, not in the config like 1-7
 8. xmlroot (xml root element name)
     - this object is an xml root. you can use it like   //+xmlroot RootName
@@ -130,13 +130,15 @@ As this is a multi-output code generator, you can configure the specific outputs
 The current "class" generator to generate classes:
 
 ```
-{ "file": "tmpl\\class.txt", "fileType": "cs", "outputPrefix": "", "folder": "Model", "flags": "+id,+collections,+concretes,+constructor,+fields","objdir":false}
+{ "file": "tmpl\\class.txt", "ext": "cs", "outputPrefix": "", "folder": "Model", "flags": "+id,+collections,+concretes,+constructor,+fields","objdir":false}
 ```
 
 * file
     - use file as the template
-* fileType
+* ext
     - specify file type extension (cs in this case)
+* db
+    - specify if this is a db file, like sql
 * outputPrefix
     - useful for generating multiple files with the same type, e.g. stored procedures, use "Get", "Update", "Delete", here for example
 * outputSuffix
