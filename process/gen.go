@@ -185,7 +185,7 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 			}
 
 			sqlignore := f.Flags.SqlIgnore
-			sqltype := getSqlType(f.Type)
+			sqltype := f.SqlType
 
 			if f.Flags.ForceSql {
 				sqlignore = false
@@ -221,7 +221,7 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 
 			isBase := false
 			if !db {
-				isBase = isBaseType(typeName)
+				isBase = f.IsBaseType
 				if !isBase {
 					nullable = false
 				}

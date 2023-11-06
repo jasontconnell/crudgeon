@@ -64,7 +64,7 @@ Available Field Flags:
 5. xmlignore
     - Don't generate XML attributes for this object.
 6. xmlwrapper  (array element name)
-    - This field is an XML Array in C# parlance. It will generate [XmlArray] and [XmlArrayItem] attributes
+    - This field is an XML Array in .NET parlance. It will generate [XmlArray] and [XmlArrayItem] attributes
     - The property name will be passed to [XmlArray] and the array element name will be passed to [XmlArrayItem]
         
 In addition to fields, flags can be added to the entire object. For instance

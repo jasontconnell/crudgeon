@@ -12,7 +12,8 @@ import (
 )
 
 var fldreg *regexp.Regexp = regexp.MustCompile(`^\W*(?:private|public) (.*?) (.*?) +{.*?}( *//[0-9a-zA-Z\+\-,\."\/_ ]+)?$`)
-var genericreg *regexp.Regexp = regexp.MustCompile(`([a-zA-Z\.]*?)<(.*?)>`)
+
+// var genericreg *regexp.Regexp = regexp.MustCompile(`([a-zA-Z\.]*?)<(.*?)>`)
 var globalflagsreg *regexp.Regexp = regexp.MustCompile(`^/{2}([\+\-a-zA-Z_,0-9\/_ ]*?)$`)
 
 type ParsedFile struct {
@@ -31,16 +32,17 @@ type parsedField struct {
 	flags        string
 }
 
-func ParseFile(file string) (ParsedFile, error) {
+func ParseFile(file string, baseTypes map[string]string, genericreg string) (ParsedFile, error) {
 	contents, err := os.ReadFile(file)
-
 	parsed := ParsedFile{Path: file}
+
+	greg := regexp.MustCompile(genericreg)
 
 	if err != nil {
 		return parsed, err
 	}
 
-	flags, fields, err := getParsed(string(contents))
+	flags, fields, err := getParsed(string(contents), baseTypes, greg)
 	if err != nil {
 		return parsed, err
 	}
@@ -52,7 +54,8 @@ func ParseFile(file string) (ParsedFile, error) {
 		}
 
 		codenullable := p.codenullable
-		if !p.codenullable && !isBaseType(p.t) {
+		baseType := isBaseType(p.t, baseTypes)
+		if !p.codenullable && !baseType {
 			codenullable = true
 		}
 
@@ -76,7 +79,9 @@ func ParseFile(file string) (ParsedFile, error) {
 			}
 		}
 
-		flds = append(flds, data.Field{Type: p.t, ConcreteType: concreteType, Name: name, FieldName: field, Nullable: codenullable, Collection: p.collection, IsInterface: p.isInterface, Flags: fieldFlags})
+		sqlType := getSqlType(p.t, baseTypes)
+
+		flds = append(flds, data.Field{Type: p.t, ConcreteType: concreteType, Name: name, FieldName: field, Nullable: codenullable, Collection: p.collection, IsInterface: p.isInterface, SqlType: sqlType, IsBaseType: baseType, Flags: fieldFlags})
 	}
 
 	parsed.Fields = flds
@@ -85,7 +90,7 @@ func ParseFile(file string) (ParsedFile, error) {
 	return parsed, nil
 }
 
-func getParsed(c string) (data.GenFlags, []parsedField, error) {
+func getParsed(c string, baseTypes map[string]string, greg *regexp.Regexp) (data.GenFlags, []parsedField, error) {
 	plist := []parsedField{}
 	genflags := data.GenFlags{}
 
@@ -106,19 +111,20 @@ func getParsed(c string) (data.GenFlags, []parsedField, error) {
 		for _, m := range matches {
 			t := m[1]
 
-			tmatches := genericreg.FindAllStringSubmatch(t, -1)
-			var nullable, collection bool
+			tmatches := greg.FindAllStringSubmatch(t, -1)
+			var nullable, collection, baseType bool
+			baseType = isBaseType(t, baseTypes)
 			if len(tmatches) > 0 {
 				nullable = true
 				collection = isCollection(tmatches[0][1])
 				t = tmatches[0][2]
 			} else {
-				nullable = !isBaseType(t)
+				nullable = !baseType
 			}
 
 			flagstr := strings.TrimPrefix(m[3], " //")
 
-			isInterface := nullable && strings.HasPrefix(t, "I")
+			isInterface := nullable && strings.HasPrefix(t, "I") && !baseType
 			nullable = nullable || collection || isInterface
 			sqlnullable := nullable || t == "string"
 
@@ -143,34 +149,15 @@ func isCollection(t string) bool {
 	return strings.HasPrefix(t, "List")
 }
 
-func isBaseType(t string) bool {
-	switch t {
-	case "int", "short", "string", "decimal", "double", "long", "DateTime", "bool":
-		return true
-	}
-	return false
+func isBaseType(t string, baseTypes map[string]string) bool {
+	_, ok := baseTypes[strings.ToLower(t)]
+	return ok
 }
 
-func getSqlType(t string) string {
-	st := ""
-	switch t {
-	case "int":
-		st = "int"
-	case "short":
-		st = "smallint"
-	case "string":
-		st = "varchar(150)"
-	case "decimal", "double":
-		st = "decimal(18,7)"
-	case "long":
-		st = "bigint"
-	case "DateTime":
-		st = "datetime"
-	case "bool":
-		st = "bit"
-	default: // don't ignore in C# but don't allow saving in sql
-		st = ""
+func getSqlType(t string, baseTypes map[string]string) string {
+	s, ok := baseTypes[t]
+	if ok {
+		return s
 	}
-
-	return st
+	return ""
 }

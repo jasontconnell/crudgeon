@@ -4,13 +4,19 @@ import (
 	"flag"
 	"log"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/jasontconnell/crudgeon/configuration"
 	"github.com/jasontconnell/crudgeon/process"
 
 	"path/filepath"
+
+	_ "embed"
 )
+
+//go:embed global_base_types.txt
+var basetypes string
 
 func main() {
 	configFile := flag.String("config", "config.json", "config file")
@@ -23,6 +29,15 @@ func main() {
 	flag.Parse()
 
 	n := time.Now()
+
+	// read supported base types. rather than have to have this in each config,
+	// let's just have a runtime determined
+	basetypeMap := make(map[string]string)
+	for _, line := range strings.Split(basetypes, "\r\n") {
+		sp := strings.Split(line, ":")
+		codetype, sqltype := sp[0], sp[1]
+		basetypeMap[codetype] = sqltype
+	}
 
 	if *file == "" && *dir == "" {
 		flag.PrintDefaults()
@@ -39,7 +54,7 @@ func main() {
 	pfiles := []process.ParsedFile{}
 
 	if *dir == "" {
-		pfile, err := process.ParseFile(*file)
+		pfile, err := process.ParseFile(*file, basetypeMap, cfg.GenericRegex)
 		if err != nil {
 			log.Fatal("in file", *file, err)
 		}
@@ -55,7 +70,7 @@ func main() {
 		}
 
 		for _, p := range paths {
-			pfile, err := process.ParseFile(p)
+			pfile, err := process.ParseFile(p, basetypeMap, cfg.GenericRegex)
 			if err != nil {
 				log.Fatal("parsing file", pfile.Path, err)
 			}

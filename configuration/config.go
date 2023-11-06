@@ -8,6 +8,7 @@ type Config struct {
 	Generations        []Generation `json:"generations"`
 	ConcreteCollection string       `json:"concreteCollection"`
 	AbstractCollection string       `json:"abstractCollection"`
+	GenericRegex       string       `json:"genericRegex"`
 }
 
 type Generation struct {

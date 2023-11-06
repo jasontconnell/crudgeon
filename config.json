@@ -9,5 +9,6 @@
         { "file": "tmpl\\interface.txt", "ext": "cs", "outputPrefix": "I", "folder": "ModelInterfaces", "flags": "+id,+fields,+collections","objdir":false}
     ],
     "concreteCollection": "List",
-    "abstractCollection": "IEnumerable"
+    "abstractCollection": "IEnumerable",
+    "genericRegex": "(?P<gtype>[a-zA-Z\\.]*?)<(?P<tparam>.*?)>"
 }
