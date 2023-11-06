@@ -6,6 +6,7 @@ double:decimal(18,7)
 short:smallint
 long:bigint
 bool:bit
+integer:int
 int32:int
 int64:bigint
 boolean:bit
