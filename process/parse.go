@@ -131,8 +131,6 @@ func getParsed(c string, baseTypes map[string]data.MappedType, greg *regexp.Rege
 			tmatches := greg.FindAllStringSubmatch(t, -1)
 			var nullable, collection, isBasetype bool
 
-			fmt.Println(baseTypes)
-
 			if len(tmatches) > 0 {
 				nullable = true
 				collection = isCollection(tmatches[0][1])
@@ -160,8 +158,6 @@ func getParsed(c string, baseTypes map[string]data.MappedType, greg *regexp.Rege
 			if !isBaseType {
 				baseType.CodeType = t
 			}
-
-			fmt.Println(m[2], baseType)
 
 			p := parsedField{
 				t:            t,
