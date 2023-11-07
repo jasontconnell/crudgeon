@@ -11,7 +11,7 @@ import (
 	"github.com/jasontconnell/crudgeon/data"
 )
 
-var fldreg *regexp.Regexp = regexp.MustCompile(`^\W*(?:private|public) (.*?) (.*?) +{.*?}( *//[0-9a-zA-Z\+\-,\."\/_ ]+)?$`)
+var fldreg *regexp.Regexp = regexp.MustCompile(`^\W*(?:private|public) (.*?) (.*?) +{.*?}( *//[0-9a-zA-Z\+\-,\."\/_\(\) ]+)?$`)
 var globalflagsreg *regexp.Regexp = regexp.MustCompile(`^/{2}([\+\-a-zA-Z_,0-9\/_ ]*?)$`)
 
 type ParsedFile struct {
@@ -79,7 +79,7 @@ func ParseFile(file string, baseTypes map[string]data.MappedType, null, dbnull, 
 		if p.flags != "" {
 			fieldFlags, err = parseFieldFlags(p.flags)
 			if err != nil {
-				return parsed, err
+				return parsed, fmt.Errorf("error parsing %s. %w", p.flags, err)
 			}
 		}
 

@@ -9,7 +9,7 @@ import (
 
 func parseFieldFlags(instructions string) (data.FieldFlags, error) {
 	flags := data.FieldFlags{}
-	ss := strings.Split(instructions, ",")
+	ss := smartSplit(instructions, ',')
 	for _, s := range ss {
 		flg := s[0] == '+'
 		if !flg && s[0] != '-' {
@@ -74,4 +74,28 @@ func parseFieldFlags(instructions string) (data.FieldFlags, error) {
 		}
 	}
 	return flags, nil
+}
+
+func smartSplit(str string, sep rune) []string {
+	list := []string{}
+	cur := ""
+	level := 0
+	for i, c := range str {
+		switch c {
+		case '(':
+			level++
+		case ')':
+			level--
+		}
+
+		if (c == sep) && level == 0 {
+			list = append(list, cur)
+			cur = ""
+		} else if i == len(str)-1 {
+			list = append(list, cur+string(c))
+		} else {
+			cur = cur + string(c)
+		}
+	}
+	return list
 }
