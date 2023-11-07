@@ -1,5 +1,5 @@
 using System;
-{{ if not .Flags.SqlIgnore }}using SqlMap.Attributes;{{ end }}
+{{ if not .Flags.DbIgnore }}using DbMap.Attributes;{{ end }}
 {{ if not .Flags.JsonIgnore }}using System.Runtime.Serialization;{{ end }}
 {{ if not .Flags.XmlIgnore }}using System.Xml.Serialization;{{ end }}
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using Hasher.Attributes;
 // this code is generated, do not modify. use partial classes / interfaces to add stuff
 namespace {{ .Namespace }} {
     {{ if not .Flags.JsonIgnore }}[DataContract]{{end}}
-    {{ if not .Flags.SqlIgnore }}[StoredProc(Name="Get{{.Name}}", ProcType=ProcType.Read)]
+    {{ if not .Flags.DbIgnore }}[StoredProc(Name="Get{{.Name}}", ProcType=ProcType.Read)]
     [StoredProc(Name="Save{{.Name}}", ProcType=ProcType.Update)]
     [StoredProc(Name="Delete{{.Name}}", ProcType=ProcType.Delete)]{{ end }}
     {{ if .Flags.XmlRoot }}[XmlRoot("{{.Flags.XmlRootName}}")]{{ end }}
@@ -32,7 +32,7 @@ namespace {{ .Namespace }} {
         {{- range $index,$field := .Fields }}
         {{- if $field.Key }}
         [HashKey({{$index}})]{{- end }}
-        {{- if and ($field.IsBaseType) (not $field.SqlIgnore) (ne $field.Name "ID") (not $field.Key)}}
+        {{- if and ($field.IsBaseType) (not $field.DbIgnore) (ne $field.Name "ID") (not $field.Key)}}
         [Hash({{$index}})]{{- end}}
         {{- if not $field.JsonIgnore }}
         [DataMember(Name="{{$field.FieldName}}")]{{- end }}
@@ -52,9 +52,9 @@ namespace {{ .Namespace }} {
         [XmlIgnore]
             {{- end }}
         {{- end }}
-        {{- if (and (not $field.SqlIgnore) (not $genpkg.Flags.SqlIgnore)) }}
+        {{- if (and (not $field.DbIgnore) (not $genpkg.Flags.DbIgnore)) }}
         [Column{{ if $field.Key }}(Key=true){{ end }}]
-        {{- else if (and (ne $field.Name "ID") ($field.IsBaseType) (not $genpkg.Flags.SqlIgnore)) }}
+        {{- else if (and (ne $field.Name "ID") ($field.IsBaseType) (not $genpkg.Flags.DbIgnore)) }}
         [IgnoreCol]
         {{- end }}
         {{$field.Access}} {{$field.Type}}{{if $field.Nullable}}?{{end}} {{$field.Name}} { 

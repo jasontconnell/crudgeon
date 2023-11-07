@@ -10,5 +10,63 @@
     ],
     "concreteCollection": "List",
     "abstractCollection": "IEnumerable",
-    "genericRegex": "(?P<gtype>[a-zA-Z\\.]*?)<(?P<tparam>.*?)>"
+    "genericRegex": "(?P<gtype>[a-zA-Z\\.]*?)<(?P<tparam>.*?)>",
+    "typeMap": [
+        {
+            "name": "int",
+            "codeType": "int",
+            "dbType": "int",
+            "codeDefault": "0",
+            "dbDefault": "0"
+        },
+        {
+            "name": "string",
+            "codeType": "string",
+            "dbType": "varchar(150)",
+            "codeDefault": "\"\"",
+            "dbDefault": "''"
+        },
+        {
+            "name": "DateTime",
+            "codeType": "DateTime",
+            "dbType": "datetime",
+            "codeDefault": "DateTime.MinValue",
+            "dbDefault": "null"
+        },
+        {
+            "name": "decimal",
+            "codeType": "decimal",
+            "dbType": "decimal(18,7)",
+            "codeDefault": "0",
+            "dbDefault": "0"
+        },
+        {
+            "name": "double",
+            "codeType": "double",
+            "dbType": "decimal(18,7)",
+            "codeDefault": "0",
+            "dbDefault": "0"
+        },
+        {
+            "name": "short",
+            "codeType": "short",
+            "dbType": "smallint",
+            "codeDefault": "0",
+            "dbDefault": "0"
+        },
+        {
+            "name": "long",
+            "codeType": "long",
+            "dbType": "bigint",
+            "codeDefault": "0",
+            "dbDefault": "0"
+        },
+        {
+            "name": "bool",
+            "codeType": "bool",
+            "dbType": "bit",
+            "codeDefault": "0",
+            "dbDefault": "0"
+        }
+    ]
 }

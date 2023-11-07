@@ -125,7 +125,7 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 	flags.Concretes = flags.Concretes || fileflags.Concretes
 	flags.Constructor = flags.Constructor || fileflags.Constructor
 	flags.Keys = flags.Keys || fileflags.Keys
-	flags.SqlIgnore = flags.SqlIgnore || fileflags.SqlIgnore
+	flags.DbIgnore = flags.DbIgnore || fileflags.DbIgnore
 	flags.CodeIgnore = flags.CodeIgnore || fileflags.CodeIgnore
 	flags.XmlIgnore = flags.XmlIgnore || fileflags.XmlIgnore
 	flags.JsonIgnore = flags.JsonIgnore || fileflags.JsonIgnore
@@ -159,7 +159,7 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 		flags.XmlRootName = fileflags.XmlRootName
 	}
 
-	if db && flags.SqlIgnore || (!db && flags.CodeIgnore) {
+	if db && flags.DbIgnore || (!db && flags.CodeIgnore) {
 		return data.GenPackage{Generate: false}, nil
 	}
 
@@ -184,15 +184,15 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 				cname = f.Name
 			}
 
-			sqlignore := f.Flags.SqlIgnore
-			sqltype := f.SqlType
+			dbignore := f.Flags.DbIgnore
+			dbtype := f.DbType
 
-			if f.Flags.ForceSql {
-				sqlignore = false
-				sqltype = f.Flags.ForceSqlType
+			if f.Flags.ForceDb {
+				dbignore = false
+				dbtype = f.Flags.ForceDbType
 			}
 
-			if db && (sqltype == "" || sqlignore) {
+			if db && (dbtype == "" || dbignore) {
 				continue
 			}
 
@@ -214,7 +214,7 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 				typeName = fmt.Sprintf("%s<%s>", listType, typeName)
 			}
 			if db {
-				typeName = sqltype
+				typeName = dbtype
 			}
 
 			nullable := f.Nullable
@@ -227,7 +227,7 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 				}
 			}
 
-			sqlignore = (f.Collection || sqlignore || !isBase) && !f.Flags.ForceSql
+			dbignore = (f.Collection || dbignore || !isBase) && !f.Flags.ForceDb
 			jsonIgnore := f.Flags.JsonIgnore || flags.JsonIgnore
 
 			concreteProperty := ""
@@ -257,7 +257,7 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 				XmlWrapperElement:   f.Flags.XmlWrapperElement,
 				Nullable:            nullable,
 				CodeIgnore:          f.Flags.CodeIgnore,
-				SqlIgnore:           sqlignore,
+				DbIgnore:            dbignore,
 				JsonIgnore:          jsonIgnore,
 				XmlIgnore:           xmlignore,
 				HashIgnore:          hashIgnore,
@@ -266,6 +266,10 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 				Key:                 f.Flags.Key,
 				IsBaseType:          isBase,
 				Flags:               f.Flags,
+				CodeType:            f.CodeType,
+				CodeDefault:         f.CodeDefault,
+				DbType:              f.DbType,
+				DbDefault:           f.DbDefault,
 			}
 			pkg.Fields = append(pkg.Fields, gf)
 		}
@@ -317,7 +321,7 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 					XmlWrapperElement:   f.XmlWrapperElement,
 					Nullable:            f.Nullable,
 					CodeIgnore:          f.CodeIgnore,
-					SqlIgnore:           f.SqlIgnore,
+					DbIgnore:            f.DbIgnore,
 					XmlIgnore:           f.XmlIgnore,
 					JsonIgnore:          flags.JsonIgnore,
 					HashIgnore:          f.HashIgnore,
@@ -338,7 +342,7 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 			Name:       "ID",
 			Type:       "int",
 			JsonIgnore: true,
-			SqlIgnore:  true,
+			DbIgnore:   true,
 			Id:         true,
 		}
 

@@ -1,5 +1,7 @@
 package data
 
+import "fmt"
+
 type Field struct {
 	FieldName    string     `json:"field"`
 	Name         string     `json:"name"`
@@ -9,13 +11,30 @@ type Field struct {
 	Collection   bool       `json:"collection"`
 	IsInterface  bool       `json:"interface"`
 	IsBaseType   bool       `json:"baseType"`
-	SqlType      string     `json:"sqlType"`
 	Flags        FieldFlags `json:"flags"`
+	CodeType     string     `json:"codeType"`
+	CodeDefault  string     `json:"codeDefault"`
+	DbType       string     `json:"dbType"`
+	DbDefault    string     `json:"dbDefault"`
+}
+
+func (f Field) String() string {
+	return fmt.Sprintf(`
+		Field Name     :  %s
+		Name           :  %s
+		Type           :  %s
+		Concrete Type  :  %s
+		Nullable       :  %v
+		Collection     :  %v
+		IsInterface    :  %v
+		IsBaseType     :  %v
+		DbType        :  %s
+	`, f.FieldName, f.Name, f.Type, f.ConcreteType, f.Nullable, f.Collection, f.IsInterface, f.IsBaseType, f.DbType)
 }
 
 type FieldFlags struct {
 	IsId       bool
-	SqlIgnore  bool
+	DbIgnore   bool
 	JsonIgnore bool
 	CodeIgnore bool
 	XmlIgnore  bool
@@ -33,10 +52,17 @@ type FieldFlags struct {
 	ParseFromStringFormat   string
 	ParseFromStringDefault  string
 
-	ForceSql     bool
-	ForceSqlType string
+	ForceDb     bool
+	ForceDbType string
 
 	ReadOnly bool
 
 	Custom map[string]CustomFlag
+}
+
+type MappedType struct {
+	CodeType    string
+	DbType      string
+	CodeDefault string
+	DbDefault   string
 }

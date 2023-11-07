@@ -18,8 +18,8 @@ func parseFieldFlags(instructions string) (data.FieldFlags, error) {
 
 		flds := strings.Fields(string(s[1:]))
 		switch flds[0] {
-		case "sqlignore":
-			flags.SqlIgnore = flg
+		case "dbignore":
+			flags.DbIgnore = flg
 		case "jsonignore":
 			flags.JsonIgnore = flg
 		case "codeignore":
@@ -55,12 +55,12 @@ func parseFieldFlags(instructions string) (data.FieldFlags, error) {
 			}
 
 			flags.ReadOnly = true
-		case "forcesql":
-			flags.ForceSql = flg
+		case "forcedb":
+			flags.ForceDb = flg
 			if len(flds) == 1 {
-				return flags, fmt.Errorf("forcesql flag must provide sql type (+forcesql sqltype)")
+				return flags, fmt.Errorf("forcedb flag must provide db type (+forcedb dbtype)")
 			}
-			flags.ForceSqlType = flds[1]
+			flags.ForceDbType = flds[1]
 		default:
 			if flags.Custom == nil {
 				flags.Custom = make(map[string]data.CustomFlag)

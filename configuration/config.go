@@ -9,6 +9,15 @@ type Config struct {
 	ConcreteCollection string       `json:"concreteCollection"`
 	AbstractCollection string       `json:"abstractCollection"`
 	GenericRegex       string       `json:"genericRegex"`
+	TypeMap            []MappedType `json:"typeMap"`
+}
+
+type MappedType struct {
+	Name        string `json:"name"`
+	CodeType    string `json:"codeType"`
+	DbType      string `json:"dbType"`
+	CodeDefault string `json:"codeDefault"`
+	DbDefault   string `json:"dbDefault"`
 }
 
 type Generation struct {

@@ -37,13 +37,18 @@ type GenField struct {
 	ConcreteProperty    string
 	Nullable            bool
 	CodeIgnore          bool
-	SqlIgnore           bool
+	DbIgnore            bool
 	JsonIgnore          bool
 	XmlIgnore           bool
 	IsInterface         bool
 	Collection          bool
 	Key                 bool
 	IsBaseType          bool
+
+	CodeType    string
+	CodeDefault string
+	DbType      string
+	DbDefault   string
 
 	HashIgnore bool
 
@@ -62,7 +67,7 @@ type GenFlags struct {
 	Concretes    bool
 	Constructor  bool
 	Keys         bool
-	SqlIgnore    bool
+	DbIgnore     bool
 	CodeIgnore   bool
 	JsonIgnore   bool
 	XmlIgnore    bool
@@ -102,8 +107,8 @@ func (gf *GenFlags) MergeParse(flagstr string) error {
 			gf.Concretes = flg
 		case "keys":
 			gf.Keys = flg
-		case "sqlignore":
-			gf.SqlIgnore = flg
+		case "dbignore":
+			gf.DbIgnore = flg
 		case "codeignore":
 			gf.CodeIgnore = flg
 		case "jsonignore":
@@ -161,12 +166,12 @@ func (gf GenFlags) String() string {
 		Concretes:   %v
 		Constructor: %v
 		Keys:        %v
-		SqlIgnore:   %v
+		DbIgnore:   %v
 		CodeIgnore:    %v
 		JsonIgnore:  %v
 		XmlIgnore:   %v
 		XmlRoot:     %v (%v)
 		Class:       %s
 		Exact:       %v
-	`, gf.Id, gf.Fields, gf.Collections, gf.Concretes, gf.Constructor, gf.Keys, gf.SqlIgnore, gf.CodeIgnore, gf.JsonIgnore, gf.XmlIgnore, gf.XmlRoot, gf.XmlRootName, gf.ClassName, gf.ExactName)
+	`, gf.Id, gf.Fields, gf.Collections, gf.Concretes, gf.Constructor, gf.Keys, gf.DbIgnore, gf.CodeIgnore, gf.JsonIgnore, gf.XmlIgnore, gf.XmlRoot, gf.XmlRootName, gf.ClassName, gf.ExactName)
 }
