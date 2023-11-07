@@ -34,7 +34,7 @@ type parsedField struct {
 	dbDefault    string
 }
 
-func ParseFile(file string, baseTypes map[string]data.MappedType, genericreg string) (ParsedFile, error) {
+func ParseFile(file string, baseTypes map[string]data.MappedType, null, dbnull, genericreg string) (ParsedFile, error) {
 	contents, err := os.ReadFile(file)
 	parsed := ParsedFile{Path: file}
 
@@ -44,7 +44,7 @@ func ParseFile(file string, baseTypes map[string]data.MappedType, genericreg str
 		return parsed, err
 	}
 
-	flags, fields, err := getParsed(string(contents), baseTypes, greg)
+	flags, fields, err := getParsed(string(contents), baseTypes, null, dbnull, greg)
 	if err != nil {
 		return parsed, err
 	}
@@ -73,8 +73,7 @@ func ParseFile(file string, baseTypes map[string]data.MappedType, genericreg str
 			field = names[0]
 		}
 
-		field = strings.TrimPrefix(field, "[")
-		field = strings.TrimSuffix(field, "]")
+		field = strings.Trim(field, "[]")
 
 		var fieldFlags data.FieldFlags
 		if p.flags != "" {
@@ -107,7 +106,7 @@ func ParseFile(file string, baseTypes map[string]data.MappedType, genericreg str
 	return parsed, nil
 }
 
-func getParsed(c string, baseTypes map[string]data.MappedType, greg *regexp.Regexp) (data.GenFlags, []parsedField, error) {
+func getParsed(c string, baseTypes map[string]data.MappedType, null, dbnull string, greg *regexp.Regexp) (data.GenFlags, []parsedField, error) {
 	plist := []parsedField{}
 	genflags := data.GenFlags{}
 
@@ -129,30 +128,28 @@ func getParsed(c string, baseTypes map[string]data.MappedType, greg *regexp.Rege
 			t := m[1]
 
 			tmatches := greg.FindAllStringSubmatch(t, -1)
-			var nullable, collection, isBasetype bool
+			var nullable, collection bool
 
 			if len(tmatches) > 0 {
 				nullable = true
 				collection = isCollection(tmatches[0][1])
 				t = tmatches[0][2]
-			} else {
-				nullable = !isBasetype
 			}
 
 			baseType, isBaseType := baseTypes[t]
-
+			nullable = !nullable && !isBaseType
 			flagstr := strings.TrimPrefix(m[3], " //")
 
-			isInterface := !isBasetype && strings.HasPrefix(t, "I")
+			isInterface := !isBaseType && strings.HasPrefix(t, "I")
 			nullable = nullable || collection || isInterface
 			dbnullable := nullable || t == "string"
 
 			if nullable {
-				baseType.CodeDefault = "null"
+				baseType.CodeDefault = null
 			}
 
 			if dbnullable {
-				baseType.DbDefault = "null"
+				baseType.DbDefault = dbnull
 			}
 
 			if !isBaseType {

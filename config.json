@@ -11,6 +11,8 @@
     "concreteCollection": "List",
     "abstractCollection": "IEnumerable",
     "genericRegex": "(?P<gtype>[a-zA-Z\\.]*?)<(?P<tparam>.*?)>",
+    "null": "null",
+    "dbnull": "null",
     "typeMap": [
         {
             "name": "int",
