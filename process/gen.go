@@ -147,6 +147,14 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 	flags.ClassName = fileflags.ClassName
 	flags.ExactName = fileflags.ExactName
 
+	flags.Table = fileflags.Table
+	flags.TableName = fileflags.TableName
+	if !flags.Table && !flags.Class {
+		flags.TableName = name
+	} else if !flags.Table && flags.Class {
+		flags.TableName = flags.ClassName
+	}
+
 	if name == "" && flags.ClassName == "" {
 		return data.GenPackage{Generate: false}, fmt.Errorf("No object name provided.")
 	}
@@ -287,6 +295,14 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 		for _, f := range pkg.Fields {
 			if f.Key {
 				pkg.KeyFields = append(pkg.KeyFields, f)
+			}
+		}
+	}
+
+	if flags.Updates {
+		for _, f := range pkg.Fields {
+			if !f.Flags.Auto {
+				pkg.UpdateFields = append(pkg.UpdateFields, f)
 			}
 		}
 	}

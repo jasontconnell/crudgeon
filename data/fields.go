@@ -39,6 +39,7 @@ type FieldFlags struct {
 	CodeIgnore bool
 	XmlIgnore  bool
 	Key        bool
+	Auto       bool
 	Index      bool
 	NoMap      bool
 

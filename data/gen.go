@@ -20,6 +20,7 @@ type GenPackage struct {
 	Fields            []GenField
 	ConstructorFields []GenField
 	KeyFields         []GenField
+	UpdateFields      []GenField
 	TemplateFile      string
 	Prefix            string
 	Suffix            string
@@ -67,6 +68,7 @@ type GenFlags struct {
 	Concretes    bool
 	Constructor  bool
 	Keys         bool
+	Updates      bool
 	DbIgnore     bool
 	CodeIgnore   bool
 	JsonIgnore   bool
@@ -76,6 +78,8 @@ type GenFlags struct {
 	HashIgnore   bool
 	Class        bool
 	ClassName    string
+	Table        bool
+	TableName    string
 	HasNamespace bool
 	Namespace    string
 	ExactName    bool
@@ -107,6 +111,8 @@ func (gf *GenFlags) MergeParse(flagstr string) error {
 			gf.Concretes = flg
 		case "keys":
 			gf.Keys = flg
+		case "updates":
+			gf.Updates = flg
 		case "dbignore":
 			gf.DbIgnore = flg
 		case "codeignore":
@@ -135,6 +141,12 @@ func (gf *GenFlags) MergeParse(flagstr string) error {
 				return fmt.Errorf("Class root flag must provide the class name (+class ClassName)")
 			}
 			gf.ClassName = flds[1]
+		case "table":
+			gf.Table = flg
+			if len(flds) == 1 {
+				return fmt.Errorf("Table root flag must provide the class name (+table TableName)")
+			}
+			gf.TableName = strings.Join(flds[1:], " ") // tables can have spaces...
 		case "exact":
 			gf.ExactName = flg
 		case "skip":
