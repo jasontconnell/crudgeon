@@ -10,7 +10,7 @@
     ],
     "concreteCollection": "List",
     "abstractCollection": "IEnumerable",
-    "genericRegex": "(?P<gtype>[a-zA-Z\\.]*?)<(?P<tparam>.*?)>",
+    "nullableFormat": "Nullable<%s>",
     "null": "null",
     "dbnull": "null",
     "typeMap": [

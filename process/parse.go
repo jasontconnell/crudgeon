@@ -34,17 +34,17 @@ type parsedField struct {
 	dbDefault    string
 }
 
-func ParseFile(file string, baseTypes map[string]data.MappedType, null, dbnull, genericreg string) (ParsedFile, error) {
+func ParseFile(file string, baseTypes map[string]data.MappedType, nullableFormat, null, dbnull string) (ParsedFile, error) {
 	contents, err := os.ReadFile(file)
 	parsed := ParsedFile{Path: file}
 
-	greg := regexp.MustCompile(genericreg)
+	greg := regexp.MustCompile("([a-zA-Z\\.]*?)<(.*?)>")
 
 	if err != nil {
 		return parsed, err
 	}
 
-	flags, fields, err := getParsed(string(contents), baseTypes, null, dbnull, greg)
+	flags, fields, err := getParsed(string(contents), baseTypes, nullableFormat, null, dbnull, greg)
 	if err != nil {
 		return parsed, err
 	}
@@ -56,7 +56,7 @@ func ParseFile(file string, baseTypes map[string]data.MappedType, null, dbnull, 
 		}
 
 		codenullable := p.codenullable
-		baseType, isBaseType := baseTypes[p.t]
+		_, isBaseType := baseTypes[p.t]
 		if !p.codenullable && !isBaseType {
 			codenullable = true
 		}
@@ -92,9 +92,9 @@ func ParseFile(file string, baseTypes map[string]data.MappedType, null, dbnull, 
 				Nullable:     codenullable,
 				Collection:   p.collection,
 				IsInterface:  p.isInterface,
-				DbType:       baseType.DbType,
+				DbType:       p.dbType,
 				IsBaseType:   isBaseType,
-				CodeType:     baseType.CodeType,
+				CodeType:     p.codeType,
 				CodeDefault:  p.codeDefault,
 				DbDefault:    p.dbDefault,
 				Flags:        fieldFlags})
@@ -106,7 +106,7 @@ func ParseFile(file string, baseTypes map[string]data.MappedType, null, dbnull, 
 	return parsed, nil
 }
 
-func getParsed(c string, baseTypes map[string]data.MappedType, null, dbnull string, greg *regexp.Regexp) (data.GenFlags, []parsedField, error) {
+func getParsed(c string, baseTypes map[string]data.MappedType, nullableFormat, null, dbnull string, greg *regexp.Regexp) (data.GenFlags, []parsedField, error) {
 	plist := []parsedField{}
 	genflags := data.GenFlags{}
 
@@ -131,29 +131,29 @@ func getParsed(c string, baseTypes map[string]data.MappedType, null, dbnull stri
 			var nullable, collection bool
 
 			if len(tmatches) > 0 {
-				nullable = true
+				nullable = tmatches[0][1] == "Nullable"
 				collection = isCollection(tmatches[0][1])
 				t = tmatches[0][2]
 			}
 
 			baseType, isBaseType := baseTypes[t]
-			nullable = !nullable && !isBaseType
 			flagstr := strings.TrimPrefix(m[3], " //")
 
 			isInterface := !isBaseType && strings.HasPrefix(t, "I")
 			nullable = nullable || collection || isInterface
 			dbnullable := nullable || t == "string"
 
+			codeType := baseType.CodeType
+			codeDefault := baseType.CodeDefault
+			dbType := baseType.DbType
+			dbDefault := baseType.DbDefault
 			if nullable {
-				baseType.CodeDefault = null
+				codeDefault = null
+				codeType = fmt.Sprintf(nullableFormat, codeType)
 			}
 
 			if dbnullable {
-				baseType.DbDefault = dbnull
-			}
-
-			if !isBaseType {
-				baseType.CodeType = t
+				dbDefault = dbnull
 			}
 
 			p := parsedField{
@@ -164,10 +164,10 @@ func getParsed(c string, baseTypes map[string]data.MappedType, null, dbnull stri
 				collection:   collection,
 				isInterface:  isInterface,
 				flags:        flagstr,
-				codeType:     baseType.CodeType,
-				codeDefault:  baseType.CodeDefault,
-				dbType:       baseType.DbType,
-				dbDefault:    baseType.DbDefault,
+				codeType:     codeType,
+				codeDefault:  codeDefault,
+				dbType:       dbType,
+				dbDefault:    dbDefault,
 			}
 
 			plist = append(plist, p)

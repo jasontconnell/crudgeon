@@ -8,7 +8,7 @@ type Config struct {
 	Generations        []Generation `json:"generations"`
 	ConcreteCollection string       `json:"concreteCollection"`
 	AbstractCollection string       `json:"abstractCollection"`
-	GenericRegex       string       `json:"genericRegex"`
+	NullableFormat     string       `json:"nullableFormat"`
 	Null               string       `json:"null"`
 	DbNull             string       `json:"dbnull"`
 	TypeMap            []MappedType `json:"typeMap"`

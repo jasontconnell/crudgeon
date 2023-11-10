@@ -43,7 +43,7 @@ func main() {
 	pfiles := []process.ParsedFile{}
 
 	if *dir == "" {
-		pfile, err := process.ParseFile(*file, basetypeMap, cfg.Null, cfg.DbNull, cfg.GenericRegex)
+		pfile, err := process.ParseFile(*file, basetypeMap, cfg.NullableFormat, cfg.Null, cfg.DbNull)
 		if err != nil {
 			log.Fatal("in file", *file, err)
 		}
@@ -59,7 +59,7 @@ func main() {
 		}
 
 		for _, p := range paths {
-			pfile, err := process.ParseFile(p, basetypeMap, cfg.Null, cfg.DbNull, cfg.GenericRegex)
+			pfile, err := process.ParseFile(p, basetypeMap, cfg.NullableFormat, cfg.Null, cfg.DbNull)
 			if err != nil {
 				log.Fatal("parsing file", pfile.Path, err)
 			}
