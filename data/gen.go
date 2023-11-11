@@ -20,6 +20,7 @@ type GenPackage struct {
 	Fields            []GenField
 	ConstructorFields []GenField
 	KeyFields         []GenField
+	PrimaryKeyFields  []GenField
 	UpdateFields      []GenField
 	TemplateFile      string
 	Prefix            string
@@ -44,6 +45,7 @@ type GenField struct {
 	IsInterface         bool
 	Collection          bool
 	Key                 bool
+	ForeignKey          bool
 	IsBaseType          bool
 
 	CodeType    string
@@ -68,6 +70,7 @@ type GenFlags struct {
 	Concretes    bool
 	Constructor  bool
 	Keys         bool
+	PrimaryKeys  bool
 	Updates      bool
 	DbIgnore     bool
 	CodeIgnore   bool
@@ -111,6 +114,8 @@ func (gf *GenFlags) MergeParse(flagstr string) error {
 			gf.Concretes = flg
 		case "keys":
 			gf.Keys = flg
+		case "primarykeys":
+			gf.PrimaryKeys = flg
 		case "updates":
 			gf.Updates = flg
 		case "dbignore":

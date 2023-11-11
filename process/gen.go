@@ -176,7 +176,7 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 	}
 
 	pkg := data.GenPackage{Generate: true, Name: name, Namespace: ns, Path: filepath.Join(path, folder), TemplateFile: tmplFile, Prefix: prefix, Suffix: suffix, OutputFile: prefix + name + suffix + "." + ext, Flags: flags}
-	if flags.Fields || flags.Constructor || flags.Keys || flags.Concretes {
+	if flags.Fields || flags.Constructor || flags.Keys || flags.Concretes || flags.PrimaryKeys || flags.Updates {
 		for _, f := range flds {
 			if f.Collection && !flags.Collections {
 				continue
@@ -221,6 +221,7 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 				}
 				typeName = fmt.Sprintf("%s<%s>", listType, typeName)
 			}
+
 			if db {
 				typeName = dbtype
 			}
@@ -272,6 +273,7 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 				IsInterface:         isInterface,
 				Collection:          f.Collection,
 				Key:                 f.Flags.Key,
+				ForeignKey:          f.Flags.ForeignKey,
 				IsBaseType:          isBase,
 				Flags:               f.Flags,
 				CodeType:            f.CodeType,
@@ -293,8 +295,16 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 
 	if flags.Keys {
 		for _, f := range pkg.Fields {
-			if f.Key {
+			if f.Key || f.ForeignKey {
 				pkg.KeyFields = append(pkg.KeyFields, f)
+			}
+		}
+	}
+
+	if flags.PrimaryKeys {
+		for _, f := range pkg.Fields {
+			if f.Key {
+				pkg.PrimaryKeyFields = append(pkg.PrimaryKeyFields, f)
 			}
 		}
 	}

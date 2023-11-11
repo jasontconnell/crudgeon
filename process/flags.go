@@ -26,6 +26,8 @@ func parseFieldFlags(instructions string) (data.FieldFlags, error) {
 			flags.CodeIgnore = flg
 		case "key":
 			flags.Key = flg
+		case "foreignkey":
+			flags.ForeignKey = flg
 		case "auto":
 			flags.Auto = flg
 		case "index":
