@@ -8,6 +8,8 @@ type Config struct {
 	Generations        []Generation `json:"generations"`
 	ConcreteCollection string       `json:"concreteCollection"`
 	AbstractCollection string       `json:"abstractCollection"`
+	GenericReg         string       `json:"genericReg"`
+	NullableReg        string       `json:"nullableReg"`
 	NullableFormat     string       `json:"nullableFormat"`
 	Null               string       `json:"null"`
 	DbNull             string       `json:"dbnull"`

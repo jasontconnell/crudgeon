@@ -34,17 +34,18 @@ type parsedField struct {
 	dbDefault    string
 }
 
-func ParseFile(file string, baseTypes map[string]data.MappedType, nullableFormat, null, dbnull string) (ParsedFile, error) {
+func ParseFile(file string, baseTypes map[string]data.MappedType, nullableFormat, null, dbnull, genericreg, nullablereg string) (ParsedFile, error) {
 	contents, err := os.ReadFile(file)
 	parsed := ParsedFile{Path: file}
 
-	greg := regexp.MustCompile("([a-zA-Z\\.]*?)<(.*?)>")
+	greg := regexp.MustCompile(genericreg)
+	nreg := regexp.MustCompile(nullablereg)
 
 	if err != nil {
 		return parsed, err
 	}
 
-	flags, fields, err := getParsed(string(contents), baseTypes, nullableFormat, null, dbnull, greg)
+	flags, fields, err := getParsed(string(contents), baseTypes, nullableFormat, null, dbnull, greg, nreg)
 	if err != nil {
 		return parsed, err
 	}
@@ -106,7 +107,7 @@ func ParseFile(file string, baseTypes map[string]data.MappedType, nullableFormat
 	return parsed, nil
 }
 
-func getParsed(c string, baseTypes map[string]data.MappedType, nullableFormat, null, dbnull string, greg *regexp.Regexp) (data.GenFlags, []parsedField, error) {
+func getParsed(c string, baseTypes map[string]data.MappedType, nullableFormat, null, dbnull string, greg, nreg *regexp.Regexp) (data.GenFlags, []parsedField, error) {
 	plist := []parsedField{}
 	genflags := data.GenFlags{}
 
@@ -128,10 +129,15 @@ func getParsed(c string, baseTypes map[string]data.MappedType, nullableFormat, n
 			t := m[1]
 
 			tmatches := greg.FindAllStringSubmatch(t, -1)
+			nmatches := nreg.FindAllStringSubmatch(t, -1)
 			var nullable, collection bool
 
-			if len(tmatches) > 0 {
-				nullable = tmatches[0][1] == "Nullable"
+			if len(nmatches) > 0 {
+				nullable = true
+				t = nmatches[0][1]
+			}
+
+			if len(tmatches) > 0 && len(nmatches) == 0 {
 				collection = isCollection(tmatches[0][1])
 				t = tmatches[0][2]
 			}
@@ -140,7 +146,6 @@ func getParsed(c string, baseTypes map[string]data.MappedType, nullableFormat, n
 			flagstr := strings.TrimPrefix(m[3], " //")
 
 			isInterface := !isBaseType && strings.HasPrefix(t, "I")
-			nullable = nullable || collection || isInterface
 			dbnullable := nullable || t == "string"
 
 			codeType := baseType.CodeType
