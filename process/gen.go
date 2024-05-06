@@ -171,10 +171,6 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 		return data.GenPackage{Generate: false}, nil
 	}
 
-	if err != nil {
-		return data.GenPackage{}, err
-	}
-
 	pkg := data.GenPackage{Generate: true, Name: name, Namespace: ns, Path: filepath.Join(path, folder), TemplateFile: tmplFile, Prefix: prefix, Suffix: suffix, OutputFile: prefix + name + suffix + "." + ext, Flags: flags}
 	if flags.Fields || flags.Constructor || flags.Keys || flags.Concretes || flags.PrimaryKeys || flags.Updates {
 		for _, f := range flds {
