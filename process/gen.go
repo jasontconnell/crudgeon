@@ -129,6 +129,7 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 	}
 
 	flags.Id = getFlagValue(flags, fileflags, data.IdFlag)
+	flags.IdUpdate = getFlagValue(flags, fileflags, data.IdUpdateFlag)
 	flags.Fields = getFlagValue(flags, fileflags, data.FieldsFlag)
 	flags.Collections = getFlagValue(flags, fileflags, data.CollectionsFlag)
 	flags.Concretes = getFlagValue(flags, fileflags, data.ConcretesFlag)

@@ -65,6 +65,7 @@ type GenField struct {
 
 type GenFlags struct {
 	Id             bool
+	IdUpdate       bool
 	Fields         bool
 	Collections    bool
 	Concretes      bool
@@ -111,6 +112,8 @@ func (gf *GenFlags) MergeParse(flagstr string) error {
 		switch flds[0] {
 		case IdFlag:
 			gf.Id = flg
+		case IdUpdateFlag:
+			gf.IdUpdate = flg
 		case FieldsFlag:
 			gf.Fields = flg
 		case CollectionsFlag:

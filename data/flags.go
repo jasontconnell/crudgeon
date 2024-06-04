@@ -7,6 +7,7 @@ type Flags interface {
 
 const (
 	IdFlag              string = "id"
+	IdUpdateFlag               = "idupdate"
 	AutoFlag                   = "auto"
 	FieldsFlag                 = "fields"
 	CollectionsFlag            = "collections"
