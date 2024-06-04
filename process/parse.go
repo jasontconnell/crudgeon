@@ -78,7 +78,7 @@ func ParseFile(file string, baseTypes map[string]data.MappedType, nullableFormat
 
 		var fieldFlags data.FieldFlags
 		if p.flags != "" {
-			fieldFlags, err = parseFieldFlags(p.flags)
+			fieldFlags, err = data.ParseFieldFlags(p.flags)
 			if err != nil {
 				return parsed, fmt.Errorf("error parsing %s. %w", p.flags, err)
 			}

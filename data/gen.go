@@ -64,34 +64,38 @@ type GenField struct {
 }
 
 type GenFlags struct {
-	Id           bool
-	Fields       bool
-	Collections  bool
-	Concretes    bool
-	Constructor  bool
-	Keys         bool
-	PrimaryKeys  bool
-	Updates      bool
-	DbIgnore     bool
-	CodeIgnore   bool
-	JsonIgnore   bool
-	XmlIgnore    bool
-	XmlRoot      bool
-	XmlRootName  string
-	HashIgnore   bool
-	Class        bool
-	ClassName    string
-	Table        bool
-	TableName    string
-	HasNamespace bool
-	Namespace    string
-	ExactName    bool
-	HasSkip      bool
-	Skip         map[string]bool
-	Custom       map[string]CustomFlag
+	Id             bool
+	Fields         bool
+	Collections    bool
+	Concretes      bool
+	Constructor    bool
+	Keys           bool
+	PrimaryKeys    bool
+	Updates        bool
+	DbIgnore       bool
+	CodeIgnore     bool
+	JsonIgnore     bool
+	XmlIgnore      bool
+	XmlRoot        bool
+	XmlRootName    string
+	HashIgnore     bool
+	Class          bool
+	ClassName      string
+	Table          bool
+	TableName      string
+	HasNamespace   bool
+	Namespace      string
+	ExactName      bool
+	HasSkip        bool
+	Skip           map[string]bool
+	Custom         map[string]CustomFlag
+	SpecifiedFlags map[string]bool
 }
 
 func (gf *GenFlags) MergeParse(flagstr string) error {
+	if gf.SpecifiedFlags == nil {
+		gf.SpecifiedFlags = make(map[string]bool)
+	}
 	ss := strings.Split(flagstr, ",")
 	for _, s := range ss {
 		flg := s[0] == '+'
@@ -101,60 +105,62 @@ func (gf *GenFlags) MergeParse(flagstr string) error {
 
 		flds := strings.Fields(string(s[1:]))
 
+		gf.SpecifiedFlags[flds[0]] = flg
+
 		switch flds[0] {
-		case "id":
+		case IdFlag:
 			gf.Id = flg
-		case "fields":
+		case FieldsFlag:
 			gf.Fields = flg
-		case "collections":
+		case CollectionsFlag:
 			gf.Collections = flg
-		case "constructor":
+		case ConstructorFlag:
 			gf.Constructor = flg
-		case "concretes":
+		case ConcretesFlag:
 			gf.Concretes = flg
-		case "keys":
+		case KeysFlag:
 			gf.Keys = flg
-		case "primarykeys":
+		case PrimaryKeysFlag:
 			gf.PrimaryKeys = flg
-		case "updates":
+		case UpdatesFlag:
 			gf.Updates = flg
-		case "dbignore":
+		case DbIgnoreFlag:
 			gf.DbIgnore = flg
-		case "codeignore":
+		case CodeIgnoreFlag:
 			gf.CodeIgnore = flg
-		case "jsonignore":
+		case JsonIgnoreFlag:
 			gf.JsonIgnore = flg
-		case "xmlignore":
+		case XmlIgnoreFlag:
 			gf.XmlIgnore = flg
-		case "hashignore":
+		case HashIgnoreFlag:
 			gf.HashIgnore = flg
-		case "xmlroot":
+		case XmlRootFlag:
 			gf.XmlRoot = flg
 			if len(flds) == 1 {
 				return fmt.Errorf("Xml root flag must provide xml root name (+xmlroot XmlRootName)")
 			}
 			gf.XmlRootName = flds[1]
-		case "namespace":
+		case NamespaceFlag:
 			gf.HasNamespace = flg
 			if len(flds) == 1 {
 				return fmt.Errorf("Namespace flag needs a namespace (+namespace LocalNamespace)")
 			}
 			gf.Namespace = flds[1]
-		case "class":
+		case ClassFlag:
 			gf.Class = flg
 			if len(flds) == 1 {
 				return fmt.Errorf("Class root flag must provide the class name (+class ClassName)")
 			}
 			gf.ClassName = flds[1]
-		case "table":
+		case TableFlag:
 			gf.Table = flg
 			if len(flds) == 1 {
 				return fmt.Errorf("Table root flag must provide the class name (+table TableName)")
 			}
 			gf.TableName = strings.Join(flds[1:], " ") // tables can have spaces...
-		case "exact":
+		case ExactFlag:
 			gf.ExactName = flg
-		case "skip":
+		case SkipFlag:
 			gf.HasSkip = flg
 			if gf.Skip == nil {
 				gf.Skip = make(map[string]bool)
@@ -173,6 +179,21 @@ func (gf *GenFlags) MergeParse(flagstr string) error {
 		}
 	}
 	return nil
+}
+
+func (gf GenFlags) IsFlagSpecified(name string) bool {
+	if gf.SpecifiedFlags == nil {
+		return false
+	}
+	_, ok := gf.SpecifiedFlags[name]
+	return ok
+}
+
+func (gf GenFlags) GetFlagValue(name string) bool {
+	if gf.SpecifiedFlags == nil {
+		return false
+	}
+	return gf.SpecifiedFlags[name]
 }
 
 func (gf GenFlags) String() string {

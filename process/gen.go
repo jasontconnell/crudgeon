@@ -112,6 +112,15 @@ func Generate(pkg data.GenPackage, objdir bool) error {
 	return os.WriteFile(output, buffer.Bytes(), os.ModePerm)
 }
 
+func getFlagValue(flags data.Flags, fileflags data.Flags, name string) bool {
+	if flags.IsFlagSpecified(name) && fileflags.IsFlagSpecified(name) {
+		return fileflags.GetFlagValue(name)
+	} else if fileflags.IsFlagSpecified(name) {
+		return fileflags.GetFlagValue(name)
+	}
+	return flags.GetFlagValue(name)
+}
+
 func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, prefix, suffix, folder, ext, flagstr, coll, icoll string, fileflags data.GenFlags, usefieldname bool) (data.GenPackage, error) {
 	flags := data.GenFlags{}
 	err := flags.MergeParse(flagstr)
@@ -119,18 +128,18 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 		return data.GenPackage{}, err
 	}
 
-	flags.Id = flags.Id || fileflags.Id
-	flags.Fields = flags.Fields || fileflags.Fields
-	flags.Collections = flags.Collections || fileflags.Collections
-	flags.Concretes = flags.Concretes || fileflags.Concretes
-	flags.Constructor = flags.Constructor || fileflags.Constructor
-	flags.Keys = flags.Keys || fileflags.Keys
-	flags.DbIgnore = flags.DbIgnore || fileflags.DbIgnore
-	flags.CodeIgnore = flags.CodeIgnore || fileflags.CodeIgnore
-	flags.XmlIgnore = flags.XmlIgnore || fileflags.XmlIgnore
-	flags.JsonIgnore = flags.JsonIgnore || fileflags.JsonIgnore
-	flags.HashIgnore = flags.HashIgnore || fileflags.HashIgnore
-	flags.XmlRoot = flags.XmlRoot || fileflags.XmlRoot
+	flags.Id = getFlagValue(flags, fileflags, data.IdFlag)
+	flags.Fields = getFlagValue(flags, fileflags, data.FieldsFlag)
+	flags.Collections = getFlagValue(flags, fileflags, data.CollectionsFlag)
+	flags.Concretes = getFlagValue(flags, fileflags, data.ConcretesFlag)
+	flags.Constructor = getFlagValue(flags, fileflags, data.ConstructorFlag)
+	flags.Keys = getFlagValue(flags, fileflags, data.KeysFlag)
+	flags.DbIgnore = getFlagValue(flags, fileflags, data.DbIgnoreFlag)
+	flags.CodeIgnore = getFlagValue(flags, fileflags, data.CodeIgnoreFlag)
+	flags.XmlIgnore = getFlagValue(flags, fileflags, data.XmlIgnoreFlag)
+	flags.JsonIgnore = getFlagValue(flags, fileflags, data.JsonIgnoreFlag)
+	flags.HashIgnore = getFlagValue(flags, fileflags, data.HashIgnoreFlag)
+	flags.XmlRoot = getFlagValue(flags, fileflags, data.XmlRootFlag)
 
 	if flags.Custom == nil {
 		flags.Custom = make(map[string]data.CustomFlag)
@@ -307,7 +316,7 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 
 	if flags.Updates {
 		for _, f := range pkg.Fields {
-			if !f.Flags.Auto {
+			if !f.Flags.Auto && !f.Key {
 				pkg.UpdateFields = append(pkg.UpdateFields, f)
 			}
 		}
