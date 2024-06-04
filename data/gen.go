@@ -73,6 +73,7 @@ type GenFlags struct {
 	PrimaryKeys    bool
 	Updates        bool
 	DbIgnore       bool
+	Merge          bool
 	CodeIgnore     bool
 	JsonIgnore     bool
 	XmlIgnore      bool
@@ -126,6 +127,8 @@ func (gf *GenFlags) MergeParse(flagstr string) error {
 			gf.Updates = flg
 		case DbIgnoreFlag:
 			gf.DbIgnore = flg
+		case MergeFlag:
+			gf.Merge = flg
 		case CodeIgnoreFlag:
 			gf.CodeIgnore = flg
 		case JsonIgnoreFlag:

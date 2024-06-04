@@ -31,6 +31,7 @@ const (
 	ClassFlag                  = "class"
 	TableFlag                  = "table"
 	ExactFlag                  = "exact"
+	MergeFlag                  = "merge"
 	SkipFlag                   = "skip"
 	ParseFromStringFlag        = "parsefromstring"
 )

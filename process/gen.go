@@ -121,7 +121,7 @@ func getFlagValue(flags data.Flags, fileflags data.Flags, name string) bool {
 	return flags.GetFlagValue(name)
 }
 
-func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, prefix, suffix, folder, ext, flagstr, coll, icoll string, fileflags data.GenFlags, usefieldname bool) (data.GenPackage, error) {
+func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, prefix, suffix, folder, ext, flagstr, coll, icoll string, fileflags data.GenFlags, usefieldname bool, conditionFlag string) (data.GenPackage, error) {
 	flags := data.GenFlags{}
 	err := flags.MergeParse(flagstr)
 	if err != nil {
@@ -140,6 +140,7 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 	flags.JsonIgnore = getFlagValue(flags, fileflags, data.JsonIgnoreFlag)
 	flags.HashIgnore = getFlagValue(flags, fileflags, data.HashIgnoreFlag)
 	flags.XmlRoot = getFlagValue(flags, fileflags, data.XmlRootFlag)
+	flags.Merge = getFlagValue(flags, fileflags, data.MergeFlag)
 
 	if flags.Custom == nil {
 		flags.Custom = make(map[string]data.CustomFlag)
@@ -177,6 +178,10 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 	}
 
 	if db && flags.DbIgnore || (!db && flags.CodeIgnore) {
+		return data.GenPackage{Generate: false}, nil
+	}
+
+	if conditionFlag != "" && !getFlagValue(flags, fileflags, conditionFlag) {
 		return data.GenPackage{Generate: false}, nil
 	}
 
