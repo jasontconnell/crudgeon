@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"bytes"
 	"fmt"
+	"log"
 	"os"
 	"regexp"
 	"strings"
@@ -34,7 +35,7 @@ type parsedField struct {
 	dbDefault    string
 }
 
-func ParseFile(file string, baseTypes map[string]data.MappedType, nullableFormat, null, dbnull, genericreg, nullablereg string) (ParsedFile, error) {
+func ParseFile(file string, baseTypes map[string]data.MappedType, nullableFormat, null, dbnull, conccoll, abstcoll, genericreg, nullablereg string) (ParsedFile, error) {
 	contents, err := os.ReadFile(file)
 	parsed := ParsedFile{Path: file}
 
@@ -45,7 +46,7 @@ func ParseFile(file string, baseTypes map[string]data.MappedType, nullableFormat
 		return parsed, err
 	}
 
-	flags, fields, err := getParsed(string(contents), baseTypes, nullableFormat, null, dbnull, greg, nreg)
+	flags, fields, err := getParsed(string(contents), baseTypes, nullableFormat, null, dbnull, conccoll, abstcoll, greg, nreg)
 	if err != nil {
 		return parsed, err
 	}
@@ -107,7 +108,7 @@ func ParseFile(file string, baseTypes map[string]data.MappedType, nullableFormat
 	return parsed, nil
 }
 
-func getParsed(c string, baseTypes map[string]data.MappedType, nullableFormat, null, dbnull string, greg, nreg *regexp.Regexp) (data.GenFlags, []parsedField, error) {
+func getParsed(c string, baseTypes map[string]data.MappedType, nullableFormat, null, dbnull, conccoll, abstcoll string, greg, nreg *regexp.Regexp) (data.GenFlags, []parsedField, error) {
 	plist := []parsedField{}
 	genflags := data.GenFlags{}
 
@@ -137,8 +138,9 @@ func getParsed(c string, baseTypes map[string]data.MappedType, nullableFormat, n
 				t = nmatches[0][1]
 			}
 
-			if len(tmatches) > 0 && len(tmatches) == 0 {
-				collection = isCollection(tmatches[0][1])
+			if len(tmatches) > 0 && !nullable {
+				collection = isCollection(tmatches[0][1], conccoll, abstcoll)
+				log.Println("collection", collection, tmatches)
 				t = tmatches[0][2]
 			}
 
@@ -182,6 +184,6 @@ func getParsed(c string, baseTypes map[string]data.MappedType, nullableFormat, n
 	return genflags, plist, nil
 }
 
-func isCollection(t string) bool {
-	return strings.HasPrefix(t, "List")
+func isCollection(t, conccoll, abstcoll string) bool {
+	return strings.HasPrefix(t, conccoll) || strings.HasPrefix(t, abstcoll)
 }
