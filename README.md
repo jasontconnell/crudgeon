@@ -105,14 +105,17 @@ The text template is passed a GenPackage object
 type GenPackage struct {
 	Generate          bool
 	Name              string
+	NameLower         string
 	Path              string
-	OutputFile        string
+	Ext               string
 	Namespace         string
 	Fields            []GenField
 	ConstructorFields []GenField
 	KeyFields         []GenField
+	PrimaryKeyFields  []GenField
+	UpdateFields      []GenField
 	TemplateFile      string
-	Prefix            string
+	FilenameTemplate  string
 	Flags             GenFlags
 }
 ```
@@ -130,7 +133,7 @@ As this is a multi-output code generator, you can configure the specific outputs
 The current "class" generator to generate classes:
 
 ```
-{ "file": "tmpl\\class.txt", "ext": "cs", "outputPrefix": "", "folder": "Model", "flags": "+id,+collections,+concretes,+constructor,+fields","objdir":false}
+{ "file": "tmpl\\class.txt", "ext": "cs", "folder": "Model", "flags": "+id,+collections,+concretes,+constructor,+fields","objdir":false}
 ```
 
 * file
@@ -139,10 +142,8 @@ The current "class" generator to generate classes:
     - specify file type extension (cs in this case)
 * db
     - specify if this is a db file, like sql
-* outputPrefix
-    - useful for generating multiple files with the same type, e.g. stored procedures, use "Get", "Update", "Delete", here for example
-* outputSuffix
-    - useful for generating multiple files with the same type, e.g. classes and components, use "Model", "ModelView", etc. 
+* filenameTemplate
+    - The default filename for the output is Name.ext .  Here you can provide a template, ran against the GenPackage object, so it can be like {{.NameLower}}_gen
 * folder
     - create this folder and put the output in there
 * flags

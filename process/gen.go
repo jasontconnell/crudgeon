@@ -108,7 +108,12 @@ func Generate(pkg data.GenPackage, objdir bool) error {
 		return err
 	}
 
-	output := filepath.Join(path, pkg.OutputFile)
+	outfile := pkg.Name + "." + pkg.Ext
+	if pkg.FilenameTemplate != "" {
+		outfile = processTemplate(pkg.FilenameTemplate, pkg) + "." + pkg.Ext
+	}
+
+	output := filepath.Join(path, outfile)
 	return os.WriteFile(output, buffer.Bytes(), os.ModePerm)
 }
 
@@ -121,7 +126,7 @@ func getFlagValue(flags data.Flags, fileflags data.Flags, name string) bool {
 	return flags.GetFlagValue(name)
 }
 
-func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, prefix, suffix, folder, ext, flagstr, coll, icoll string, fileflags data.GenFlags, usefieldname bool, conditionFlag string) (data.GenPackage, error) {
+func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, outputTmpl, folder, ext, flagstr, coll, icoll string, fileflags data.GenFlags, usefieldname bool, conditionFlag string) (data.GenPackage, error) {
 	flags := data.GenFlags{}
 	err := flags.MergeParse(flagstr)
 	if err != nil {
@@ -174,6 +179,8 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 		name = flags.ClassName
 	}
 
+	lname := strings.ToLower(name)
+
 	if fileflags.XmlRootName != "" {
 		flags.XmlRootName = fileflags.XmlRootName
 	}
@@ -186,7 +193,7 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 		return data.GenPackage{Generate: false}, nil
 	}
 
-	pkg := data.GenPackage{Generate: true, Name: name, Namespace: ns, Path: filepath.Join(path, folder), TemplateFile: tmplFile, Prefix: prefix, Suffix: suffix, OutputFile: prefix + name + suffix + "." + ext, Flags: flags}
+	pkg := data.GenPackage{Generate: true, Name: name, NameLower: lname, Namespace: ns, Path: filepath.Join(path, folder), TemplateFile: tmplFile, Ext: ext, FilenameTemplate: outputTmpl, Flags: flags}
 	if flags.Fields || flags.Constructor || flags.Keys || flags.Concretes || flags.PrimaryKeys || flags.Updates {
 		for _, f := range flds {
 			if f.Collection && !flags.Collections {

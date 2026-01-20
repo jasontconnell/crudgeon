@@ -25,16 +25,15 @@ type MappedType struct {
 }
 
 type Generation struct {
-	File          string `json:"file"`
-	Alias         string `json:"alias"`
-	Extension     string `json:"ext"`
-	Database      bool   `json:"db"`
-	OutputPrefix  string `json:"outputPrefix"`
-	OutputSuffix  string `json:"outputSuffix"`
-	Folder        string `json:"folder"`
-	Flags         string `json:"flags"`
-	CreateObjDir  bool   `json:"objdir"`
-	ConditionFlag string `json:"conditionflag"`
+	File             string `json:"file"`
+	Alias            string `json:"alias"`
+	Extension        string `json:"ext"`
+	Database         bool   `json:"db"`
+	FilenameTemplate string `json:"filenameTemplate"`
+	Folder           string `json:"folder"`
+	Flags            string `json:"flags"`
+	CreateObjDir     bool   `json:"objdir"`
+	ConditionFlag    string `json:"conditionflag"`
 }
 
 func LoadConfig(filename string) Config {

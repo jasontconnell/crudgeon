@@ -14,8 +14,9 @@ type CustomFlag struct {
 type GenPackage struct {
 	Generate          bool
 	Name              string
+	NameLower         string
 	Path              string
-	OutputFile        string
+	Ext               string
 	Namespace         string
 	Fields            []GenField
 	ConstructorFields []GenField
@@ -23,8 +24,7 @@ type GenPackage struct {
 	PrimaryKeyFields  []GenField
 	UpdateFields      []GenField
 	TemplateFile      string
-	Prefix            string
-	Suffix            string
+	FilenameTemplate  string
 	Flags             GenFlags
 }
 

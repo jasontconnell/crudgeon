@@ -84,7 +84,7 @@ func main() {
 				continue
 			}
 
-			gp, err := process.GetGenPackage(*obj, *path, pfile.Fields, g.Database, tmpfile, *ns, g.OutputPrefix, g.OutputSuffix, g.Folder, g.Extension, g.Flags, cfg.ConcreteCollection, cfg.AbstractCollection, pfile.GenFlags, *fld, g.ConditionFlag)
+			gp, err := process.GetGenPackage(*obj, *path, pfile.Fields, g.Database, tmpfile, *ns, g.FilenameTemplate, g.Folder, g.Extension, g.Flags, cfg.ConcreteCollection, cfg.AbstractCollection, pfile.GenFlags, *fld, g.ConditionFlag)
 
 			if err != nil {
 				log.Fatal("getting gen package from file: ", pfile.Path, " error: ", err)
