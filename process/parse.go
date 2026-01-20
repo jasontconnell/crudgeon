@@ -137,7 +137,7 @@ func getParsed(c string, baseTypes map[string]data.MappedType, nullableFormat, n
 				t = nmatches[0][1]
 			}
 
-			if len(tmatches) > 0 && len(nmatches) == 0 {
+			if len(tmatches) > 0 && len(tmatches) == 0 {
 				collection = isCollection(tmatches[0][1])
 				t = tmatches[0][2]
 			}
