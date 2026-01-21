@@ -7,9 +7,6 @@ import (
 type Config struct {
 	Generations        []Generation `json:"generations"`
 	CollectionTemplate string       `json:"collectionTemplate"`
-	GenericReg         string       `json:"genericReg"`
-	NullableReg        string       `json:"nullableReg"`
-	NullableFormat     string       `json:"nullableFormat"`
 	Null               string       `json:"null"`
 	DbNull             string       `json:"dbnull"`
 	TypeMap            []MappedType `json:"typeMap"`

@@ -11,7 +11,7 @@ import (
 	"github.com/jasontconnell/crudgeon/data"
 )
 
-var fldreg *regexp.Regexp = regexp.MustCompile(`^([a-zA-Z0-9\[\]_]+) (.*?)( *//[0-9a-zA-Z\+\-,\."\/_\(\) ]+)?$`)
+var fldreg *regexp.Regexp = regexp.MustCompile(`^([a-zA-Z0-9\*\[\]_]+) (.*?)( *//[0-9a-zA-Z\+\-,\."\/_\(\) ]+)?$`)
 var globalflagsreg *regexp.Regexp = regexp.MustCompile(`^/{2}([\+\-a-zA-Z_,0-9\/_ ]*?)$`)
 
 type ParsedFile struct {
@@ -36,23 +36,17 @@ type parsedField struct {
 	include        string
 }
 
-func ParseFile(file string, baseTypes map[string]data.MappedType, nullableFormat, null, dbnull, nullablereg string) (ParsedFile, error) {
+func ParseFile(file string, baseTypes map[string]data.MappedType, null, dbnull string) (ParsedFile, error) {
 	contents, err := os.ReadFile(file)
 	parsed := ParsedFile{Path: file}
 
 	mimp := make(map[string]string)
 
-	var nreg *regexp.Regexp
-
-	if nullablereg != "" {
-		nreg = regexp.MustCompile(nullablereg)
-	}
-
 	if err != nil {
 		return parsed, err
 	}
 
-	flags, fields, err := getParsed(string(contents), baseTypes, nullableFormat, null, dbnull, nreg)
+	flags, fields, err := getParsed(string(contents), baseTypes, null, dbnull)
 	if err != nil {
 		return parsed, err
 	}
@@ -115,7 +109,7 @@ func ParseFile(file string, baseTypes map[string]data.MappedType, nullableFormat
 	return parsed, nil
 }
 
-func getParsed(c string, baseTypes map[string]data.MappedType, nullableFormat, null, dbnull string, nreg *regexp.Regexp) (data.GenFlags, []parsedField, error) {
+func getParsed(c string, baseTypes map[string]data.MappedType, null, dbnull string) (data.GenFlags, []parsedField, error) {
 	plist := []parsedField{}
 	genflags := data.GenFlags{}
 
@@ -136,24 +130,20 @@ func getParsed(c string, baseTypes map[string]data.MappedType, nullableFormat, n
 		for _, m := range matches {
 			t := m[1]
 
-			var nmatches [][]string
-			if nreg != nil {
-				nmatches = nreg.FindAllStringSubmatch(t, -1)
-			}
 			var nullable, collection bool
 
-			if len(nmatches) > 0 {
+			if strings.HasSuffix(t, "*") {
 				nullable = true
-				t = nmatches[0][1]
+				t = strings.TrimSuffix(t, "*")
 			}
 
 			if strings.HasSuffix(t, "[]") {
 				collection = true
-				t = strings.TrimRight(t, "[]")
+				t = strings.TrimSuffix(t, "[]")
 			}
 
 			var codeType, codeDefault, dbType, dbDefault, colltype, include string
-			if baseType, ok := baseTypes[t]; ok {
+			if baseType, ok := baseTypes[t]; ok && !collection {
 				codeType = baseType.CodeType
 				codeDefault = baseType.CodeDefault
 				dbType = baseType.DbType
@@ -168,7 +158,7 @@ func getParsed(c string, baseTypes map[string]data.MappedType, nullableFormat, n
 
 			if nullable {
 				codeDefault = null
-				codeType = fmt.Sprintf(nullableFormat, codeType)
+				// codeType = fmt.Sprintf(nullableFormat, codeType)
 			}
 
 			if dbnullable {
