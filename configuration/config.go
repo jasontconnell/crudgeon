@@ -5,15 +5,14 @@ import (
 )
 
 type Config struct {
-	Generations                []Generation `json:"generations"`
-	ConcreteCollectionTemplate string       `json:"concreteCollectionTemplate"`
-	AbstractCollectionTemplate string       `json:"abstractCollectionTemplate"`
-	GenericReg                 string       `json:"genericReg"`
-	NullableReg                string       `json:"nullableReg"`
-	NullableFormat             string       `json:"nullableFormat"`
-	Null                       string       `json:"null"`
-	DbNull                     string       `json:"dbnull"`
-	TypeMap                    []MappedType `json:"typeMap"`
+	Generations        []Generation `json:"generations"`
+	CollectionTemplate string       `json:"collectionTemplate"`
+	GenericReg         string       `json:"genericReg"`
+	NullableReg        string       `json:"nullableReg"`
+	NullableFormat     string       `json:"nullableFormat"`
+	Null               string       `json:"null"`
+	DbNull             string       `json:"dbnull"`
+	TypeMap            []MappedType `json:"typeMap"`
 }
 
 type MappedType struct {
@@ -22,6 +21,7 @@ type MappedType struct {
 	DbType      string `json:"dbType"`
 	CodeDefault string `json:"codeDefault"`
 	DbDefault   string `json:"dbDefault"`
+	Import      string `json:"import"`
 }
 
 type Generation struct {

@@ -26,28 +26,24 @@ type GenPackage struct {
 	TemplateFile      string
 	FilenameTemplate  string
 	Flags             GenFlags
+	Imports           []string
 }
 
 type GenField struct {
-	Access      string
 	FieldName   string
 	Name        string
 	NameLower   string
 	Type        string
 	ElementType string
-	// ConcreteType        string
-	// ConcreteElementType string
-	// ConcreteProperty    string
-	Nullable   bool
-	CodeIgnore bool
-	DbIgnore   bool
-	JsonIgnore bool
-	XmlIgnore  bool
-	// IsInterface         bool
-	Collection bool
-	Key        bool
-	ForeignKey bool
-	IsBaseType bool
+	Nullable    bool
+	CodeIgnore  bool
+	DbIgnore    bool
+	JsonIgnore  bool
+	XmlIgnore   bool
+	Collection  bool
+	Key         bool
+	ForeignKey  bool
+	IsBaseType  bool
 
 	CodeType    string
 	CodeDefault string

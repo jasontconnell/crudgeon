@@ -25,9 +25,6 @@ func main() {
 
 	n := time.Now()
 
-	// read supported base types. rather than have to have this in each config,
-	// let's just have a runtime determined
-
 	cfg := configuration.LoadConfig(*configFile)
 	tmplRoot, err := filepath.Abs(*configFile)
 	if err != nil {
@@ -37,7 +34,7 @@ func main() {
 
 	basetypeMap := make(map[string]data.MappedType)
 	for _, mt := range cfg.TypeMap {
-		basetypeMap[mt.Name] = data.MappedType{CodeType: mt.CodeType, DbType: mt.DbType, CodeDefault: mt.CodeDefault, DbDefault: mt.DbDefault}
+		basetypeMap[mt.Name] = data.MappedType{CodeType: mt.CodeType, DbType: mt.DbType, CodeDefault: mt.CodeDefault, DbDefault: mt.DbDefault, Import: mt.Import}
 	}
 
 	pfiles := []process.ParsedFile{}
@@ -84,7 +81,7 @@ func main() {
 				continue
 			}
 
-			gp, err := process.GetGenPackage(*obj, *path, pfile.Fields, g.Database, tmpfile, *ns, g.FilenameTemplate, g.Folder, g.Extension, g.Flags, cfg.ConcreteCollectionTemplate, cfg.AbstractCollectionTemplate, pfile.GenFlags, *fld, g.ConditionFlag)
+			gp, err := process.GetGenPackage(*obj, *path, pfile.Fields, pfile.Imports, g.Database, tmpfile, *ns, g.FilenameTemplate, g.Folder, g.Extension, g.Flags, cfg.CollectionTemplate, pfile.GenFlags, *fld, g.ConditionFlag)
 
 			if err != nil {
 				log.Fatal("getting gen package from file: ", pfile.Path, " error: ", err)

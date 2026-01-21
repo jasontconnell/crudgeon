@@ -126,7 +126,7 @@ func getFlagValue(flags data.Flags, fileflags data.Flags, name string) bool {
 	return flags.GetFlagValue(name)
 }
 
-func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, outputTmpl, folder, ext, flagstr, colltmpl, icolltmpl string, fileflags data.GenFlags, usefieldname bool, conditionFlag string) (data.GenPackage, error) {
+func GetGenPackage(name, path string, flds []data.Field, imports []string, db bool, tmplFile, ns, outputTmpl, folder, ext, flagstr, colltmpl string, fileflags data.GenFlags, usefieldname bool, conditionFlag string) (data.GenPackage, error) {
 	flags := data.GenFlags{}
 	err := flags.MergeParse(flagstr)
 	if err != nil {
@@ -193,7 +193,7 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 		return data.GenPackage{Generate: false}, nil
 	}
 
-	pkg := data.GenPackage{Generate: true, Name: name, NameLower: lname, Namespace: ns, Path: filepath.Join(path, folder), TemplateFile: tmplFile, Ext: ext, FilenameTemplate: outputTmpl, Flags: flags}
+	pkg := data.GenPackage{Generate: true, Name: name, NameLower: lname, Namespace: ns, Path: filepath.Join(path, folder), TemplateFile: tmplFile, Ext: ext, FilenameTemplate: outputTmpl, Flags: flags, Imports: imports}
 	if flags.Fields || flags.Constructor || flags.Keys || flags.Concretes || flags.PrimaryKeys || flags.Updates {
 		for _, f := range flds {
 			if f.Collection && !flags.Collections {
@@ -231,11 +231,9 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 			xmlignore := f.Flags.XmlIgnore || flags.XmlIgnore
 			hashIgnore := f.Flags.HashIgnore || flags.HashIgnore
 
-			typeName, elementType := f.Type, f.Type
+			typeName, elementType := f.Type, f.CollectionType
 			if f.Collection {
-				listType := processTemplate(colltmpl, struct{ Name string }{Name: elementType})
-				// typeName = fmt.Sprintf("%s<%s>", listType, typeName)
-				typeName = listType
+				typeName = processTemplate(colltmpl, struct{ Name string }{Name: elementType})
 			}
 
 			if db {
@@ -249,35 +247,21 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 				isBase = f.IsBaseType
 				if !isBase {
 					nullable = false
+				} else if !f.Collection {
+					typeName = f.CodeType
 				}
 			}
 
 			dbignore = (f.Collection || dbignore || !isBase) && !f.Flags.ForceDb
 			jsonIgnore := f.Flags.JsonIgnore || flags.JsonIgnore
 
-			// concreteProperty := ""
-			// concreteElementType := ""
-			// if isInterface {
-			// 	concreteProperty = cname + "_Concrete"
-			// 	concreteTypeName = f.ConcreteType
-			// 	concreteElementType = f.ConcreteType
-			// 	if f.Collection {
-			// 		concreteTypeName = fmt.Sprintf("List<%s>", concreteTypeName)
-			// 	}
-			// 	jsonIgnore = true
-			// }
-
 			xmlwrapper := f.Flags.XmlWrapper && !db
 
 			gf := data.GenField{
-				Access:    "public",
-				FieldName: field,
-				Name:      cname,
-				NameLower: lname,
-				Type:      typeName,
-				// ConcreteType:        concreteTypeName,
-				// ConcreteProperty:    concreteProperty,
-				// ConcreteElementType: concreteElementType,
+				FieldName:         field,
+				Name:              cname,
+				NameLower:         lname,
+				Type:              typeName,
 				ElementType:       elementType,
 				XmlWrapper:        xmlwrapper,
 				XmlWrapperElement: f.Flags.XmlWrapperElement,
@@ -287,16 +271,15 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 				JsonIgnore:        jsonIgnore,
 				XmlIgnore:         xmlignore,
 				HashIgnore:        hashIgnore,
-				// IsInterface:         isInterface,
-				Collection:  f.Collection,
-				Key:         f.Flags.Key,
-				ForeignKey:  f.Flags.ForeignKey,
-				IsBaseType:  isBase,
-				Flags:       f.Flags,
-				CodeType:    f.CodeType,
-				CodeDefault: f.CodeDefault,
-				DbType:      f.DbType,
-				DbDefault:   f.DbDefault,
+				Collection:        f.Collection,
+				Key:               f.Flags.Key,
+				ForeignKey:        f.Flags.ForeignKey,
+				IsBaseType:        isBase,
+				Flags:             f.Flags,
+				CodeType:          f.CodeType,
+				CodeDefault:       f.CodeDefault,
+				DbType:            f.DbType,
+				DbDefault:         f.DbDefault,
 			}
 			pkg.Fields = append(pkg.Fields, gf)
 		}
@@ -380,7 +363,6 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 
 	if flags.Id {
 		pkfld := data.GenField{
-			Access:     "public",
 			FieldName:  "",
 			Name:       "ID",
 			Type:       "int",
