@@ -81,6 +81,10 @@ func main() {
 				continue
 			}
 
+			if *ns == "" {
+				ns = &g.Namespace
+			}
+
 			gp, err := process.GetGenPackage(*obj, *path, pfile.Fields, pfile.Imports, g.Database, tmpfile, *ns, g.FilenameTemplate, g.Folder, g.Extension, g.Flags, cfg.CollectionTemplate, pfile.GenFlags, *fld, g.ConditionFlag)
 
 			if err != nil {
