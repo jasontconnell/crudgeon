@@ -12,7 +12,7 @@ import (
 	"github.com/jasontconnell/crudgeon/data"
 )
 
-var fldreg *regexp.Regexp = regexp.MustCompile(`^([a-zA-Z0-9<>\[\]]*?) (.*?)( *//[0-9a-zA-Z\+\-,\."\/_\(\) ]+)?$`)
+var fldreg *regexp.Regexp = regexp.MustCompile(`^([a-zA-Z0-9\[\]_]+) (.*?)( *//[0-9a-zA-Z\+\-,\."\/_\(\) ]+)?$`)
 var globalflagsreg *regexp.Regexp = regexp.MustCompile(`^/{2}([\+\-a-zA-Z_,0-9\/_ ]*?)$`)
 
 type ParsedFile struct {
@@ -35,16 +35,11 @@ type parsedField struct {
 	dbDefault    string
 }
 
-func ParseFile(file string, baseTypes map[string]data.MappedType, nullableFormat, null, dbnull, conccoll, abstcoll, genericreg, nullablereg string) (ParsedFile, error) {
+func ParseFile(file string, baseTypes map[string]data.MappedType, nullableFormat, null, dbnull, nullablereg string) (ParsedFile, error) {
 	contents, err := os.ReadFile(file)
 	parsed := ParsedFile{Path: file}
 
-	var greg *regexp.Regexp
 	var nreg *regexp.Regexp
-
-	if genericreg != "" {
-		greg = regexp.MustCompile(genericreg)
-	}
 
 	if nullablereg != "" {
 		nreg = regexp.MustCompile(nullablereg)
@@ -54,7 +49,7 @@ func ParseFile(file string, baseTypes map[string]data.MappedType, nullableFormat
 		return parsed, err
 	}
 
-	flags, fields, err := getParsed(string(contents), baseTypes, nullableFormat, null, dbnull, conccoll, abstcoll, greg, nreg)
+	flags, fields, err := getParsed(string(contents), baseTypes, nullableFormat, null, dbnull, nreg)
 	if err != nil {
 		return parsed, err
 	}
@@ -116,7 +111,7 @@ func ParseFile(file string, baseTypes map[string]data.MappedType, nullableFormat
 	return parsed, nil
 }
 
-func getParsed(c string, baseTypes map[string]data.MappedType, nullableFormat, null, dbnull, conccoll, abstcoll string, greg, nreg *regexp.Regexp) (data.GenFlags, []parsedField, error) {
+func getParsed(c string, baseTypes map[string]data.MappedType, nullableFormat, null, dbnull string, nreg *regexp.Regexp) (data.GenFlags, []parsedField, error) {
 	plist := []parsedField{}
 	genflags := data.GenFlags{}
 
@@ -137,13 +132,7 @@ func getParsed(c string, baseTypes map[string]data.MappedType, nullableFormat, n
 		for _, m := range matches {
 			t := m[1]
 
-			var tmatches [][]string
 			var nmatches [][]string
-
-			if greg != nil {
-				tmatches = greg.FindAllStringSubmatch(t, -1)
-			}
-
 			if nreg != nil {
 				nmatches = nreg.FindAllStringSubmatch(t, -1)
 			}
@@ -154,11 +143,17 @@ func getParsed(c string, baseTypes map[string]data.MappedType, nullableFormat, n
 				t = nmatches[0][1]
 			}
 
-			if len(tmatches) > 0 && len(tmatches[0]) > 0 && !nullable {
-				log.Println("collection", tmatches, tmatches[0])
-				collection = isCollection(tmatches[0][1], conccoll, abstcoll)
-				t = tmatches[0][2]
+			log.Println(t)
+			if strings.HasSuffix(t, "[]") {
+				collection = true
+				t = strings.TrimRight(t, "[]")
 			}
+
+			// if len(tmatches) > 0 && len(tmatches[0]) > 0 && !nullable {
+			// 	log.Println("collection", tmatches, tmatches[0])
+			// 	collection = isCollection(tmatches[0][1], conccoll, abstcoll)
+			// 	t = tmatches[0][2]
+			// }
 
 			baseType, isBaseType := baseTypes[t]
 			flagstr := strings.TrimPrefix(m[3], " //")
@@ -198,8 +193,4 @@ func getParsed(c string, baseTypes map[string]data.MappedType, nullableFormat, n
 	}
 
 	return genflags, plist, nil
-}
-
-func isCollection(t, conccoll, abstcoll string) bool {
-	return strings.HasPrefix(t, conccoll) || strings.HasPrefix(t, abstcoll)
 }

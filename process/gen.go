@@ -126,7 +126,7 @@ func getFlagValue(flags data.Flags, fileflags data.Flags, name string) bool {
 	return flags.GetFlagValue(name)
 }
 
-func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, outputTmpl, folder, ext, flagstr, coll, icoll string, fileflags data.GenFlags, usefieldname bool, conditionFlag string) (data.GenPackage, error) {
+func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, outputTmpl, folder, ext, flagstr, colltmpl, icolltmpl string, fileflags data.GenFlags, usefieldname bool, conditionFlag string) (data.GenPackage, error) {
 	flags := data.GenFlags{}
 	err := flags.MergeParse(flagstr)
 	if err != nil {
@@ -202,6 +202,7 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 
 			field := f.FieldName
 			cname := strings.Title(f.Name)
+			lname := strings.ToLower(f.Name)
 			if len(cname) < 3 {
 				cname = strings.ToUpper(cname)
 			}
@@ -230,14 +231,11 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 			xmlignore := f.Flags.XmlIgnore || flags.XmlIgnore
 			hashIgnore := f.Flags.HashIgnore || flags.HashIgnore
 
-			isInterface := f.Type != f.ConcreteType
 			typeName, concreteTypeName, elementType := f.Type, f.Type, f.Type
 			if f.Collection {
-				listType := coll
-				if isInterface {
-					listType = icoll
-				}
-				typeName = fmt.Sprintf("%s<%s>", listType, typeName)
+				listType := processTemplate(colltmpl, struct{ Name string }{Name: elementType})
+				// typeName = fmt.Sprintf("%s<%s>", listType, typeName)
+				typeName = listType
 			}
 
 			if db {
@@ -259,15 +257,15 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 
 			concreteProperty := ""
 			concreteElementType := ""
-			if isInterface {
-				concreteProperty = cname + "_Concrete"
-				concreteTypeName = f.ConcreteType
-				concreteElementType = f.ConcreteType
-				if f.Collection {
-					concreteTypeName = fmt.Sprintf("List<%s>", concreteTypeName)
-				}
-				jsonIgnore = true
-			}
+			// if isInterface {
+			// 	concreteProperty = cname + "_Concrete"
+			// 	concreteTypeName = f.ConcreteType
+			// 	concreteElementType = f.ConcreteType
+			// 	if f.Collection {
+			// 		concreteTypeName = fmt.Sprintf("List<%s>", concreteTypeName)
+			// 	}
+			// 	jsonIgnore = true
+			// }
 
 			xmlwrapper := f.Flags.XmlWrapper && !db
 
@@ -275,6 +273,7 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 				Access:              "public",
 				FieldName:           field,
 				Name:                cname,
+				NameLower:           lname,
 				Type:                typeName,
 				ConcreteType:        concreteTypeName,
 				ConcreteProperty:    concreteProperty,
@@ -288,16 +287,16 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 				JsonIgnore:          jsonIgnore,
 				XmlIgnore:           xmlignore,
 				HashIgnore:          hashIgnore,
-				IsInterface:         isInterface,
-				Collection:          f.Collection,
-				Key:                 f.Flags.Key,
-				ForeignKey:          f.Flags.ForeignKey,
-				IsBaseType:          isBase,
-				Flags:               f.Flags,
-				CodeType:            f.CodeType,
-				CodeDefault:         f.CodeDefault,
-				DbType:              f.DbType,
-				DbDefault:           f.DbDefault,
+				// IsInterface:         isInterface,
+				Collection:  f.Collection,
+				Key:         f.Flags.Key,
+				ForeignKey:  f.Flags.ForeignKey,
+				IsBaseType:  isBase,
+				Flags:       f.Flags,
+				CodeType:    f.CodeType,
+				CodeDefault: f.CodeDefault,
+				DbType:      f.DbType,
+				DbDefault:   f.DbDefault,
 			}
 			pkg.Fields = append(pkg.Fields, gf)
 		}
@@ -305,7 +304,7 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 
 	if flags.Constructor {
 		for _, f := range pkg.Fields {
-			if !f.IsInterface && !f.Flags.ReadOnly {
+			if !f.Collection && !f.Flags.ReadOnly {
 				pkg.ConstructorFields = append(pkg.ConstructorFields, f)
 			}
 		}
@@ -335,49 +334,49 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 		}
 	}
 
-	if flags.Concretes {
-		confields := []data.GenField{}
-		for _, f := range pkg.Fields {
-			if f.IsInterface {
+	// if flags.Concretes {
+	// 	confields := []data.GenField{}
+	// 	for _, f := range pkg.Fields {
+	// 		if f.IsInterface {
 
-				field := f.FieldName
-				typeName := f.ConcreteType
+	// 			field := f.FieldName
+	// 			typeName := f.ConcreteType
 
-				xmlwrappertype, xmlwrappername := f.ConcreteType, ""
-				// if !f.XmlIgnore && f.XmlWrapper && f.Collection {
-				// 	xmlwrappertype = typeName
-				// 	xmlwrappername = field
-				// 	xmlwrapperelement = f.XmlWrapperElement
-				// 	typeName = pkg.Name + field + "Wrapper"
-				// }
+	// 			xmlwrappertype, xmlwrappername := f.ConcreteType, ""
+	// 			// if !f.XmlIgnore && f.XmlWrapper && f.Collection {
+	// 			// 	xmlwrappertype = typeName
+	// 			// 	xmlwrappername = field
+	// 			// 	xmlwrapperelement = f.XmlWrapperElement
+	// 			// 	typeName = pkg.Name + field + "Wrapper"
+	// 			// }
 
-				ngfld := data.GenField{
-					Access:              "public",
-					FieldName:           field,
-					Name:                f.Name + "_Concrete",
-					Type:                typeName,
-					ConcreteType:        typeName,
-					ConcreteElementType: f.ConcreteElementType,
-					ConcreteProperty:    "",
-					XmlWrapper:          f.XmlWrapper,
-					XmlWrapperType:      xmlwrappertype,
-					XmlWrapperName:      xmlwrappername,
-					XmlWrapperElement:   f.XmlWrapperElement,
-					Nullable:            f.Nullable,
-					CodeIgnore:          f.CodeIgnore,
-					DbIgnore:            f.DbIgnore,
-					XmlIgnore:           f.XmlIgnore,
-					JsonIgnore:          flags.JsonIgnore,
-					HashIgnore:          f.HashIgnore,
-					IsInterface:         false,
-					Collection:          f.Collection,
-					Flags:               f.Flags,
-				}
-				confields = append(confields, ngfld)
-			}
-		}
-		pkg.Fields = append(pkg.Fields, confields...)
-	}
+	// 			ngfld := data.GenField{
+	// 				Access:              "public",
+	// 				FieldName:           field,
+	// 				Name:                f.Name + "_Concrete",
+	// 				Type:                typeName,
+	// 				ConcreteType:        typeName,
+	// 				ConcreteElementType: f.ConcreteElementType,
+	// 				ConcreteProperty:    "",
+	// 				XmlWrapper:          f.XmlWrapper,
+	// 				XmlWrapperType:      xmlwrappertype,
+	// 				XmlWrapperName:      xmlwrappername,
+	// 				XmlWrapperElement:   f.XmlWrapperElement,
+	// 				Nullable:            f.Nullable,
+	// 				CodeIgnore:          f.CodeIgnore,
+	// 				DbIgnore:            f.DbIgnore,
+	// 				XmlIgnore:           f.XmlIgnore,
+	// 				JsonIgnore:          flags.JsonIgnore,
+	// 				HashIgnore:          f.HashIgnore,
+	// 				IsInterface:         false,
+	// 				Collection:          f.Collection,
+	// 				Flags:               f.Flags,
+	// 			}
+	// 			confields = append(confields, ngfld)
+	// 		}
+	// 	}
+	// 	pkg.Fields = append(pkg.Fields, confields...)
+	// }
 
 	if flags.Id {
 		pkfld := data.GenField{

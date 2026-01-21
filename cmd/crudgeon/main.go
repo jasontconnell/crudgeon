@@ -43,7 +43,7 @@ func main() {
 	pfiles := []process.ParsedFile{}
 
 	if *dir == "" {
-		pfile, err := process.ParseFile(*file, basetypeMap, cfg.NullableFormat, cfg.Null, cfg.DbNull, cfg.ConcreteCollection, cfg.AbstractCollection, cfg.GenericReg, cfg.NullableReg)
+		pfile, err := process.ParseFile(*file, basetypeMap, cfg.NullableFormat, cfg.Null, cfg.DbNull, cfg.NullableReg)
 		if err != nil {
 			log.Fatal("in file", *file, err)
 		}
@@ -59,7 +59,7 @@ func main() {
 		}
 
 		for _, p := range paths {
-			pfile, err := process.ParseFile(p, basetypeMap, cfg.NullableFormat, cfg.Null, cfg.DbNull, cfg.ConcreteCollection, cfg.AbstractCollection, cfg.GenericReg, cfg.NullableReg)
+			pfile, err := process.ParseFile(p, basetypeMap, cfg.NullableFormat, cfg.Null, cfg.DbNull, cfg.NullableReg)
 			if err != nil {
 				log.Fatal("parsing file", pfile.Path, err)
 			}
@@ -84,7 +84,7 @@ func main() {
 				continue
 			}
 
-			gp, err := process.GetGenPackage(*obj, *path, pfile.Fields, g.Database, tmpfile, *ns, g.FilenameTemplate, g.Folder, g.Extension, g.Flags, cfg.ConcreteCollection, cfg.AbstractCollection, pfile.GenFlags, *fld, g.ConditionFlag)
+			gp, err := process.GetGenPackage(*obj, *path, pfile.Fields, g.Database, tmpfile, *ns, g.FilenameTemplate, g.Folder, g.Extension, g.Flags, cfg.ConcreteCollectionTemplate, cfg.AbstractCollectionTemplate, pfile.GenFlags, *fld, g.ConditionFlag)
 
 			if err != nil {
 				log.Fatal("getting gen package from file: ", pfile.Path, " error: ", err)

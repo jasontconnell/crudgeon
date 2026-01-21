@@ -32,6 +32,7 @@ type GenField struct {
 	Access              string
 	FieldName           string
 	Name                string
+	NameLower           string
 	Type                string
 	ElementType         string
 	ConcreteType        string
@@ -42,11 +43,11 @@ type GenField struct {
 	DbIgnore            bool
 	JsonIgnore          bool
 	XmlIgnore           bool
-	IsInterface         bool
-	Collection          bool
-	Key                 bool
-	ForeignKey          bool
-	IsBaseType          bool
+	// IsInterface         bool
+	Collection bool
+	Key        bool
+	ForeignKey bool
+	IsBaseType bool
 
 	CodeType    string
 	CodeDefault string

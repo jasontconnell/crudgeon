@@ -5,15 +5,15 @@ import (
 )
 
 type Config struct {
-	Generations        []Generation `json:"generations"`
-	ConcreteCollection string       `json:"concreteCollection"`
-	AbstractCollection string       `json:"abstractCollection"`
-	GenericReg         string       `json:"genericReg"`
-	NullableReg        string       `json:"nullableReg"`
-	NullableFormat     string       `json:"nullableFormat"`
-	Null               string       `json:"null"`
-	DbNull             string       `json:"dbnull"`
-	TypeMap            []MappedType `json:"typeMap"`
+	Generations                []Generation `json:"generations"`
+	ConcreteCollectionTemplate string       `json:"concreteCollectionTemplate"`
+	AbstractCollectionTemplate string       `json:"abstractCollectionTemplate"`
+	GenericReg                 string       `json:"genericReg"`
+	NullableReg                string       `json:"nullableReg"`
+	NullableFormat             string       `json:"nullableFormat"`
+	Null                       string       `json:"null"`
+	DbNull                     string       `json:"dbnull"`
+	TypeMap                    []MappedType `json:"typeMap"`
 }
 
 type MappedType struct {
