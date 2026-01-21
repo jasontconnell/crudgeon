@@ -81,11 +81,12 @@ func main() {
 				continue
 			}
 
-			if *ns == "" {
-				ns = &g.Namespace
+			var lns string = *ns
+			if lns == "" {
+				lns = g.Namespace
 			}
 
-			gp, err := process.GetGenPackage(*obj, *path, pfile.Fields, pfile.Imports, g.Database, tmpfile, *ns, g.FilenameTemplate, g.Folder, g.Extension, g.Flags, cfg.CollectionTemplate, pfile.GenFlags, *fld, g.ConditionFlag)
+			gp, err := process.GetGenPackage(*obj, *path, pfile.Fields, pfile.Imports, g.Database, tmpfile, lns, g.FilenameTemplate, g.Folder, g.Extension, g.Flags, cfg.CollectionTemplate, pfile.GenFlags, *fld, g.ConditionFlag)
 
 			if err != nil {
 				log.Fatal("getting gen package from file: ", pfile.Path, " error: ", err)
