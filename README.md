@@ -17,11 +17,11 @@ See genex.bat and sample input and output in datafiles and output folders. As of
 
 Properties can be decorated with flags to control their output.
 
-public [TYPE] FIELDNAME|PROPERTYNAME {get;set;} //FLAGS
+[TYPE] FIELDNAME|PROPERTYNAME //FLAGS
 
 ex.
 
-public int years_old|Age {get;set;} //+sqlignore,+xmlignore
+years_old|Age //+sqlignore,+xmlignore
 
 ### TYPE:
 

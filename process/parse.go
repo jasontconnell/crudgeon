@@ -12,7 +12,7 @@ import (
 	"github.com/jasontconnell/crudgeon/data"
 )
 
-var fldreg *regexp.Regexp = regexp.MustCompile(`^\W*(?:private|public) (.*?) (.*?) +{.*?}( *//[0-9a-zA-Z\+\-,\."\/_\(\) ]+)?$`)
+var fldreg *regexp.Regexp = regexp.MustCompile(`^([a-zA-Z0-9<>\[\]]*?) (.*?)( *//[0-9a-zA-Z\+\-,\."\/_\(\) ]+)?$`)
 var globalflagsreg *regexp.Regexp = regexp.MustCompile(`^/{2}([\+\-a-zA-Z_,0-9\/_ ]*?)$`)
 
 type ParsedFile struct {
@@ -39,8 +39,16 @@ func ParseFile(file string, baseTypes map[string]data.MappedType, nullableFormat
 	contents, err := os.ReadFile(file)
 	parsed := ParsedFile{Path: file}
 
-	greg := regexp.MustCompile(genericreg)
-	nreg := regexp.MustCompile(nullablereg)
+	var greg *regexp.Regexp
+	var nreg *regexp.Regexp
+
+	if genericreg != "" {
+		greg = regexp.MustCompile(genericreg)
+	}
+
+	if nullablereg != "" {
+		nreg = regexp.MustCompile(nullablereg)
+	}
 
 	if err != nil {
 		return parsed, err
@@ -129,8 +137,16 @@ func getParsed(c string, baseTypes map[string]data.MappedType, nullableFormat, n
 		for _, m := range matches {
 			t := m[1]
 
-			tmatches := greg.FindAllStringSubmatch(t, -1)
-			nmatches := nreg.FindAllStringSubmatch(t, -1)
+			var tmatches [][]string
+			var nmatches [][]string
+
+			if greg != nil {
+				tmatches = greg.FindAllStringSubmatch(t, -1)
+			}
+
+			if nreg != nil {
+				nmatches = nreg.FindAllStringSubmatch(t, -1)
+			}
 			var nullable, collection bool
 
 			if len(nmatches) > 0 {
@@ -138,9 +154,9 @@ func getParsed(c string, baseTypes map[string]data.MappedType, nullableFormat, n
 				t = nmatches[0][1]
 			}
 
-			if len(tmatches) > 0 && !nullable {
+			if len(tmatches) > 0 && len(tmatches[0]) > 0 && !nullable {
+				log.Println("collection", tmatches, tmatches[0])
 				collection = isCollection(tmatches[0][1], conccoll, abstcoll)
-				log.Println("collection", collection, tmatches)
 				t = tmatches[0][2]
 			}
 
