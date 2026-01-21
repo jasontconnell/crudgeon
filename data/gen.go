@@ -29,20 +29,20 @@ type GenPackage struct {
 }
 
 type GenField struct {
-	Access              string
-	FieldName           string
-	Name                string
-	NameLower           string
-	Type                string
-	ElementType         string
-	ConcreteType        string
-	ConcreteElementType string
-	ConcreteProperty    string
-	Nullable            bool
-	CodeIgnore          bool
-	DbIgnore            bool
-	JsonIgnore          bool
-	XmlIgnore           bool
+	Access      string
+	FieldName   string
+	Name        string
+	NameLower   string
+	Type        string
+	ElementType string
+	// ConcreteType        string
+	// ConcreteElementType string
+	// ConcreteProperty    string
+	Nullable   bool
+	CodeIgnore bool
+	DbIgnore   bool
+	JsonIgnore bool
+	XmlIgnore  bool
 	// IsInterface         bool
 	Collection bool
 	Key        bool

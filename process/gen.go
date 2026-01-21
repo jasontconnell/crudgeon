@@ -231,7 +231,7 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 			xmlignore := f.Flags.XmlIgnore || flags.XmlIgnore
 			hashIgnore := f.Flags.HashIgnore || flags.HashIgnore
 
-			typeName, concreteTypeName, elementType := f.Type, f.Type, f.Type
+			typeName, elementType := f.Type, f.Type
 			if f.Collection {
 				listType := processTemplate(colltmpl, struct{ Name string }{Name: elementType})
 				// typeName = fmt.Sprintf("%s<%s>", listType, typeName)
@@ -255,8 +255,8 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 			dbignore = (f.Collection || dbignore || !isBase) && !f.Flags.ForceDb
 			jsonIgnore := f.Flags.JsonIgnore || flags.JsonIgnore
 
-			concreteProperty := ""
-			concreteElementType := ""
+			// concreteProperty := ""
+			// concreteElementType := ""
 			// if isInterface {
 			// 	concreteProperty = cname + "_Concrete"
 			// 	concreteTypeName = f.ConcreteType
@@ -270,23 +270,23 @@ func GetGenPackage(name, path string, flds []data.Field, db bool, tmplFile, ns, 
 			xmlwrapper := f.Flags.XmlWrapper && !db
 
 			gf := data.GenField{
-				Access:              "public",
-				FieldName:           field,
-				Name:                cname,
-				NameLower:           lname,
-				Type:                typeName,
-				ConcreteType:        concreteTypeName,
-				ConcreteProperty:    concreteProperty,
-				ConcreteElementType: concreteElementType,
-				ElementType:         elementType,
-				XmlWrapper:          xmlwrapper,
-				XmlWrapperElement:   f.Flags.XmlWrapperElement,
-				Nullable:            nullable,
-				CodeIgnore:          f.Flags.CodeIgnore,
-				DbIgnore:            dbignore,
-				JsonIgnore:          jsonIgnore,
-				XmlIgnore:           xmlignore,
-				HashIgnore:          hashIgnore,
+				Access:    "public",
+				FieldName: field,
+				Name:      cname,
+				NameLower: lname,
+				Type:      typeName,
+				// ConcreteType:        concreteTypeName,
+				// ConcreteProperty:    concreteProperty,
+				// ConcreteElementType: concreteElementType,
+				ElementType:       elementType,
+				XmlWrapper:        xmlwrapper,
+				XmlWrapperElement: f.Flags.XmlWrapperElement,
+				Nullable:          nullable,
+				CodeIgnore:        f.Flags.CodeIgnore,
+				DbIgnore:          dbignore,
+				JsonIgnore:        jsonIgnore,
+				XmlIgnore:         xmlignore,
+				HashIgnore:        hashIgnore,
 				// IsInterface:         isInterface,
 				Collection:  f.Collection,
 				Key:         f.Flags.Key,
