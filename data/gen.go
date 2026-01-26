@@ -102,6 +102,91 @@ type GenFlags struct {
 	SpecifiedFlags     map[string]bool
 }
 
+func mergeString(left, right string) string {
+	if left == "" && right != "" {
+		return right
+	} else if left != "" && right == "" {
+		return left
+	}
+	return left
+}
+
+func mergeBool(gf GenFlags, f GenFlags, prop string, def bool) bool {
+	gfval, ingf := gf.SpecifiedFlags[prop]
+	fval, inf := f.SpecifiedFlags[prop]
+
+	val := def
+
+	if ingf && !inf {
+		val = gfval
+	} else if !ingf && inf {
+		val = fval
+	}
+
+	return val
+}
+
+func MergeGenFlags(gf GenFlags, f GenFlags) GenFlags {
+	ngf := GenFlags{
+		Skip:           make(map[string]bool),
+		SpecifiedFlags: make(map[string]bool),
+		Custom:         make(map[string]CustomFlag),
+	}
+
+	for k, v := range gf.SpecifiedFlags {
+		ngf.SpecifiedFlags[k] = v
+	}
+
+	for k, v := range f.SpecifiedFlags {
+		ngf.SpecifiedFlags[k] = v
+	}
+
+	for k, v := range gf.Skip {
+		ngf.Skip[k] = v
+	}
+
+	for k, v := range f.Skip {
+		ngf.Skip[k] = v
+	}
+
+	for k, v := range gf.Custom {
+		ngf.Custom[k] = v
+	}
+
+	for k, v := range f.Custom {
+		ngf.Custom[k] = v
+	}
+
+	ngf.Id = mergeBool(gf, f, IdFlag, false)
+	ngf.IdUpdate = mergeBool(gf, f, IdUpdateFlag, false)
+	ngf.Fields = mergeBool(gf, f, FieldsFlag, false)
+	ngf.Collections = mergeBool(gf, f, CollectionsFlag, false)
+	ngf.CollectionTemplate = gf.CollectionTemplate
+	ngf.Constructor = mergeBool(gf, f, ConstructorFlag, false)
+	ngf.Keys = mergeBool(gf, f, KeysFlag, false)
+	ngf.PrimaryKeys = mergeBool(gf, f, PrimaryKeysFlag, false)
+	ngf.Updates = mergeBool(gf, f, UpdatesFlag, false)
+	ngf.DbIgnore = mergeBool(gf, f, DbIgnoreFlag, false)
+	ngf.Merge = mergeBool(gf, f, MergeFlag, false)
+	ngf.CodeIgnore = mergeBool(gf, f, CodeIgnoreFlag, false)
+	ngf.JsonIgnore = mergeBool(gf, f, JsonIgnoreFlag, false)
+	ngf.XmlIgnore = mergeBool(gf, f, XmlIgnoreFlag, false)
+	ngf.XmlRoot = mergeBool(gf, f, XmlRootFlag, false)
+	ngf.XmlRootName = mergeString(gf.XmlRootName, f.XmlRootName)
+	ngf.HashIgnore = mergeBool(gf, f, HashIgnoreFlag, false)
+	ngf.Class = mergeBool(gf, f, ClassFlag, false)
+	ngf.ClassName = mergeString(gf.ClassName, f.ClassName)
+	ngf.Table = mergeBool(gf, f, TableFlag, false)
+	ngf.TableName = mergeString(gf.TableName, f.TableName)
+	ngf.Database = mergeBool(gf, f, DatabaseFlag, gf.Database || f.Database)
+	ngf.HasNamespace = gf.HasNamespace || f.HasNamespace
+	ngf.Namespace = mergeString(gf.Namespace, f.Namespace)
+	ngf.ExactName = mergeBool(gf, f, ExactFlag, false)
+	ngf.HasSkip = mergeBool(gf, f, SkipFlag, false)
+
+	return ngf
+}
+
 func (gf *GenFlags) MergeParse(flagstr string) error {
 	if gf.SpecifiedFlags == nil {
 		gf.SpecifiedFlags = make(map[string]bool)

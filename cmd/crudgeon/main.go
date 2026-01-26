@@ -16,6 +16,7 @@ import (
 func main() {
 	configFile := flag.String("config", "config.json", "config file")
 	path := flag.String("path", "", "output location")
+	ns := flag.String("ns", "", "namespace")
 	obj := flag.String("obj", "", "object name")
 	dir := flag.String("dir", "", "process all files in a directory. they must have the +class flag in the file, or it'll fail")
 	flag.Parse()
@@ -73,7 +74,12 @@ func main() {
 				continue
 			}
 
-			gp, err := process.GetGenPackage(pfile.GenFlags.ClassName, *path, pfile, g.Database, tmpfile, g.Namespace, g.FilenameTemplate, g.Folder, g.Extension, g.Flags, cfg.CollectionTemplate, g.ConditionFlag)
+			lns := g.Namespace
+			if lns == "" {
+				lns = *ns
+			}
+
+			gp, err := process.GetGenPackage(pfile.GenFlags.ClassName, *path, pfile, g.Database, tmpfile, lns, g.FilenameTemplate, g.Folder, g.Extension, g.Flags, cfg.CollectionTemplate, g.ConditionFlag)
 			if err != nil {
 				log.Fatal("getting gen package from file: ", pfile.Path, " error: ", err)
 			}
@@ -96,7 +102,12 @@ func main() {
 			tmpfile = filepath.Join(tmplRoot, g.File)
 		}
 
-		gp, err := process.GetAllGenPackage(*path, pfiles, g.Database, tmpfile, g.Namespace, g.FilenameTemplate, g.Folder, g.Extension, g.Flags, cfg.CollectionTemplate, g.ConditionFlag)
+		lns := g.Namespace
+		if lns == "" {
+			lns = *ns
+		}
+
+		gp, err := process.GetAllGenPackage(*path, pfiles, g.Database, tmpfile, lns, g.FilenameTemplate, g.Folder, g.Extension, g.Flags, cfg.CollectionTemplate, g.ConditionFlag)
 		if err != nil {
 			log.Fatal("getting gen package from all files. error: ", err)
 		}

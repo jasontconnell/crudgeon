@@ -12,7 +12,6 @@ const (
 	FieldsFlag          = "fields"
 	CollectionsFlag     = "collections"
 	ConstructorFlag     = "constructor"
-	ConcretesFlag       = "concretes"
 	IndexFlag           = "index"
 	KeyFlag             = "key"
 	KeysFlag            = "keys"
@@ -35,4 +34,11 @@ const (
 	MergeFlag           = "merge"
 	SkipFlag            = "skip"
 	ParseFromStringFlag = "parsefromstring"
+	DatabaseFlag        = "database"
 )
+
+var AllFlags []string = []string{
+	IdFlag, IdUpdateFlag, AutoFlag, FieldsFlag, CollectionsFlag, ConstructorFlag, IndexFlag, KeyFlag, KeysFlag, PrimaryKeysFlag, ForeignKeyFlag,
+	UpdatesFlag, DbIgnoreFlag, ForceDbFlag, CodeIgnoreFlag, JsonIgnoreFlag, XmlIgnoreFlag, HashIgnoreFlag, NoMapFlag, XmlRootFlag, XmlWrapperFlag,
+	NamespaceFlag, ClassFlag, TableFlag, ExactFlag, MergeFlag, SkipFlag, ParseFromStringFlag, DatabaseFlag,
+}
