@@ -200,6 +200,10 @@ func (gf *GenFlags) MergeParse(flagstr string) error {
 
 		flds := strings.Fields(string(s[1:]))
 
+		// if FlagTypes[flds[0]] == String {
+		// 	sval := strings.Join(flds[1:], " ")
+		// }
+
 		gf.SpecifiedFlags[flds[0]] = flg
 
 		switch flds[0] {
@@ -237,24 +241,28 @@ func (gf *GenFlags) MergeParse(flagstr string) error {
 				return fmt.Errorf("Xml root flag must provide xml root name (+xmlroot XmlRootName)")
 			}
 			gf.XmlRootName = flds[1]
+			gf.SpecifiedFlags[XmlRootNameFlag] = flg
 		case NamespaceFlag:
 			gf.HasNamespace = flg
 			if len(flds) == 1 {
 				return fmt.Errorf("Namespace flag needs a namespace (+namespace LocalNamespace)")
 			}
 			gf.Namespace = flds[1]
+			gf.SpecifiedFlags[HasNamespaceFlag] = flg
 		case ClassFlag:
 			gf.Class = flg
 			if len(flds) == 1 {
 				return fmt.Errorf("Class root flag must provide the class name (+class ClassName)")
 			}
 			gf.ClassName = flds[1]
+			gf.SpecifiedFlags[ClassNameFlag] = flg
 		case TableFlag:
 			gf.Table = flg
 			if len(flds) == 1 {
 				return fmt.Errorf("Table root flag must provide the class name (+table TableName)")
 			}
 			gf.TableName = strings.Join(flds[1:], " ") // tables can have spaces...
+			gf.SpecifiedFlags[TableNameFlag] = flg
 		case ExactFlag:
 			gf.ExactName = flg
 		case SkipFlag:
