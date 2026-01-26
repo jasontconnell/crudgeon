@@ -18,6 +18,7 @@ type Field struct {
 	CodeDefault    string     `json:"codeDefault"`
 	DbType         string     `json:"dbType"`
 	DbDefault      string     `json:"dbDefault"`
+	Include        string     `json:"include"`
 }
 
 func (f Field) String() string {

@@ -15,11 +15,8 @@ import (
 
 func main() {
 	configFile := flag.String("config", "config.json", "config file")
-	file := flag.String("file", "", "source file")
 	path := flag.String("path", "", "output location")
 	obj := flag.String("obj", "", "object name")
-	ns := flag.String("ns", "", "namespace")
-	fld := flag.Bool("usefield", false, "use field name for property name")
 	dir := flag.String("dir", "", "process all files in a directory. they must have the +class flag in the file, or it'll fail")
 	flag.Parse()
 
@@ -39,29 +36,21 @@ func main() {
 
 	pfiles := []process.ParsedFile{}
 
-	if *dir == "" {
-		pfile, err := process.ParseFile(*file, basetypeMap, cfg.Null, cfg.DbNull)
+	paths, err := getFiles(*dir)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	if len(paths) == 0 {
+		log.Fatal("no .txt files in", *dir)
+	}
+
+	for _, p := range paths {
+		pfile, err := process.ParseFile(p, basetypeMap, cfg.Null, cfg.DbNull)
 		if err != nil {
-			log.Fatal("in file", *file, err)
+			log.Fatal("parsing file", pfile.Path, err)
 		}
 		pfiles = append(pfiles, pfile)
-	} else {
-		paths, err := getFiles(*dir)
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		if len(paths) == 0 {
-			log.Fatal("no .txt files in", *dir)
-		}
-
-		for _, p := range paths {
-			pfile, err := process.ParseFile(p, basetypeMap, cfg.Null, cfg.DbNull)
-			if err != nil {
-				log.Fatal("parsing file", pfile.Path, err)
-			}
-			pfiles = append(pfiles, pfile)
-		}
 	}
 
 	if len(pfiles) == 0 {
@@ -70,6 +59,9 @@ func main() {
 
 	for _, pfile := range pfiles {
 		for _, g := range cfg.Generations {
+			if g.OneFile {
+				continue
+			}
 			tmpfile := g.File
 			if !filepath.IsAbs(tmpfile) {
 				tmpfile = filepath.Join(tmplRoot, g.File)
@@ -81,20 +73,37 @@ func main() {
 				continue
 			}
 
-			var lns string = *ns
-			if lns == "" {
-				lns = g.Namespace
-			}
-
-			gp, err := process.GetGenPackage(*obj, *path, pfile.Fields, pfile.Imports, g.Database, tmpfile, lns, g.FilenameTemplate, g.Folder, g.Extension, g.Flags, cfg.CollectionTemplate, pfile.GenFlags, *fld, g.ConditionFlag)
-
+			gp, err := process.GetGenPackage(pfile.GenFlags.ClassName, *path, pfile, g.Database, tmpfile, g.Namespace, g.FilenameTemplate, g.Folder, g.Extension, g.Flags, cfg.CollectionTemplate, g.ConditionFlag)
 			if err != nil {
 				log.Fatal("getting gen package from file: ", pfile.Path, " error: ", err)
 			}
+
 			err = process.Generate(gp, g.CreateObjDir)
+
 			if err != nil {
 				log.Fatal("generating from file: ", pfile.Path, " error: ", err)
 			}
+		}
+	}
+
+	for _, g := range cfg.Generations {
+		if !g.OneFile {
+			continue
+		}
+
+		tmpfile := g.File
+		if !filepath.IsAbs(tmpfile) {
+			tmpfile = filepath.Join(tmplRoot, g.File)
+		}
+
+		gp, err := process.GetAllGenPackage(*path, pfiles, g.Database, tmpfile, g.Namespace, g.FilenameTemplate, g.Folder, g.Extension, g.Flags, cfg.CollectionTemplate, g.ConditionFlag)
+		if err != nil {
+			log.Fatal("getting gen package from all files. error: ", err)
+		}
+		err = process.Generate(gp, false)
+
+		if err != nil {
+			log.Fatal("generating: error: ", err)
 		}
 	}
 

@@ -95,7 +95,9 @@ func ParseFile(file string, baseTypes map[string]data.MappedType, null, dbnull s
 				CodeType:       p.codeType,
 				CodeDefault:    p.codeDefault,
 				DbDefault:      p.dbDefault,
-				Flags:          fieldFlags})
+				Flags:          fieldFlags,
+				Include:        p.include,
+			})
 	}
 
 	parsed.Fields = flds

@@ -12,21 +12,29 @@ type CustomFlag struct {
 }
 
 type GenPackage struct {
-	Generate          bool
+	Generate bool
+	Object   GenObject
+	Objects  []GenObject
+
+	Namespace        string
+	Imports          []string
+	Path             string
+	Ext              string
+	TemplateFile     string
+	FilenameTemplate string
+	Flags            GenFlags
+	OneFile          bool
+}
+
+type GenObject struct {
 	Name              string
 	NameLower         string
-	Path              string
-	Ext               string
-	Namespace         string
 	Fields            []GenField
 	ConstructorFields []GenField
 	KeyFields         []GenField
 	PrimaryKeyFields  []GenField
 	UpdateFields      []GenField
-	TemplateFile      string
-	FilenameTemplate  string
-	Flags             GenFlags
-	Imports           []string
+	Namespace         string
 }
 
 type GenField struct {
@@ -58,37 +66,40 @@ type GenField struct {
 	XmlWrapperName    string
 	XmlWrapperElement string
 	Id                bool
+
+	Include string
 }
 
 type GenFlags struct {
-	Id             bool
-	IdUpdate       bool
-	Fields         bool
-	Collections    bool
-	Concretes      bool
-	Constructor    bool
-	Keys           bool
-	PrimaryKeys    bool
-	Updates        bool
-	DbIgnore       bool
-	Merge          bool
-	CodeIgnore     bool
-	JsonIgnore     bool
-	XmlIgnore      bool
-	XmlRoot        bool
-	XmlRootName    string
-	HashIgnore     bool
-	Class          bool
-	ClassName      string
-	Table          bool
-	TableName      string
-	HasNamespace   bool
-	Namespace      string
-	ExactName      bool
-	HasSkip        bool
-	Skip           map[string]bool
-	Custom         map[string]CustomFlag
-	SpecifiedFlags map[string]bool
+	Id                 bool
+	IdUpdate           bool
+	Fields             bool
+	Collections        bool
+	CollectionTemplate string
+	Constructor        bool
+	Keys               bool
+	PrimaryKeys        bool
+	Updates            bool
+	DbIgnore           bool
+	Merge              bool
+	CodeIgnore         bool
+	JsonIgnore         bool
+	XmlIgnore          bool
+	XmlRoot            bool
+	XmlRootName        string
+	HashIgnore         bool
+	Class              bool
+	ClassName          string
+	Table              bool
+	TableName          string
+	Database           bool
+	HasNamespace       bool
+	Namespace          string
+	ExactName          bool
+	HasSkip            bool
+	Skip               map[string]bool
+	Custom             map[string]CustomFlag
+	SpecifiedFlags     map[string]bool
 }
 
 func (gf *GenFlags) MergeParse(flagstr string) error {
@@ -117,8 +128,6 @@ func (gf *GenFlags) MergeParse(flagstr string) error {
 			gf.Collections = flg
 		case ConstructorFlag:
 			gf.Constructor = flg
-		case ConcretesFlag:
-			gf.Concretes = flg
 		case KeysFlag:
 			gf.Keys = flg
 		case PrimaryKeysFlag:
@@ -201,18 +210,18 @@ func (gf GenFlags) GetFlagValue(name string) bool {
 
 func (gf GenFlags) String() string {
 	return fmt.Sprintf(`
-		Id:          %v
-		Fields:      %v
-		Collections: %v
-		Concretes:   %v
-		Constructor: %v
-		Keys:        %v
-		DbIgnore:   %v
-		CodeIgnore:    %v
-		JsonIgnore:  %v
-		XmlIgnore:   %v
-		XmlRoot:     %v (%v)
-		Class:       %s
-		Exact:       %v
-	`, gf.Id, gf.Fields, gf.Collections, gf.Concretes, gf.Constructor, gf.Keys, gf.DbIgnore, gf.CodeIgnore, gf.JsonIgnore, gf.XmlIgnore, gf.XmlRoot, gf.XmlRootName, gf.ClassName, gf.ExactName)
+		Id:                    %v
+		Fields:                %v
+		Collections:           %v
+		Collection Template:   %v
+		Constructor:           %v
+		Keys:                  %v
+		DbIgnore:              %v
+		CodeIgnore:            %v
+		JsonIgnore:            %v
+		XmlIgnore:             %v
+		XmlRoot:               %v (%v)
+		Class:                 %s
+		Exact:                 %v
+	`, gf.Id, gf.Fields, gf.Collections, gf.CollectionTemplate, gf.Constructor, gf.Keys, gf.DbIgnore, gf.CodeIgnore, gf.JsonIgnore, gf.XmlIgnore, gf.XmlRoot, gf.XmlRootName, gf.ClassName, gf.ExactName)
 }

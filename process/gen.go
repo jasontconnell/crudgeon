@@ -100,7 +100,7 @@ func Generate(pkg data.GenPackage, objdir bool) error {
 
 	path := pkg.Path
 	if objdir {
-		path = filepath.Join(path, pkg.Name)
+		path = filepath.Join(path, pkg.Object.Name)
 	}
 
 	err = os.MkdirAll(path, os.ModePerm)
@@ -108,9 +108,10 @@ func Generate(pkg data.GenPackage, objdir bool) error {
 		return err
 	}
 
-	outfile := pkg.Name + "." + pkg.Ext
+	outfile := pkg.Object.Name + "." + pkg.Ext
 	if pkg.FilenameTemplate != "" {
-		outfile = processTemplate(pkg.FilenameTemplate, pkg) + "." + pkg.Ext
+		p := struct{ Name, NameLower string }{Name: pkg.Object.Name, NameLower: pkg.Object.NameLower}
+		outfile = processTemplate(pkg.FilenameTemplate, p) + "." + pkg.Ext
 	}
 
 	output := filepath.Join(path, outfile)
@@ -126,78 +127,154 @@ func getFlagValue(flags data.Flags, fileflags data.Flags, name string) bool {
 	return flags.GetFlagValue(name)
 }
 
-func GetGenPackage(name, path string, flds []data.Field, imports []string, db bool, tmplFile, ns, outputTmpl, folder, ext, flagstr, colltmpl string, fileflags data.GenFlags, usefieldname bool, conditionFlag string) (data.GenPackage, error) {
+func GetGenPackage(name, path string, pfile ParsedFile, db bool, tmplFile, ns, outputTmpl, folder, ext, flagstr, colltmpl string, conditionFlag string) (data.GenPackage, error) {
 	flags := data.GenFlags{}
 	err := flags.MergeParse(flagstr)
 	if err != nil {
-		return data.GenPackage{}, err
-	}
-
-	flags.Id = getFlagValue(flags, fileflags, data.IdFlag)
-	flags.IdUpdate = getFlagValue(flags, fileflags, data.IdUpdateFlag)
-	flags.Fields = getFlagValue(flags, fileflags, data.FieldsFlag)
-	flags.Collections = getFlagValue(flags, fileflags, data.CollectionsFlag)
-	flags.Concretes = getFlagValue(flags, fileflags, data.ConcretesFlag)
-	flags.Constructor = getFlagValue(flags, fileflags, data.ConstructorFlag)
-	flags.Keys = getFlagValue(flags, fileflags, data.KeysFlag)
-	flags.DbIgnore = getFlagValue(flags, fileflags, data.DbIgnoreFlag)
-	flags.CodeIgnore = getFlagValue(flags, fileflags, data.CodeIgnoreFlag)
-	flags.XmlIgnore = getFlagValue(flags, fileflags, data.XmlIgnoreFlag)
-	flags.JsonIgnore = getFlagValue(flags, fileflags, data.JsonIgnoreFlag)
-	flags.HashIgnore = getFlagValue(flags, fileflags, data.HashIgnoreFlag)
-	flags.XmlRoot = getFlagValue(flags, fileflags, data.XmlRootFlag)
-	flags.Merge = getFlagValue(flags, fileflags, data.MergeFlag)
-
-	if flags.Custom == nil {
-		flags.Custom = make(map[string]data.CustomFlag)
-	}
-
-	if flags.Custom != nil && fileflags.Custom != nil {
-		for k, v := range fileflags.Custom {
-			flags.Custom[k] = v
-		}
-	}
-
-	// file specific flags
-	flags.Class = fileflags.Class
-	flags.ClassName = fileflags.ClassName
-	flags.ExactName = fileflags.ExactName
-
-	flags.Table = fileflags.Table
-	flags.TableName = fileflags.TableName
-	if !flags.Table && !flags.Class {
-		flags.TableName = name
-	} else if !flags.Table && flags.Class {
-		flags.TableName = flags.ClassName
-	}
-
-	if name == "" && flags.ClassName == "" {
-		return data.GenPackage{Generate: false}, fmt.Errorf("No object name provided.")
-	}
-
-	if name == "" {
-		name = flags.ClassName
-	}
-
-	lname := strings.ToLower(name)
-
-	if fileflags.XmlRootName != "" {
-		flags.XmlRootName = fileflags.XmlRootName
+		return data.GenPackage{}, fmt.Errorf("parsing flags %s. %w", flagstr, err)
 	}
 
 	if db && flags.DbIgnore || (!db && flags.CodeIgnore) {
 		return data.GenPackage{Generate: false}, nil
 	}
 
-	if conditionFlag != "" && !getFlagValue(flags, fileflags, conditionFlag) {
+	if conditionFlag != "" && !getFlagValue(flags, pfile.GenFlags, conditionFlag) {
 		return data.GenPackage{Generate: false}, nil
 	}
 
-	pkg := data.GenPackage{Generate: true, Name: name, NameLower: lname, Namespace: ns, Path: filepath.Join(path, folder), TemplateFile: tmplFile, Ext: ext, FilenameTemplate: outputTmpl, Flags: flags, Imports: imports}
-	if flags.Fields || flags.Constructor || flags.Keys || flags.Concretes || flags.PrimaryKeys || flags.Updates {
-		for _, f := range flds {
+	flags.Database = db
+	flags.CollectionTemplate = colltmpl
+
+	obj, err := getGenObject(pfile, flags)
+	if err != nil {
+		return data.GenPackage{}, fmt.Errorf("get gen object %s. %w", name, err)
+	}
+	pkg := data.GenPackage{Generate: true, Object: obj, Path: filepath.Join(path, folder), TemplateFile: tmplFile, Ext: ext, FilenameTemplate: outputTmpl, Flags: flags, Namespace: ns, Imports: getImports(obj.Fields)}
+	return pkg, nil
+}
+
+func GetAllGenPackage(path string, pfiles []ParsedFile, db bool, tmplFile, ns, outputTmpl, folder, ext, flagstr, colltmpl, conditionFlag string) (data.GenPackage, error) {
+	flags := data.GenFlags{}
+	err := flags.MergeParse(flagstr)
+	if err != nil {
+		return data.GenPackage{}, fmt.Errorf("parsing flags %s. %w", flagstr, err)
+	}
+
+	if db && flags.DbIgnore || (!db && flags.CodeIgnore) {
+		return data.GenPackage{Generate: false}, nil
+	}
+
+	flags.Database = db
+
+	imports := []string{}
+	impmap := make(map[string]bool)
+
+	objs := []data.GenObject{}
+	for _, pfile := range pfiles {
+		if conditionFlag != "" && !getFlagValue(flags, pfile.GenFlags, conditionFlag) {
+			continue
+		}
+
+		obj, err := getGenObject(pfile, flags)
+		if err != nil {
+			return data.GenPackage{}, fmt.Errorf("get gen object %s. %w", pfile.GenFlags.ClassName, err)
+		}
+
+		localImports := getImports(obj.Fields)
+		for _, imp := range localImports {
+			if _, ok := impmap[imp]; !ok {
+				imports = append(imports, imp)
+				impmap[imp] = true
+			}
+		}
+
+		objs = append(objs, obj)
+	}
+
+	pkg := data.GenPackage{Generate: true, Objects: objs, Path: filepath.Join(path, folder), TemplateFile: tmplFile, Ext: ext, FilenameTemplate: outputTmpl, Flags: flags, Namespace: ns, Imports: imports}
+	return pkg, nil
+}
+
+func getGenObject(pfile ParsedFile, genflags data.GenFlags) (data.GenObject, error) {
+	flags := data.GenFlags{}
+
+	flags.Id = getFlagValue(flags, pfile.GenFlags, data.IdFlag)
+	flags.IdUpdate = getFlagValue(flags, pfile.GenFlags, data.IdUpdateFlag)
+	flags.Fields = getFlagValue(flags, pfile.GenFlags, data.FieldsFlag)
+	flags.Collections = getFlagValue(flags, pfile.GenFlags, data.CollectionsFlag)
+	flags.Constructor = getFlagValue(flags, pfile.GenFlags, data.ConstructorFlag)
+	flags.Keys = getFlagValue(flags, pfile.GenFlags, data.KeysFlag)
+	flags.DbIgnore = getFlagValue(flags, pfile.GenFlags, data.DbIgnoreFlag)
+	flags.CodeIgnore = getFlagValue(flags, pfile.GenFlags, data.CodeIgnoreFlag)
+	flags.XmlIgnore = getFlagValue(flags, pfile.GenFlags, data.XmlIgnoreFlag)
+	flags.JsonIgnore = getFlagValue(flags, pfile.GenFlags, data.JsonIgnoreFlag)
+	flags.HashIgnore = getFlagValue(flags, pfile.GenFlags, data.HashIgnoreFlag)
+	flags.XmlRoot = getFlagValue(flags, pfile.GenFlags, data.XmlRootFlag)
+	flags.Merge = getFlagValue(flags, pfile.GenFlags, data.MergeFlag)
+
+	if flags.Custom == nil {
+		flags.Custom = make(map[string]data.CustomFlag)
+	}
+
+	if flags.Custom != nil && pfile.GenFlags.Custom != nil {
+		for k, v := range pfile.GenFlags.Custom {
+			flags.Custom[k] = v
+		}
+	}
+
+	// file specific flags
+	flags.Class = pfile.GenFlags.Class
+	flags.ClassName = pfile.GenFlags.ClassName
+	flags.ExactName = pfile.GenFlags.ExactName
+
+	flags.Table = pfile.GenFlags.Table
+	flags.TableName = pfile.GenFlags.TableName
+	if !flags.Table && !flags.Class {
+		flags.TableName = pfile.GenFlags.ClassName
+	} else if !flags.Table && flags.Class {
+		flags.TableName = pfile.GenFlags.ClassName
+	}
+
+	if pfile.GenFlags.ClassName == "" {
+		return data.GenObject{}, fmt.Errorf("No object name provided.")
+	}
+
+	name := pfile.GenFlags.ClassName
+	if name == "" {
+		name = flags.ClassName
+	}
+
+	lname := strings.ToLower(name)
+
+	if pfile.GenFlags.XmlRootName != "" {
+		flags.XmlRootName = pfile.GenFlags.XmlRootName
+	}
+
+	skipFlags := make(map[string]bool)
+	for _, flg := range genflags.Custom {
+		if !flg.Flag {
+			skipFlags[flg.Name] = true
+		}
+	}
+
+	obj := data.GenObject{Name: name, NameLower: lname, Namespace: pfile.GenFlags.Namespace}
+
+	if genflags.Fields || genflags.Constructor || genflags.Keys || genflags.PrimaryKeys || genflags.Updates {
+		for _, f := range pfile.Fields {
 			if f.Collection && !flags.Collections {
 				continue
+			}
+
+			if len(skipFlags) > 0 {
+				skip := false
+				for _, flg := range f.Flags.Custom {
+					if _, ok := skipFlags[flg.Name]; ok && flg.Flag {
+						skip = true
+					}
+				}
+				if skip {
+					continue
+				}
 			}
 
 			field := f.FieldName
@@ -205,10 +282,6 @@ func GetGenPackage(name, path string, flds []data.Field, imports []string, db bo
 			lname := strings.ToLower(f.Name)
 			if len(cname) < 3 {
 				cname = strings.ToUpper(cname)
-			}
-
-			if usefieldname || flags.ExactName {
-				cname = f.Name
 			}
 
 			dbignore := f.Flags.DbIgnore
@@ -219,12 +292,12 @@ func GetGenPackage(name, path string, flds []data.Field, imports []string, db bo
 				dbtype = f.Flags.ForceDbType
 			}
 
-			if db && (dbtype == "" || dbignore) {
+			if flags.Database && (dbtype == "" || dbignore) {
 				continue
 			}
 
 			codeignore := f.Flags.CodeIgnore
-			if !db && codeignore {
+			if !flags.Database && codeignore {
 				continue
 			}
 
@@ -233,17 +306,17 @@ func GetGenPackage(name, path string, flds []data.Field, imports []string, db bo
 
 			typeName, elementType := f.Type, f.CollectionType
 			if f.Collection {
-				typeName = processTemplate(colltmpl, struct{ Name string }{Name: elementType})
+				typeName = processTemplate(genflags.CollectionTemplate, struct{ Name string }{Name: elementType})
 			}
 
-			if db {
+			if genflags.Database {
 				typeName = dbtype
 			}
 
 			nullable := f.Nullable
 
 			isBase := false
-			if !db {
+			if !genflags.Database {
 				isBase = f.IsBaseType
 				if !isBase {
 					nullable = false
@@ -253,9 +326,9 @@ func GetGenPackage(name, path string, flds []data.Field, imports []string, db bo
 			}
 
 			dbignore = (f.Collection || dbignore || !isBase) && !f.Flags.ForceDb
-			jsonIgnore := f.Flags.JsonIgnore || flags.JsonIgnore
+			jsonIgnore := f.Flags.JsonIgnore || genflags.JsonIgnore
 
-			xmlwrapper := f.Flags.XmlWrapper && !db
+			xmlwrapper := f.Flags.XmlWrapper && !genflags.Database
 
 			gf := data.GenField{
 				FieldName:         field,
@@ -280,88 +353,45 @@ func GetGenPackage(name, path string, flds []data.Field, imports []string, db bo
 				CodeDefault:       f.CodeDefault,
 				DbType:            f.DbType,
 				DbDefault:         f.DbDefault,
+				Include:           f.Include,
 			}
-			pkg.Fields = append(pkg.Fields, gf)
+			obj.Fields = append(obj.Fields, gf)
 		}
 	}
 
-	if flags.Constructor {
-		for _, f := range pkg.Fields {
+	if genflags.Constructor {
+		for _, f := range obj.Fields {
 			if !f.Collection && !f.Flags.ReadOnly {
-				pkg.ConstructorFields = append(pkg.ConstructorFields, f)
+				obj.ConstructorFields = append(obj.ConstructorFields, f)
 			}
 		}
 	}
 
-	if flags.Keys {
-		for _, f := range pkg.Fields {
+	if genflags.Keys {
+		for _, f := range obj.Fields {
 			if f.Key || f.ForeignKey {
-				pkg.KeyFields = append(pkg.KeyFields, f)
+				obj.KeyFields = append(obj.KeyFields, f)
 			}
 		}
 	}
 
-	if flags.PrimaryKeys {
-		for _, f := range pkg.Fields {
+	if genflags.PrimaryKeys {
+		for _, f := range obj.Fields {
 			if f.Key {
-				pkg.PrimaryKeyFields = append(pkg.PrimaryKeyFields, f)
+				obj.PrimaryKeyFields = append(obj.PrimaryKeyFields, f)
 			}
 		}
 	}
 
-	if flags.Updates {
-		for _, f := range pkg.Fields {
+	if genflags.Updates {
+		for _, f := range obj.Fields {
 			if !f.Flags.Auto && !f.Key {
-				pkg.UpdateFields = append(pkg.UpdateFields, f)
+				obj.UpdateFields = append(obj.UpdateFields, f)
 			}
 		}
 	}
 
-	// if flags.Concretes {
-	// 	confields := []data.GenField{}
-	// 	for _, f := range pkg.Fields {
-	// 		if f.IsInterface {
-
-	// 			field := f.FieldName
-	// 			typeName := f.ConcreteType
-
-	// 			xmlwrappertype, xmlwrappername := f.ConcreteType, ""
-	// 			// if !f.XmlIgnore && f.XmlWrapper && f.Collection {
-	// 			// 	xmlwrappertype = typeName
-	// 			// 	xmlwrappername = field
-	// 			// 	xmlwrapperelement = f.XmlWrapperElement
-	// 			// 	typeName = pkg.Name + field + "Wrapper"
-	// 			// }
-
-	// 			ngfld := data.GenField{
-	// 				Access:              "public",
-	// 				FieldName:           field,
-	// 				Name:                f.Name + "_Concrete",
-	// 				Type:                typeName,
-	// 				ConcreteType:        typeName,
-	// 				ConcreteElementType: f.ConcreteElementType,
-	// 				ConcreteProperty:    "",
-	// 				XmlWrapper:          f.XmlWrapper,
-	// 				XmlWrapperType:      xmlwrappertype,
-	// 				XmlWrapperName:      xmlwrappername,
-	// 				XmlWrapperElement:   f.XmlWrapperElement,
-	// 				Nullable:            f.Nullable,
-	// 				CodeIgnore:          f.CodeIgnore,
-	// 				DbIgnore:            f.DbIgnore,
-	// 				XmlIgnore:           f.XmlIgnore,
-	// 				JsonIgnore:          flags.JsonIgnore,
-	// 				HashIgnore:          f.HashIgnore,
-	// 				IsInterface:         false,
-	// 				Collection:          f.Collection,
-	// 				Flags:               f.Flags,
-	// 			}
-	// 			confields = append(confields, ngfld)
-	// 		}
-	// 	}
-	// 	pkg.Fields = append(pkg.Fields, confields...)
-	// }
-
-	if flags.Id {
+	if genflags.Id {
 		pkfld := data.GenField{
 			FieldName:  "",
 			Name:       "ID",
@@ -371,8 +401,23 @@ func GetGenPackage(name, path string, flds []data.Field, imports []string, db bo
 			Id:         true,
 		}
 
-		pkg.Fields = append([]data.GenField{pkfld}, pkg.Fields...)
+		obj.Fields = append([]data.GenField{pkfld}, obj.Fields...)
 	}
 
-	return pkg, nil
+	return obj, nil
+}
+
+func getImports(flds []data.GenField) []string {
+	mm := make(map[string]bool)
+	list := []string{}
+	for _, f := range flds {
+		if len(f.Include) == 0 {
+			continue
+		}
+		if _, ok := mm[f.Include]; !ok {
+			mm[f.Include] = true
+			list = append(list, f.Include)
+		}
+	}
+	return list
 }

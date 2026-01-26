@@ -32,6 +32,7 @@ type Generation struct {
 	CreateObjDir     bool   `json:"objdir"`
 	ConditionFlag    string `json:"conditionflag"`
 	Namespace        string `json:"namespace"`
+	OneFile          bool   `json:"oneFile"`
 }
 
 func LoadConfig(filename string) Config {
