@@ -165,6 +165,7 @@ func GetAllGenPackage(path string, pfiles []ParsedFile, db bool, tmplFile, ns, o
 	}
 
 	flags.Database = db
+	flags.CollectionTemplate = colltmpl
 
 	imports := []string{}
 	impmap := make(map[string]bool)
@@ -261,7 +262,7 @@ func getGenObject(pfile ParsedFile, genflags data.GenFlags) (data.GenObject, err
 
 	if genflags.Fields || genflags.Constructor || genflags.Keys || genflags.PrimaryKeys || genflags.Updates {
 		for _, f := range pfile.Fields {
-			if f.Collection && !flags.Collections {
+			if f.Collection && !genflags.Collections {
 				continue
 			}
 
