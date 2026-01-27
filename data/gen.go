@@ -71,32 +71,32 @@ type GenField struct {
 }
 
 type GenFlags struct {
-	Id                 bool
-	IdUpdate           bool
-	Fields             bool
-	Collections        bool
-	CollectionTemplate string
-	Constructor        bool
-	Keys               bool
-	PrimaryKeys        bool
-	Updates            bool
-	DbIgnore           bool
-	Merge              bool
-	CodeIgnore         bool
-	JsonIgnore         bool
-	XmlIgnore          bool
-	XmlRoot            bool
+	Id                 bool   `flag:"id"`
+	IdUpdate           bool   `flag:"idupdate"`
+	Fields             bool   `flag:"fields"`
+	Collections        bool   `flag:"collections"`
+	CollectionTemplate string `flag:"collectionTemplate"`
+	Constructor        bool   `flag:"constructor"`
+	Keys               bool   `flag:"keys"`
+	PrimaryKeys        bool   `flag:"primarykeys"`
+	Updates            bool   `flag:"updates"`
+	DbIgnore           bool   `flag:"dbignore"`
+	Merge              bool   `flag:"merge"`
+	CodeIgnore         bool   `flag:"codeignore"`
+	JsonIgnore         bool   `flag:"jsonignore"`
+	XmlIgnore          bool   `flag:"xmlignore"`
+	XmlRoot            bool   `flag:"xmlroot" value:"XmlRootName"`
 	XmlRootName        string
-	HashIgnore         bool
-	Class              bool
+	HashIgnore         bool `flag:"hashignore"`
+	Class              bool `flag:"class" value:"ClassName"`
 	ClassName          string
-	Table              bool
+	Table              bool `flag:"table" value:"TableName"`
 	TableName          string
-	Database           bool
-	HasNamespace       bool
+	Database           bool `flag:"database"`
+	HasNamespace       bool `flag:"namespace" value:"Namespace"`
 	Namespace          string
-	ExactName          bool
-	HasSkip            bool
+	Exact              bool `flag:"exact"`
+	HasSkip            bool `flag:"hasskip"`
 	Skip               map[string]bool
 	Custom             map[string]CustomFlag
 	SpecifiedFlags     map[string]bool
@@ -179,111 +179,116 @@ func MergeGenFlags(gf GenFlags, f GenFlags) GenFlags {
 	ngf.Table = mergeBool(gf, f, TableFlag, false)
 	ngf.TableName = mergeString(gf.TableName, f.TableName)
 	ngf.Database = mergeBool(gf, f, DatabaseFlag, gf.Database || f.Database)
-	ngf.HasNamespace = gf.HasNamespace || f.HasNamespace
+	ngf.HasNamespace = mergeBool(gf, f, HasNamespaceFlag, false)
 	ngf.Namespace = mergeString(gf.Namespace, f.Namespace)
-	ngf.ExactName = mergeBool(gf, f, ExactFlag, false)
+	ngf.Exact = mergeBool(gf, f, ExactFlag, false)
 	ngf.HasSkip = mergeBool(gf, f, SkipFlag, false)
 
 	return ngf
 }
 
-func (gf *GenFlags) MergeParse(flagstr string) error {
-	if gf.SpecifiedFlags == nil {
-		gf.SpecifiedFlags = make(map[string]bool)
-	}
+func ParseFlags(flagstr string) (GenFlags, error) {
+	fs := NewFlagSetter()
+	// if gf.SpecifiedFlags == nil {
+	// 	gf.SpecifiedFlags = make(map[string]bool)
+	// }
 	ss := strings.Split(flagstr, ",")
 	for _, s := range ss {
-		flg := s[0] == '+'
-		if !flg && s[0] != '-' {
-			return fmt.Errorf("Need + or - as first character for flag, %s ... %s", flagstr, s)
+		err := fs.SetFlag(s)
+		if err != nil {
+			return GenFlags{}, fmt.Errorf("parsing flag %s. %w", s, err)
 		}
-
-		flds := strings.Fields(string(s[1:]))
-
-		// if FlagTypes[flds[0]] == String {
-		// 	sval := strings.Join(flds[1:], " ")
+		// flg := s[0] == '+'
+		// if !flg && s[0] != '-' {
+		// 	return fmt.Errorf("Need + or - as first character for flag, %s ... %s", flagstr, s)
 		// }
 
-		gf.SpecifiedFlags[flds[0]] = flg
+		// flds := strings.Fields(s[1:])
 
-		switch flds[0] {
-		case IdFlag:
-			gf.Id = flg
-		case IdUpdateFlag:
-			gf.IdUpdate = flg
-		case FieldsFlag:
-			gf.Fields = flg
-		case CollectionsFlag:
-			gf.Collections = flg
-		case ConstructorFlag:
-			gf.Constructor = flg
-		case KeysFlag:
-			gf.Keys = flg
-		case PrimaryKeysFlag:
-			gf.PrimaryKeys = flg
-		case UpdatesFlag:
-			gf.Updates = flg
-		case DbIgnoreFlag:
-			gf.DbIgnore = flg
-		case MergeFlag:
-			gf.Merge = flg
-		case CodeIgnoreFlag:
-			gf.CodeIgnore = flg
-		case JsonIgnoreFlag:
-			gf.JsonIgnore = flg
-		case XmlIgnoreFlag:
-			gf.XmlIgnore = flg
-		case HashIgnoreFlag:
-			gf.HashIgnore = flg
-		case XmlRootFlag:
-			gf.XmlRoot = flg
-			if len(flds) == 1 {
-				return fmt.Errorf("Xml root flag must provide xml root name (+xmlroot XmlRootName)")
-			}
-			gf.XmlRootName = flds[1]
-			gf.SpecifiedFlags[XmlRootNameFlag] = flg
-		case NamespaceFlag:
-			gf.HasNamespace = flg
-			if len(flds) == 1 {
-				return fmt.Errorf("Namespace flag needs a namespace (+namespace LocalNamespace)")
-			}
-			gf.Namespace = flds[1]
-			gf.SpecifiedFlags[HasNamespaceFlag] = flg
-		case ClassFlag:
-			gf.Class = flg
-			if len(flds) == 1 {
-				return fmt.Errorf("Class root flag must provide the class name (+class ClassName)")
-			}
-			gf.ClassName = flds[1]
-			gf.SpecifiedFlags[ClassNameFlag] = flg
-		case TableFlag:
-			gf.Table = flg
-			if len(flds) == 1 {
-				return fmt.Errorf("Table root flag must provide the class name (+table TableName)")
-			}
-			gf.TableName = strings.Join(flds[1:], " ") // tables can have spaces...
-			gf.SpecifiedFlags[TableNameFlag] = flg
-		case ExactFlag:
-			gf.ExactName = flg
-		case SkipFlag:
-			gf.HasSkip = flg
-			if gf.Skip == nil {
-				gf.Skip = make(map[string]bool)
-			}
-			gf.Skip[flds[1]] = flg
-		default:
-			if gf.Custom == nil {
-				gf.Custom = make(map[string]CustomFlag)
-			}
-			val := ""
-			if len(flds) > 1 {
-				val = flds[1]
-			}
-			cf := CustomFlag{Name: flds[0], Value: val, Flag: flg}
-			gf.Custom[cf.Name] = cf
-		}
+		// // if FlagTypes[flds[0]] == String {
+		// // 	sval := strings.Join(flds[1:], " ")
+		// // }
+
+		// gf.SpecifiedFlags[flds[0]] = flg
+
+		// switch flds[0] {
+		// case IdFlag:
+		// 	gf.Id = flg
+		// case IdUpdateFlag:
+		// 	gf.IdUpdate = flg
+		// case FieldsFlag:
+		// 	gf.Fields = flg
+		// case CollectionsFlag:
+		// 	gf.Collections = flg
+		// case ConstructorFlag:
+		// 	gf.Constructor = flg
+		// case KeysFlag:
+		// 	gf.Keys = flg
+		// case PrimaryKeysFlag:
+		// 	gf.PrimaryKeys = flg
+		// case UpdatesFlag:
+		// 	gf.Updates = flg
+		// case DbIgnoreFlag:
+		// 	gf.DbIgnore = flg
+		// case MergeFlag:
+		// 	gf.Merge = flg
+		// case CodeIgnoreFlag:
+		// 	gf.CodeIgnore = flg
+		// case JsonIgnoreFlag:
+		// 	gf.JsonIgnore = flg
+		// case XmlIgnoreFlag:
+		// 	gf.XmlIgnore = flg
+		// case HashIgnoreFlag:
+		// 	gf.HashIgnore = flg
+		// case XmlRootFlag:
+		// 	gf.XmlRoot = flg
+		// 	if len(flds) == 1 {
+		// 		return fmt.Errorf("Xml root flag must provide xml root name (+xmlroot XmlRootName)")
+		// 	}
+		// 	gf.XmlRootName = flds[1]
+		// 	gf.SpecifiedFlags[XmlRootNameFlag] = flg
+		// case NamespaceFlag:
+		// 	gf.HasNamespace = flg
+		// 	if len(flds) == 1 {
+		// 		return fmt.Errorf("Namespace flag needs a namespace (+namespace LocalNamespace)")
+		// 	}
+		// 	gf.Namespace = flds[1]
+		// 	gf.SpecifiedFlags[HasNamespaceFlag] = flg
+		// case ClassFlag:
+		// 	gf.Class = flg
+		// 	if len(flds) == 1 {
+		// 		return fmt.Errorf("Class root flag must provide the class name (+class ClassName)")
+		// 	}
+		// 	gf.ClassName = flds[1]
+		// 	gf.SpecifiedFlags[ClassNameFlag] = flg
+		// case TableFlag:
+		// 	gf.Table = flg
+		// 	if len(flds) == 1 {
+		// 		return fmt.Errorf("Table root flag must provide the class name (+table TableName)")
+		// 	}
+		// 	gf.TableName = strings.Join(flds[1:], " ") // tables can have spaces...
+		// 	gf.SpecifiedFlags[TableNameFlag] = flg
+		// case ExactFlag:
+		// 	gf.Exact = flg
+		// case SkipFlag:
+		// 	gf.HasSkip = flg
+		// 	if gf.Skip == nil {
+		// 		gf.Skip = make(map[string]bool)
+		// 	}
+		// 	gf.Skip[flds[1]] = flg
+		// default:
+		// 	if gf.Custom == nil {
+		// 		gf.Custom = make(map[string]CustomFlag)
+		// 	}
+		// 	val := ""
+		// 	if len(flds) > 1 {
+		// 		val = flds[1]
+		// 	}
+		// 	cf := CustomFlag{Name: flds[0], Value: val, Flag: flg}
+		// 	gf.Custom[cf.Name] = cf
+		// }
 	}
-	return nil
+	return fs.GetFlags(), nil
 }
 
 func (gf GenFlags) IsFlagSpecified(name string) bool {
@@ -316,5 +321,5 @@ func (gf GenFlags) String() string {
 		XmlRoot:               %v (%v)
 		Class:                 %s
 		Exact:                 %v
-	`, gf.Id, gf.Fields, gf.Collections, gf.CollectionTemplate, gf.Constructor, gf.Keys, gf.DbIgnore, gf.CodeIgnore, gf.JsonIgnore, gf.XmlIgnore, gf.XmlRoot, gf.XmlRootName, gf.ClassName, gf.ExactName)
+	`, gf.Id, gf.Fields, gf.Collections, gf.CollectionTemplate, gf.Constructor, gf.Keys, gf.DbIgnore, gf.CodeIgnore, gf.JsonIgnore, gf.XmlIgnore, gf.XmlRoot, gf.XmlRootName, gf.ClassName, gf.Exact)
 }

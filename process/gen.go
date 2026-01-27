@@ -128,8 +128,7 @@ func getFlagValue(flags data.Flags, fileflags data.Flags, name string) bool {
 }
 
 func GetGenPackage(name, path string, pfile ParsedFile, db bool, tmplFile, ns, outputTmpl, folder, ext, flagstr, colltmpl string, conditionFlag string) (data.GenPackage, error) {
-	flags := data.GenFlags{}
-	err := flags.MergeParse(flagstr)
+	flags, err := data.ParseFlags(flagstr)
 	if err != nil {
 		return data.GenPackage{}, fmt.Errorf("parsing flags %s. %w", flagstr, err)
 	}
@@ -155,8 +154,7 @@ func GetGenPackage(name, path string, pfile ParsedFile, db bool, tmplFile, ns, o
 }
 
 func GetAllGenPackage(path string, pfiles []ParsedFile, db bool, tmplFile, ns, outputTmpl, folder, ext, flagstr, colltmpl, conditionFlag string) (data.GenPackage, error) {
-	flags := data.GenFlags{}
-	err := flags.MergeParse(flagstr)
+	flags, err := data.ParseFlags(flagstr)
 	if err != nil {
 		return data.GenPackage{}, fmt.Errorf("parsing flags %s. %w", flagstr, err)
 	}
@@ -246,7 +244,7 @@ func getGenObject(pfile ParsedFile, genflags data.GenFlags) (data.GenObject, err
 				cname = strings.ToUpper(cname)
 			}
 
-			if genflags.ExactName {
+			if genflags.Exact {
 				cname = f.Name
 			}
 

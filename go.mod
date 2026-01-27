@@ -5,4 +5,4 @@ require (
 	github.com/jasontconnell/conf v1.1.1
 )
 
-go 1.20
+go 1.25.6

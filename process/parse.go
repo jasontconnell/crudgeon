@@ -113,7 +113,8 @@ func ParseFile(file string, baseTypes map[string]data.MappedType, null, dbnull s
 
 func getParsed(c string, baseTypes map[string]data.MappedType, null, dbnull string) (data.GenFlags, []parsedField, error) {
 	plist := []parsedField{}
-	genflags := data.GenFlags{}
+
+	fs := data.NewFlagSetter()
 
 	s := bufio.NewScanner(bytes.NewBufferString(c))
 
@@ -121,10 +122,13 @@ func getParsed(c string, baseTypes map[string]data.MappedType, null, dbnull stri
 		line := s.Text()
 		globflags := globalflagsreg.FindAllStringSubmatch(line, -1)
 		for _, m := range globflags {
-			var err error
-			err = genflags.MergeParse(m[1])
-			if err != nil {
-				return genflags, nil, err
+			ss := strings.Split(m[1], ",")
+			for _, s := range ss {
+				perr := fs.SetFlag(s)
+				// genflags, perr = data.ParseFlags(m[1])
+				if perr != nil {
+					return data.GenFlags{}, nil, perr
+				}
 			}
 		}
 
@@ -186,5 +190,5 @@ func getParsed(c string, baseTypes map[string]data.MappedType, null, dbnull stri
 		}
 	}
 
-	return genflags, plist, nil
+	return fs.GetFlags(), plist, nil
 }
