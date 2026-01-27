@@ -2,6 +2,7 @@ package data
 
 import (
 	"fmt"
+	"maps"
 	"strings"
 )
 
@@ -133,29 +134,9 @@ func MergeGenFlags(gf GenFlags, f GenFlags) GenFlags {
 		Custom:         make(map[string]CustomFlag),
 	}
 
-	for k, v := range gf.SpecifiedFlags {
-		ngf.SpecifiedFlags[k] = v
-	}
-
-	for k, v := range f.SpecifiedFlags {
-		ngf.SpecifiedFlags[k] = v
-	}
-
-	for k, v := range gf.Skip {
-		ngf.Skip[k] = v
-	}
-
-	for k, v := range f.Skip {
-		ngf.Skip[k] = v
-	}
-
-	for k, v := range gf.Custom {
-		ngf.Custom[k] = v
-	}
-
-	for k, v := range f.Custom {
-		ngf.Custom[k] = v
-	}
+	maps.Copy(ngf.SpecifiedFlags, gf.SpecifiedFlags)
+	maps.Copy(ngf.Skip, gf.Skip)
+	maps.Copy(ngf.Custom, gf.Custom)
 
 	ngf.Id = mergeBool(gf, f, IdFlag, false)
 	ngf.IdUpdate = mergeBool(gf, f, IdUpdateFlag, false)
@@ -189,104 +170,12 @@ func MergeGenFlags(gf GenFlags, f GenFlags) GenFlags {
 
 func ParseFlags(flagstr string) (GenFlags, error) {
 	fs := NewFlagSetter()
-	// if gf.SpecifiedFlags == nil {
-	// 	gf.SpecifiedFlags = make(map[string]bool)
-	// }
 	ss := strings.Split(flagstr, ",")
 	for _, s := range ss {
 		err := fs.SetFlag(s)
 		if err != nil {
 			return GenFlags{}, fmt.Errorf("parsing flag %s. %w", s, err)
 		}
-		// flg := s[0] == '+'
-		// if !flg && s[0] != '-' {
-		// 	return fmt.Errorf("Need + or - as first character for flag, %s ... %s", flagstr, s)
-		// }
-
-		// flds := strings.Fields(s[1:])
-
-		// // if FlagTypes[flds[0]] == String {
-		// // 	sval := strings.Join(flds[1:], " ")
-		// // }
-
-		// gf.SpecifiedFlags[flds[0]] = flg
-
-		// switch flds[0] {
-		// case IdFlag:
-		// 	gf.Id = flg
-		// case IdUpdateFlag:
-		// 	gf.IdUpdate = flg
-		// case FieldsFlag:
-		// 	gf.Fields = flg
-		// case CollectionsFlag:
-		// 	gf.Collections = flg
-		// case ConstructorFlag:
-		// 	gf.Constructor = flg
-		// case KeysFlag:
-		// 	gf.Keys = flg
-		// case PrimaryKeysFlag:
-		// 	gf.PrimaryKeys = flg
-		// case UpdatesFlag:
-		// 	gf.Updates = flg
-		// case DbIgnoreFlag:
-		// 	gf.DbIgnore = flg
-		// case MergeFlag:
-		// 	gf.Merge = flg
-		// case CodeIgnoreFlag:
-		// 	gf.CodeIgnore = flg
-		// case JsonIgnoreFlag:
-		// 	gf.JsonIgnore = flg
-		// case XmlIgnoreFlag:
-		// 	gf.XmlIgnore = flg
-		// case HashIgnoreFlag:
-		// 	gf.HashIgnore = flg
-		// case XmlRootFlag:
-		// 	gf.XmlRoot = flg
-		// 	if len(flds) == 1 {
-		// 		return fmt.Errorf("Xml root flag must provide xml root name (+xmlroot XmlRootName)")
-		// 	}
-		// 	gf.XmlRootName = flds[1]
-		// 	gf.SpecifiedFlags[XmlRootNameFlag] = flg
-		// case NamespaceFlag:
-		// 	gf.HasNamespace = flg
-		// 	if len(flds) == 1 {
-		// 		return fmt.Errorf("Namespace flag needs a namespace (+namespace LocalNamespace)")
-		// 	}
-		// 	gf.Namespace = flds[1]
-		// 	gf.SpecifiedFlags[HasNamespaceFlag] = flg
-		// case ClassFlag:
-		// 	gf.Class = flg
-		// 	if len(flds) == 1 {
-		// 		return fmt.Errorf("Class root flag must provide the class name (+class ClassName)")
-		// 	}
-		// 	gf.ClassName = flds[1]
-		// 	gf.SpecifiedFlags[ClassNameFlag] = flg
-		// case TableFlag:
-		// 	gf.Table = flg
-		// 	if len(flds) == 1 {
-		// 		return fmt.Errorf("Table root flag must provide the class name (+table TableName)")
-		// 	}
-		// 	gf.TableName = strings.Join(flds[1:], " ") // tables can have spaces...
-		// 	gf.SpecifiedFlags[TableNameFlag] = flg
-		// case ExactFlag:
-		// 	gf.Exact = flg
-		// case SkipFlag:
-		// 	gf.HasSkip = flg
-		// 	if gf.Skip == nil {
-		// 		gf.Skip = make(map[string]bool)
-		// 	}
-		// 	gf.Skip[flds[1]] = flg
-		// default:
-		// 	if gf.Custom == nil {
-		// 		gf.Custom = make(map[string]CustomFlag)
-		// 	}
-		// 	val := ""
-		// 	if len(flds) > 1 {
-		// 		val = flds[1]
-		// 	}
-		// 	cf := CustomFlag{Name: flds[0], Value: val, Flag: flg}
-		// 	gf.Custom[cf.Name] = cf
-		// }
 	}
 	return fs.GetFlags(), nil
 }
