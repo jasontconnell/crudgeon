@@ -1,8 +1,9 @@
+//+class Business
 //+option recompile
 
-public string Name {get;set;} //+key
-public decimal Value {get;set;}
-public decimal Revenue {get;set;}
-public decimal Expenses {get;set;}
+string Name //+key
+decimal Value
+decimal Revenue
+decimal Expenses
 
-public List<Employee> Employees {get;set;}
+Employee[] Employees

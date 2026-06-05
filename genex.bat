@@ -1,6 +1,6 @@
 @echo OFF
 
-go build
+go build ./cmd/crudgeon
 
-crudgeon -file datafiles\example1.txt -path output -obj Business -ns Name.Space
-crudgeon -file datafiles\example2.txt -path output -obj Employee -ns Name.Space
+crudgeon -dir ./datafiles -path output -obj Business -ns Name.Space
+crudgeon -dir ./datafiles -path output -obj Employee -ns Name.Space
