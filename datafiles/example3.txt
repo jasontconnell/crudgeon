@@ -1,0 +1,6 @@
+//+class SqlIgnored
+//+sqlignore
+//+formclass /-/api/fl/
+
+string Name //+key
+int Count

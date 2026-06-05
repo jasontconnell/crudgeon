@@ -1,4 +1,6 @@
 go build ./cmd/crudgeon
 
-./crudgeon -dir ./datafiles -path output -obj Business -ns Name.Space
-./crudgeon -dir ./datafiles -path output -obj Employee -ns Name.Space
+if (Test-Path -Path ./output) {
+    Remove-Item -Path ./output -Recurse -Force
+}
+./crudgeon -dir ./datafiles -path output -ns Name.Space

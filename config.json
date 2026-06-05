@@ -1,10 +1,10 @@
 {
     "generations": [
         { "file": "tmpl\\class.txt", "ext": "cs", "filenameTemplate": "{{.Name}}", "folder": "Model", "flags": "+id,+collections,+constructor,+fields","objdir":false},
-        { "file": "tmpl\\readproc.txt", "ext": "sql", "db": true, "filenameTemplate": "Get{{.Name}}", "folder": "SQL", "flags": "+id,+keys","objdir": true},
-        { "file": "tmpl\\updateproc.txt", "ext": "sql", "db": true, "filenameTemplate": "Save{{.Name}}", "folder": "SQL", "flags": "+idupdate,+fields,+keys,+updates","objdir": true},
-        { "file": "tmpl\\delproc.txt", "ext": "sql", "db": true, "filenameTemplate": "Delete{{.Name}}", "folder": "SQL", "flags": "+keys","objdir": true},
-        { "file": "tmpl\\table.txt", "ext": "sql", "db": true, "filenameTemplate": "tbl{{.Name}}", "folder": "SQL","flags": "+id,+fields,+keys","objdir": true},
+        { "file": "tmpl\\readproc.txt", "ext": "sql", "db": true, "filenameTemplate": "Get{{.Name}}", "folder": "SQL", "flags": "+id,+keys","objdir": true, "conditionFlag": "-sqlignore" },
+        { "file": "tmpl\\updateproc.txt", "ext": "sql", "db": true, "filenameTemplate": "Save{{.Name}}", "folder": "SQL", "flags": "+idupdate,+fields,+keys,+updates","objdir": true, "conditionFlag": "-sqlignore" },
+        { "file": "tmpl\\delproc.txt", "ext": "sql", "db": true, "filenameTemplate": "Delete{{.Name}}", "folder": "SQL", "flags": "+keys","objdir": true, "conditionFlag": "-sqlignore" },
+        { "file": "tmpl\\table.txt", "ext": "sql", "db": true, "filenameTemplate": "tbl{{.Name}}", "folder": "SQL","flags": "+id,+fields,+keys","objdir": true, "conditionFlag": "-sqlignore" },
         { "file": "tmpl\\map.txt", "ext": "cs", "outputPrefix": "Map_", "folder": "MapCode","flags": "+id,+collections,+fields,+constructor","objdir":true}
     ],
     "concreteCollection": "List",
