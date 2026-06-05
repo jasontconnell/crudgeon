@@ -1,23 +1,28 @@
-IF  EXISTS (SELECT * FROM sys.objects 
-WHERE object_id = OBJECT_ID(N'dbo.Delete{{.Name }}') AND type in (N'P'))
+{{- $genpkg := . }}
+
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.ROUTINES 
+WHERE ROUTINE_NAME = N'Delete{{.Object.Name }}')
 begin
-    drop procedure dbo.Delete{{.Name }}
+    drop procedure dbo.Delete{{.Object.Name }}
 end
 GO
 
-create procedure dbo.Delete{{.Name}}
-{{ range $index,$field := .Fields }}
-    @{{$field.Name}} {{$field.Type}}{{if $field.Nullable }} = null{{end}}{{if lt (plus1 $index) (len $.Fields)}},{{end}}
+create procedure dbo.Delete{{.Object.Name}}
+{{- range $index,$field := .Object.KeyFields }}
+    @{{$field.Name}} {{$field.Type}}{{if $field.Nullable }} = null{{end}}{{if lt (plus1 $index) (len $.Object.KeyFields)}},{{end}}
 {{- end}}
-
 as
 begin
+    {{- if $genpkg.Flags.Id }}
+        declare @id int
+        select @id = ID from {{.Name}} where {{ range $index,$field := .Object.KeyFields }}
+            {{$field.Name}} = @{{$field.Name}} {{if lt (plus1 $index) (len $.Object.KeyFields)}}and{{end}}
+        {{- end}}
 
-    declare @id int
-    select @id = ID from {{.Name}} where {{ range $index,$field := .KeyFields }}
-        {{$field.Name}} = @{{$field.Name}} {{if lt (plus1 $index) (len $.KeyFields)}}and{{end}}
+        delete from {{ .Object.Name }} where ID = @id
+    {{- else}}
+        delete from {{ .Object.Name }} where {{ range $index,$field := .Object.KeyFields }}
+            {{$field.Name}} = @{{$field.Name}} {{if lt (plus1 $index) (len $.Object.KeyFields)}}and{{end}}
+        {{- end}}
     {{- end}}
-
-    delete from {{ .Name }} where ID = @id
-
 end

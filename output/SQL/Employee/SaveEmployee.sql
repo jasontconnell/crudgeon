@@ -1,5 +1,7 @@
-IF  EXISTS (SELECT * FROM sys.objects 
-WHERE object_id = OBJECT_ID(N'dbo.SaveEmployee') AND type in (N'P'))
+
+
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.ROUTINES 
+WHERE ROUTINE_NAME = N'SaveEmployee')
 begin
     drop procedure dbo.SaveEmployee
 end
@@ -10,6 +12,7 @@ create procedure dbo.SaveEmployee
     @EmployeeID int,
     @FirstName varchar(150),
     @LastName varchar(150),
+    @Salary   decimal(18,7),
     @StartDate datetime
 
 as
@@ -17,16 +20,17 @@ begin
     declare @id int
     select @id = ID from Employee where 
         EmployeeID = @EmployeeID 
-
+    
     if exists (select ID from Employee where ID = @id)
     begin
-
         update Employee set
                 EmployeeID = @EmployeeID, 
                 FirstName = @FirstName, 
                 LastName = @LastName, 
+                Salary   = @Salary  , 
                 StartDate = @StartDate
-         where ID = @id
+         where
+            ID = @id
     end
     else
     begin
@@ -34,12 +38,14 @@ begin
                 EmployeeID, 
                 FirstName, 
                 LastName, 
+                Salary  , 
                 StartDate
         )
         values (
                 @EmployeeID, 
                 @FirstName, 
                 @LastName, 
+                @Salary  , 
                 @StartDate
         )
     end

@@ -1,25 +1,25 @@
-IF  EXISTS (SELECT * FROM sys.objects 
-WHERE object_id = OBJECT_ID(N'dbo.Get{{.Name }}') AND type in (N'P'))
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.ROUTINES 
+WHERE ROUTINE_NAME = N'Get{{.Object.Name }}')
 begin
-    drop procedure dbo.Get{{.Name }}
+    drop procedure dbo.Get{{.Object.Name }}
 end
 GO
 
-create procedure dbo.Get{{.Name }}
-{{ range $index,$field := .KeyFields }}
-    @{{$field.Name}} {{$field.Type}} = null{{if lt (plus1 $index) (len $.KeyFields)}},{{end}}
+
+create procedure dbo.Get{{.Object.Name }}
+{{- range $index,$field := .Object.KeyFields }}
+    @{{$field.Name}} {{$field.Type}} = null{{if lt (plus1 $index) (len $.Object.KeyFields)}},{{end}}
 {{- end}}
 as 
 begin
         select
             *
         from
-            {{.Name}}
-        {{ if gt (len .KeyFields) 0 }}
-        where {{ range $index,$field := .KeyFields }}
-            (@{{$field.Name}} is null OR {{$field.Name}} = @{{$field.Name}}) {{if lt (plus1 $index) (len $.KeyFields)}}and {{end}}
+            {{.Object.Name}}
+        {{- if gt (len .Object.KeyFields) 0 }}
+        where {{ range $index,$field := .Object.KeyFields }}
+            (@{{$field.Name}} is null OR {{$field.Name}} = @{{$field.Name}}) {{if lt (plus1 $index) (len $.Object.KeyFields)}}and {{end}}
         {{- end}}
-
-        {{ if bitflag "option" }}option({{ stringflag "option" }}) {{ end }}
+        {{ if bitflag "option" }}option({{ stringflag "option" }}){{ end }}
         {{- end }}
 end

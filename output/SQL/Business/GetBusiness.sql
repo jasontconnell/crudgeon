@@ -1,12 +1,12 @@
-IF  EXISTS (SELECT * FROM sys.objects 
-WHERE object_id = OBJECT_ID(N'dbo.GetBusiness') AND type in (N'P'))
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.ROUTINES 
+WHERE ROUTINE_NAME = N'GetBusiness')
 begin
     drop procedure dbo.GetBusiness
 end
 GO
 
-create procedure dbo.GetBusiness
 
+create procedure dbo.GetBusiness
     @Name varchar(150) = null
 as 
 begin
@@ -14,9 +14,7 @@ begin
             *
         from
             Business
-        
         where 
             (@Name is null OR Name = @Name) 
-
-        option(recompile) 
+        
 end

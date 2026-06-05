@@ -1,28 +1,29 @@
-IF  EXISTS (SELECT * FROM sys.objects 
-WHERE object_id = OBJECT_ID(N'dbo.{{.Name }}') AND type in (N'U'))
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES 
+WHERE TABLE_NAME = N'{{.Object.Name }}')
 begin
-    drop table dbo.{{.Name }}
+    drop table dbo.{{.Object.Name }}
 end
 GO
+
 {{- $genpkg := . }}
 
-create table dbo.{{.Name}} (
+create table dbo.{{.Object.Name}} (
     {{ if .Flags.Id }}ID int identity(1,1) not null,{{ end }}
-    {{ range $index,$field := .Fields }}
+    {{ range $index,$field := .Object.Fields }}
         {{- if and ($genpkg.Flags.Id) ($field.Id) }}{{- else}}
-        {{ $field.Name}} {{$field.Type}} {{ if $field.Nullable }}null{{else}}not null{{end}}{{- if lt (plus1 $index) (len $.Fields)}},{{end}}{{end}}
+        {{ $field.Name}} {{$field.Type}} {{ if $field.Nullable }}null{{else}}not null{{end}}{{- if lt (plus1 $index) (len $.Object.Fields)}},{{end}}{{end}}
     {{- end}},
-    {{ if gt (len .KeyFields)  0 }}
-        INDEX [Idx_{{.Name}}] NONCLUSTERED (
-            {{ range $kindex,$key := .KeyFields }}
-                {{ $key.Name }} ASC {{ if lt (plus1 $kindex) (len $.KeyFields)}},{{ end }}
+    {{ if gt (len .Object.KeyFields) 0 }}
+        INDEX [Idx_{{.Object.Name}}] NONCLUSTERED (
+            {{ range $kindex,$key := .Object.KeyFields }}
+                {{ $key.Name }} ASC {{ if lt (plus1 $kindex) (len $.Object.KeyFields)}},{{ end }}
             {{- end}}
-        ),
-    {{end}}
-    CONSTRAINT [PK_{{.Name}}] PRIMARY KEY CLUSTERED 
+        )
+    {{- end}}
+    {{- if .Flags.Id }}, CONSTRAINT [PK_{{.Object.Name}}] PRIMARY KEY CLUSTERED 
     (
         [ID] ASC
-    )
+    ){{- end}}
     WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 

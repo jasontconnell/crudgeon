@@ -1,5 +1,5 @@
-IF  EXISTS (SELECT * FROM sys.objects 
-WHERE object_id = OBJECT_ID(N'dbo.Employee') AND type in (N'U'))
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES 
+WHERE TABLE_NAME = N'Employee')
 begin
     drop table dbo.Employee
 end
@@ -11,14 +11,13 @@ create table dbo.Employee (
         EmployeeID int not null,
         FirstName varchar(150) not null,
         LastName varchar(150) not null,
+        Salary   decimal(18,7) not null,
         StartDate datetime not null,
     
         INDEX [Idx_Employee] NONCLUSTERED (
             
                 EmployeeID ASC 
-        ),
-    
-    CONSTRAINT [PK_Employee] PRIMARY KEY CLUSTERED 
+        ), CONSTRAINT [PK_Employee] PRIMARY KEY CLUSTERED 
     (
         [ID] ASC
     )

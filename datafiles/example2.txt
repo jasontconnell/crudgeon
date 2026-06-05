@@ -2,14 +2,13 @@
 //+xmlignore
 //# other comments can be here, it won't bother the generation, but I usually add # after // just as habit.
 
-you could also just have text if you want.
-
 int employee_ssn|EmployeeID //+key
 string emp_first_name|FirstName //+jsonignore
 string emp_last_name|LastName //+jsonignore
 string start_date|StartDateString //+dbignore
 
-decimal salary  //# 'salary' will be title cased so you will use 'Salary' everywhere instead.
+//# 'salary' will be title cased so you will use 'Salary' everywhere instead.
+decimal salary  
 
 
 //# this will be added to a partial class so we can parse the start date and have an actual date.

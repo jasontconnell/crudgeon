@@ -1,5 +1,7 @@
-IF  EXISTS (SELECT * FROM sys.objects 
-WHERE object_id = OBJECT_ID(N'dbo.SaveBusiness') AND type in (N'P'))
+
+
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.ROUTINES 
+WHERE ROUTINE_NAME = N'SaveBusiness')
 begin
     drop procedure dbo.SaveBusiness
 end
@@ -17,16 +19,16 @@ begin
     declare @id int
     select @id = ID from Business where 
         Name = @Name 
-
+    
     if exists (select ID from Business where ID = @id)
     begin
-
         update Business set
                 Name = @Name, 
                 Value = @Value, 
                 Revenue = @Revenue, 
                 Expenses = @Expenses
-         where ID = @id
+         where
+            ID = @id
     end
     else
     begin

@@ -1,5 +1,5 @@
-IF  EXISTS (SELECT * FROM sys.objects 
-WHERE object_id = OBJECT_ID(N'dbo.Business') AND type in (N'U'))
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES 
+WHERE TABLE_NAME = N'Business')
 begin
     drop table dbo.Business
 end
@@ -16,9 +16,7 @@ create table dbo.Business (
         INDEX [Idx_Business] NONCLUSTERED (
             
                 Name ASC 
-        ),
-    
-    CONSTRAINT [PK_Business] PRIMARY KEY CLUSTERED 
+        ), CONSTRAINT [PK_Business] PRIMARY KEY CLUSTERED 
     (
         [ID] ASC
     )

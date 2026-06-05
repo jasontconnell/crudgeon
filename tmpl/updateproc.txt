@@ -1,42 +1,78 @@
-IF  EXISTS (SELECT * FROM sys.objects 
-WHERE object_id = OBJECT_ID(N'dbo.Save{{.Name }}') AND type in (N'P'))
+{{- $genpkg := . }}
+
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.ROUTINES 
+WHERE ROUTINE_NAME = N'Save{{.Object.Name }}')
 begin
-    drop procedure dbo.Save{{.Name }}
+    drop procedure dbo.Save{{.Object.Name }}
 end
 GO
 
-create procedure dbo.Save{{.Name}}
-{{ range $index,$field := .Fields }}
-    @{{$field.Name}} {{$field.Type}}{{if $field.Nullable }} = null{{end}}{{if lt (plus1 $index) (len $.Fields)}},{{end}}
+create procedure dbo.Save{{.Object.Name}}
+{{ range $index,$field := .Object.Fields }}
+    @{{$field.Name}} {{$field.Type}}{{if $field.Nullable }} = null{{end}}{{if lt (plus1 $index) (len $.Object.Fields)}},{{end}}
 {{- end}}
 
 as
 begin
-    declare @id int
-    select @id = ID from {{.Name}} where {{ range $index,$field := .KeyFields }}
-        {{$field.Name}} = @{{$field.Name}} {{if lt (plus1 $index) (len $.KeyFields)}}and{{end}}
-    {{- end}}
+    {{- if $genpkg.Flags.Merge }}
 
-    if exists (select ID from {{ .Name }} where ID = @id)
+    if exists (select * from _Merge{{.Object.Name}} where {{ range $index,$field := .Object.KeyFields }}
+        {{$field.Name}} = @{{$field.Name}} {{if lt (plus1 $index) (len $.Object.KeyFields)}}and{{end}}
+    {{- end}})
     begin
+        return;
+    end
 
-        update {{.Name}} set
-            {{- range $index,$field := .Fields }}
-                {{$field.Name}} = @{{$field.Name}}{{if lt (plus1 $index) (len $.Fields)}}, {{end}}
+    insert into _Merge{{.Object.Name}} (
+        {{- range $index,$field := .Object.Fields }}
+            {{$field.Name}}{{if lt (plus1 $index) (len $.Object.Fields)}}, {{end}}
+        {{- end}}
+    )
+    values (
+        {{- range $index,$field := .Object.Fields }}
+            @{{$field.Name}}{{if lt (plus1 $index) (len $.Object.Fields)}}, {{end}}
+        {{- end}}
+    )
+    {{- else }}
+    {{- if $genpkg.Flags.IdUpdate }}
+    declare @id int
+    select @id = ID from {{.Object.Name}} where {{ range $index,$field := .Object.KeyFields }}
+        {{$field.Name}} = @{{$field.Name}} {{if lt (plus1 $index) (len $.Object.KeyFields)}}and{{end}}
+    {{- end}}
+    {{ end}}
+    {{- if $genpkg.Flags.IdUpdate }}
+    if exists (select ID from {{ .Object.Name }} where ID = @id)
+    {{- else }}
+    if exists (select * from {{ .Object.Name }} where {{ range $index,$field := .Object.KeyFields }}
+            {{$field.Name}} = @{{$field.Name}} {{if lt (plus1 $index) (len $.Object.KeyFields)}}and{{end}}
+        {{- end}})
+    {{- end}}
+    begin
+        update {{.Object.Name}} set
+            {{- range $index,$field := .Object.Fields }}
+                {{$field.Name}} = @{{$field.Name}}{{if lt (plus1 $index) (len $.Object.Fields)}}, {{end}}
             {{- end}}
-         where ID = @id
+         where 
+        {{- if $genpkg.Flags.IdUpdate }}
+            ID = @id
+        {{- else }}
+            {{- range $index,$field := .Object.KeyFields }}
+                {{$field.Name}} = @{{$field.Name}} {{if lt (plus1 $index) (len $.Object.KeyFields)}}and{{end}}
+            {{- end}}
+        {{- end}}
     end
     else
     begin
-        insert into {{.Name}} (
-            {{- range $index,$field := .Fields }}
-                {{$field.Name}}{{if lt (plus1 $index) (len $.Fields)}}, {{end}}
+        insert into {{.Object.Name}} (
+            {{- range $index,$field := .Object.Fields }}
+                {{$field.Name}}{{if lt (plus1 $index) (len $.Object.Fields)}}, {{end}}
             {{- end}}
         )
         values (
-            {{- range $index,$field := .Fields }}
-                @{{$field.Name}}{{if lt (plus1 $index) (len $.Fields)}}, {{end}}
+            {{- range $index,$field := .Object.Fields }}
+                @{{$field.Name}}{{if lt (plus1 $index) (len $.Object.Fields)}}, {{end}}
             {{- end}}
         )
     end
+    {{- end}}
 end

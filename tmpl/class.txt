@@ -1,8 +1,5 @@
 using System;
-
-{{ $obj := .Object }}
-
-{{ if not .Flags.DbIgnore }}using DbMap.Attributes;{{ end }}
+{{ if not .Flags.DbIgnore }}using SqlMap.Attributes;{{ end }}
 {{ if not .Flags.JsonIgnore }}using System.Runtime.Serialization;{{ end }}
 {{ if not .Flags.XmlIgnore }}using System.Xml.Serialization;{{ end }}
 using System.Collections.Generic;
@@ -11,36 +8,46 @@ using System.Text;
 using Hasher.Attributes;
 
 // this code is generated, do not modify. use partial classes / interfaces to add stuff
-namespace {{ .Namespace }} {
+namespace {{ .Namespace }} 
+{
     {{ if not .Flags.JsonIgnore }}[DataContract]{{end}}
-    {{ if not .Flags.DbIgnore }}[StoredProc(Name="Get{{$obj.Name}}", ProcType=ProcType.Read)]
-    [StoredProc(Name="Save{{$obj.Name}}", ProcType=ProcType.Update)]
-    [StoredProc(Name="Delete{{$obj.Name}}", ProcType=ProcType.Delete)]{{ end }}
-    {{ if .Flags.XmlRoot }}[XmlRoot("{{.Flags.XmlRootName}}")]{{ end }}
-    public partial class {{ $obj.Name }} : I{{ $obj.Name }} {
+    {{ if not .Flags.DbIgnore }}[StoredProc(Name="Get{{.Object.Name}}", ProcType=ProcType.Read)]
+    [StoredProc(Name="Save{{.Object.Name}}", ProcType=ProcType.Update)]
+    [StoredProc(Name="Delete{{.Object.Name}}", ProcType=ProcType.Delete)]
+    {{ end }}
+    {{- if .Flags.Merge }}
+    [StoredProc(Name="Merge{{.Object.Name}}", ProcType=ProcType.Merge)]
+    {{- end}}
+    {{- if .Flags.XmlRoot }}[XmlRoot("{{.Flags.XmlRootName}}")]{{ end }}
+    {{- if .Flags.HashIgnore }}
+    [NoHash]
+    {{- end }}
+    public partial class {{ .Object.Name }}  {
 
-        public {{$obj.Name}}(){
-            
+        public {{.Object.Name}}(){
         }
 
-        {{- if gt (len $obj.ConstructorFields)  0 }}
-        public {{ $obj.Name }}({{- range $index,$field := $obj.ConstructorFields }} {{$field.Type}}{{if $field.Nullable}}?{{end}} {{$field.Name}}{{- if lt (plus1 $index) (len $obj.ConstructorFields)}},
+        {{- if gt (len .Object.ConstructorFields) 0 }}
+        public {{ .Object.Name }}({{- range $index,$field := .Object.ConstructorFields }} {{$field.Type}}{{if $field.Nullable}}?{{end}} {{$field.Name}}{{- if lt (plus1 $index) (len $.Object.ConstructorFields)}},
                 {{end}}{{- end}}) {
-            {{- range $index,$field := $obj.ConstructorFields }}
+            {{- range $index,$field := .Object.ConstructorFields }}
+            {{- if not $field.Flags.ReadOnly }}
             this.{{$field.Name}} = {{$field.Name}};
+            {{- end}}
             {{- end}}
         }
         {{- end }}
         {{- $genpkg := . }}
-        {{- range $index,$field := $obj.Fields }}
+        {{- range $index,$field := .Object.Fields }}
+        {{- if not $field.HashIgnore }}
         {{- if $field.Key }}
         [HashKey({{$index}})]{{- end }}
-        {{- if and ($field.IsBaseType) (not $field.DbIgnore) (ne $field.Name "ID") (not $field.Key)}}
-        [Hash({{$index}})]{{- end}}
+        {{- if and (or $field.IsBaseType $field.Flags.ForceDb) (not $field.DbIgnore) (ne $field.Name "ID") (not $field.Key)}}
+        [Hash({{$index}})]{{- end }}{{- end }}
         {{- if not $field.JsonIgnore }}
         [DataMember(Name="{{$field.FieldName}}")]{{- end }}
         {{- if (not $genpkg.Flags.XmlIgnore) }}
-            {{- if and (not $field.XmlIgnore) (ne $field.Name "ID") (not $field.IsInterface) }}
+            {{- if and (not $field.XmlIgnore) (ne $field.Name "ID") }}
                 {{- if not $field.IsBaseType }}
                     {{- if not $field.XmlWrapper }}
         [XmlElement("{{$field.FieldName}}")]
@@ -51,7 +58,7 @@ namespace {{ .Namespace }} {
                 {{- else if $field.IsBaseType }}
         [XmlAttribute(AttributeName="{{$field.FieldName}}")]
                 {{- end }}
-            {{- else if or (eq $field.Name "ID") (and (ne $field.Name "ID") ($field.IsInterface)) }}
+            {{- else if or (eq $field.Name "ID") (ne $field.Name "ID")  }}
         [XmlIgnore]
             {{- end }}
         {{- end }}
@@ -61,17 +68,32 @@ namespace {{ .Namespace }} {
         [IgnoreCol]
         {{- end }}
         public {{$field.Type}}{{if $field.Nullable}}?{{end}} {{$field.Name}} { 
-                {{- if not $field.Collection }} get; set;
-                {{- else if $field.Collection}}get { return {{$field.ConcreteProperty}} == null ? null : Enumerable.Cast<{{$field.ElementType}}>({{$field.ConcreteProperty}}); } set { this.{{$field.ConcreteProperty}} = Enumerable.Cast<{{$field.ConcreteElementType}}>(value).ToList(); }
-                {{- else}} get { return ({{$field.Type}})this.{{$field.ConcreteProperty}}; } set { this.{{$field.ConcreteProperty}} = ({{$field.ConcreteType}})value; }{{end}}  }
-        {{ end }}
+                {{- if $field.Flags.ParseFromString -}}
+                get {
+                    if (!this.{{$field.Name}}Initialized) {
+                        this.{{$field.Name}}Val = {{$field.Flags.ParseFromStringDefault}};
+                        if (!{{$field.Type}}.TryParse(this.{{$field.Flags.ParseFromStringProperty}}, out this.{{$field.Name}}Val)) {
+                            this.{{$field.Name}}Val = {{$field.Flags.ParseFromStringDefault}};
+                        }
+                        this.{{$field.Name}}Initialized = true;
+                    }
+                    
+                    return this.{{$field.Name}}Val; 
+                }
+                set {
+                    this.{{$field.Name}}Val = value;
+                    this.{{$field.Name}}Initialized = true;
+                }
+                {{- else  }} get; set; {{ end }}}
+        {{ if $field.Flags.ParseFromString -}}
+        private {{$field.Type}}{{if $field.Nullable}}?{{end}} {{$field.Name}}Val;
+        private bool {{$field.Name}}Initialized = false;{{ end }}
+        {{- end }}
 
         override public string ToString(){
-            StringBuilder sb = new StringBuilder();
-            {{- range $index,$field := .Fields }}
-                {{- if not $field.IsInterface}}
+            StringBuilder sb = new StringBuilder("{{ .Object.Name }} - " + Environment.NewLine);
+            {{- range $index,$field := .Object.Fields }}
                 sb.AppendFormat("{0}: {1}{2}", "{{$field.Name}}", this.{{$field.Name}}, Environment.NewLine);
-                {{- end}}
             {{- end}}
             return sb.ToString();
         }

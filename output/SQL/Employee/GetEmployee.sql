@@ -1,12 +1,12 @@
-IF  EXISTS (SELECT * FROM sys.objects 
-WHERE object_id = OBJECT_ID(N'dbo.GetEmployee') AND type in (N'P'))
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.ROUTINES 
+WHERE ROUTINE_NAME = N'GetEmployee')
 begin
     drop procedure dbo.GetEmployee
 end
 GO
 
-create procedure dbo.GetEmployee
 
+create procedure dbo.GetEmployee
     @EmployeeID int = null
 as 
 begin
@@ -14,9 +14,7 @@ begin
             *
         from
             Employee
-        
         where 
             (@EmployeeID is null OR EmployeeID = @EmployeeID) 
-
         
 end
