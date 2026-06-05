@@ -3,6 +3,7 @@ package process
 import (
 	"bufio"
 	"bytes"
+	"errors"
 	"fmt"
 	"os"
 	"regexp"
@@ -117,15 +118,20 @@ func getParsed(c string, baseTypes map[string]data.MappedType, null, dbnull stri
 	fs := data.NewFlagSetter()
 
 	s := bufio.NewScanner(bytes.NewBufferString(c))
+	var errs error
 
 	for s.Scan() {
 		line := s.Text()
 		globflags := globalflagsreg.FindAllStringSubmatch(line, -1)
 		for _, m := range globflags {
-			ss := strings.Split(m[1], ",")
-			for _, s := range ss {
-				perr := fs.SetFlag(s)
-				// genflags, perr = data.ParseFlags(m[1])
+			pflist, err := data.ParseFlagsRaw(m[1])
+			if err != nil {
+				errs = errors.Join(errs, err)
+				continue
+			}
+
+			for _, f := range pflist {
+				perr := fs.SetFlag(f)
 				if perr != nil {
 					return data.GenFlags{}, nil, perr
 				}
@@ -190,5 +196,5 @@ func getParsed(c string, baseTypes map[string]data.MappedType, null, dbnull stri
 		}
 	}
 
-	return fs.GetFlags(), plist, nil
+	return fs.GetFlags(), plist, errs
 }

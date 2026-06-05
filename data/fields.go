@@ -2,7 +2,6 @@ package data
 
 import (
 	"fmt"
-	"strings"
 )
 
 type Field struct {
@@ -82,74 +81,67 @@ func (f FieldFlags) GetFlagValue(name string) bool {
 
 func ParseFieldFlags(instructions string) (FieldFlags, error) {
 	flags := FieldFlags{SpecifiedFlags: make(map[string]bool)}
-	ss := smartSplit(instructions, ',')
-	for _, s := range ss {
-		flg := s[0] == '+'
-		if !flg && s[0] != '-' {
-			return flags, fmt.Errorf("Need + or - as first character for flags, %s: %s", instructions, s)
-		}
+	pflags, err := ParseFlagsRaw(instructions)
+	if err != nil {
+		return flags, err
+	}
+	for _, f := range pflags {
+		flags.SpecifiedFlags[f.Name] = true
 
-		flds := strings.Fields(string(s[1:]))
-
-		flags.SpecifiedFlags[flds[0]] = flg
-
-		switch flds[0] {
+		switch f.Name {
 		case DbIgnoreFlag:
-			flags.DbIgnore = flg
+			flags.DbIgnore = f.Switch
 		case JsonIgnoreFlag:
-			flags.JsonIgnore = flg
+			flags.JsonIgnore = f.Switch
 		case CodeIgnoreFlag:
-			flags.CodeIgnore = flg
+			flags.CodeIgnore = f.Switch
 		case KeyFlag:
-			flags.Key = flg
+			flags.Key = f.Switch
 		case ForeignKeyFlag:
-			flags.ForeignKey = flg
+			flags.ForeignKey = f.Switch
 		case AutoFlag:
-			flags.Auto = flg
+			flags.Auto = f.Switch
 		case IndexFlag:
-			flags.Index = flg
+			flags.Index = f.Switch
 		case HashIgnoreFlag:
-			flags.HashIgnore = flg
+			flags.HashIgnore = f.Switch
 		case NoMapFlag:
-			flags.NoMap = flg
+			flags.NoMap = f.Switch
 		case XmlIgnoreFlag:
-			flags.XmlIgnore = flg
+			flags.XmlIgnore = f.Switch
 		case XmlWrapperFlag:
-			flags.XmlWrapper = flg
-			if len(flds) == 1 {
+			flags.XmlWrapper = f.Switch
+			if len(f.Values) == 0 {
 				return flags, fmt.Errorf("Xml wrapper flag must provide xml wrapper name (+xmlwrapper XmlWrapperName)")
 			}
-			flags.XmlWrapperElement = flds[1]
+			flags.XmlWrapperElement = f.Value
 		case ParseFromStringFlag:
-			flags.ParseFromString = flg
-			if len(flds) == 1 {
+			flags.ParseFromString = f.Switch
+			if len(f.Values) == 0 {
 				return flags, fmt.Errorf("parse from string flag must provide string property name (+parsefromstring StringProperty DefaultVal Format)")
 			}
 
-			flags.ParseFromStringProperty = flds[1]
-			if len(flds) > 2 {
-				flags.ParseFromStringDefault = flds[2]
+			flags.ParseFromStringProperty = f.Values[1]
+			if len(f.Values) > 2 {
+				flags.ParseFromStringDefault = f.Values[2]
 			}
-			if len(flds) > 3 {
-				flags.ParseFromStringFormat = flds[3]
+			if len(f.Values) > 3 {
+				flags.ParseFromStringFormat = f.Values[3]
 			}
 
 			flags.ReadOnly = true
 		case ForceDbFlag:
-			flags.ForceDb = flg
-			if len(flds) == 1 {
+			flags.ForceDb = f.Switch
+			if len(f.Values) == 1 {
 				return flags, fmt.Errorf("forcedb flag must provide db type (+forcedb dbtype)")
 			}
-			flags.ForceDbType = flds[1]
+			flags.ForceDbType = f.Values[1]
 		default:
 			if flags.Custom == nil {
 				flags.Custom = make(map[string]CustomFlag)
 			}
-			val := ""
-			if len(flds) > 1 {
-				val = strings.Join(flds[1:], " ")
-			}
-			cf := CustomFlag{Name: flds[0], Value: val, Flag: flg}
+
+			cf := CustomFlag{Name: f.Name, Value: f.Value, Flag: f.Switch}
 			flags.Custom[cf.Name] = cf
 		}
 	}

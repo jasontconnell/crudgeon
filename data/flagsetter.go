@@ -1,10 +1,8 @@
 package data
 
 import (
-	"fmt"
 	"log"
 	"reflect"
-	"strings"
 )
 
 type FlagSetter struct {
@@ -48,29 +46,12 @@ func (fs *FlagSetter) parseTags() {
 	}
 }
 
-func (fs *FlagSetter) SetFlag(s string) error {
-	if len(s) == 0 {
-		return fmt.Errorf("flag is 0-length")
-	}
+func (fs *FlagSetter) SetFlag(f ParsedFlag) error {
 
-	flg := s[0] == '+'
+	fs.gf.SpecifiedFlags[f.Name] = true
 
-	rest := strings.Fields(s[1:])
-	flgname := rest[0]
-
-	if flgname == "" {
-		log.Println("got blank flag name", s)
-	}
-
-	fs.gf.SpecifiedFlags[flgname] = flg
-
-	var val string
-	if len(rest) > 1 {
-		val = strings.Join(rest[1:], " ")
-	}
-
-	if prop, ok := fs.m[flgname]; ok {
-		sprop := fs.vm[flgname]
+	if prop, ok := fs.m[f.Name]; ok {
+		sprop := fs.vm[f.Name]
 
 		setobj := fs.v
 		if fs.v.Kind() == reflect.Pointer {
@@ -79,24 +60,24 @@ func (fs *FlagSetter) SetFlag(s string) error {
 
 		rfld := setobj.FieldByName(prop)
 		if rfld.CanSet() {
-			rfld.SetBool(flg)
+			rfld.SetBool(f.Switch)
 		} else {
-			log.Println("can't set field", prop, s)
+			log.Println("can't set field", prop, f.Name)
 		}
 
-		if sprop != "" && val != "" {
+		if sprop != "" && f.Value != "" {
 			vfld := setobj.FieldByName(sprop)
 			if vfld.CanSet() {
-				vfld.SetString(val)
+				vfld.SetString(f.Value)
 			} else {
-				log.Println("can't set field", sprop, s)
+				log.Println("can't set field", sprop, f.Name)
 			}
 		}
 	} else {
-		fs.gf.Custom[flgname] = CustomFlag{
-			Name:  flgname,
-			Flag:  flg,
-			Value: val,
+		fs.gf.Custom[f.Name] = CustomFlag{
+			Name:  f.Name,
+			Flag:  f.Switch,
+			Value: f.Value,
 		}
 	}
 

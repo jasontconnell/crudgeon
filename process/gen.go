@@ -118,6 +118,18 @@ func Generate(pkg data.GenPackage, objdir bool) error {
 	return os.WriteFile(output, buffer.Bytes(), os.ModePerm)
 }
 
+func shouldFilter(cond []data.ParsedFlag, flags, fileflags data.Flags) bool {
+	filtered := false
+	for _, cflag := range cond {
+		fv := getFlagValue(flags, fileflags, cflag.Name)
+		spec := getFlagSpecified(flags, fileflags, cflag.Name)
+		if spec && fv != cflag.Switch {
+			filtered = true
+		}
+	}
+	return filtered
+}
+
 func getFlagValue(flags data.Flags, fileflags data.Flags, name string) bool {
 	if flags.IsFlagSpecified(name) && fileflags.IsFlagSpecified(name) {
 		return fileflags.GetFlagValue(name)
@@ -125,6 +137,10 @@ func getFlagValue(flags data.Flags, fileflags data.Flags, name string) bool {
 		return fileflags.GetFlagValue(name)
 	}
 	return flags.GetFlagValue(name)
+}
+
+func getFlagSpecified(flags data.Flags, fileflags data.Flags, name string) bool {
+	return flags.IsFlagSpecified(name) || fileflags.IsFlagSpecified(name)
 }
 
 func GetGenPackage(name, path string, pfile ParsedFile, db bool, tmplFile, ns, outputTmpl, folder, ext, flagstr, colltmpl string, conditionFlag string) (data.GenPackage, error) {
@@ -141,7 +157,14 @@ func GetGenPackage(name, path string, pfile ParsedFile, db bool, tmplFile, ns, o
 		return data.GenPackage{Generate: false}, nil
 	}
 
-	if conditionFlag != "" && !getFlagValue(flags, gf, conditionFlag) {
+	cond, err := data.ParseFlagsRaw(conditionFlag)
+	if err != nil {
+		return data.GenPackage{}, fmt.Errorf("parsing condition flag %s. %w", flagstr, err)
+	}
+
+	filtered := shouldFilter(cond, flags, pfile.GenFlags)
+
+	if filtered {
 		return data.GenPackage{Generate: false}, nil
 	}
 
@@ -165,9 +188,16 @@ func GetAllGenPackage(path string, pfiles []ParsedFile, db bool, tmplFile, ns, o
 	imports := []string{}
 	impmap := make(map[string]bool)
 
+	cond, err := data.ParseFlagsRaw(conditionFlag)
+	if err != nil {
+		return data.GenPackage{}, fmt.Errorf("parsing condition flag %s. %w", flagstr, err)
+	}
+
 	objs := []data.GenObject{}
 	for _, pfile := range pfiles {
-		if conditionFlag != "" && !getFlagValue(flags, pfile.GenFlags, conditionFlag) {
+		filtered := shouldFilter(cond, flags, pfile.GenFlags)
+
+		if filtered {
 			continue
 		}
 
@@ -198,7 +228,6 @@ func GetAllGenPackage(path string, pfiles []ParsedFile, db bool, tmplFile, ns, o
 }
 
 func getGenObject(pfile ParsedFile, genflags data.GenFlags) (data.GenObject, error) {
-
 	if pfile.GenFlags.ClassName == "" {
 		return data.GenObject{}, fmt.Errorf("No object name provided.")
 	}

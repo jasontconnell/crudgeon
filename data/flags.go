@@ -1,8 +1,21 @@
 package data
 
+import (
+	"errors"
+	"fmt"
+	"strings"
+)
+
 type Flags interface {
 	IsFlagSpecified(name string) bool
 	GetFlagValue(name string) bool
+}
+
+type ParsedFlag struct {
+	Name   string
+	Value  string
+	Values []string
+	Switch bool
 }
 
 type FlagType int
@@ -69,4 +82,35 @@ func init() {
 	FlagTypes[ClassNameFlag] = String
 	FlagTypes[TableNameFlag] = String
 	FlagTypes[CollectionTemplateFlag] = String
+}
+
+func ParseFlagsRaw(str string) ([]ParsedFlag, error) {
+	var errs error
+	pflist := []ParsedFlag{}
+	flds := smartSplit(str, ',')
+	for _, s := range flds {
+		if len(s) == 0 {
+			continue
+		}
+		flg := s[0] == '+'
+		rest := strings.Fields(s[1:])
+		flgname := rest[0]
+
+		if flgname == "" {
+			errs = errors.Join(errs, fmt.Errorf("got blank flag name %s", s))
+		}
+
+		var val string
+		if len(rest) > 1 {
+			val = strings.Join(rest[1:], " ")
+		}
+		pf := ParsedFlag{
+			Name:   flgname,
+			Switch: flg,
+			Value:  val,
+			Values: rest[1:],
+		}
+		pflist = append(pflist, pf)
+	}
+	return pflist, errs
 }

@@ -3,7 +3,6 @@ package data
 import (
 	"fmt"
 	"maps"
-	"strings"
 )
 
 type CustomFlag struct {
@@ -170,11 +169,14 @@ func MergeGenFlags(gf GenFlags, f GenFlags) GenFlags {
 
 func ParseFlags(flagstr string) (GenFlags, error) {
 	fs := NewFlagSetter()
-	ss := strings.Split(flagstr, ",")
-	for _, s := range ss {
-		err := fs.SetFlag(s)
+	pflist, err := ParseFlagsRaw(flagstr)
+	if err != nil {
+		return GenFlags{}, err
+	}
+	for _, f := range pflist {
+		err := fs.SetFlag(f)
 		if err != nil {
-			return GenFlags{}, fmt.Errorf("parsing flag %s. %w", s, err)
+			return GenFlags{}, fmt.Errorf("setting flag %s. %w", f.Name, err)
 		}
 	}
 	return fs.GetFlags(), nil
