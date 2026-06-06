@@ -1,5 +1,5 @@
 //+class DbIgnored
-//+dbignore
+//+dbignore,+map
 //+formclass /-/api/fl/
 
 string Name //+key

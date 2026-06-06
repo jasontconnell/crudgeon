@@ -123,8 +123,9 @@ func shouldFilter(cond []data.ParsedFlag, flags, fileflags data.Flags) bool {
 	for _, cflag := range cond {
 		fv := getFlagValue(flags, fileflags, cflag.Name)
 		spec := getFlagSpecified(flags, fileflags, cflag.Name)
-		if spec && fv != cflag.Switch {
+		if spec && fv != cflag.Switch || cflag.Switch && !spec {
 			filtered = true
+			break
 		}
 	}
 	return filtered

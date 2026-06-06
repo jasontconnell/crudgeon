@@ -3,6 +3,7 @@ package data
 import (
 	"fmt"
 	"maps"
+	"strings"
 )
 
 type CustomFlag struct {
@@ -198,6 +199,15 @@ func (gf GenFlags) GetFlagValue(name string) bool {
 }
 
 func (gf GenFlags) String() string {
+	var custom string
+	if len(gf.Custom) > 0 {
+		prefix := strings.Repeat("\t", 2)
+		custom = prefix + "**** CUSTOM ****\n"
+		for k, v := range gf.Custom {
+			space := 23 - len(k)
+			custom += fmt.Sprintf(prefix+"%s%s%v\n", k, strings.Repeat(" ", space), v)
+		}
+	}
 	return fmt.Sprintf(`
 		Id:                    %v
 		Fields:                %v
@@ -212,5 +222,6 @@ func (gf GenFlags) String() string {
 		XmlRoot:               %v (%v)
 		Class:                 %s
 		Exact:                 %v
-	`, gf.Id, gf.Fields, gf.Collections, gf.CollectionTemplate, gf.Constructor, gf.Keys, gf.DbIgnore, gf.CodeIgnore, gf.JsonIgnore, gf.XmlIgnore, gf.XmlRoot, gf.XmlRootName, gf.ClassName, gf.Exact)
+		%s
+	`, gf.Id, gf.Fields, gf.Collections, gf.CollectionTemplate, gf.Constructor, gf.Keys, gf.DbIgnore, gf.CodeIgnore, gf.JsonIgnore, gf.XmlIgnore, gf.XmlRoot, gf.XmlRootName, gf.ClassName, gf.Exact, custom)
 }
