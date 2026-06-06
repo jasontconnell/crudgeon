@@ -7,11 +7,10 @@ crudgeon is a multi-output CRUD generator written in Go for a very specific set 
 go build
 
 ```
-crudgeon -file datafiles\example1.txt -path output -obj Business -ns Name.Space
-crudgeon -file datafiles\example2.txt -path output -obj Employee -ns Name.Space
+crudgeon -dir ./datafiles -path output -ns Name.Space
 ```
 
-See genex.bat and sample input and output in datafiles and output folders. As of March 2021, you can pass a directory and have +class in each file, and pass the namespace still, and it'll work against the entire directory. This is much faster.
+See gen.ps1 and sample input and output in datafiles and output folders. As of March 2021, you can pass a directory and have +class in each file, and pass the namespace still, and it'll work against the entire directory. This is much faster. In fact, with recent updates, it's the only option.
 
 ## Documentation
 
@@ -21,7 +20,7 @@ Properties can be decorated with flags to control their output.
 
 ex.
 
-years_old|Age //+sqlignore,+xmlignore
+int years_old|Age //+sqlignore,+xmlignore
 
 ### TYPE:
 
@@ -34,13 +33,13 @@ As of now can be one of
 * long
 * DateTime
 * bool
-* OR nullable versions of those with Nullable<TYPE>
+* OR nullable versions of those with TYPE*
 * ANY object, but it will be ignored for SQL generation automatically.
 
 ### FIELDNAME:
 This can be optional. If you're happy with the title cased version of the data source's name, you'll just need field name, not property name.
 However, if your data source is coming back with underscores or words you find redundant (e.g. PlayerFirstName on a Player object), you can provide
-a field name and a property name.  (e.g.  `public string PlayerFirstName|FirstName {get;set;}`)
+a field name and a property name.  (e.g.  `string PlayerFirstName|FirstName`)
 
 ### PROPERTYNAME:
 See field name.
@@ -53,14 +52,14 @@ Field Flags take the form //+flag,-flag after a field definition
 
 Available Field Flags:
 
-1. sqlignore
-    - Don't generate sql properties for this, including column names and sql attributes.
+1. dbignore
+    - Don't generate db properties for this, including column names and db attributes.
 2. jsonignore
     - Don't generate json attributes for this property
 3. key
     - This field is part of the uniquely identifying set of fields for this object
 4. nomap
-    - Don't map this on the ORM call to get data from the database. Like sql ignore for "get" operations
+    - Don't map this on the ORM call to get data from the database. Like dbignore for "get" operations
 5. xmlignore
     - Don't generate XML attributes for this object.
 6. xmlwrapper  (array element name)
@@ -90,7 +89,7 @@ Generation Flags control Generation. In the config.json, these will tell what da
     - this one requires a bit of explanation. It uses convention. If you object is not a base type and it start with an I, it's an interface. Sorry.
 6. keys
     - include keys as a separate object
-7. sqlignore, codeignore, jsonignore, xmlignore
+7. dbignore, codeignore, jsonignore, xmlignore
     - these will usually be included in the data files, not in the config like 1-7
 8. xmlroot (xml root element name)
     - this object is an xml root. you can use it like   //+xmlroot RootName
@@ -103,24 +102,20 @@ The text template is passed a GenPackage object
 
 ```
 type GenPackage struct {
-	Generate          bool
-	Name              string
-	NameLower         string
-	Path              string
-	Ext               string
-	Namespace         string
-	Fields            []GenField
-	ConstructorFields []GenField
-	KeyFields         []GenField
-	PrimaryKeyFields  []GenField
-	UpdateFields      []GenField
-	TemplateFile      string
-	FilenameTemplate  string
-	Flags             GenFlags
+	Generate bool
+	Object   GenObject
+	Objects  []GenObject
+
+	Namespace        string
+	Imports          []string
+	Path             string
+	Ext              string
+	TemplateFile     string
+	FilenameTemplate string
+	Flags            GenFlags
+	OneFile          bool
 }
 ```
-
-Really all you would care about are Name, Namespace, Fields, ConstructorFields, KeyFields, Prefix, and Flags.
 
 You can look at the existing templates in the tmpl folder within this project.
 
