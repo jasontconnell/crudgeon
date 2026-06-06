@@ -36,6 +36,7 @@ type GenObject struct {
 	PrimaryKeyFields  []GenField
 	UpdateFields      []GenField
 	Namespace         string
+	Flags             GenFlags
 }
 
 type GenField struct {

@@ -1,3 +1,4 @@
+{{ objstringflag .Object "title" }}
 
 var serviceObj = service.Get{{.Object.Name }}();
 {{.Object.Name}} localObj = new {{.Object.Name}}(

@@ -13,12 +13,6 @@ import (
 	"github.com/jasontconnell/crudgeon/data"
 )
 
-var fns = template.FuncMap{
-	"plus1": func(x int) int {
-		return x + 1
-	},
-}
-
 func getPackageFunctions(pkg data.GenPackage) template.FuncMap {
 	m := make(template.FuncMap)
 
@@ -37,6 +31,17 @@ func getPackageFunctions(pkg data.GenPackage) template.FuncMap {
 		return val
 	}
 
+	m["objstringflag"] = func(obj data.GenObject, k string) string {
+		val := ""
+		if obj.Flags.Custom == nil {
+			return val
+		}
+		if v, ok := obj.Flags.Custom[k]; ok {
+			val = v.Value
+		}
+		return val
+	}
+
 	m["bitflag"] = func(k string) bool {
 		val := false
 		if pkg.Flags.Custom == nil {
@@ -47,6 +52,17 @@ func getPackageFunctions(pkg data.GenPackage) template.FuncMap {
 			val = v.Flag
 		}
 
+		return val
+	}
+
+	m["objbitflag"] = func(obj data.GenObject, k string) bool {
+		val := false
+		if obj.Flags.Custom == nil {
+			return false
+		}
+		if v, ok := obj.Flags.Custom[k]; ok {
+			val = v.Flag
+		}
 		return val
 	}
 
@@ -230,7 +246,7 @@ func GetAllGenPackage(path string, pfiles []ParsedFile, db bool, tmplFile, ns, o
 
 func getGenObject(pfile ParsedFile, genflags data.GenFlags) (data.GenObject, error) {
 	if pfile.GenFlags.ClassName == "" {
-		return data.GenObject{}, fmt.Errorf("No object name provided.")
+		return data.GenObject{}, fmt.Errorf("no object name provided.")
 	}
 
 	name := pfile.GenFlags.ClassName
@@ -247,7 +263,7 @@ func getGenObject(pfile ParsedFile, genflags data.GenFlags) (data.GenObject, err
 		}
 	}
 
-	obj := data.GenObject{Name: name, NameLower: lname, Namespace: pfile.GenFlags.Namespace}
+	obj := data.GenObject{Name: name, NameLower: lname, Namespace: pfile.GenFlags.Namespace, Flags: pfile.GenFlags}
 
 	if genflags.Fields || genflags.Constructor || genflags.Keys || genflags.PrimaryKeys || genflags.Updates {
 		for _, f := range pfile.Fields {
