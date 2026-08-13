@@ -19,7 +19,6 @@ func main() {
 	ns := flag.String("ns", "", "namespace")
 	obj := flag.String("obj", "", "object name")
 	dir := flag.String("dir", "", "process all files in a directory. they must have the +class flag in the file, or it'll fail")
-	endlines := flag.String("endlines", "crlf", "new line to output, lf or crlf")
 	flag.Parse()
 
 	n := time.Now()
@@ -59,11 +58,6 @@ func main() {
 		log.Fatal("no files")
 	}
 
-	newline := "\r\n"
-	if *endlines == "lf" {
-		newline = "\n"
-	}
-
 	for _, pfile := range pfiles {
 		for _, g := range cfg.Generations {
 			if g.OneFile {
@@ -90,7 +84,7 @@ func main() {
 				log.Fatal("getting gen package from file: ", pfile.Path, " error: ", err)
 			}
 
-			err = process.Generate(gp, g.CreateObjDir, newline)
+			err = process.Generate(gp, g.CreateObjDir)
 
 			if err != nil {
 				log.Fatal("generating from file: ", pfile.Path, " error: ", err)
@@ -117,7 +111,7 @@ func main() {
 		if err != nil {
 			log.Fatal("getting gen package from all files. error: ", err)
 		}
-		err = process.Generate(gp, false, newline)
+		err = process.Generate(gp, false)
 
 		if err != nil {
 			log.Fatal("generating: error: ", err)
