@@ -10,6 +10,7 @@ type Config struct {
 	Null               string       `json:"null"`
 	DbNull             string       `json:"dbnull"`
 	TypeMap            []MappedType `json:"typeMap"`
+	EndLines           string       `json:"endlines"`
 }
 
 type MappedType struct {

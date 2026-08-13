@@ -1,6 +1,7 @@
 package process
 
 import (
+	"bufio"
 	"bytes"
 	"fmt"
 	"os"
@@ -97,7 +98,7 @@ func getPackageFunctions(pkg data.GenPackage) template.FuncMap {
 	return m
 }
 
-func Generate(pkg data.GenPackage, objdir bool) error {
+func Generate(pkg data.GenPackage, objdir bool, newline string) error {
 	if !pkg.Generate {
 		return nil
 	}
@@ -131,7 +132,15 @@ func Generate(pkg data.GenPackage, objdir bool) error {
 	}
 
 	output := filepath.Join(path, outfile)
-	return os.WriteFile(output, buffer.Bytes(), os.ModePerm)
+
+	var lines []string
+	scn := bufio.NewScanner(buffer)
+	for scn.Scan() {
+		lines = append(lines, scn.Text())
+	}
+	joined := strings.Join(lines, newline)
+
+	return os.WriteFile(output, []byte(joined), os.ModePerm)
 }
 
 func shouldFilter(cond []data.ParsedFlag, flags, fileflags data.Flags) bool {

@@ -58,6 +58,11 @@ func main() {
 		log.Fatal("no files")
 	}
 
+	newline := "\r\n"
+	if cfg.EndLines == "lf" {
+		newline = "\n"
+	}
+
 	for _, pfile := range pfiles {
 		for _, g := range cfg.Generations {
 			if g.OneFile {
@@ -84,7 +89,7 @@ func main() {
 				log.Fatal("getting gen package from file: ", pfile.Path, " error: ", err)
 			}
 
-			err = process.Generate(gp, g.CreateObjDir)
+			err = process.Generate(gp, g.CreateObjDir, newline)
 
 			if err != nil {
 				log.Fatal("generating from file: ", pfile.Path, " error: ", err)
@@ -111,7 +116,7 @@ func main() {
 		if err != nil {
 			log.Fatal("getting gen package from all files. error: ", err)
 		}
-		err = process.Generate(gp, false)
+		err = process.Generate(gp, false, newline)
 
 		if err != nil {
 			log.Fatal("generating: error: ", err)
