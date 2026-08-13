@@ -19,6 +19,7 @@ func main() {
 	ns := flag.String("ns", "", "namespace")
 	obj := flag.String("obj", "", "object name")
 	dir := flag.String("dir", "", "process all files in a directory. they must have the +class flag in the file, or it'll fail")
+	endlines := flag.String("endlines", "crlf", "new line to output, lf or crlf")
 	flag.Parse()
 
 	n := time.Now()
@@ -59,7 +60,7 @@ func main() {
 	}
 
 	newline := "\r\n"
-	if cfg.EndLines == "lf" {
+	if *endlines == "lf" {
 		newline = "\n"
 	}
 
